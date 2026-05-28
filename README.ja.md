@@ -90,6 +90,6 @@ Live example: <https://callingdeconstructor.zeabur.app/>
 
 The author works across cognitive psychology, gamified experience design, and AI product prototyping.
 
-コラボレーション、事例共有、実装相談がある場合は、[コラボレーションフォーム入口](collaboration.html) を確認してください。
+コラボレーション、事例共有、実装相談がある場合は、[コラボレーションフォーム入口](collaboration.html) または [Google コラボレーションフォーム](https://docs.google.com/forms/d/e/1FAIpQLSet3g2cL32ZElYICNwvxaq27R0pxqyoHw2AK5bQHjDzNQwlUg/viewform) を確認してください。
 
 GitHub issue は公開の修正提案、ドキュメント補足、PR 議論のための場所です。個人の連絡先、決済アカウント、API key、管理画面スクリーンショット、実注文データを投稿しないでください。

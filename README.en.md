@@ -88,6 +88,6 @@ Contributions are welcome. You can help with translations, payment-provider note
 
 ## Author and Collaboration
 
-The author works across cognitive psychology, gamified experience design, and AI product prototyping. For collaboration, case sharing, or practical questions, use the [collaboration form entry](collaboration.html).
+The author works across cognitive psychology, gamified experience design, and AI product prototyping. For collaboration, case sharing, or practical questions, use the [collaboration form entry](collaboration.html) or the [Google collaboration form](https://docs.google.com/forms/d/e/1FAIpQLSet3g2cL32ZElYICNwvxaq27R0pxqyoHw2AK5bQHjDzNQwlUg/viewform).
 
 GitHub issues are only for public corrections, documentation improvements, and PR discussion. Do not post private contact details, payment accounts, API keys, admin screenshots, or real order data in public issues.

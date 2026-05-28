@@ -90,6 +90,6 @@ Live example: <https://callingdeconstructor.zeabur.app/>
 
 The author works across cognitive psychology, gamified experience design, and AI product prototyping.
 
-협업, 사례 공유, 구현 상담은 [협업 양식 입구](collaboration.html)를 먼저 확인해 주세요.
+협업, 사례 공유, 구현 상담은 [협업 양식 입구](collaboration.html) 또는 [Google 협업 양식](https://docs.google.com/forms/d/e/1FAIpQLSet3g2cL32ZElYICNwvxaq27R0pxqyoHw2AK5bQHjDzNQwlUg/viewform)을 먼저 확인해 주세요.
 
 GitHub issue는 공개 오류 제보, 문서 보완, PR 논의에만 사용합니다. 공개 issue에는 개인 연락처, 결제 계정, API key, 관리자 화면 스크린샷, 실제 주문 데이터를 올리지 마세요.

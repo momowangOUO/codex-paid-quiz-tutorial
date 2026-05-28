@@ -4,11 +4,13 @@
 
 网站入口：[合作与案例交流](collaboration.html)
 
+当前合作表单：[Codex 付费网站教程｜合作与案例交流](https://docs.google.com/forms/d/e/1FAIpQLSet3g2cL32ZElYICNwvxaq27R0pxqyoHw2AK5bQHjDzNQwlUg/viewform)
+
 ## 推荐联系流程
 
 1. 先建立一个 Google 表单、Tally 或 Typeform。
 2. 表单用于收集合作主题、项目阶段、希望交流的方向，以及对方自愿留下的回复方式。
-3. 把表单公开链接填到 [collaboration.html](collaboration.html) 的主按钮里。
+3. 把表单公开链接填到 [collaboration.html](collaboration.html) 的主按钮里；当前已接入 Google 表单。
 4. GitHub Issue 只保留给公开勘误、文档补充、截图补充和 PR 讨论。
 
 如果想快速生成 Google 表单，可以使用 [tools/create-google-contact-form.gs](tools/create-google-contact-form.gs)：
@@ -17,7 +19,7 @@
 2. 建立新项目，把脚本内容贴进去。
 3. 执行 `createCollaborationContactForm()`，按 Google 提示授权。
 4. 在执行日志里复制「公开填写链接」。
-5. 把 [collaboration.html](collaboration.html) 里的按钮 `href="#form-setup"` 替换成这个链接。
+5. 把 [collaboration.html](collaboration.html) 里的按钮链接替换成这个公开填写链接。
 
 ## 中文 Google 表单建议内容
 

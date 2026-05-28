@@ -91,6 +91,6 @@
 
 ## 作者與合作
 
-作者關注認知心理學、遊戲化體驗設計與 AI 產品原型。若你想交流收費測驗、AI 輔助報告、付款解鎖流程或 Codex MVP 開發，請先看 [合作表單入口](collaboration.html)。
+作者關注認知心理學、遊戲化體驗設計與 AI 產品原型。若你想交流收費測驗、AI 輔助報告、付款解鎖流程或 Codex MVP 開發，請先看 [合作表單入口](collaboration.html)，或直接填寫 [Google 合作表單](https://docs.google.com/forms/d/e/1FAIpQLSet3g2cL32ZElYICNwvxaq27R0pxqyoHw2AK5bQHjDzNQwlUg/viewform)。
 
 GitHub issue 只適合公開勘誤、文件補充與 PR 討論。請不要在公開 issue 留下私人聯絡方式、付款帳號、API key、後台截圖或真實訂單資料。

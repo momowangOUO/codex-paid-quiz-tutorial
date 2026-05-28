@@ -479,6 +479,6 @@ PADDLE_ALLOW_UNSIGNED_WEBHOOKS=false
 
 如果你想补充其他平台路线、翻译、截图、部署踩坑记录，欢迎一起改。
 
-合作、案例交流或共创需求请看 [合作表单入口](collaboration.html)。GitHub Issue 只用于公开勘误、文档补充和 PR 讨论；不要在公开页面留下私人联系方式、付款账号、API key、后台截图或真实订单资料。
+合作、案例交流或共创需求请看 [合作表单入口](collaboration.html)，也可以直接填写 [Google 合作表单](https://docs.google.com/forms/d/e/1FAIpQLSet3g2cL32ZElYICNwvxaq27R0pxqyoHw2AK5bQHjDzNQwlUg/viewform)。GitHub Issue 只用于公开勘误、文档补充和 PR 讨论；不要在公开页面留下私人联系方式、付款账号、API key、后台截图或真实订单资料。
 
 更完整的合作说明看 [CONTACT.md](CONTACT.md)。
