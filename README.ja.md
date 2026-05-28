@@ -1,4 +1,4 @@
-# Codex で課金サイトを作る
+# Codex で有料サイトを作る
 
 [简体中文](README.md) · [繁體中文](README.zh-TW.md) · [English](README.en.md) · **日本語** · [한국어](README.ko.md)
 
@@ -8,35 +8,34 @@
 
 ![Tutorial cover](assets/brand/tutorial-hero.webp)
 
-> 0 から GitHub、Zeabur、Paddle 決済、自動アンロックまで進める実践ガイド。
+> ゼロから GitHub、Zeabur、Paddle Checkout、支払い後の自動解放まで進める実践ガイドです。
 
-- このチュートリアルは抽象論ではなく、本当に課金できるサイトを作るための実践手順です。
-- 順番が大切です。まず動くサイトを作り、Zeabur にデプロイして HTTPS ドメインを取得し、その後 Paddle のサイト審査と決済設定を進めます。
-- 初心者でも、章ごとに Codex に作業分解、実装、検証を任せながら進められます。
+- 抽象的な設計論ではなく、手を動かすためのチュートリアルです。
+- 推奨順序は、動くサイトを作る、GitHub に上げる、Zeabur で HTTPS ドメインを取る、最後に Paddle を接続する、です。
+- 初心者でも、章ごとに Codex へ小さく依頼し、実装と確認を繰り返せます。
 
-## チュートリアル一覧
+## チュートリアル目次
 
-1. [商品と導線を設計する](docs/ja/01-product-flow.md)
-2. [Codex でサイトを作る](docs/ja/02-codex-build-workflow.md)
+1. [プロダクトの流れを分解する](docs/ja/01-product-flow.md)
+2. [Codex にサイトを作らせる進め方](docs/ja/02-codex-build-workflow.md)
 3. [GitHub にアップロードする](docs/ja/03-upload-to-github.md)
-4. [Zeabur にデプロイする](docs/ja/04-zeabur-deployment.md)
-5. [Paddle 決済を接続する](docs/ja/05-payment-unlock.md)
-6. [プロンプト集](docs/ja/06-prompt-templates.md)
+4. [先に Zeabur へデプロイする](docs/ja/04-zeabur-deployment.md)
+5. [Paddle 決済と自動解放](docs/ja/05-payment-unlock.md)
+6. [Codex プロンプト集](docs/ja/06-prompt-templates.md)
 7. [公開前チェックリスト](docs/ja/07-launch-checklist.md)
 
-## 作るもの
+## 作れるもの
 
-- 無料で試せる診断と結果プレビューを作る。
-- URL パラメータではなく、バックエンドで注文状態を管理する。
-- Zeabur にデプロイし、Paddle が確認できる HTTPS ドメインを取得する。
-- Paddle Checkout と webhook で支払い後に自動アンロックする。
-- 公開前チェックで secret の漏えいを防ぐ。
+- 無料で試せる診断と結果プレビュー。
+- バックエンドが支払い状態を管理する解放フロー。
+- Paddle が検証できる Zeabur 上の HTTPS サイト。
+- Paddle Checkout と webhook による自動解放。
 
-## 関連リンク
+## リンク
 
-- [ライブ例：The Calling Deconstructor](https://callingdeconstructor.zeabur.app/)
+- [デモサイト：The Calling Deconstructor](https://callingdeconstructor.zeabur.app/)
 - [静的チュートリアルサイト](https://momowangouo.github.io/codex-paid-quiz-tutorial/)
 - [GitHub リポジトリ](https://github.com/momowangOUO/codex-paid-quiz-tutorial)
-- [協力フォーム](https://docs.google.com/forms/d/e/1FAIpQLSet3g2cL32ZElYICNwvxaq27R0pxqyoHw2AK5bQHjDzNQwlUg/viewform)
+- [共同作業フォーム](https://docs.google.com/forms/d/e/1FAIpQLSet3g2cL32ZElYICNwvxaq27R0pxqyoHw2AK5bQHjDzNQwlUg/viewform)
 
-ライブ例が一時的に眠っていても、たいていは小さなサーバー予算の昼寝です。チュートリアル自体はそのまま使えます。
+デモサイトが起きてこない場合は、サーバー予算が少し昼寝しているだけかもしれません。チュートリアルはそのまま使えます。

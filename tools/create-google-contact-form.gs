@@ -1,7 +1,7 @@
 function createCollaborationContactForm() {
   const form = FormApp.create('Codex 付费网站教程：合作与交流表单');
 
-  form.setDescription('如果你想协作翻译、补充平台经验、分享案例或讨论合作，请填写这份表单。请不要提交 API key、Webhook secret、付款账户截图或任何用户隐私资料。');
+  form.setDescription('如果你想协作翻译、补充平台经验、分享案例或讨论合作，请填写这份表单。请不要提交 API key、Webhook secret、付款账户画面或任何用户隐私资料。');
   form.setCollectEmail(false);
   form.setAllowResponseEdits(false);
   form.setLimitOneResponsePerUser(false);
@@ -40,7 +40,7 @@ function createCollaborationContactForm() {
 
   form.addParagraphTextItem()
     .setTitle('补充说明')
-    .setHelpText('请不要放 API key、付款资料、用户数据或敏感截图。')
+    .setHelpText('请不要放 API key、付款资料、用户数据或敏感画面。')
     .setRequired(false);
 
   Logger.log('Published URL: ' + form.getPublishedUrl());

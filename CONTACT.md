@@ -4,7 +4,7 @@ For private collaboration, case sharing, translation help, or feedback that shou
 
 [Open the collaboration form](https://docs.google.com/forms/d/e/1FAIpQLSet3g2cL32ZElYICNwvxaq27R0pxqyoHw2AK5bQHjDzNQwlUg/viewform)
 
-Public documentation corrections can still be opened as GitHub issues, but please do not include private contact details, API keys, account screenshots, payment logs, webhook secrets, or user data.
+Public documentation corrections can still be opened as GitHub issues, but please do not include private contact details, API keys, account images, payment logs, webhook secrets, or user data.
 
 ## What the form is for
 

@@ -1,24 +1,57 @@
-# 04. Deploy to Zeabur
+# 04. Deploy to Zeabur First
 
-![Domain before Paddle](../../assets/screenshots/07-domain-before-paddle.svg)
+**Goal: get a real HTTPS domain before configuring Paddle. The order matters.**
 
-![Zeabur deploy flow](../../assets/screenshots/01-zeabur-deploy.svg)
+```text
+local mock flow -> GitHub -> Zeabur -> HTTPS domain -> Paddle website approval -> Paddle checkout
+```
 
-![Zeabur variables](../../assets/screenshots/02-zeabur-variables.svg)
+![Domain before Paddle](../../assets/diagrams/07-domain-before-paddle.svg)
 
-![Zeabur volume](../../assets/screenshots/03-zeabur-volume.svg)
+## Why Zeabur first
 
+Paddle often needs a pricing page, terms page, privacy policy, refund policy, default payment link, and approved domain. Without a public domain, you may be blocked by checkout-not-enabled errors even if your code is correct.
 
-Deploy first, then configure Paddle. Paddle needs a real HTTPS domain for website approval and checkout settings.
+## Pre-deploy check
+
+Run locally:
+
+```bash
+npm install
+npm run build
+```
+
+If build fails locally, paste the full log to Codex and fix it before deploying.
+
+## Listen on PORT and 0.0.0.0
+
+Your Node server should look like:
+
+```js
+const port = Number(process.env.PORT ?? 8080);
+const serverHost = process.env.PAYMENT_SERVER_HOST ?? "0.0.0.0";
+server.listen(port, serverHost, () => {
+  console.log(`payment server: http://${serverHost}:${port}/api`);
+});
+```
+
+`0.0.0.0` is correct in production containers. It allows traffic from outside the container instead of only from inside localhost.
 
 ## Zeabur settings
 
-```text
-Build Command: npm run build
-Start Command: npm run start
-```
+![Zeabur deploy flow](../../assets/diagrams/01-zeabur-deploy.svg)
+
+1. Create a project.
+2. Connect your GitHub repository.
+3. Pick Singapore or Hong Kong if your audience includes mainland China.
+4. Build Command: `npm run build`.
+5. Start Command: `npm run start`.
 
 ## Variables
+
+![Zeabur variables](../../assets/diagrams/02-zeabur-variables.svg)
+
+Start with:
 
 ```bash
 PAYMENT_SERVER_HOST=0.0.0.0
@@ -29,4 +62,20 @@ PADDLE_ENVIRONMENT=sandbox
 PADDLE_ALLOW_UNSIGNED_WEBHOOKS=false
 ```
 
-Mount a volume at `/data` so sessions survive restarts.
+Add Paddle API key and price IDs after Paddle setup is ready.
+
+## Volume
+
+![Zeabur volume](../../assets/diagrams/03-zeabur-volume.svg)
+
+Mount a volume at `/data`. This prevents payment sessions and access tokens from disappearing when the service restarts.
+
+## Verification
+
+Open:
+
+- `https://your-domain/`
+- `https://your-domain/api/health`
+- `https://your-domain/monetization.json`
+
+`/api/health` should confirm service status and payment readiness, but it must not reveal secrets.

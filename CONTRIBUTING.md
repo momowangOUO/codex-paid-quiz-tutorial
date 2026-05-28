@@ -5,14 +5,14 @@ Thanks for improving this tutorial. Please keep contributions public-safe and pr
 ## Good contributions
 
 - Clearer deployment steps.
-- Updated Paddle or Zeabur screenshots without private data.
+- Updated Paddle or Zeabur flow diagrams without private data.
 - Safer payment or webhook examples.
 - Better translations for zh-CN, zh-TW, en, ja, or ko.
 - Beginner-friendly prompt examples.
 
 ## Do not submit
 
-- API keys, webhook secrets, admin tokens, private payment account screenshots, or personal contact details.
+- API keys, webhook secrets, admin tokens, private payment account images, or personal contact details.
 - Claims that guarantee income or payment approval.
 - Large unrelated rewrites without an issue or explanation.
 
@@ -38,5 +38,5 @@ Use a short prefix when useful:
 [Docs] Fix Paddle webhook step
 [i18n] Improve Japanese deployment chapter
 [Security] Clarify secret handling
-[Visual] Replace Zeabur screenshot
+[Visual] Improve Zeabur deployment diagram
 ```

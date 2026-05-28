@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Zeabur variables screenshot mockup">
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Zeabur variables variables diagram">
   <rect width="1280" height="720" fill="#07090d"/>
   <rect x="56" y="48" width="1168" height="624" rx="28" fill="#10141d" stroke="#00e5ff" stroke-opacity=".45"/>
   <text x="96" y="112" fill="#f8fbff" font-family="Inter,Arial" font-size="34" font-weight="700">Variables</text>
@@ -7,8 +7,8 @@
     <rect x="96" y="198" width="1088" height="58" rx="12" fill="#0b0f16"/><text x="126" y="235" fill="#00e5ff">PAYMENT_SERVER_HOST</text><text x="610" y="235" fill="#f8fbff">0.0.0.0</text>
     <rect x="96" y="268" width="1088" height="58" rx="12" fill="#141a25"/><text x="126" y="305" fill="#00e5ff">PAYMENT_STORE_FILE</text><text x="610" y="305" fill="#f8fbff">/data/payment-store.json</text>
     <rect x="96" y="338" width="1088" height="58" rx="12" fill="#0b0f16"/><text x="126" y="375" fill="#00e5ff">PUBLIC_BASE_URL</text><text x="610" y="375" fill="#f8fbff">https://your-site.zeabur.app</text>
-    <rect x="96" y="408" width="1088" height="58" rx="12" fill="#141a25"/><text x="126" y="445" fill="#00e5ff">PADDLE_API_KEY</text><text x="610" y="445" fill="#ff315d">••••••••••••••••••••</text>
-    <rect x="96" y="478" width="1088" height="58" rx="12" fill="#0b0f16"/><text x="126" y="515" fill="#00e5ff">PADDLE_WEBHOOK_SECRET</text><text x="610" y="515" fill="#ff315d">••••••••••••••••••••</text>
+    <rect x="96" y="408" width="1088" height="58" rx="12" fill="#141a25"/><text x="126" y="445" fill="#00e5ff">PADDLE_API_KEY</text><text x="610" y="445" fill="#ff315d">?ＴＴＴＴＴＴＴＴＴＴＴＴＴＴＴＴＴＴＴ?/text>
+    <rect x="96" y="478" width="1088" height="58" rx="12" fill="#0b0f16"/><text x="126" y="515" fill="#00e5ff">PADDLE_WEBHOOK_SECRET</text><text x="610" y="515" fill="#ff315d">?ＴＴＴＴＴＴＴＴＴＴＴＴＴＴＴＴＴＴＴ?/text>
   </g>
   <text x="96" y="604" fill="#f8fbff" font-family="Inter,Arial" font-size="22" font-weight="700">Rule</text>
   <text x="160" y="604" fill="#9fb0c3" font-family="Inter,Arial" font-size="20">If users can download the file, it must not contain secrets.</text>
