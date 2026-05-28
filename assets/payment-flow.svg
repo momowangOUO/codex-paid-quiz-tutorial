@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-label="测验到付款解锁流程">
+  <rect width="1200" height="520" fill="#0b0b0f"/>
+  <defs>
+    <style>
+      .title{font:700 32px Arial,"Microsoft YaHei",sans-serif;fill:#fff}
+      .step{font:700 19px Arial,"Microsoft YaHei",sans-serif;fill:#fff}
+      .body{font:15px Arial,"Microsoft YaHei",sans-serif;fill:#c8d2dc}
+      .num{font:700 18px Arial,sans-serif;fill:#00e5ff}
+      .card{fill:#11151c;stroke:#00e5ff;stroke-width:2}
+      .lock{stroke:#ff1744}
+      .line{stroke:#ff1744;stroke-width:2;fill:none;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#ff1744"/>
+    </marker>
+  </defs>
+  <text x="50" y="55" class="title">用户路径：先完成测验，再付款解锁</text>
+  <g transform="translate(50 115)">
+    <rect width="180" height="120" rx="10" class="card"/>
+    <text x="22" y="32" class="num">01</text>
+    <text x="22" y="65" class="step">进入首页</text>
+    <text x="22" y="95" class="body">说明测验价值</text>
+  </g>
+  <path d="M230 175 H305" class="line"/>
+  <g transform="translate(305 115)">
+    <rect width="180" height="120" rx="10" class="card"/>
+    <text x="22" y="32" class="num">02</text>
+    <text x="22" y="65" class="step">完成答题</text>
+    <text x="22" y="95" class="body">生成 reportId</text>
+  </g>
+  <path d="M485 175 H560" class="line"/>
+  <g transform="translate(560 115)">
+    <rect width="180" height="120" rx="10" class="card"/>
+    <text x="22" y="32" class="num">03</text>
+    <text x="22" y="65" class="step">免费导言</text>
+    <text x="22" y="95" class="body">建立信任</text>
+  </g>
+  <path d="M740 175 H815" class="line"/>
+  <g transform="translate(815 115)">
+    <rect width="180" height="120" rx="10" class="card lock"/>
+    <text x="22" y="32" class="num">04</text>
+    <text x="22" y="65" class="step">付款墙</text>
+    <text x="22" y="95" class="body">创建 session</text>
+  </g>
+  <path d="M995 175 H1070" class="line"/>
+  <g transform="translate(970 285)">
+    <rect width="180" height="120" rx="10" class="card lock"/>
+    <text x="22" y="32" class="num">05</text>
+    <text x="22" y="65" class="step">平台收款</text>
+    <text x="22" y="95" class="body">发送 webhook</text>
+  </g>
+  <path d="M970 345 H740" class="line"/>
+  <g transform="translate(560 285)">
+    <rect width="180" height="120" rx="10" class="card"/>
+    <text x="22" y="32" class="num">06</text>
+    <text x="22" y="65" class="step">后端确认</text>
+    <text x="22" y="95" class="body">发放 access token</text>
+  </g>
+  <path d="M560 345 H330" class="line"/>
+  <g transform="translate(150 285)">
+    <rect width="180" height="120" rx="10" class="card"/>
+    <text x="22" y="32" class="num">07</text>
+    <text x="22" y="65" class="step">完整报告</text>
+    <text x="22" y="95" class="body">保存 / 恢复</text>
+  </g>
+</svg>

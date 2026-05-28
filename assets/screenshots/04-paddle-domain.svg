@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Paddle website approval screenshot mockup">
+  <rect width="1280" height="720" fill="#07090d"/>
+  <rect x="56" y="48" width="1168" height="624" rx="28" fill="#10141d" stroke="#00e5ff" stroke-opacity=".45"/>
+  <text x="96" y="112" fill="#f8fbff" font-family="Inter,Arial" font-size="34" font-weight="700">Paddle Website Approval</text>
+  <text x="96" y="150" fill="#9fb0c3" font-family="Inter,Arial" font-size="20">Use the HTTPS domain you got from Zeabur.</text>
+  <g font-family="Inter,Arial">
+    <text x="126" y="220" fill="#00e5ff" font-size="18" font-weight="700">Web domain</text>
+    <rect x="126" y="238" width="1028" height="54" rx="10" fill="#0b0f16" stroke="#263143"/>
+    <text x="154" y="273" fill="#f8fbff" font-size="22">https://your-site.zeabur.app</text>
+    <text x="126" y="344" fill="#00e5ff" font-size="18" font-weight="700">Required public pages</text>
+    <rect x="126" y="364" width="1028" height="210" rx="18" fill="#0b0f16" stroke="#263143"/>
+    <text x="164" y="416" fill="#f8fbff" font-size="24">/pricing</text>
+    <text x="164" y="462" fill="#f8fbff" font-size="24">/terms</text>
+    <text x="164" y="508" fill="#f8fbff" font-size="24">/privacy</text>
+    <text x="164" y="554" fill="#f8fbff" font-size="24">/refund</text>
+  </g>
+  <text x="126" y="626" fill="#ff315d" font-family="Inter,Arial" font-size="20" font-weight="700">Do this after deployment, before trying to create live checkout.</text>
+</svg>

@@ -1,0 +1,20 @@
+# Local system files
+.DS_Store
+Thumbs.db
+
+# Local notes and temporary screenshots
+tmp/
+*.local
+*.log
+
+# Never commit real secrets
+.env
+.env.*
+!.env.example
+!examples/env.payment.example
+
+# Optional generated exports
+dist/
+build/
+node_modules/
+

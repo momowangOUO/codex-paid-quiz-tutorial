@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="一份给 0 基础创作者的 Codex 实作教程：做测验网站、先部署到 Zeabur 拿域名，再接 Paddle 收款和自动解锁报告。"
+    />
+    <meta property="og:title" content="用 Codex 做出可以收款的测验网站" />
+    <meta property="og:description" content="照着步骤让 Codex 帮你建站、接支付、部署上线。" />
+    <meta property="og:image" content="https://momowangouo.github.io/codex-paid-quiz-tutorial/assets/brand/tutorial-og-cover.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>用 Codex 做出可以收款的测验网站</title>
+    <link rel="icon" type="image/png" href="./assets/brand/tutorial-mascot-icon.png" />
+    <link rel="stylesheet" href="site.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="nav">
+        <a class="brand" href="./">
+          <img src="./assets/brand/tutorial-mascot-icon.png" alt="" />
+          <span>Codex 付费网站教程</span>
+        </a>
+        <a href="./README.md">教程 README</a>
+        <a href="./05-prompt-templates.md">提示词</a>
+        <a href="./06-launch-checklist.md">上线清单</a>
+        <a href="./CONTACT.md">合作联系</a>
+      </nav>
+      <div class="hero-grid">
+        <section class="hero-copy">
+          <p class="eyebrow">Codex + Payment + Deploy</p>
+          <h1>用 Codex 做出一个可以收款的网站</h1>
+          <p class="lead">
+            0 基础也能照着做：让 Codex 帮你写前端和后端，先用 Zeabur 部署拿到 HTTPS 域名，再接 Paddle 收款与自动解锁。
+          </p>
+          <div class="actions">
+            <a class="button primary" href="./README.md">开始阅读教程</a>
+            <a class="button ghost" href="https://github.com/momowangOUO/codex-paid-quiz-tutorial">查看 GitHub</a>
+            <a class="button ghost" href="https://callingdeconstructor.zeabur.app/">体验案例网站</a>
+          </div>
+        </section>
+        <section class="hero-card" aria-label="收费测验网站教程品牌视觉">
+          <img src="./assets/brand/tutorial-hero.webp" alt="Codex 收费测验教程品牌视觉" />
+        </section>
+      </div>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="section-head">
+          <p class="eyebrow">What You Build</p>
+          <h2>从“有想法”到“能上线收钱”的实作路线</h2>
+        </div>
+        <div class="cards three">
+          <article class="card">
+            <span>01</span>
+            <h3>先让 Codex 建出网站</h3>
+            <p>从首页、答题页、免费报告、完整报告开始，先用 mock 支付跑通完整流程。</p>
+          </article>
+          <article class="card">
+            <span>02</span>
+            <h3>先部署 Zeabur</h3>
+            <p>把 GitHub 项目变成 HTTPS 网站，拿到 Paddle 可以验证的公开域名。</p>
+          </article>
+          <article class="card">
+            <span>03</span>
+            <h3>再接 Paddle 收款</h3>
+            <p>用 Zeabur 域名完成网站验证、default payment link、webhook 和 checkout。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section split">
+        <div>
+          <p class="eyebrow">Beginner First</p>
+          <h2>不先讲一堆原理，先把东西做出来</h2>
+          <p>
+            教程会用“你该点哪里、填什么、贴什么提示词、怎么验收”的方式推进。你会先做最小版本，再部署 Zeabur 拿域名，再接 Paddle，最后才优化转化率和视觉。
+          </p>
+        </div>
+        <div class="cost-table">
+          <div><strong>你负责</strong><span>说明产品、测试网页、贴错误日志</span></div>
+          <div><strong>Codex 负责</strong><span>写前端、写后端、修 bug、补配置</span></div>
+          <div><strong>Paddle 负责</strong><span>付款页面、交易结果、webhook 通知</span></div>
+          <div><strong>Zeabur 负责</strong><span>从 GitHub 部署网站、提供 HTTPS 域名</span></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <p class="eyebrow">Chapters</p>
+          <h2>按步骤推进，每章都有可以复制的提示词</h2>
+        </div>
+        <div class="chapter-list">
+          <a href="./01-product-flow.md">01 先把产品流程拆清楚</a>
+          <a href="./02-codex-build-workflow.md">02 指挥 Codex 从 0 建站</a>
+          <a href="./03-zeabur-deployment.md">03 Zeabur 部署与域名准备</a>
+          <a href="./04-payment-unlock.md">04 Paddle 收款与自动解锁</a>
+          <a href="./05-prompt-templates.md">05 提示词模板库</a>
+          <a href="./06-launch-checklist.md">06 上线检查清单</a>
+          <a href="./07-visual-walkthrough.md">07 内置界面截图图册</a>
+        </div>
+      </section>
+
+      <section class="section visual">
+        <img src="./assets/payment-flow.svg" alt="测验到付款解锁流程图" />
+      </section>
+
+      <section class="section case-study">
+        <img src="./assets/brand/tutorial-og-cover.png" alt="The Calling Deconstructor 案例展示" />
+        <div>
+          <p class="eyebrow">Live Example</p>
+          <h2>想先看成品长什么样？</h2>
+          <p>
+            The Calling Deconstructor 是一个已上线的收费测验网站案例。你可以先体验完整用户路径，再回到教程拆解自己要做的版本。
+          </p>
+          <p class="note">
+            个人项目服务器经费不是无限续杯；如果暂时打不开，多半只是进入云端冬眠模式。
+          </p>
+          <a class="button primary" href="https://callingdeconstructor.zeabur.app/">打开案例网站</a>
+        </div>
+      </section>
+
+      <section class="section contact">
+        <p class="eyebrow">Collaboration</p>
+        <h2>合作与交流</h2>
+        <p>
+          作者关注认知心理学、游戏化体验设计与 AI 产品原型，擅长把抽象测评、动机反馈和付费路径整理成可上线验证的产品。
+        </p>
+        <p class="contact-line">有合作或案例交流需求，请先通过 GitHub Issue 留下公开安全的主题说明。</p>
+        <a class="button ghost" href="https://github.com/momowangOUO/codex-paid-quiz-tutorial/issues/new?template=collaboration.yml">发起合作讨论</a>
+      </section>
+    </main>
+  </body>
+</html>

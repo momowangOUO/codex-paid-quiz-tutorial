@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-label="部署到托管平台流程">
+  <rect width="1200" height="520" fill="#0b0b0f"/>
+  <defs>
+    <style>
+      .title{font:700 32px Arial,"Microsoft YaHei",sans-serif;fill:#fff}
+      .label{font:700 22px Arial,"Microsoft YaHei",sans-serif;fill:#fff}
+      .small{font:16px Arial,"Microsoft YaHei",sans-serif;fill:#c8d2dc}
+      .box{fill:#11151c;stroke:#00e5ff;stroke-width:2}
+      .line{stroke:#00e5ff;stroke-width:3;fill:none;marker-end:url(#a)}
+    </style>
+    <marker id="a" markerWidth="12" markerHeight="12" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#00e5ff"/>
+    </marker>
+  </defs>
+  <text x="55" y="55" class="title">部署路径：GitHub 到公开 HTTPS 网站</text>
+  <rect x="70" y="130" width="220" height="120" rx="12" class="box"/>
+  <text x="105" y="175" class="label">GitHub</text>
+  <text x="105" y="210" class="small">提交代码</text>
+  <path d="M290 190 H390" class="line"/>
+  <rect x="390" y="130" width="220" height="120" rx="12" class="box"/>
+  <text x="425" y="175" class="label">Zeabur</text>
+  <text x="425" y="210" class="small">build + start</text>
+  <path d="M610 190 H710" class="line"/>
+  <rect x="710" y="130" width="220" height="120" rx="12" class="box"/>
+  <text x="745" y="175" class="label">Node 服务</text>
+  <text x="745" y="210" class="small">dist + /api</text>
+  <path d="M930 190 H1030" class="line"/>
+  <rect x="930" y="310" width="220" height="120" rx="12" class="box"/>
+  <text x="965" y="355" class="label">Paddle</text>
+  <text x="965" y="390" class="small">webhook HTTPS</text>
+  <path d="M820 250 C850 350 890 375 930 375" class="line"/>
+  <rect x="100" y="330" width="650" height="90" rx="12" fill="#11151c" stroke="#ff1744" stroke-width="2"/>
+  <text x="135" y="365" class="label">部署变量</text>
+  <text x="135" y="400" class="small">PUBLIC_BASE_URL、PADDLE_API_KEY、WEBHOOK_SECRET、PAYMENT_STORE_FILE</text>
+</svg>

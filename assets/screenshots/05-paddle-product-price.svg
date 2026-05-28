@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Paddle product and one-time price screenshot mockup">
+  <rect width="1280" height="720" fill="#07090d"/>
+  <rect x="56" y="48" width="1168" height="624" rx="28" fill="#10141d" stroke="#00e5ff" stroke-opacity=".45"/>
+  <text x="96" y="112" fill="#f8fbff" font-family="Inter,Arial" font-size="34" font-weight="700">Paddle Product & Prices</text>
+  <text x="96" y="150" fill="#9fb0c3" font-family="Inter,Arial" font-size="20">Create one-time prices for report unlock. Do not enable subscription.</text>
+  <rect x="96" y="206" width="1088" height="110" rx="18" fill="#0b0f16" stroke="#263143"/>
+  <text x="132" y="250" fill="#00e5ff" font-family="Inter,Arial" font-size="18" font-weight="700">Product</text>
+  <text x="132" y="286" fill="#f8fbff" font-family="Inter,Arial" font-size="28">AI Career Action Report</text>
+  <rect x="96" y="360" width="512" height="150" rx="18" fill="#0b0f16" stroke="#263143"/>
+  <text x="132" y="404" fill="#00e5ff" font-family="Inter,Arial" font-size="18" font-weight="700">Domestic Price</text>
+  <text x="132" y="452" fill="#f8fbff" font-family="Inter,Arial" font-size="42">CNY 9.90</text>
+  <text x="132" y="488" fill="#9fb0c3" font-family="Consolas,monospace" font-size="22">pri_••••••••</text>
+  <rect x="672" y="360" width="512" height="150" rx="18" fill="#0b0f16" stroke="#263143"/>
+  <text x="708" y="404" fill="#00e5ff" font-family="Inter,Arial" font-size="18" font-weight="700">International Price</text>
+  <text x="708" y="452" fill="#f8fbff" font-family="Inter,Arial" font-size="42">USD 1.99</text>
+  <text x="708" y="488" fill="#9fb0c3" font-family="Consolas,monospace" font-size="22">pri_••••••••</text>
+  <text x="96" y="594" fill="#ff315d" font-family="Inter,Arial" font-size="22" font-weight="700">Price type: one-time</text>
+</svg>

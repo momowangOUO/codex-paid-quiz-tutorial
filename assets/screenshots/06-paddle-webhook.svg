@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Paddle webhook screenshot mockup">
+  <rect width="1280" height="720" fill="#07090d"/>
+  <rect x="56" y="48" width="1168" height="624" rx="28" fill="#10141d" stroke="#00e5ff" stroke-opacity=".45"/>
+  <text x="96" y="112" fill="#f8fbff" font-family="Inter,Arial" font-size="34" font-weight="700">Paddle Webhook</text>
+  <text x="96" y="150" fill="#9fb0c3" font-family="Inter,Arial" font-size="20">Paddle notifies your backend after payment events.</text>
+  <rect x="96" y="204" width="1088" height="76" rx="14" fill="#0b0f16" stroke="#263143"/>
+  <text x="126" y="252" fill="#f8fbff" font-family="Consolas,monospace" font-size="24">https://your-site.zeabur.app/api/webhooks/paddle</text>
+  <rect x="96" y="326" width="1088" height="240" rx="18" fill="#0b0f16" stroke="#263143"/>
+  <text x="132" y="374" fill="#00e5ff" font-family="Inter,Arial" font-size="20" font-weight="700">Events</text>
+  <text x="132" y="422" fill="#f8fbff" font-family="Consolas,monospace" font-size="24">✓ transaction.completed</text>
+  <text x="132" y="466" fill="#f8fbff" font-family="Consolas,monospace" font-size="24">✓ transaction.payment_failed</text>
+  <text x="132" y="510" fill="#f8fbff" font-family="Consolas,monospace" font-size="24">✓ transaction.canceled</text>
+  <text x="132" y="554" fill="#f8fbff" font-family="Consolas,monospace" font-size="24">✓ transaction.past_due</text>
+  <text x="96" y="626" fill="#ff315d" font-family="Inter,Arial" font-size="20" font-weight="700">Only transaction.completed should unlock the report.</text>
+</svg>

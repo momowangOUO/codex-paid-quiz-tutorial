@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Zeabur service deployment screenshot mockup">
+  <rect width="1280" height="720" fill="#07090d"/>
+  <rect x="56" y="48" width="1168" height="624" rx="28" fill="#10141d" stroke="#00e5ff" stroke-opacity=".45"/>
+  <text x="96" y="112" fill="#f8fbff" font-family="Inter,Arial" font-size="34" font-weight="700">Zeabur Service</text>
+  <text x="96" y="150" fill="#9fb0c3" font-family="Inter,Arial" font-size="20">Deploy your GitHub repository as one Node service</text>
+  <rect x="96" y="196" width="520" height="96" rx="16" fill="#161c28" stroke="#263143"/>
+  <text x="126" y="234" fill="#00e5ff" font-family="Inter,Arial" font-size="18" font-weight="700">Repository</text>
+  <text x="126" y="266" fill="#f8fbff" font-family="Inter,Arial" font-size="24">momowangOUO/paid-quiz-site</text>
+  <rect x="664" y="196" width="464" height="96" rx="16" fill="#161c28" stroke="#263143"/>
+  <text x="694" y="234" fill="#00e5ff" font-family="Inter,Arial" font-size="18" font-weight="700">Branch</text>
+  <text x="694" y="266" fill="#f8fbff" font-family="Inter,Arial" font-size="24">main</text>
+  <rect x="96" y="334" width="1032" height="84" rx="16" fill="#0b0f16" stroke="#263143"/>
+  <text x="126" y="368" fill="#ff315d" font-family="Inter,Arial" font-size="18" font-weight="700">Build Command</text>
+  <text x="126" y="398" fill="#f8fbff" font-family="Consolas,monospace" font-size="25">npm run build</text>
+  <rect x="96" y="448" width="1032" height="84" rx="16" fill="#0b0f16" stroke="#263143"/>
+  <text x="126" y="482" fill="#ff315d" font-family="Inter,Arial" font-size="18" font-weight="700">Start Command</text>
+  <text x="126" y="512" fill="#f8fbff" font-family="Consolas,monospace" font-size="25">npm run start</text>
+  <rect x="96" y="574" width="312" height="54" rx="27" fill="#00e5ff"/>
+  <text x="142" y="609" fill="#071014" font-family="Inter,Arial" font-size="22" font-weight="800">Deploy Service</text>
+  <text x="470" y="608" fill="#9fb0c3" font-family="Inter,Arial" font-size="18">The HTTPS domain appears after the first successful deploy.</text>
+</svg>

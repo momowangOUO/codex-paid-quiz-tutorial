@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Zeabur volume screenshot mockup">
+  <rect width="1280" height="720" fill="#07090d"/>
+  <rect x="56" y="48" width="1168" height="624" rx="28" fill="#10141d" stroke="#00e5ff" stroke-opacity=".45"/>
+  <text x="96" y="112" fill="#f8fbff" font-family="Inter,Arial" font-size="34" font-weight="700">Volume</text>
+  <text x="96" y="150" fill="#9fb0c3" font-family="Inter,Arial" font-size="20">Persist payment sessions and report access records.</text>
+  <rect x="126" y="214" width="1028" height="282" rx="24" fill="#0b0f16" stroke="#263143"/>
+  <text x="176" y="276" fill="#00e5ff" font-family="Inter,Arial" font-size="22" font-weight="700">Mount Path</text>
+  <text x="176" y="330" fill="#f8fbff" font-family="Consolas,monospace" font-size="42">/data</text>
+  <line x1="176" y1="378" x2="1080" y2="378" stroke="#263143"/>
+  <text x="176" y="432" fill="#00e5ff" font-family="Inter,Arial" font-size="22" font-weight="700">Store File</text>
+  <text x="176" y="466" fill="#f8fbff" font-family="Consolas,monospace" font-size="28">PAYMENT_STORE_FILE=/data/payment-store.json</text>
+  <rect x="126" y="552" width="1028" height="54" rx="12" fill="#171e2b"/>
+  <text x="156" y="586" fill="#ff315d" font-family="Inter,Arial" font-size="20" font-weight="700">Without this, reports may lock again after a restart.</text>
+</svg>

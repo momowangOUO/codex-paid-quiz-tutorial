@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-label="收费测验网站架构图">
+  <rect width="1200" height="620" fill="#0b0b0f"/>
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0" stop-color="#00e5ff"/>
+      <stop offset="1" stop-color="#ff1744"/>
+    </linearGradient>
+    <style>
+      .title{font:700 34px Arial,"Microsoft YaHei",sans-serif;fill:#f8fbff}
+      .label{font:700 22px Arial,"Microsoft YaHei",sans-serif;fill:#f8fbff}
+      .small{font:16px Arial,"Microsoft YaHei",sans-serif;fill:#c8d2dc}
+      .tiny{font:14px Arial,"Microsoft YaHei",sans-serif;fill:#8fa3b8}
+      .box{fill:#11151c;stroke:#00e5ff;stroke-width:2}
+      .safe{stroke:#ff1744}
+      .arrow{stroke:url(#g);stroke-width:3;fill:none;marker-end:url(#m)}
+    </style>
+    <marker id="m" markerWidth="12" markerHeight="12" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#00e5ff"/>
+    </marker>
+  </defs>
+  <text x="60" y="60" class="title">收费测验网站最小架构</text>
+  <text x="60" y="92" class="small">前端负责体验，后端负责订单和解锁，付款平台负责收款。</text>
+
+  <rect x="60" y="145" width="250" height="130" rx="12" class="box"/>
+  <text x="90" y="185" class="label">前端测验网站</text>
+  <text x="90" y="220" class="small">首页 / 答题页 / 结果页</text>
+  <text x="90" y="250" class="tiny">不保存 secret，不判断付款成功</text>
+
+  <rect x="475" y="145" width="250" height="130" rx="12" class="box"/>
+  <text x="505" y="185" class="label">Node 后端</text>
+  <text x="505" y="220" class="small">订单 / webhook / 解锁</text>
+  <text x="505" y="250" class="tiny">保存 reportId 与 access token</text>
+
+  <rect x="890" y="145" width="250" height="130" rx="12" class="box safe"/>
+  <text x="920" y="185" class="label">付款平台</text>
+  <text x="920" y="220" class="small">Paddle / Stripe / 其他</text>
+  <text x="920" y="250" class="tiny">托管 checkout 与 webhook</text>
+
+  <path d="M310 210 C370 210 415 210 475 210" class="arrow"/>
+  <path d="M725 210 C785 210 830 210 890 210" class="arrow"/>
+  <path d="M890 255 C780 370 610 380 500 275" class="arrow"/>
+
+  <rect x="170" y="390" width="860" height="135" rx="12" fill="#11151c" stroke="#293647" stroke-width="2"/>
+  <text x="205" y="430" class="label">关键原则</text>
+  <text x="205" y="465" class="small">1. 前端只显示状态，不信任 URL paid=true。</text>
+  <text x="205" y="495" class="small">2. 后端只在 webhook 验证通过后发放访问权限。</text>
+  <text x="205" y="525" class="small">3. 每份报告都绑定自己的 reportId、sessionId 和 access token。</text>
+</svg>

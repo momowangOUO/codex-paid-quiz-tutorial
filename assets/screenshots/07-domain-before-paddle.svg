@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Domain before Paddle setup flow">
+  <rect width="1280" height="720" fill="#07090d"/>
+  <rect x="56" y="48" width="1168" height="624" rx="28" fill="#10141d" stroke="#00e5ff" stroke-opacity=".45"/>
+  <text x="96" y="112" fill="#f8fbff" font-family="Inter,Arial" font-size="34" font-weight="700">Correct Setup Order</text>
+  <text x="96" y="150" fill="#9fb0c3" font-family="Inter,Arial" font-size="20">Get a live HTTPS domain before completing Paddle checkout setup.</text>
+  <g font-family="Inter,Arial" font-size="22" font-weight="700">
+    <rect x="96" y="240" width="170" height="96" rx="18" fill="#0b0f16" stroke="#00e5ff"/><text x="130" y="298" fill="#f8fbff">Mock flow</text>
+    <path d="M276 288 H348" stroke="#00e5ff" stroke-width="4"/>
+    <rect x="358" y="240" width="170" height="96" rx="18" fill="#0b0f16" stroke="#00e5ff"/><text x="397" y="298" fill="#f8fbff">Zeabur</text>
+    <path d="M538 288 H610" stroke="#00e5ff" stroke-width="4"/>
+    <rect x="620" y="240" width="170" height="96" rx="18" fill="#0b0f16" stroke="#00e5ff"/><text x="653" y="298" fill="#f8fbff">Domain</text>
+    <path d="M800 288 H872" stroke="#00e5ff" stroke-width="4"/>
+    <rect x="882" y="240" width="170" height="96" rx="18" fill="#0b0f16" stroke="#ff315d"/><text x="922" y="298" fill="#f8fbff">Paddle</text>
+  </g>
+  <rect x="146" y="420" width="988" height="92" rx="18" fill="#171e2b"/>
+  <text x="190" y="476" fill="#f8fbff" font-family="Inter,Arial" font-size="25">Why: Paddle needs website approval, default payment link, and webhook URL.</text>
+  <text x="190" y="612" fill="#ff315d" font-family="Inter,Arial" font-size="22" font-weight="700">Do not start live Paddle checkout setup before you have a public HTTPS site.</text>
+</svg>

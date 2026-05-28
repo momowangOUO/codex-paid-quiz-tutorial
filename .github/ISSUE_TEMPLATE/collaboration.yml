@@ -1,0 +1,47 @@
+name: Collaboration or Case Discussion
+description: Propose a collaboration, share a case, or ask for practical guidance.
+title: "[Collaboration] "
+labels:
+  - collaboration
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reaching out. Please keep this issue public-safe: do not post private contact details, API keys, payment account details, user data, or screenshots with secrets.
+  - type: textarea
+    id: goal
+    attributes:
+      label: What are you trying to build?
+      description: Describe the product or collaboration idea in one or two short paragraphs.
+      placeholder: "Example: I want to build a paid personality report site for..."
+    validations:
+      required: true
+  - type: textarea
+    id: current-state
+    attributes:
+      label: Current state
+      description: What do you already have?
+      placeholder: "Repository, demo URL, product outline, payment account status, deployment status..."
+    validations:
+      required: false
+  - type: dropdown
+    id: topic
+    attributes:
+      label: Main topic
+      options:
+        - Codex build workflow
+        - Payment and unlock flow
+        - Zeabur deployment
+        - Paddle setup
+        - Product or report design
+        - Translation or documentation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: request
+    attributes:
+      label: What kind of response would help?
+      placeholder: "Technical suggestion, documentation correction, case exchange, long-term collaboration..."
+    validations:
+      required: true

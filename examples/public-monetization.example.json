@@ -1,0 +1,23 @@
+{
+  "enabled": false,
+  "checkoutMode": "api",
+  "apiBaseUrl": "/api",
+  "productId": "paid-report-single",
+  "paymentRegionDetectionEnabled": true,
+  "paymentRegionFallback": "international",
+  "testResultShortcutEnabled": false,
+  "freeUnlockTestEnabled": false,
+  "domesticProvider": "paddle",
+  "internationalProvider": "paddle",
+  "domesticPrice": {
+    "amount": 9.9,
+    "currency": "CNY",
+    "display": "¥9.9"
+  },
+  "internationalPrice": {
+    "amount": 1.99,
+    "currency": "USD",
+    "display": "US$1.99"
+  }
+}
+

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620" role="img" aria-label="付费墙示意图">
+  <rect width="1000" height="620" fill="#0b0b0f"/>
+  <style>
+    .h{font:700 30px Arial,"Microsoft YaHei",sans-serif;fill:#fff}
+    .t{font:18px Arial,"Microsoft YaHei",sans-serif;fill:#c8d2dc}
+    .s{font:14px Arial,"Microsoft YaHei",sans-serif;fill:#8fa3b8}
+    .accent{fill:#00e5ff}
+    .red{fill:#ff1744}
+    .panel{fill:#11151c;stroke:#00e5ff;stroke-width:2}
+    .button{fill:#ff1744}
+  </style>
+  <rect x="120" y="70" width="760" height="480" rx="18" class="panel"/>
+  <text x="170" y="135" class="h">完整报告已准备好</text>
+  <text x="170" y="178" class="t">免费版已显示核心倾向。完整报告将解锁职业方向、路线和保存功能。</text>
+  <line x1="170" y1="215" x2="830" y2="215" stroke="#233040"/>
+  <text x="170" y="265" class="accent" font-size="18" font-family="Arial,'Microsoft YaHei',sans-serif">包含内容</text>
+  <text x="190" y="310" class="t">• 完整职业方向</text>
+  <text x="190" y="345" class="t">• 多条发展路线</text>
+  <text x="190" y="380" class="t">• 风险边界与行动建议</text>
+  <text x="190" y="415" class="t">• 保存报告</text>
+  <rect x="560" y="285" width="240" height="70" rx="10" class="button"/>
+  <text x="605" y="330" font-size="22" font-weight="700" font-family="Arial,'Microsoft YaHei',sans-serif" fill="#fff">继续付款</text>
+  <text x="560" y="385" class="s">付款完成后由后端确认并自动解锁</text>
+  <text x="560" y="420" class="s">不要用 paid=true 这类 URL 参数判断</text>
+</svg>
