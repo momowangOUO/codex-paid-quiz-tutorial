@@ -1,5 +1,6 @@
 # 06. 可复制提示词模板
 
+![Prompt templates chapter art](../../assets/chapters/chapter-06-prompts.webp)
 **【本章核心】这里收集可以直接贴给 Codex 的提示词，用来建站、上传 GitHub、部署 Zeabur、接 Paddle 和排查错误。**
 
 这一章是工具箱。你可以把下面的提示词直接贴给 Codex，再把括号里的内容换成自己的项目。

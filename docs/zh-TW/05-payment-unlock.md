@@ -1,5 +1,6 @@
 # 05. 接 Paddle 收費與自動解鎖
 
+![Paddle payment unlock chapter art](../../assets/chapters/chapter-05-paddle.webp)
 **本章重點：Paddle 負責收款，你的後端負責建立交易、驗證 webhook、發放報告權限。**
 
 這一章假設你已經有 Zeabur HTTPS 網域，例如：

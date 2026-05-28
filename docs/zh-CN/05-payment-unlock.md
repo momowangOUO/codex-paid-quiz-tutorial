@@ -1,5 +1,6 @@
 # 05. 有域名后，再接 Paddle 付款与自动解锁
 
+![Paddle payment unlock chapter art](../../assets/chapters/chapter-05-paddle.webp)
 这一章默认你已经完成上一章，并拿到了一个 HTTPS 域名，例如：
 
 ```text

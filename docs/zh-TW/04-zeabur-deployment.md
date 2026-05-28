@@ -1,5 +1,6 @@
 # 04. 部署到 Zeabur，先取得 HTTPS 網域
 
+![Zeabur deployment chapter art](../../assets/chapters/chapter-04-zeabur.webp)
 **本章重點：先部署網站拿到公開 HTTPS 網域，再回 Paddle 做網站驗證。順序不要反。**
 
 ```text

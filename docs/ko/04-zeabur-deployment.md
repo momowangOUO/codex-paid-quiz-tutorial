@@ -1,5 +1,6 @@
 # 04. 먼저 Zeabur 에 배포하기
 
+![Zeabur deployment chapter art](../../assets/chapters/chapter-04-zeabur.webp)
 **목표: Paddle 설정 전에 공개 HTTPS 도메인을 얻습니다. 순서가 중요합니다.**
 
 ```text

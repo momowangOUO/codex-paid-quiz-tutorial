@@ -1,5 +1,6 @@
 # 02. 怎麼讓 Codex 從 0 幫你建站
 
+![Codex build workflow chapter art](../../assets/chapters/chapter-02-codex.webp)
 **本章重點：不要一次叫 Codex 做完整商業網站，而是把任務拆成可以驗收的小輪次。**
 
 Codex 很適合當工程搭檔，但你要給它清楚的施工順序：先測驗流程，再後端狀態，再 mock 付款，最後才接 Paddle。

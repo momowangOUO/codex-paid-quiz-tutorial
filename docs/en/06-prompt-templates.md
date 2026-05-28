@@ -1,5 +1,6 @@
 # 06. Prompt Templates
 
+![Prompt templates chapter art](../../assets/chapters/chapter-06-prompts.webp)
 **Goal: copy small, testable prompts instead of asking Codex to build everything at once.**
 
 ## Minimum product

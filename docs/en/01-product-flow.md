@@ -1,5 +1,6 @@
 # 01. Design the Product Flow
 
+![Product flow chapter art](../../assets/chapters/chapter-01-flow.webp)
 **Goal: define the user journey before asking Codex to write code.** A paid quiz site is much easier to build when every screen has one job.
 
 The shortest useful path is:

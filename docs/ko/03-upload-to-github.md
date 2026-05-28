@@ -1,5 +1,6 @@
 # 03. GitHub 에 업로드하기
 
+![GitHub upload chapter art](../../assets/chapters/chapter-03-github.webp)
 **목표: Zeabur 가 배포할 코드를 GitHub 에 둡니다. 로컬에만 있으면 Zeabur 는 볼 수 없습니다.**
 
 ## 커밋하면 안 되는 것

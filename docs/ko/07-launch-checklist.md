@@ -1,5 +1,6 @@
 # 07. 출시 전 체크리스트
 
+![Launch checklist chapter art](../../assets/chapters/chapter-07-launch.webp)
 ## 제품
 
 - [ ] 퀴즈를 시작할 수 있다.

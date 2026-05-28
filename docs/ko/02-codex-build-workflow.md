@@ -1,5 +1,6 @@
 # 02. Codex 로 사이트 만들기
 
+![Codex build workflow chapter art](../../assets/chapters/chapter-02-codex.webp)
 **목표: Codex 에게 한 번에 모든 것을 맡기지 말고, 검증 가능한 작은 단계로 나눕니다.**
 
 ## 첫 프롬프트

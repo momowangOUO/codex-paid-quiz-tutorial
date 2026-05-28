@@ -1,5 +1,6 @@
 # 02. 怎么让 Codex 从 0 帮你建站
 
+![Codex build workflow chapter art](../../assets/chapters/chapter-02-codex.webp)
 **【本章核心】把建站任务拆成多个小轮次，每一轮都让 Codex 做一件能验收的事。**
 
 这一章只讲一件事：**你不会写网站时，应该怎样指挥 Codex。**

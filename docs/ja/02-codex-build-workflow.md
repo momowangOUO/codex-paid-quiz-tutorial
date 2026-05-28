@@ -1,5 +1,6 @@
 # 02. Codex にサイトを作らせる進め方
 
+![Codex build workflow chapter art](../../assets/chapters/chapter-02-codex.webp)
 **目的：Codex に一度で全部作らせず、検証できる小さな作業に分けます。**
 
 ## 最初のプロンプト

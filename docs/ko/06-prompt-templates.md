@@ -1,5 +1,6 @@
 # 06. Codex 프롬프트 모음
 
+![Prompt templates chapter art](../../assets/chapters/chapter-06-prompts.webp)
 ## 최소 버전 만들기
 
 ```text

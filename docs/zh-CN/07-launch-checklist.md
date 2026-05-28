@@ -1,5 +1,6 @@
 # 07. 上线检查清单
 
+![Launch checklist chapter art](../../assets/chapters/chapter-07-launch.webp)
 **【本章核心】上线前逐项检查产品流程、GitHub、Zeabur、Paddle、环境变量和付费安全。**
 
 上线前不要只看“页面漂亮不漂亮”。付费网站最重要的是：用户能完成付款，付款后能拿到东西，没付款的人不能绕过。

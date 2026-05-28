@@ -1,5 +1,6 @@
 # 01. 产品流程怎么拆
 
+![Product flow chapter art](../../assets/chapters/chapter-01-flow.webp)
 **【本章核心】写代码前先把“用户会看到哪些页面、每一步做什么、哪一步需要后端”拆清楚。**
 
 开始写代码前，你只需要先回答一个问题：

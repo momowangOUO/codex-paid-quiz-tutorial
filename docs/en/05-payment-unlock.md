@@ -1,5 +1,6 @@
 # 05. Connect Paddle and Unlock Reports
 
+![Paddle payment unlock chapter art](../../assets/chapters/chapter-05-paddle.webp)
 **Goal: Paddle collects money; your backend verifies the payment and unlocks the correct report.**
 
 This chapter assumes you already have a Zeabur HTTPS domain.

@@ -1,5 +1,6 @@
 # 03. Upload to GitHub
 
+![GitHub upload chapter art](../../assets/chapters/chapter-03-github.webp)
 **Goal: GitHub becomes the source that Zeabur deploys from. If the code is only on your computer, Zeabur cannot see it.**
 
 ## Check what must not be committed

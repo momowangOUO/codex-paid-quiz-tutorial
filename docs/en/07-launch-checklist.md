@@ -1,5 +1,6 @@
 # 07. Launch Checklist
 
+![Launch checklist chapter art](../../assets/chapters/chapter-07-launch.webp)
 **Goal: verify product flow, payment, unlock security, mobile behavior, and secrets before going live.**
 
 ## Product flow

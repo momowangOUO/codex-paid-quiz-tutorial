@@ -1,5 +1,6 @@
 # 03. 上傳到 GitHub
 
+![GitHub upload chapter art](../../assets/chapters/chapter-03-github.webp)
 **本章重點：GitHub 是 Zeabur 讀取程式碼的地方。你電腦裡改好了，但沒 push，Zeabur 就看不到。**
 
 ## 先檢查不要上傳的東西

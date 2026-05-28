@@ -1,5 +1,6 @@
 # 01. 제품 흐름 나누기
 
+![Product flow chapter art](../../assets/chapters/chapter-01-flow.webp)
 **목표: 코드를 쓰기 전에 사용자가 어떤 화면을 지나 결제와 잠금 해제를 하게 되는지 정합니다.**
 
 가장 짧은 흐름은 다음과 같습니다.

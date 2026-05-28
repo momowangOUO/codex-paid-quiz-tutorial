@@ -1,5 +1,6 @@
 # 03. GitHub にアップロードする
 
+![GitHub upload chapter art](../../assets/chapters/chapter-03-github.webp)
 **目的：Zeabur がデプロイする元になるコードを GitHub に置きます。**
 
 ## 先に除外するもの

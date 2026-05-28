@@ -1,5 +1,6 @@
 # 05. Paddle 결제와 자동 잠금 해제
 
+![Paddle payment unlock chapter art](../../assets/chapters/chapter-05-paddle.webp)
 **목표: Paddle 은 결제를 처리하고, 내 백엔드는 webhook 을 검증해 리포트를 해제합니다.**
 
 ## 흐름

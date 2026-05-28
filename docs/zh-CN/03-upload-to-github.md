@@ -1,5 +1,6 @@
 # 03. 先上传到 GitHub，准备给 Zeabur 部署
 
+![GitHub upload chapter art](../../assets/chapters/chapter-03-github.webp)
 这一章放在 Zeabur 前面。
 
 **【本章核心】先把本机项目上传到 GitHub 仓库，因为 Zeabur 通常是从 GitHub 拉代码来部署。**

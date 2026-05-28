@@ -3,90 +3,182 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="一份从 0 开始用 Codex 做出可收费网站的实作教程：GitHub、Zeabur、Paddle、Webhook 与自动解锁。" />
-    <meta property="og:title" content="用 Codex 做出可收费网站" />
-    <meta property="og:description" content="从 0 基础到上线：让 Codex 帮你做测验网站、部署 Zeabur、串接 Paddle 收费。" />
-    <meta property="og:image" content="https://momowangouo.github.io/codex-paid-quiz-tutorial/assets/brand/tutorial-og-cover.png" />
+    <meta
+      name="description"
+      content="一份从 0 到上线的 Codex 付费网站实作教程：GitHub、Zeabur、Paddle Checkout、Webhook 与自动解锁。"
+    />
+    <meta property="og:title" content="用 Codex 做出真正能收费的网站" />
+    <meta
+      property="og:description"
+      content="把想法做成可部署、可收款、付款后自动解锁内容的网站。适合 0 基础创作者跟着 Codex 实作。"
+    />
+    <meta
+      property="og:image"
+      content="https://momowangouo.github.io/codex-paid-quiz-tutorial/assets/brand/tutorial-og-cover.png"
+    />
     <meta name="twitter:card" content="summary_large_image" />
-    <title>用 Codex 做出可收费网站</title>
+    <title>用 Codex 做出真正能收费的网站</title>
     <link rel="icon" type="image/png" href="./assets/brand/tutorial-mascot-icon.png" />
     <link rel="stylesheet" href="site.css" />
   </head>
   <body>
-    <header class="hero">
+    <header class="site-hero">
       <nav class="nav">
         <a class="brand" href="./">
           <img src="./assets/brand/tutorial-mascot-icon.png" alt="" />
-          <span>Codex 付费网站教程</span>
+          <span>Codex Paid Site Guide</span>
         </a>
+        <a href="./tutorial.html">完整教程</a>
         <a href="./README.md">README</a>
         <a href="./docs/zh-CN/06-prompt-templates.md">提示词</a>
-        <a href="./docs/zh-CN/07-launch-checklist.md">上线清单</a>
-        <a href="./collaboration.html">合作表单</a>
+        <a href="./collaboration.html">协作</a>
       </nav>
-      <div class="hero-grid">
+
+      <div class="hero-stage">
         <section class="hero-copy">
           <p class="eyebrow">Codex + Zeabur + Paddle</p>
           <h1>用 Codex 做出真正能收费的网站</h1>
-          <p class="lead">这是一份实作导向教程：先让 Codex 帮你做出测验网站，再推到 GitHub、部署到 Zeabur、取得 HTTPS 域名，最后串接 Paddle 付款与自动解锁。</p>
-          <div class="actions">
-            <a class="button primary" href="./README.md">开始阅读教程</a>
+          <p class="lead">
+            从产品流程、代码生成、GitHub 上传、Zeabur 部署，到 Paddle Checkout 与 webhook 自动解锁。
+            这不是架构概念课，而是一条可以照着走的实作路线。
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="./tutorial.html">开始完整教程</a>
             <a class="button ghost" href="https://github.com/momowangOUO/codex-paid-quiz-tutorial">查看 GitHub</a>
-            <a class="button ghost" href="https://callingdeconstructor.zeabur.app/">查看示范网站</a>
+            <a class="button ghost" href="https://callingdeconstructor.zeabur.app/">打开示范网站</a>
+          </div>
+          <div class="hero-proof">
+            <span>7 个实作章节</span>
+            <span>后端确认付款</span>
+            <span>默认保护 secret</span>
           </div>
         </section>
-        <section class="hero-card" aria-label="教程视觉封面">
-          <img src="./assets/brand/tutorial-hero.webp" alt="Codex 付费网站教程视觉封面" />
+        <section class="hero-art" aria-label="教程主视觉">
+          <img src="./assets/brand/tutorial-hero.webp" alt="黑发技术向导展示部署、付款与自动解锁流程" />
         </section>
       </div>
     </header>
+
     <main>
-      <section class="section">
+      <section class="section intro-band">
         <div class="section-head">
           <p class="eyebrow">What You Build</p>
-          <h2>不是概念课，是一条可以照做的上线路线</h2>
+          <h2>不是“按钮式建站”，而是一条完整收款链路</h2>
+          <p>
+            教程会把一个低价一次性解锁产品拆成可验收的小任务。你会知道每一步该让 Codex 做什么、
+            怎么检查、哪些东西不能放到前端。
+          </p>
         </div>
         <div class="cards three">
-          <article class="card"><span>01</span><h3>从产品流程开始</h3><p>先做免费测验、导言版结果与完整报告，不急着接支付。</p></article>
-          <article class="card"><span>02</span><h3>让 Codex 实作</h3><p>用提示词把页面、API、mock 支付、Paddle provider 分阶段做出来。</p></article>
-          <article class="card"><span>03</span><h3>部署后再接 Paddle</h3><p>先用 Zeabur 拿到 HTTPS 域名，再配置 Paddle 网站验证、价格和 webhook。</p></article>
+          <article class="card">
+            <span>01</span>
+            <h3>先做能跑通的产品</h3>
+            <p>首页、测验、免费导言、付费墙、完整报告。第一版先证明流程成立，不急着堆功能。</p>
+          </article>
+          <article class="card">
+            <span>02</span>
+            <h3>让后端掌握付款状态</h3>
+            <p>用户不能靠 URL 参数假解锁。只有 Paddle webhook 确认后，后端才发放 access token。</p>
+          </article>
+          <article class="card">
+            <span>03</span>
+            <h3>部署后再接 Paddle</h3>
+            <p>先用 Zeabur 拿 HTTPS 域名，再去 Paddle 做网站验证、价格、webhook 和 checkout。</p>
+          </article>
         </div>
       </section>
+
       <section class="section">
-        <div class="section-head">
-          <p class="eyebrow">Chapters</p>
-          <h2>教程章节</h2>
+        <div class="section-head split-head">
+          <div>
+            <p class="eyebrow">Chapters</p>
+            <h2>7 章，从想法到可收款网站</h2>
+          </div>
+          <a class="text-link" href="./tutorial.html">阅读完整教程</a>
         </div>
-        <div class="chapter-list">
-          <a href="./docs/zh-CN/01-product-flow.md">01 产品与流程设计</a>
-          <a href="./docs/zh-CN/02-codex-build-workflow.md">02 用 Codex 搭出网站</a>
-          <a href="./docs/zh-CN/03-upload-to-github.md">03 上传到 GitHub</a>
-          <a href="./docs/zh-CN/04-zeabur-deployment.md">04 部署到 Zeabur</a>
-          <a href="./docs/zh-CN/05-payment-unlock.md">05 串接 Paddle 收费</a>
-          <a href="./docs/zh-CN/06-prompt-templates.md">06 提示词模板</a>
-          <a href="./docs/zh-CN/07-launch-checklist.md">07 上线检查清单</a>
+        <div class="chapter-grid">
+          <a class="chapter-card" href="./tutorial.html#chapter-01">
+            <img src="./assets/chapters/chapter-01-flow.webp" alt="" loading="lazy" />
+            <span>01</span>
+            <h3>产品流程怎么拆</h3>
+            <p>先画出首页、答题页、免费报告、付款页、完整报告的最短路径。</p>
+          </a>
+          <a class="chapter-card" href="./tutorial.html#chapter-02">
+            <img src="./assets/chapters/chapter-02-codex.webp" alt="" loading="lazy" />
+            <span>02</span>
+            <h3>让 Codex 从 0 建站</h3>
+            <p>把网站拆成小轮次：先流程、再后端、再 mock、最后接 Paddle。</p>
+          </a>
+          <a class="chapter-card" href="./tutorial.html#chapter-03">
+            <img src="./assets/chapters/chapter-03-github.webp" alt="" loading="lazy" />
+            <span>03</span>
+            <h3>上传到 GitHub</h3>
+            <p>整理仓库、保护密钥、推送代码，让 Zeabur 能从 GitHub 自动部署。</p>
+          </a>
+          <a class="chapter-card" href="./tutorial.html#chapter-04">
+            <img src="./assets/chapters/chapter-04-zeabur.webp" alt="" loading="lazy" />
+            <span>04</span>
+            <h3>部署到 Zeabur</h3>
+            <p>设置 build、start、PORT、volume 和环境变量，先拿到 Paddle 能验证的域名。</p>
+          </a>
+          <a class="chapter-card" href="./tutorial.html#chapter-05">
+            <img src="./assets/chapters/chapter-05-paddle.webp" alt="" loading="lazy" />
+            <span>05</span>
+            <h3>接 Paddle 收费</h3>
+            <p>配置 product、price、default payment link、webhook，并确认付款后自动解锁。</p>
+          </a>
+          <a class="chapter-card" href="./tutorial.html#chapter-06">
+            <img src="./assets/chapters/chapter-06-prompts.webp" alt="" loading="lazy" />
+            <span>06</span>
+            <h3>提示词模板</h3>
+            <p>复制就能用的 Codex 指令，用来建站、接金流、修部署、查 secret。</p>
+          </a>
+          <a class="chapter-card" href="./tutorial.html#chapter-07">
+            <img src="./assets/chapters/chapter-07-launch.webp" alt="" loading="lazy" />
+            <span>07</span>
+            <h3>上线检查清单</h3>
+            <p>上线前检查产品、付款、解锁、安全、手机体验和真实环境变量。</p>
+          </a>
         </div>
       </section>
-      <section class="section visual">
-        <img src="./assets/payment-flow.svg" alt="付款与自动解锁流程图" />
+
+      <section class="section flow-panel">
+        <div class="flow-copy">
+          <p class="eyebrow">Payment Flow</p>
+          <h2>付款后自动解锁，不靠兑换码</h2>
+          <p>
+            真实付款流程的关键，是让前端只负责展示，后端负责订单状态，Paddle 负责收款并通过 webhook 通知结果。
+          </p>
+        </div>
+        <img src="./assets/payment-flow.svg" alt="付款与自动解锁流程图" loading="lazy" />
       </section>
+
       <section class="section case-study">
-        <img src="./assets/brand/tutorial-og-cover.png" alt="The Calling Deconstructor 示范网站" />
+        <img src="./assets/brand/tutorial-og-cover.png" alt="The Calling Deconstructor 示范网站视觉图" loading="lazy" />
         <div>
           <p class="eyebrow">Live Example</p>
-          <h2>顺手看看真实示范</h2>
-          <p>The Calling Deconstructor 是这个教程背后的实作案例：测验、付费墙、Paddle、后端解锁和报告保存都围绕同一个产品场景。</p>
-          <p class="note">如果示范网站偶尔打不开，它可能只是在进行小型服务器预算冬眠。教程本身仍然可以照做。</p>
-          <a class="button primary" href="https://callingdeconstructor.zeabur.app/">打开示范网站</a>
+          <h2>参考案例：The Calling Deconstructor</h2>
+          <p>
+            这个示范网站就是教程里的方向：完成测验、看到免费导言、付款后解锁完整报告。
+            如果它暂时打不开，可能只是小服务器预算正在午休。
+          </p>
+          <div class="hero-actions small">
+            <a class="button primary" href="https://callingdeconstructor.zeabur.app/">打开示范网站</a>
+            <a class="button ghost" href="./tutorial.html#chapter-05">看付款章节</a>
+          </div>
         </div>
       </section>
+
       <section class="section contact">
         <p class="eyebrow">Collaboration</p>
-        <h2>欢迎一起把教程补得更好</h2>
-        <p>如果你有平台经验、翻译建议、复刻案例或合作想法，可以用表单联系。公开文档修正也可以直接开 issue 或 PR。</p>
-        <div class="actions compact-actions">
-          <a class="button ghost" href="./collaboration.html">合作与交流</a>
-          <a class="button text-button" href="https://github.com/momowangOUO/codex-paid-quiz-tutorial/issues/new?template=collaboration.yml">公开文档修正</a>
+        <h2>欢迎一起补完更多平台经验</h2>
+        <p>
+          如果你跑通了其他支付平台、部署平台、地区限制或更好的新手流程，欢迎通过表单交流。
+          请不要提交 API key、付款后台画面、订单资料或用户隐私。
+        </p>
+        <div class="hero-actions small">
+          <a class="button ghost" href="./collaboration.html">查看协作方式</a>
+          <a class="button text-button" href="https://docs.google.com/forms/d/e/1FAIpQLSet3g2cL32ZElYICNwvxaq27R0pxqyoHw2AK5bQHjDzNQwlUg/viewform">填写表单</a>
         </div>
       </section>
     </main>

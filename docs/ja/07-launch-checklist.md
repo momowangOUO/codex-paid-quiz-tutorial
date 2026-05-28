@@ -1,5 +1,6 @@
 # 07. 公開前チェックリスト
 
+![Launch checklist chapter art](../../assets/chapters/chapter-07-launch.webp)
 ## プロダクト
 
 - [ ] 診断を開始できる。

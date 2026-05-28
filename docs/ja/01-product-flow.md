@@ -1,5 +1,6 @@
 # 01. プロダクトの流れを分解する
 
+![Product flow chapter art](../../assets/chapters/chapter-01-flow.webp)
 **目的：コードを書く前に、ユーザーがどの画面を通り、どの時点で決済と解放が必要になるかを決めます。**
 
 最短の流れは次の形です。

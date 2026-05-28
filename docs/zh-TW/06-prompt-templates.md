@@ -1,5 +1,6 @@
 # 06. 可直接複製的 Codex 提示詞
 
+![Prompt templates chapter art](../../assets/chapters/chapter-06-prompts.webp)
 **本章重點：你不需要一次寫完完美需求。把任務拆小，讓 Codex 每次做一件能驗收的事。**
 
 ## 建立最小產品

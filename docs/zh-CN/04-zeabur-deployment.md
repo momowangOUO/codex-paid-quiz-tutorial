@@ -1,5 +1,6 @@
 # 04. 部署到 Zeabur，拿到可验证域名
 
+![Zeabur deployment chapter art](../../assets/chapters/chapter-04-zeabur.webp)
 这一章默认你已经完成上一章，把项目上传到了 GitHub。现在要把 GitHub 仓库部署到 Zeabur。
 
 **【本章核心】先让你的网站拥有一个可以公开访问的 HTTPS 域名，再拿这个域名去 Paddle 做网站验证、default payment link 和 webhook。**

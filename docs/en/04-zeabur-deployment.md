@@ -1,5 +1,6 @@
 # 04. Deploy to Zeabur First
 
+![Zeabur deployment chapter art](../../assets/chapters/chapter-04-zeabur.webp)
 **Goal: get a real HTTPS domain before configuring Paddle. The order matters.**
 
 ```text

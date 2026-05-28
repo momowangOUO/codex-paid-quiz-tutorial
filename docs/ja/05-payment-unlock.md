@@ -1,5 +1,6 @@
 # 05. Paddle 決済と自動解放
 
+![Paddle payment unlock chapter art](../../assets/chapters/chapter-05-paddle.webp)
 **目的：Paddle が支払いを処理し、自分のバックエンドが webhook を検証してレポートを解放します。**
 
 ## 流れ

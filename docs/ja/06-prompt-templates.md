@@ -1,5 +1,6 @@
 # 06. Codex プロンプト集
 
+![Prompt templates chapter art](../../assets/chapters/chapter-06-prompts.webp)
 ## 最小版を作る
 
 ```text

@@ -1,5 +1,6 @@
 # 07. 上線前檢查清單
 
+![Launch checklist chapter art](../../assets/chapters/chapter-07-launch.webp)
 **本章重點：不要只檢查首頁能不能打開，要檢查付款、解鎖、安全、回訪和手機體驗。**
 
 ## 產品流程

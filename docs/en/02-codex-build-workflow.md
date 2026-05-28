@@ -1,5 +1,6 @@
 # 02. Build the Site with Codex
 
+![Codex build workflow chapter art](../../assets/chapters/chapter-02-codex.webp)
 **Goal: use Codex as an engineering partner, not as a one-shot website generator.** Split the work into small passes that can be tested.
 
 ## First prompt

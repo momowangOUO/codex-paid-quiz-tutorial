@@ -1,5 +1,6 @@
 # 04. 先に Zeabur へデプロイする
 
+![Zeabur deployment chapter art](../../assets/chapters/chapter-04-zeabur.webp)
 **目的：Paddle を設定する前に、公開 HTTPS ドメインを取得します。順番が重要です。**
 
 ```text
