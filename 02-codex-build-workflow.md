@@ -1,10 +1,17 @@
 # 02. 怎么让 Codex 从 0 帮你建站
 
+**【本章核心】把建站任务拆成多个小轮次，每一轮都让 Codex 做一件能验收的事。**
+
 这一章只讲一件事：**你不会写网站时，应该怎样指挥 Codex。**
 
 不要一上来就说“帮我做一个完整商业化网站”。这样范围太大，Codex 容易一次改太多。你要把网站拆成一连串可以验收的小任务。
 
+> 💡 **为什么这样做？**
+> Codex 处理小任务时更稳定。你可以把它想成请一位工程搭档施工：先确认地基，再做墙面，再接水电，而不是一次说“请盖好整栋楼”。
+
 ## 先告诉 Codex 你要做什么产品
+
+**【本节核心】先用一段完整提示词，让 Codex 理解产品目标和限制。**
 
 复制这段作为第一条提示词：
 
@@ -36,6 +43,8 @@
 
 ## 第一次让它建的东西要很小
 
+**【本节核心】第一版只做能跑通流程的最小网站。**
+
 第一版只需要这些页面：
 
 | 页面 | 目的 | 最低要求 |
@@ -57,7 +66,12 @@
 
 这些都可以之后再加。第一步只要流程跑通。
 
+> 💡 **为什么这样做？**
+> 最小版本不是最终成品，而是用来证明路线可行。路线可行后，再加视觉、多语言、报告保存和真实支付会更稳。
+
 ## 推荐项目结构
+
+**【本节核心】提前要求 Codex 把前端、后端、数据和配置分开放。**
 
 你可以让 Codex 按这个结构建：
 
@@ -94,7 +108,12 @@ paid-quiz-site/
 
 新手最容易犯的错是把所有东西塞进一个文件。让 Codex 按目录拆开，后面比较好维护。
 
+> 💡 **为什么这样做？**
+> 项目结构像收纳柜。题目、页面、样式、支付接口各放各的位置，后面要修改某一块时，才不用在一个大文件里翻找。
+
 ## 第 1 轮：只做测验流程
+
+**【本节核心】先确认用户能从首页答到结果页。**
 
 给 Codex：
 
@@ -126,6 +145,8 @@ npm run dev
 
 ## 第 2 轮：让后端保存付款状态
 
+**【本节核心】把付款状态交给后端保存，不让前端自己决定。**
+
 给 Codex：
 
 ```text
@@ -153,6 +174,8 @@ npm run dev
 
 ## 第 3 轮：加付费墙开关
 
+**【本节核心】用公开配置控制付费墙开关，方便开发和上线前测试。**
+
 给 Codex：
 
 ```text
@@ -174,14 +197,37 @@ npm run dev
 
 这一步很重要，因为你上线前会反复测试。如果没有开关，你很容易把半成品付费墙推给用户。
 
-## 第 4 轮：先准备 Zeabur 部署
+## 第 4 轮：先准备上传到 GitHub
 
-本地 mock 流程跑通后，先不要急着接 Paddle。Paddle 后面会要求你填写并验证网站域名，也会要求 default payment link 使用一个已经能打开的 HTTPS 域名。
+**【本节核心】让 Codex 检查仓库上传前的安全和 `.gitignore`。**
+
+本地 mock 流程跑通后，先把项目整理成适合上传 GitHub 的状态。
+
+给 Codex：
+
+```text
+请检查这个项目是否适合上传 GitHub。
+
+要求：
+- .gitignore 必须忽略 .env、.env.*、*.local、node_modules、dist、日志和临时文件
+- 扫描项目，确认没有 Paddle API key、webhook secret、admin token
+- 确认 README 能让别人看懂项目用途
+- 告诉我第一次上传 GitHub 要执行哪些 git 命令
+- 如果发现 secret，请列出文件路径，并提醒我撤销或更换对应 key
+```
+
+验收时，GitHub 仓库里应该能看到项目文件，但看不到 `.env`、`.env.payment.local` 或任何 API key。
+
+## 第 5 轮：再准备 Zeabur 部署
+
+**【本节核心】让 Codex 把项目整理成 Zeabur 能 build、能 start 的形式。**
+
+GitHub 仓库准备好后，先不要急着接 Paddle。Paddle 后面会要求你填写并验证网站域名，也会要求 default payment link 使用一个已经能打开的 HTTPS 域名。
 
 所以正确顺序是：
 
 ```text
-本地 mock 跑通 -> 推到 GitHub -> 部署到 Zeabur -> 拿到 HTTPS 域名 -> 再设置 Paddle
+本地 mock 跑通 -> 上传到 GitHub -> 部署到 Zeabur -> 拿到 HTTPS 域名 -> 再设置 Paddle
 ```
 
 给 Codex：
@@ -214,7 +260,9 @@ https://your-project.zeabur.app
 
 这个网址之后会填进 Paddle 的 website verification、pricing page、default payment link 和 webhook URL。
 
-## 第 5 轮：有 HTTPS 域名后，再把 mock 换成 Paddle
+## 第 6 轮：有 HTTPS 域名后，再把 mock 换成 Paddle
+
+**【本节核心】拿到 Zeabur 域名后，再让 Codex 接真实 Paddle。**
 
 等 Zeabur 网站可以打开、`/api/health` 也正常，再给 Codex：
 
@@ -255,7 +303,9 @@ Paddle webhook URL 则是：
 https://your-project.zeabur.app/api/webhooks/paddle
 ```
 
-## 第 6 轮：上线前让 Codex 做安全检查
+## 第 7 轮：上线前让 Codex 做安全检查
+
+**【本节核心】上线前让 Codex 检查付款、密钥、webhook 和部署风险。**
 
 给 Codex：
 
@@ -276,6 +326,8 @@ https://your-project.zeabur.app/api/webhooks/paddle
 
 ## 你应该怎样回报错误给 Codex
 
+**【本节核心】回报错误时要给动作、现象、期待结果和日志。**
+
 不要只说“坏了”。要贴这四件事：
 
 ```text
@@ -295,7 +347,12 @@ Zeabur logs 显示 npm run start 有启动，但网页打不开。
 
 Codex 最擅长处理具体错误。越具体，它越快。
 
+> 💡 **为什么这样做？**
+> “坏了”没有定位信息。日志、截图、你刚刚做了什么，才是 Codex 判断问题位置的线索。
+
 ## 新手不要跳过的验证
+
+**【本节核心】每轮改完都跑 typecheck 和 build。**
 
 每做完一个阶段，都让 Codex 跑：
 
@@ -311,6 +368,8 @@ npm run build
 ```
 
 ## 本章完成标准
+
+**【本节核心】完成本章后，你应该拥有本地可运行的 mock 付费网站。**
 
 完成这一章后，你应该拥有：
 
