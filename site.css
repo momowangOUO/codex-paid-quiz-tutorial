@@ -363,9 +363,27 @@ h3 {
   padding: 26px 0 46px;
 }
 
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 18px;
+  margin-bottom: 36px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.topbar .brand {
+  margin-right: auto;
+}
+
+.topbar a:not(.brand):hover {
+  color: var(--cyan);
+}
+
 .tutorial-hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(420px, 1.2fr);
+  grid-template-columns: minmax(420px, 0.9fr) minmax(420px, 1.1fr);
   gap: 34px;
   align-items: center;
 }
@@ -633,6 +651,75 @@ th {
   color: var(--cyan);
 }
 
+.star-callout-featured {
+  position: relative;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  margin-top: 26px;
+  padding: 20px;
+  border-color: rgba(255, 23, 68, 0.58);
+  background:
+    linear-gradient(135deg, rgba(255, 23, 68, 0.18), rgba(0, 229, 255, 0.09)),
+    rgba(6, 8, 12, 0.92);
+  box-shadow:
+    0 0 0 1px rgba(0, 229, 255, 0.18) inset,
+    0 18px 52px rgba(255, 23, 68, 0.12);
+  overflow: hidden;
+}
+
+.star-callout-featured::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.08), transparent 24%, transparent 76%, rgba(0, 229, 255, 0.1));
+  pointer-events: none;
+}
+
+.star-icon {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: rgba(255, 23, 68, 0.22);
+  color: #fff7c6;
+  font-size: 30px;
+  box-shadow: 0 0 26px rgba(255, 23, 68, 0.24);
+  z-index: 1;
+}
+
+.star-copy {
+  display: grid;
+  gap: 5px;
+  z-index: 1;
+}
+
+.star-callout-featured .star-copy strong {
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+.star-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  background: var(--red);
+  color: #fff;
+  padding: 0 18px;
+  font-weight: 950;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.star-button:hover {
+  background: var(--cyan);
+  color: #020405;
+}
+
 .nav-links {
   display: flex;
   align-items: center;
@@ -647,6 +734,30 @@ th {
   gap: 28px;
   width: min(1180px, calc(100% - 40px));
   margin: 0 auto 80px;
+}
+
+.tutorial-content {
+  min-width: 0;
+}
+
+.tutorial-chapter {
+  overflow: hidden;
+}
+
+.tutorial-chapter table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.tutorial-chapter pre {
+  max-width: 100%;
+}
+
+.tutorial-chapter img,
+.tutorial-hero-grid img,
+.language-art {
+  min-width: 0;
 }
 
 @media (max-width: 900px) {
@@ -681,6 +792,15 @@ th {
   .repo-banner {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .star-callout-featured {
+    grid-template-columns: 1fr;
+  }
+
+  .star-icon {
+    width: 48px;
+    height: 48px;
   }
 
   .hero-art,
