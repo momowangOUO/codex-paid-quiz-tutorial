@@ -3,15 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="一份给 0 基础创作者的 Codex 实作教程：做测验网站、上传到 GitHub、部署到 Zeabur 拿域名，再接 Paddle 收款和自动解锁报告。"
-    />
-    <meta property="og:title" content="用 Codex 做出可以收款的测验网站" />
-    <meta property="og:description" content="照着步骤让 Codex 帮你建站、接支付、部署上线。" />
+    <meta name="description" content="一份从 0 开始用 Codex 做出可收费网站的实作教程：GitHub、Zeabur、Paddle、Webhook 与自动解锁。" />
+    <meta property="og:title" content="用 Codex 做出可收费网站" />
+    <meta property="og:description" content="从 0 基础到上线：让 Codex 帮你做测验网站、部署 Zeabur、串接 Paddle 收费。" />
     <meta property="og:image" content="https://momowangouo.github.io/codex-paid-quiz-tutorial/assets/brand/tutorial-og-cover.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <title>用 Codex 做出可以收款的测验网站</title>
+    <title>用 Codex 做出可收费网站</title>
     <link rel="icon" type="image/png" href="./assets/brand/tutorial-mascot-icon.png" />
     <link rel="stylesheet" href="site.css" />
   </head>
@@ -22,122 +19,74 @@
           <img src="./assets/brand/tutorial-mascot-icon.png" alt="" />
           <span>Codex 付费网站教程</span>
         </a>
-        <a href="./README.md">教程 README</a>
-        <a href="./06-prompt-templates.md">提示词</a>
-        <a href="./07-launch-checklist.md">上线清单</a>
+        <a href="./README.md">README</a>
+        <a href="./docs/zh-CN/06-prompt-templates.md">提示词</a>
+        <a href="./docs/zh-CN/07-launch-checklist.md">上线清单</a>
         <a href="./collaboration.html">合作表单</a>
       </nav>
       <div class="hero-grid">
         <section class="hero-copy">
-          <p class="eyebrow">Codex + Payment + Deploy</p>
-          <h1>用 Codex 做出一个可以收款的网站</h1>
-          <p class="lead">
-            0 基础也能照着做：让 Codex 帮你写前端和后端，先上传到 GitHub，再用 Zeabur 部署拿到 HTTPS 域名，最后接 Paddle 收款与自动解锁。
-          </p>
+          <p class="eyebrow">Codex + Zeabur + Paddle</p>
+          <h1>用 Codex 做出真正能收费的网站</h1>
+          <p class="lead">这是一份实作导向教程：先让 Codex 帮你做出测验网站，再推到 GitHub、部署到 Zeabur、取得 HTTPS 域名，最后串接 Paddle 付款与自动解锁。</p>
           <div class="actions">
             <a class="button primary" href="./README.md">开始阅读教程</a>
             <a class="button ghost" href="https://github.com/momowangOUO/codex-paid-quiz-tutorial">查看 GitHub</a>
-            <a class="button ghost" href="https://callingdeconstructor.zeabur.app/">体验案例网站</a>
+            <a class="button ghost" href="https://callingdeconstructor.zeabur.app/">查看示范网站</a>
           </div>
         </section>
-        <section class="hero-card" aria-label="收费测验网站教程品牌视觉">
-          <img src="./assets/brand/tutorial-hero.webp" alt="Codex 收费测验教程品牌视觉" />
+        <section class="hero-card" aria-label="教程视觉封面">
+          <img src="./assets/brand/tutorial-hero.webp" alt="Codex 付费网站教程视觉封面" />
         </section>
       </div>
     </header>
-
     <main>
       <section class="section">
         <div class="section-head">
           <p class="eyebrow">What You Build</p>
-          <h2>从“有想法”到“能上线收钱”的实作路线</h2>
+          <h2>不是概念课，是一条可以照做的上线路线</h2>
         </div>
         <div class="cards three">
-          <article class="card">
-            <span>01</span>
-            <h3>先让 Codex 建出网站</h3>
-            <p>从首页、答题页、免费报告、完整报告开始，先用 mock 支付跑通完整流程。</p>
-          </article>
-          <article class="card">
-            <span>02</span>
-            <h3>上传 GitHub</h3>
-            <p>先把本机项目变成 GitHub 仓库，让 Zeabur 有地方读取代码。</p>
-          </article>
-          <article class="card">
-            <span>03</span>
-            <h3>部署 Zeabur</h3>
-            <p>把 GitHub 项目变成 HTTPS 网站，拿到 Paddle 可以验证的公开域名。</p>
-          </article>
-          <article class="card">
-            <span>04</span>
-            <h3>再接 Paddle 收款</h3>
-            <p>用 Zeabur 域名完成网站验证、default payment link、webhook 和 checkout。</p>
-          </article>
+          <article class="card"><span>01</span><h3>从产品流程开始</h3><p>先做免费测验、导言版结果与完整报告，不急着接支付。</p></article>
+          <article class="card"><span>02</span><h3>让 Codex 实作</h3><p>用提示词把页面、API、mock 支付、Paddle provider 分阶段做出来。</p></article>
+          <article class="card"><span>03</span><h3>部署后再接 Paddle</h3><p>先用 Zeabur 拿到 HTTPS 域名，再配置 Paddle 网站验证、价格和 webhook。</p></article>
         </div>
       </section>
-
-      <section class="section split">
-        <div>
-          <p class="eyebrow">Beginner First</p>
-          <h2>不先讲一堆原理，先把东西做出来</h2>
-          <p>
-            教程会用“你该点哪里、填什么、贴什么提示词、怎么验收”的方式推进。你会先做最小版本，再上传 GitHub，再部署 Zeabur 拿域名，再接 Paddle，最后才优化转化率和视觉。
-          </p>
-        </div>
-        <div class="cost-table">
-          <div><strong>你负责</strong><span>说明产品、测试网页、贴错误日志</span></div>
-          <div><strong>Codex 负责</strong><span>写前端、写后端、修 bug、补配置</span></div>
-          <div><strong>Paddle 负责</strong><span>付款页面、交易结果、webhook 通知</span></div>
-          <div><strong>Zeabur 负责</strong><span>从 GitHub 部署网站、提供 HTTPS 域名</span></div>
-        </div>
-      </section>
-
       <section class="section">
         <div class="section-head">
           <p class="eyebrow">Chapters</p>
-          <h2>按步骤推进，每章都有可以复制的提示词</h2>
+          <h2>教程章节</h2>
         </div>
         <div class="chapter-list">
-          <a href="./01-product-flow.md">01 先把产品流程拆清楚</a>
-          <a href="./02-codex-build-workflow.md">02 指挥 Codex 从 0 建站</a>
-          <a href="./03-upload-to-github.md">03 上传到 GitHub</a>
-          <a href="./04-zeabur-deployment.md">04 Zeabur 部署与域名准备</a>
-          <a href="./05-payment-unlock.md">05 Paddle 收款与自动解锁</a>
-          <a href="./06-prompt-templates.md">06 提示词模板库</a>
-          <a href="./07-launch-checklist.md">07 上线检查清单</a>
-          <a href="./08-visual-walkthrough.md">08 内置界面截图图册</a>
+          <a href="./docs/zh-CN/01-product-flow.md">01 产品与流程设计</a>
+          <a href="./docs/zh-CN/02-codex-build-workflow.md">02 用 Codex 搭出网站</a>
+          <a href="./docs/zh-CN/03-upload-to-github.md">03 上传到 GitHub</a>
+          <a href="./docs/zh-CN/04-zeabur-deployment.md">04 部署到 Zeabur</a>
+          <a href="./docs/zh-CN/05-payment-unlock.md">05 串接 Paddle 收费</a>
+          <a href="./docs/zh-CN/06-prompt-templates.md">06 提示词模板</a>
+          <a href="./docs/zh-CN/07-launch-checklist.md">07 上线检查清单</a>
         </div>
       </section>
-
       <section class="section visual">
-        <img src="./assets/payment-flow.svg" alt="测验到付款解锁流程图" />
+        <img src="./assets/payment-flow.svg" alt="付款与自动解锁流程图" />
       </section>
-
       <section class="section case-study">
-        <img src="./assets/brand/tutorial-og-cover.png" alt="The Calling Deconstructor 案例展示" />
+        <img src="./assets/brand/tutorial-og-cover.png" alt="The Calling Deconstructor 示范网站" />
         <div>
           <p class="eyebrow">Live Example</p>
-          <h2>想先看成品长什么样？</h2>
-          <p>
-            The Calling Deconstructor 是一个已上线的收费测验网站案例。你可以先体验完整用户路径，再回到教程拆解自己要做的版本。
-          </p>
-          <p class="note">
-            个人项目服务器经费不是无限续杯；如果暂时打不开，多半只是进入云端冬眠模式。
-          </p>
-          <a class="button primary" href="https://callingdeconstructor.zeabur.app/">打开案例网站</a>
+          <h2>顺手看看真实示范</h2>
+          <p>The Calling Deconstructor 是这个教程背后的实作案例：测验、付费墙、Paddle、后端解锁和报告保存都围绕同一个产品场景。</p>
+          <p class="note">如果示范网站偶尔打不开，它可能只是在进行小型服务器预算冬眠。教程本身仍然可以照做。</p>
+          <a class="button primary" href="https://callingdeconstructor.zeabur.app/">打开示范网站</a>
         </div>
       </section>
-
       <section class="section contact">
         <p class="eyebrow">Collaboration</p>
-        <h2>合作与交流</h2>
-        <p>
-          作者关注认知心理学、游戏化体验设计与 AI 产品原型，擅长把抽象测评、动机反馈和付费路径整理成可上线验证的产品。
-        </p>
-        <p class="contact-line">有合作、案例交流或共创需求，请走表单入口。公开 GitHub 页面只用于勘误、PR 和可公开讨论的教程补充。</p>
+        <h2>欢迎一起把教程补得更好</h2>
+        <p>如果你有平台经验、翻译建议、复刻案例或合作想法，可以用表单联系。公开文档修正也可以直接开 issue 或 PR。</p>
         <div class="actions compact-actions">
-          <a class="button ghost" href="./collaboration.html">查看合作表单入口</a>
-          <a class="button text-button" href="https://github.com/momowangOUO/codex-paid-quiz-tutorial/issues/new?template=collaboration.yml">公开勘误 / PR 讨论</a>
+          <a class="button ghost" href="./collaboration.html">合作与交流</a>
+          <a class="button text-button" href="https://github.com/momowangOUO/codex-paid-quiz-tutorial/issues/new?template=collaboration.yml">公开文档修正</a>
         </div>
       </section>
     </main>

@@ -1,16 +1,15 @@
 # Examples
 
-这个目录放可复制的配置样板。它们不是完整项目源码，而是给读者在自己的测验网站中参考。
+These files are copyable references for a paid quiz website. They are intentionally small and should be adapted before production use.
 
-| 文件 | 用途 |
+| File | Purpose |
 | --- | --- |
-| `public-monetization.example.json` | 前端可公开读取的付费配置 |
-| `env.payment.example` | 后端私密环境变量模板 |
-| `minimal-api-contract.md` | 最小付款与解锁 API 设计 |
+| `public-monetization.example.json` | Public monetization config example. Never put secrets here. |
+| `env.payment.example` | Backend environment variable template. Copy values into your deployment platform, not GitHub. |
+| `minimal-api-contract.md` | Minimal API contract for checkout, sessions, and webhooks. |
 
-使用方式：
+## Safety
 
-1. 复制样板到你的项目。
-2. 把占位值换成自己的域名、价格和付款平台 ID。
-3. 确认 secret 只放在后端环境变量，不放进 `public`。
-
+- Keep Paddle API keys and webhook secrets in server-side environment variables.
+- Do not commit `.env.payment.local`.
+- Public JSON can include price display and provider names, but not tokens.

@@ -3,15 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="Codex 付费网站教程的合作与案例交流入口。使用表单提交合作主题，避免在公开 GitHub 页面暴露私人联系方式。"
-    />
-    <meta property="og:title" content="合作与案例交流｜Codex 付费网站教程" />
-    <meta property="og:description" content="提交你的合作主题、案例、问题或共创方向。" />
+    <meta name="description" content="Codex 付费网站教程的合作与交流入口。" />
+    <meta property="og:title" content="合作与交流｜Codex 付费网站教程" />
+    <meta property="og:description" content="用于翻译协作、平台经验、案例分享与教程反馈的私密表单入口。" />
     <meta property="og:image" content="https://momowangouo.github.io/codex-paid-quiz-tutorial/assets/brand/tutorial-og-cover.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <title>合作与案例交流｜Codex 付费网站教程</title>
+    <title>合作与交流｜Codex 付费网站教程</title>
     <link rel="icon" type="image/png" href="./assets/brand/tutorial-mascot-icon.png" />
     <link rel="stylesheet" href="site.css" />
   </head>
@@ -22,103 +19,46 @@
           <img src="./assets/brand/tutorial-mascot-icon.png" alt="" />
           <span>Codex 付费网站教程</span>
         </a>
-        <a href="./README.md">教程 README</a>
-        <a href="./06-prompt-templates.md">提示词</a>
-        <a href="./07-launch-checklist.md">上线清单</a>
+        <a href="./README.md">README</a>
+        <a href="./docs/zh-CN/06-prompt-templates.md">提示词</a>
+        <a href="./docs/zh-CN/07-launch-checklist.md">上线清单</a>
         <a href="./collaboration.html">合作表单</a>
       </nav>
       <div class="hero-grid">
         <section class="hero-copy">
-          <p class="eyebrow">Contact Form</p>
-          <h1>合作与案例交流</h1>
-          <p class="lead">
-            如果你想交流 Codex 建站、付费测验、AI 报告、Paddle 收款或 Zeabur 部署，可以先用表单留下主题。公开 GitHub 页面不会放私人微信或邮箱。
-          </p>
+          <p class="eyebrow">Collaboration</p>
+          <h1>合作与交流</h1>
+          <p class="lead">如果你想协作翻译、补充部署经验、分享案例或讨论合作，请使用表单。这样比把私人联系方式直接写进仓库安全，也比较容易整理。</p>
           <div class="actions">
-            <a class="button primary" href="https://docs.google.com/forms/d/e/1FAIpQLSet3g2cL32ZElYICNwvxaq27R0pxqyoHw2AK5bQHjDzNQwlUg/viewform">填写合作表单</a>
-            <a class="button ghost" href="https://github.com/momowangOUO/codex-paid-quiz-tutorial/issues/new?template=collaboration.yml">公开勘误 / PR 讨论</a>
+            <a class="button primary" href="https://docs.google.com/forms/d/e/1FAIpQLSet3g2cL32ZElYICNwvxaq27R0pxqyoHw2AK5bQHjDzNQwlUg/viewform">打开合作表单</a>
+            <a class="button ghost" href="https://github.com/momowangOUO/codex-paid-quiz-tutorial/issues/new?template=collaboration.yml">公开文档修正</a>
           </div>
         </section>
         <aside class="hero-card form-card">
           <div class="form-card-inner">
-            <p class="eyebrow">Author Background</p>
-            <h2>适合聊什么</h2>
+            <p class="eyebrow">Public Safe</p>
+            <h2>不要提交敏感资料</h2>
             <ul class="check-list">
-              <li>用 Codex 从 0 做测验或报告网站</li>
-              <li>付款后自动解锁页面与 webhook 流程</li>
-              <li>Paddle、Zeabur、GitHub Pages 的实作经验</li>
-              <li>心理学、职涯咨询、游戏化反馈与 AI 报告产品</li>
+              <li>不要提交 API key、Webhook secret 或 admin token。</li>
+              <li>不要上传付款账户、后台、用户资料截图。</li>
+              <li>公开问题请走 GitHub issue；私人合作请走表单。</li>
+              <li>如果只是想复刻付费网站，请先读完整教程。</li>
             </ul>
           </div>
         </aside>
       </div>
     </header>
-
     <main>
       <section class="section">
         <div class="section-head">
-          <p class="eyebrow">Form First</p>
-          <h2>为什么不用 GitHub 私信？</h2>
-          <p>
-            Git 没有私信功能，GitHub 也没有适合陌生访客直接私讯作者的内建机制。Issue 和 Discussion 都是公开页面，适合公开勘误、补充截图、讨论 PR，不适合留下私人联系方式。
-          </p>
+          <p class="eyebrow">What To Send</p>
+          <h2>适合填写表单的内容</h2>
+          <p>表单适合用来提交不适合公开放在 GitHub issue 的内容，例如个人案例、合作想法、翻译协作、平台踩坑经验或更具体的项目背景。</p>
         </div>
         <div class="cards three">
-          <article class="card">
-            <span>01</span>
-            <h3>合作主题走表单</h3>
-            <p>让对方提交称呼、主题、阶段、需要协助的地方，以及自愿留下的回复方式。</p>
-          </article>
-          <article class="card">
-            <span>02</span>
-            <h3>公开修正走 Issue</h3>
-            <p>教程错字、链接失效、部署截图补充、PR 讨论，可以留在 GitHub 上让其他读者也受益。</p>
-          </article>
-          <article class="card">
-            <span>03</span>
-            <h3>隐私资料不进仓库</h3>
-            <p>私人微信、邮箱、后台截图、订单资料、API key 和付款账号，都不应该写进公开 GitHub 文件。</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section contact" id="form-setup">
-        <p class="eyebrow">Google Form Setup</p>
-        <h2>把 Google 表单链接接到这里</h2>
-        <p class="contact-line">
-          合作表单已经接入。若以后要更换表单，只需要把本页主按钮的链接换成新的 Google 表单公开填写链接。
-        </p>
-        <div class="split setup-split">
-          <div>
-            <h3>建议表单字段</h3>
-            <ol class="step-list">
-              <li>你的称呼或团队名称</li>
-              <li>你想交流或合作的主题</li>
-              <li>目前进度：想法阶段、开发中、已上线、想优化</li>
-              <li>你希望得到什么帮助：技术建议、案例交流、共创、访谈、其他</li>
-              <li>可公开查看的网址或 GitHub 仓库，如果有</li>
-              <li>你愿意留下的回复方式</li>
-              <li>补充说明</li>
-            </ol>
-          </div>
-          <div class="cost-table">
-            <div>
-              <span>表单标题</span>
-              <strong>Codex 付费网站教程｜合作与案例交流</strong>
-            </div>
-            <div>
-              <span>表单说明</span>
-              <strong>请简短说明你想做的产品、目前卡点和希望交流的方向。不要提交 API key、付款后台截图或用户隐私资料。</strong>
-            </div>
-            <div>
-              <span>启用方式</span>
-              <strong>当前表单链接已经写入 collaboration.html；后续更换表单时，复制新的公开填写链接替换按钮 href。</strong>
-            </div>
-            <div>
-              <span>快速建表</span>
-              <strong>也可以使用 tools/create-google-contact-form.gs 在 Google Apps Script 自动生成中文表单。</strong>
-            </div>
-          </div>
+          <article class="card"><span>01</span><h3>教程协作</h3><p>补充 Zeabur、Paddle、GitHub Pages 或其他平台的真实操作经验。</p></article>
+          <article class="card"><span>02</span><h3>案例分享</h3><p>分享你如何用 Codex 做出可收费网站，以及中途卡在哪里。</p></article>
+          <article class="card"><span>03</span><h3>翻译与校对</h3><p>协助把教程做成更自然的多语言版本，尤其是台湾繁中、日文和韩文。</p></article>
         </div>
       </section>
     </main>

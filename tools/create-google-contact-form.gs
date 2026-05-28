@@ -1,50 +1,48 @@
 function createCollaborationContactForm() {
-  const form = FormApp.create("Codex 付费网站教程｜合作与案例交流");
+  const form = FormApp.create('Codex 付费网站教程：合作与交流表单');
 
-  form.setDescription(
-    "请简短说明你想做的产品、目前卡点和希望交流的方向。不要提交 API key、付款后台截图、订单资料或用户隐私资料。"
-  );
+  form.setDescription('如果你想协作翻译、补充平台经验、分享案例或讨论合作，请填写这份表单。请不要提交 API key、Webhook secret、付款账户截图或任何用户隐私资料。');
   form.setCollectEmail(false);
   form.setAllowResponseEdits(false);
   form.setLimitOneResponsePerUser(false);
   form.setShowLinkToRespondAgain(false);
-  form.setConfirmationMessage("已收到，谢谢。若主题适合进一步交流，我会再回复你。");
+  form.setConfirmationMessage('已收到，谢谢你。若内容适合进一步交流，我会再回复。');
 
   form.addTextItem()
-    .setTitle("你的称呼或团队名称")
-    .setHelpText("可填写昵称、团队名或公司名。")
+    .setTitle('你的称呼或团队名称')
+    .setHelpText('可以填写昵称、公司名或项目名。')
     .setRequired(true);
 
   form.addParagraphTextItem()
-    .setTitle("你想交流或合作的主题")
-    .setHelpText("请用 3-5 句话说明你想做什么。")
+    .setTitle('你想讨论什么？')
+    .setHelpText('请用 3-5 句话说明你的想法、问题或合作方向。')
     .setRequired(true);
 
   form.addMultipleChoiceItem()
-    .setTitle("目前进度")
-    .setChoiceValues(["想法阶段", "正在开发", "已经上线", "想优化现有产品", "其他"])
+    .setTitle('主题类型')
+    .setChoiceValues(['教程协作', '翻译协作', '平台部署经验', '支付 / Webhook 经验', '案例分享', '其他'])
     .setRequired(true);
 
   form.addCheckboxItem()
-    .setTitle("你希望得到什么帮助")
-    .setChoiceValues(["技术建议", "案例交流", "共创合作", "访谈或内容合作", "教程补充", "其他"])
+    .setTitle('你愿意如何参与？')
+    .setChoiceValues(['提供反馈', '补充教程', '协助翻译', '分享案例', '技术合作', '其他'])
     .setRequired(true);
 
   form.addTextItem()
-    .setTitle("可公开查看的网址或 GitHub 仓库")
-    .setHelpText("没有可以留空。请不要放后台网址或带权限的链接。")
+    .setTitle('公开链接（可选）')
+    .setHelpText('例如 GitHub、作品集、产品页或公开文章。请不要填写私密链接。')
     .setRequired(false);
 
   form.addTextItem()
-    .setTitle("你愿意留下的回复方式")
-    .setHelpText("请填写你愿意被联系的方式。这个字段只进入表单后台，不会写进 GitHub。")
+    .setTitle('希望如何联系你？')
+    .setHelpText('请填写你愿意公开给表单作者看的联系方式，例如邮箱或社群账号。')
     .setRequired(true);
 
   form.addParagraphTextItem()
-    .setTitle("补充说明")
-    .setHelpText("如果有时间安排、预算范围、希望合作方式等，可以写在这里。")
+    .setTitle('补充说明')
+    .setHelpText('请不要放 API key、付款资料、用户数据或敏感截图。')
     .setRequired(false);
 
-  Logger.log("公开填写链接：" + form.getPublishedUrl());
-  Logger.log("表单编辑链接：" + form.getEditUrl());
+  Logger.log('Published URL: ' + form.getPublishedUrl());
+  Logger.log('Edit URL: ' + form.getEditUrl());
 }
