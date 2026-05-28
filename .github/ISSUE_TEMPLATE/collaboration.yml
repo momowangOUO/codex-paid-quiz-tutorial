@@ -1,27 +1,27 @@
-name: Collaboration or Case Discussion
-description: Propose a collaboration, share a case, or ask for practical guidance.
-title: "[Collaboration] "
+name: Public Correction or Docs Addition
+description: Report a public documentation issue, add deployment notes, or discuss a PR.
+title: "[Docs] "
 labels:
-  - collaboration
+  - documentation
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for reaching out. Please keep this issue public-safe: do not post private contact details, API keys, payment account details, user data, or screenshots with secrets.
+        Please keep this issue public-safe. Do not post private contact details, API keys, payment account details, user data, or screenshots with secrets. For private collaboration or case exchange, use the collaboration form entry on the site.
   - type: textarea
     id: goal
     attributes:
-      label: What are you trying to build?
-      description: Describe the product or collaboration idea in one or two short paragraphs.
-      placeholder: "Example: I want to build a paid personality report site for..."
+      label: What should be corrected or added?
+      description: Describe the documentation issue, missing step, broken link, or public-safe improvement.
+      placeholder: "Example: The Paddle webhook step needs one more screenshot..."
     validations:
       required: true
   - type: textarea
     id: current-state
     attributes:
       label: Current state
-      description: What do you already have?
-      placeholder: "Repository, demo URL, product outline, payment account status, deployment status..."
+      description: If relevant, mention the tutorial chapter, platform, or public demo URL.
+      placeholder: "Chapter name, public URL, platform version, screenshot without secrets..."
     validations:
       required: false
   - type: dropdown
@@ -33,8 +33,8 @@ body:
         - Payment and unlock flow
         - Zeabur deployment
         - Paddle setup
-        - Product or report design
         - Translation or documentation
+        - Screenshot or visual guide
         - Other
     validations:
       required: true
@@ -42,6 +42,6 @@ body:
     id: request
     attributes:
       label: What kind of response would help?
-      placeholder: "Technical suggestion, documentation correction, case exchange, long-term collaboration..."
+      placeholder: "Documentation correction, PR review, missing screenshot, extra checklist item..."
     validations:
       required: true

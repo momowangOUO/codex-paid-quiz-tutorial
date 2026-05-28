@@ -40,6 +40,10 @@ a {
   padding: 28px 0 70px;
 }
 
+.compact-hero {
+  padding-bottom: 42px;
+}
+
 .nav {
   display: flex;
   align-items: center;
@@ -140,6 +144,16 @@ h3 {
 
 .button.ghost:hover {
   border-color: var(--accent);
+  color: var(--accent);
+}
+
+.button.text-button {
+  border-color: transparent;
+  color: var(--muted);
+  padding-inline: 6px;
+}
+
+.button.text-button:hover {
   color: var(--accent);
 }
 
@@ -285,6 +299,41 @@ h3 {
 
 .contact-line {
   color: var(--text) !important;
+}
+
+.compact-actions {
+  margin-top: 22px;
+}
+
+.form-card {
+  padding: 0;
+}
+
+.form-card-inner {
+  padding: 28px;
+}
+
+.check-list,
+.step-list {
+  margin: 18px 0 0;
+  padding-left: 1.2rem;
+  color: var(--muted);
+}
+
+.check-list li,
+.step-list li {
+  margin: 10px 0;
+}
+
+.setup-split {
+  margin-top: 24px;
+}
+
+code {
+  color: var(--accent);
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.18);
+  padding: 0.08em 0.35em;
 }
 
 @media (max-width: 860px) {

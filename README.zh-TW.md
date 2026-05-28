@@ -91,6 +91,6 @@
 
 ## 作者與合作
 
-作者關注認知心理學、遊戲化體驗設計與 AI 產品原型。若你想交流收費測驗、AI 輔助報告、付款解鎖流程或 Codex MVP 開發，請先透過 [GitHub Issue 合作入口](https://github.com/momowangOUO/codex-paid-quiz-tutorial/issues/new?template=collaboration.yml) 留下公開安全的合作主題。
+作者關注認知心理學、遊戲化體驗設計與 AI 產品原型。若你想交流收費測驗、AI 輔助報告、付款解鎖流程或 Codex MVP 開發，請先看 [合作表單入口](collaboration.html)。
 
-請不要在公開 issue 留下私人聯絡方式、付款帳號、API key、後台截圖或真實訂單資料。
+GitHub issue 只適合公開勘誤、文件補充與 PR 討論。請不要在公開 issue 留下私人聯絡方式、付款帳號、API key、後台截圖或真實訂單資料。

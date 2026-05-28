@@ -88,6 +88,6 @@ Contributions are welcome. You can help with translations, payment-provider note
 
 ## Author and Collaboration
 
-The author works across cognitive psychology, gamified experience design, and AI product prototyping. For collaboration, case sharing, or practical questions, please open a public-safe [GitHub collaboration issue](https://github.com/momowangOUO/codex-paid-quiz-tutorial/issues/new?template=collaboration.yml).
+The author works across cognitive psychology, gamified experience design, and AI product prototyping. For collaboration, case sharing, or practical questions, use the [collaboration form entry](collaboration.html).
 
-Do not post private contact details, payment accounts, API keys, admin screenshots, or real order data in public issues.
+GitHub issues are only for public corrections, documentation improvements, and PR discussion. Do not post private contact details, payment accounts, API keys, admin screenshots, or real order data in public issues.

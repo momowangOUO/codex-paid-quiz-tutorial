@@ -1,20 +1,47 @@
 # 合作与联系
 
-如果你想围绕付费测验、AI 报告、Paddle/Zeabur 部署、Codex 建站流程或类似产品路线交流合作，请优先使用 GitHub Issue：
+这个仓库不直接公开私人微信、邮箱或付款后台信息。Git 没有私信功能，GitHub Issue / Discussion 也都是公开页面，所以合作与案例交流建议改用表单承接。
 
-[发起合作讨论](https://github.com/momowangOUO/codex-paid-quiz-tutorial/issues/new?template=collaboration.yml)
+网站入口：[合作与案例交流](collaboration.html)
 
-为了保护双方隐私，请不要在公开 issue 里留下手机号、微信号、私人邮箱、付款账号、API key、后台截图或真实订单资料。
+## 推荐联系流程
 
-建议在 issue 里只写这些公开信息：
+1. 先建立一个 Google 表单、Tally 或 Typeform。
+2. 表单用于收集合作主题、项目阶段、希望交流的方向，以及对方自愿留下的回复方式。
+3. 把表单公开链接填到 [collaboration.html](collaboration.html) 的主按钮里。
+4. GitHub Issue 只保留给公开勘误、文档补充、截图补充和 PR 讨论。
 
-1. 你想做的产品一句话说明。
-2. 你目前卡在哪一步。
-3. 你希望合作或交流的方向。
-4. 你是否已有 GitHub 仓库、线上网址或公开 demo。
-5. 你希望对方如何回应：技术建议、文档补充、案例交流、还是长期协作。
+如果想快速生成 Google 表单，可以使用 [tools/create-google-contact-form.gs](tools/create-google-contact-form.gs)：
 
-如果需要进一步私下沟通，我会在 GitHub 上先确认合作主题，再选择更合适的后续联系通道。
+1. 打开 <https://script.google.com/>。
+2. 建立新项目，把脚本内容贴进去。
+3. 执行 `createCollaborationContactForm()`，按 Google 提示授权。
+4. 在执行日志里复制「公开填写链接」。
+5. 把 [collaboration.html](collaboration.html) 里的按钮 `href="#form-setup"` 替换成这个链接。
+
+## 中文 Google 表单建议内容
+
+表单标题：
+
+```text
+Codex 付费网站教程｜合作与案例交流
+```
+
+表单说明：
+
+```text
+请简短说明你想做的产品、目前卡点和希望交流的方向。不要提交 API key、付款后台截图、订单资料或用户隐私资料。
+```
+
+建议字段：
+
+1. 你的称呼或团队名称
+2. 你想交流或合作的主题
+3. 目前进度：想法阶段、开发中、已上线、想优化
+4. 你希望得到什么帮助：技术建议、案例交流、共创、访谈、其他
+5. 可公开查看的网址或 GitHub 仓库，如果有
+6. 你愿意留下的回复方式
+7. 补充说明
 
 ## 适合讨论的话题
 
@@ -32,3 +59,5 @@
 - 支付后台、订单后台、用户资料截图。
 - 未公开的商业数据。
 - 任何你不希望被搜索引擎收录的内容。
+
+公开修正文档或补充教程时，可以使用 [GitHub Issue](https://github.com/momowangOUO/codex-paid-quiz-tutorial/issues/new?template=collaboration.yml)。
