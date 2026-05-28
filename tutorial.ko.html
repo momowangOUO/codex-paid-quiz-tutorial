@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Codex Paid Site Guide - Korean Tutorial" /><title>Korean Tutorial - Codex Paid Site Guide</title><link rel="icon" type="image/png" href="./assets/brand/tutorial-mascot-icon.png" /><link rel="stylesheet" href="./site.css" /></head>
+<body><header class="tutorial-hero compact-hero"><nav class="topbar"><a class="brand" href="./index.html">Codex Paid Site Guide</a><a href="./index.html">Language</a><a href="https://github.com/momowangOUO/codex-paid-quiz-tutorial" target="_blank" rel="noreferrer">GitHub Star</a></nav><div class="tutorial-hero-grid"><div><p class="eyebrow">Full Tutorial</p><h1>Korean Tutorial</h1><p class="lead">Complete chapter content is loaded from the ko documentation set.</p><div class="star-callout"><strong>Free Star, real encouragement</strong><span>If this guide helps you, please star the GitHub repository. It costs nothing and helps more builders find it.</span></div></div><img src="./assets/brand/tutorial-hero.webp" alt="Tutorial hero artwork" /></div></header><main class="tutorial-shell"><aside class="tutorial-sidebar"><div class="sidebar-inner"><p class="eyebrow">Chapters</p><a href="#chapter-01"><span>01</span>제품 흐름 나누기</a>
+<a href="#chapter-02"><span>02</span>Codex 로 사이트 만들기</a>
+<a href="#chapter-03"><span>03</span>GitHub 에 업로드하기</a>
+<a href="#chapter-04"><span>04</span>먼저 Zeabur 에 배포하기</a>
+<a href="#chapter-05"><span>05</span>Paddle 결제와 자동 잠금 해제</a>
+<a href="#chapter-06"><span>06</span>Codex 프롬프트 모음</a>
+<a href="#chapter-07"><span>07</span>출시 전 체크리스트</a></div></aside><section class="tutorial-content"><article class="tutorial-chapter" id="chapter-01"><div class="chapter-kicker">Chapter 01</div><h1>01. 제품 흐름 나누기</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-01-flow.webp" alt="Product flow chapter art" loading="lazy" /></figure>
+<p><strong>목표: 코드를 쓰기 전에 사용자가 어떤 화면을 지나 결제와 잠금 해제를 하게 되는지 정합니다.</strong></p>
+<p>가장 짧은 흐름은 다음과 같습니다.</p>
+<pre><code>랜딩 페이지 -&gt; 퀴즈 -&gt; 무료 인트로 리포트 -&gt; 결제 -&gt; 전체 리포트 -&gt; 저장 또는 재방문</code></pre>
+<p>첫 버전에서는 로그인, 구독, 쿠폰, 관리자 화면을 넣지 마세요. 먼저 한 명의 사용자가 답변하고, 한 번 결제하고, 정확한 리포트를 열 수 있는지 확인합니다.</p>
+<h3>화면별 역할</h3>
+<table><tbody>
+<tr><td>화면</td><td>사용자가 보는 것</td><td>역할</td><td>백엔드 필요 여부</td></tr>
+<tr><td>랜딩</td><td>가치 설명과 시작 버튼</td><td>퀴즈 시작</td><td>보통 불필요</td></tr>
+<tr><td>퀴즈</td><td>질문, 선택지, 진행률</td><td>답변 수집</td><td>보통 불필요</td></tr>
+<tr><td>무료 인트로</td><td>일부 분석</td><td>신뢰 형성</td><td>reportId 필요</td></tr>
+<tr><td>결제벽</td><td>가격, 결제 버튼, 대기 상태</td><td>payment session 생성</td><td>필요</td></tr>
+<tr><td>전체 리포트</td><td>레이더, 심리 프로필, 방향</td><td>유료 가치 전달</td><td>access token 필요</td></tr>
+</tbody></table>
+<h3>무료 리포트의 범위</h3>
+<p>무료 리포트는 빈 광고 페이지가 아니어야 합니다. 핵심 동기, 행동 경향, 자기 인식과 실제 표현의 차이, 전체 리포트에서 다룰 분석 축을 보여줄 수 있습니다. 다만 전체 직업명, 전체 경로, 저장용 리포트, 모든 매칭 로직은 숨깁니다.</p>
+<h3>핵심 데이터</h3>
+<h4>reportId</h4>
+<p><code>reportId</code> 는 하나의 퀴즈 결과를 나타내는 번호입니다. 답변, 주문, 잠금 해제, 재방문이 모두 같은 결과를 가리켜야 합니다.</p>
+<h4>payment session</h4>
+<p><code>payment_session</code> 은 한 번의 결제 시도입니다. 사용자는 결제를 닫거나 실패 후 재시도할 수 있으므로 상태는 프론트엔드가 아니라 백엔드에 저장해야 합니다.</p>
+<h4>access token</h4>
+<p><code>accessToken</code> 은 전체 리포트를 여는 열쇠입니다. 어떤 reportId 가 한 번 결제되었다고 해서 모든 사람이 볼 수 있게 만들면 안 됩니다.</p>
+<h3>Codex 프롬프트</h3>
+<pre><code>일회성 결제로 리포트를 잠금 해제하는 퀴즈 사이트를 만들고 싶습니다.
+
+사용자 흐름: 랜딩 페이지 -&gt; 퀴즈 -&gt; 무료 인트로 리포트 -&gt; 결제 -&gt; 전체 리포트.
+
+첫 버전은 로그인, 구독, 쿠폰 없이 진행합니다.
+
+다음을 설계해 주세요:
+1. 프론트엔드 화면 상태
+2. reportId 생성과 저장
+3. payment session 데이터 구조
+4. access token 잠금 해제 로직
+5. 로컬 mock 결제 흐름
+
+먼저 파일 계획을 출력한 뒤 최소 버전을 구현해 주세요.</code></pre></article>
+<article class="tutorial-chapter" id="chapter-02"><div class="chapter-kicker">Chapter 02</div><h1>02. Codex 로 사이트 만들기</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-02-codex.webp" alt="Codex build workflow chapter art" loading="lazy" /></figure>
+<p><strong>목표: Codex 에게 한 번에 모든 것을 맡기지 말고, 검증 가능한 작은 단계로 나눕니다.</strong></p>
+<h3>첫 프롬프트</h3>
+<pre><code>유료 퀴즈 사이트를 만들고 싶습니다.
+
+사용자는:
+1. 랜딩 페이지를 열고
+2. 퀴즈를 완료하고
+3. 무료 인트로 리포트를 보고
+4. 결제 버튼을 누르고
+5. 결제 성공 후 전체 리포트를 자동으로 봅니다.
+
+최소 실행 버전을 만들어 주세요.
+조건:
+- 프론트엔드는 React + Vite
+- 백엔드는 Node.js
+- 먼저 mock 결제, 실제 Paddle 은 아직 연결하지 않음
+- 로그인 불필요
+- secret 을 프론트엔드에 넣지 않음
+- 각 단계의 로컬 실행 및 검증 방법 설명</code></pre>
+<p>기존 프로젝트가 있다면 “기존 구조를 먼저 읽고, 새로 만들지 말고 이어서 작업해 주세요”라고 덧붙입니다.</p>
+<h3>추천 구조</h3>
+<pre><code>paid-quiz-site/
+  src/app/
+  src/components/
+  src/data/
+  src/monetization/
+  src/styles/
+  server/payment-server.mjs
+  public/monetization.json
+  package.json
+  .env.payment.example</code></pre>
+<p>화면, 데이터, 공개 설정, 결제 검증을 분리하면 나중에 수정하기 쉽습니다.</p>
+<h3>1단계: 퀴즈 흐름만 만들기</h3>
+<p>랜딩, 질문, 답변, reportId, 무료 리포트, 잠금 해제 버튼만 만듭니다. <code>npm install</code>, <code>npm run dev</code> 후 직접 한 번 답변합니다.</p>
+<h3>2단계: 백엔드와 mock 결제</h3>
+<pre><code>Node 백엔드를 추가하고 mock 결제를 먼저 만들어 주세요.
+
+API:
+- POST /api/payments/checkout
+- GET /api/payments/sessions/:id
+- POST /api/payments/mock-paid
+
+결제 상태는 백엔드가 저장하고, 프론트엔드만으로 paid 가 될 수 없게 해 주세요.</code></pre>
+<h3>3단계: 보안 점검</h3>
+<p><code>.env.payment.local</code> 이 Git 에 들어가지 않는지, Paddle key 가 서버에만 있는지, URL 의 <code>paid=true</code> 로 잠금 해제가 되지 않는지 확인시킵니다.</p>
+<h3>작업 리듬</h3>
+<p>파일 계획, 구현, typecheck/build, 브라우저 테스트, 오류 공유를 반복하세요. 결제가 있는 제품은 이 방식이 훨씬 안전합니다.</p></article>
+<article class="tutorial-chapter" id="chapter-03"><div class="chapter-kicker">Chapter 03</div><h1>03. GitHub 에 업로드하기</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-03-github.webp" alt="GitHub upload chapter art" loading="lazy" /></figure>
+<p><strong>목표: Zeabur 가 배포할 코드를 GitHub 에 둡니다. 로컬에만 있으면 Zeabur 는 볼 수 없습니다.</strong></p>
+<h3>커밋하면 안 되는 것</h3>
+<p><code>.gitignore</code> 에 다음을 넣습니다.</p>
+<pre><code>node_modules
+dist
+.env
+.env.*
+*.local
+.logs
+tmp-*</code></pre>
+<p>Paddle API key, webhook secret, 주문 데이터, 사용자 정보는 GitHub 에 올리지 않습니다.</p>
+<h3>첫 push</h3>
+<pre><code>git init
+git status
+git add .
+git commit -m &quot;Initial paid quiz site&quot;
+git branch -M main
+git remote add origin https://github.com/your-name/your-repo.git
+git push -u origin main</code></pre>
+<h3>push 전 Codex 점검</h3>
+<pre><code>커밋할 파일을 확인해서 .env, API key, webhook secret, 결제 데이터, 사용자 개인정보가 포함되어 있지 않은지 봐 주세요. 파일을 삭제하지 말고 위험과 .gitignore 제안만 알려 주세요.</code></pre>
+<h3>확인</h3>
+<ul>
+<li>GitHub 에서 README 가 읽힌다.</li>
+<li>최신 commit 이 반영되어 있다.</li>
+<li><code>src/</code>, <code>server/</code>, <code>public/</code> 이 있다.</li>
+<li><code>.env.payment.local</code> 이 없다.</li>
+</ul>
+<p>Zeabur 가 갱신되지 않으면 먼저 GitHub 에 정말 최신 commit 이 있는지 확인합니다.</p></article>
+<article class="tutorial-chapter" id="chapter-04"><div class="chapter-kicker">Chapter 04</div><h1>04. 먼저 Zeabur 에 배포하기</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-04-zeabur.webp" alt="Zeabur deployment chapter art" loading="lazy" /></figure>
+<p><strong>목표: Paddle 설정 전에 공개 HTTPS 도메인을 얻습니다. 순서가 중요합니다.</strong></p>
+<pre><code>로컬 mock -&gt; GitHub -&gt; Zeabur -&gt; HTTPS 도메인 -&gt; Paddle 심사 -&gt; Paddle checkout</code></pre>
+<figure class="chapter-figure"><img src="./assets/diagrams/07-domain-before-paddle.svg" alt="Domain before Paddle" loading="lazy" /></figure>
+<h3>왜 Zeabur 가 먼저인가</h3>
+<p>Paddle 은 pricing, terms, privacy, refund, default payment link, 승인된 도메인을 요구합니다. 공개 도메인이 없으면 코드가 맞아도 checkout not enabled 로 막힐 수 있습니다.</p>
+<h3>사전 확인</h3>
+<pre><code>npm install
+npm run build</code></pre>
+<p>로컬 build 가 실패하면 Zeabur 도 대부분 실패합니다. 로그를 Codex 에게 주고 먼저 고칩니다.</p>
+<h3>PORT 와 0.0.0.0</h3>
+<p>Node 서버는 다음과 같이 작성합니다.</p>
+<pre><code>const port = Number(process.env.PORT ?? 8080);
+const serverHost = process.env.PAYMENT_SERVER_HOST ?? &quot;0.0.0.0&quot;;
+server.listen(port, serverHost, () =&gt; {
+  console.log(`payment server: http://${serverHost}:${port}/api`);
+});</code></pre>
+<p>프로덕션 컨테이너에서 <code>0.0.0.0</code> 은 올바른 설정입니다. 외부 트래픽이 컨테이너 안의 서비스에 도달하게 합니다.</p>
+<h3>Zeabur 설정</h3>
+<figure class="chapter-figure"><img src="./assets/diagrams/01-zeabur-deploy.svg" alt="Zeabur deploy flow" loading="lazy" /></figure>
+<ul>
+<li>GitHub repository 선택.</li>
+<li>Region 은 Singapore 또는 Hong Kong 우선.</li>
+<li>Build Command: <code>npm run build</code>.</li>
+<li>Start Command: <code>npm run start</code>.</li>
+</ul>
+<h3>Variables 와 Volume</h3>
+<figure class="chapter-figure"><img src="./assets/diagrams/02-zeabur-variables.svg" alt="Zeabur variables" loading="lazy" /></figure>
+<pre><code>PAYMENT_SERVER_HOST=0.0.0.0
+PAYMENT_STORE_FILE=/data/payment-store.json
+PUBLIC_BASE_URL=https://your-zeabur-domain
+CORS_ORIGIN=https://your-zeabur-domain
+PADDLE_ENVIRONMENT=sandbox
+PADDLE_ALLOW_UNSIGNED_WEBHOOKS=false</code></pre>
+<figure class="chapter-figure"><img src="./assets/diagrams/03-zeabur-volume.svg" alt="Zeabur volume" loading="lazy" /></figure>
+<p><code>/data</code> 에 volume 을 마운트해 payment session 과 access token 이 재시작 후에도 유지되도록 합니다.</p></article>
+<article class="tutorial-chapter" id="chapter-05"><div class="chapter-kicker">Chapter 05</div><h1>05. Paddle 결제와 자동 잠금 해제</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-05-paddle.webp" alt="Paddle payment unlock chapter art" loading="lazy" /></figure>
+<p><strong>목표: Paddle 은 결제를 처리하고, 내 백엔드는 webhook 을 검증해 리포트를 해제합니다.</strong></p>
+<h3>흐름</h3>
+<pre><code>해제 버튼 -&gt; payment session -&gt; Paddle transaction checkout -&gt; 결제 -&gt; webhook -&gt; 검증 -&gt; access token -&gt; 전체 리포트 표시</code></pre>
+<p>프론트엔드만으로 결제 성공을 판단하지 마세요. 신뢰할 수 있는 것은 webhook 입니다.</p>
+<h3>상품 설명</h3>
+<pre><code>We sell a one-time digital career assessment report. Users complete a quiz and receive a personalized online report. The product is digital content access, not employment placement, financial advice, medical advice, or guaranteed career outcome.</code></pre>
+<p><code>Checkout has not yet been enabled</code> 가 나오면 onboarding, website approval, default payment link, product, price, 심사 상태를 먼저 확인합니다.</p>
+<h3>Website approval</h3>
+<figure class="chapter-figure"><img src="./assets/diagrams/04-paddle-domain.svg" alt="Paddle domain" loading="lazy" /></figure>
+<pre><code>Pricing: https://your-domain/pricing
+Terms: https://your-domain/terms
+Privacy: https://your-domain/privacy
+Refund: https://your-domain/refund</code></pre>
+<h3>Product 와 Price</h3>
+<figure class="chapter-figure"><img src="./assets/diagrams/05-paddle-product-price.svg" alt="Paddle product price" loading="lazy" /></figure>
+<p>일회성 디지털 상품을 만들고 CNY 9.90, USD 1.99 one-time price 를 만듭니다. subscription 은 선택하지 않습니다.</p>
+<h3>Webhook</h3>
+<figure class="chapter-figure"><img src="./assets/diagrams/06-paddle-webhook.svg" alt="Paddle webhook" loading="lazy" /></figure>
+<p>URL:</p>
+<pre><code>https://your-domain/api/webhooks/paddle</code></pre>
+<p><code>transaction.completed</code> 에서만 잠금 해제합니다. <code>custom_data.payment_session_id</code> 와 <code>report_id</code> 가 백엔드 기록과 일치하는지도 확인해야 합니다.</p>
+<h3>Zeabur Variables</h3>
+<pre><code>PADDLE_ENVIRONMENT=sandbox
+PADDLE_API_KEY=your_sandbox_api_key
+PADDLE_CNY_PRICE_ID=pri_xxx
+PADDLE_USD_PRICE_ID=pri_xxx
+PADDLE_WEBHOOK_SECRET=your_webhook_secret
+PADDLE_ALLOW_UNSIGNED_WEBHOOKS=false</code></pre></article>
+<article class="tutorial-chapter" id="chapter-06"><div class="chapter-kicker">Chapter 06</div><h1>06. Codex 프롬프트 모음</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-06-prompts.webp" alt="Prompt templates chapter art" loading="lazy" /></figure>
+<h3>최소 버전 만들기</h3>
+<pre><code>React + Vite 와 Node 로 결제 후 리포트를 잠금 해제하는 퀴즈 사이트 최소 버전을 만들어 주세요. 먼저 mock 결제, 로그인 없음, 결제 상태는 백엔드만 결정하는 구조로 해 주세요. 파일 계획, 구현, typecheck, build 까지 진행해 주세요.</code></pre>
+<h3>Paddle 추가</h3>
+<pre><code>mock provider 옆에 Paddle provider 를 추가해 주세요. checkout 생성, Paddle-Signature 검증, transaction.completed 에서만 잠금 해제, 중복 webhook 멱등 처리, reportId 불일치 거절을 구현해 주세요.</code></pre>
+<h3>Zeabur 오류 수정</h3>
+<pre><code>Zeabur deploy 가 실패했습니다. 아래 로그를 보고 원인이 build, start, PORT, 환경 변수, 파일 누락, 메모리 문제 중 무엇인지 판단하고 수정해 주세요.</code></pre>
+<h3>secret 점검</h3>
+<pre><code>이 프로젝트에 Paddle API key, webhook secret, .env.payment.local, 주문 데이터가 GitHub 에 올라갈 위험이 없는지 확인해 주세요.</code></pre></article>
+<article class="tutorial-chapter" id="chapter-07"><div class="chapter-kicker">Chapter 07</div><h1>07. 출시 전 체크리스트</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-07-launch.webp" alt="Launch checklist chapter art" loading="lazy" /></figure>
+<h3>제품</h3>
+<ul>
+<li>[ ] 퀴즈를 시작할 수 있다.</li>
+<li>[ ] 끝까지 답변할 수 있다.</li>
+<li>[ ] 무료 인트로 리포트에 실질적인 내용이 있다.</li>
+<li>[ ] 미결제 상태에서 전체 리포트가 보이지 않는다.</li>
+<li>[ ] 결제 후 자동으로 잠금 해제된다.</li>
+</ul>
+<h3>Paddle</h3>
+<ul>
+<li>[ ] Website approval 완료.</li>
+<li>[ ] Default payment link 설정.</li>
+<li>[ ] Product 는 one-time digital product.</li>
+<li>[ ] Price 는 subscription 이 아니다.</li>
+<li>[ ] Webhook URL 이 맞다.</li>
+<li>[ ] failed / canceled / duplicate webhook 으로 잘못 해제되지 않는다.</li>
+</ul>
+<h3>Zeabur</h3>
+<ul>
+<li>[ ] <code>PAYMENT_SERVER_HOST=0.0.0.0</code>.</li>
+<li>[ ] <code>/data</code> volume 이 있다.</li>
+<li>[ ] <code>PUBLIC_BASE_URL</code> 과 <code>CORS_ORIGIN</code> 이 운영 도메인이다.</li>
+<li>[ ] <code>/api/health</code> 가 secret 을 표시하지 않는다.</li>
+</ul>
+<h3>마지막</h3>
+<p>sandbox 에서 통과한 뒤 live 로 전환합니다. live API key, live price id, live webhook secret, Paddle environment 를 함께 확인하세요.</p></article></section></main></body></html>

@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Codex Paid Site Guide - Traditional Chinese Tutorial" /><title>Traditional Chinese Tutorial - Codex Paid Site Guide</title><link rel="icon" type="image/png" href="./assets/brand/tutorial-mascot-icon.png" /><link rel="stylesheet" href="./site.css" /></head>
+<body><header class="tutorial-hero compact-hero"><nav class="topbar"><a class="brand" href="./index.html">Codex Paid Site Guide</a><a href="./index.html">Language</a><a href="https://github.com/momowangOUO/codex-paid-quiz-tutorial" target="_blank" rel="noreferrer">GitHub Star</a></nav><div class="tutorial-hero-grid"><div><p class="eyebrow">Full Tutorial</p><h1>Traditional Chinese Tutorial</h1><p class="lead">Complete chapter content is loaded from the zh-TW documentation set.</p><div class="star-callout"><strong>Free Star, real encouragement</strong><span>If this guide helps you, please star the GitHub repository. It costs nothing and helps more builders find it.</span></div></div><img src="./assets/brand/tutorial-hero.webp" alt="Tutorial hero artwork" /></div></header><main class="tutorial-shell"><aside class="tutorial-sidebar"><div class="sidebar-inner"><p class="eyebrow">Chapters</p><a href="#chapter-01"><span>01</span>產品流程怎麼拆</a>
+<a href="#chapter-02"><span>02</span>怎麼讓 Codex 從 0 幫你建站</a>
+<a href="#chapter-03"><span>03</span>上傳到 GitHub</a>
+<a href="#chapter-04"><span>04</span>部署到 Zeabur，先取得 HTTPS 網域</a>
+<a href="#chapter-05"><span>05</span>接 Paddle 收費與自動解鎖</a>
+<a href="#chapter-06"><span>06</span>可直接複製的 Codex 提示詞</a>
+<a href="#chapter-07"><span>07</span>上線前檢查清單</a></div></aside><section class="tutorial-content"><article class="tutorial-chapter" id="chapter-01"><div class="chapter-kicker">Chapter 01</div><h1>01. 產品流程怎麼拆</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-01-flow.webp" alt="Product flow chapter art" loading="lazy" /></figure>
+<p><strong>本章重點：寫程式前，先把使用者從進站、作答、看到免費導言、付款到解鎖完整報告的路徑拆清楚。</strong></p>
+<p>你不需要一開始就懂架構。先回答一個問題：使用者會依序看到哪些畫面？</p>
+<pre><code>首頁 -&gt; 作答頁 -&gt; 免費導言版報告 -&gt; 付款 -&gt; 完整報告 -&gt; 儲存或回到報告</code></pre>
+<p>這條路徑越短，越適合第一版。低價一次性報告最重要的是降低阻力，不要一開始就加入會員、折扣碼、複雜後台。</p>
+<h3>每個畫面的任務</h3>
+<table><tbody>
+<tr><td>畫面</td><td>使用者看到什麼</td><td>主要任務</td><td>是否需要後端</td></tr>
+<tr><td>首頁</td><td>測驗價值、開始按鈕</td><td>讓使用者開始</td><td>不一定需要</td></tr>
+<tr><td>作答頁</td><td>題目、選項、進度</td><td>收集答案</td><td>通常不需要</td></tr>
+<tr><td>免費導言</td><td>部分心理與行為分析</td><td>建立信任</td><td>需要 reportId</td></tr>
+<tr><td>付款頁</td><td>價格、付款按鈕、等待狀態</td><td>建立付款 session</td><td>需要</td></tr>
+<tr><td>完整報告</td><td>雷達、心理側寫、職涯方向、路線</td><td>交付付費內容</td><td>需要 access token</td></tr>
+</tbody></table>
+<h3>免費版應該給到什麼程度</h3>
+<p>免費版不是故意吊胃口，也不是只放空話。它應該讓使用者相信測驗是有邏輯的。可以提供：</p>
+<ul>
+<li>核心心理驅動力。</li>
+<li>行為傾向與潛在卡點。</li>
+<li>自我認知與外在表現的落差。</li>
+<li>完整報告會分析哪些面向。</li>
+</ul>
+<p>但不要在免費版直接揭露完整職缺清單、完整路線、可儲存報告或所有匹配邏輯。</p>
+<h3>三個重要資料物件</h3>
+<h4>reportId</h4>
+<p><code>reportId</code> 是一份測驗結果的編號。作答、付款、解鎖、回到報告頁，都應該對應到同一個 <code>reportId</code>。你可以把它想成取餐號碼。</p>
+<h4>payment session</h4>
+<p><code>payment_session</code> 是一次付款嘗試。使用者可能付款失敗、關掉頁面、重試付款，所以付款狀態不能只存在前端。</p>
+<pre><code>{
+  &quot;sessionId&quot;: &quot;pay_xxx&quot;,
+  &quot;reportId&quot;: &quot;rep_xxx&quot;,
+  &quot;provider&quot;: &quot;paddle&quot;,
+  &quot;status&quot;: &quot;pending&quot;
+}</code></pre>
+<h4>access token</h4>
+<p><code>accessToken</code> 是付款成功後開啟完整報告的鑰匙。不要只因為某個 <code>reportId</code> 曾經被付費，就讓所有人都看得到完整報告。</p>
+<h3>給 Codex 的提示詞</h3>
+<pre><code>我想做一個一次性付費解鎖報告的測驗網站。
+
+使用者路徑：首頁 -&gt; 作答頁 -&gt; 免費導言報告 -&gt; 付款 -&gt; 完整報告。
+
+第一版不要登入、不要訂閱、不要折扣碼。
+
+請幫我設計：
+1. 前端頁面狀態
+2. reportId 如何產生與保存
+3. payment session 資料結構
+4. access token 解鎖邏輯
+5. mock 付款測試流程
+
+請先輸出檔案計畫，再實作最小版本。</code></pre>
+<h3>本章完成標準</h3>
+<ul>
+<li>你能說清楚使用者會經過哪些畫面。</li>
+<li>你知道哪一步需要後端。</li>
+<li>你知道為什麼不能靠 <code>paid=true</code> 這種網址參數解鎖。</li>
+<li>你能分清楚 <code>reportId</code>、<code>payment_session</code>、<code>accessToken</code> 的責任。</li>
+</ul></article>
+<article class="tutorial-chapter" id="chapter-02"><div class="chapter-kicker">Chapter 02</div><h1>02. 怎麼讓 Codex 從 0 幫你建站</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-02-codex.webp" alt="Codex build workflow chapter art" loading="lazy" /></figure>
+<p><strong>本章重點：不要一次叫 Codex 做完整商業網站，而是把任務拆成可以驗收的小輪次。</strong></p>
+<p>Codex 很適合當工程搭檔，但你要給它清楚的施工順序：先測驗流程，再後端狀態，再 mock 付款，最後才接 Paddle。</p>
+<h3>第一段提示詞</h3>
+<pre><code>我要做一個付費測驗網站。
+
+使用者會：
+1. 打開首頁
+2. 完成一組測驗題
+3. 看到免費導言版報告
+4. 點擊付款按鈕
+5. 付款成功後自動解鎖完整報告
+
+請先幫我建立最小可用版本。
+要求：
+- 前端用 React + Vite
+- 後端用 Node.js
+- 先用 mock 付款，不接真實 Paddle
+- 不需要登入帳號
+- 不要把任何 secret 放進前端
+- 每一步都要告訴我怎麼本機執行和驗收</code></pre>
+<p>如果你已經有專案，加一句：</p>
+<pre><code>請先閱讀現有專案結構，不要重建專案；盡量沿用目前的程式風格。</code></pre>
+<h3>建議專案結構</h3>
+<pre><code>paid-quiz-site/
+  src/
+    app/
+    components/
+    data/
+    monetization/
+    styles/
+  server/
+    payment-server.mjs
+  public/
+    monetization.json
+  package.json
+  .env.payment.example</code></pre>
+<p>原則很簡單：前端畫面、題目資料、公開設定、後端付款邏輯要分開。新手最常出錯的地方，就是把所有東西塞進同一個檔案。</p>
+<h3>第 1 輪：只做測驗流程</h3>
+<pre><code>請先實作測驗主流程，不要接付款。
+
+需求：
+- 首頁有開始測驗
+- 作答頁一次顯示一題
+- 使用者選答案後可以下一題
+- 答完後產生 reportId
+- 進入結果頁
+- 結果頁顯示免費導言和解鎖完整報告按鈕
+
+請同時提供 npm scripts、本機執行方式、最小測試方式。</code></pre>
+<p>驗收方式：跑 <code>npm install</code>、<code>npm run dev</code>，自己完整答一次。先確認路徑能走完，再調整視覺。</p>
+<h3>第 2 輪：新增後端與 mock 付款</h3>
+<pre><code>現在請新增 Node 後端，先做 mock 付款。
+
+API：
+- POST /api/payments/checkout：接收 reportId，建立 payment session
+- GET /api/payments/sessions/:id：回傳 pending / paid / failed
+- POST /api/payments/mock-paid：本機測試時把 session 標記為 paid
+
+要求：
+- 付款狀態存在後端
+- 前端不能自己決定 paid
+- 付費牆預設關閉，之後可以用設定打開</code></pre>
+<h3>第 3 輪：接上真實金流前先做安全檢查</h3>
+<p>讓 Codex 檢查：</p>
+<ul>
+<li><code>.env.payment.local</code> 是否被 <code>.gitignore</code> 忽略。</li>
+<li>Paddle API key 是否只在後端環境變數。</li>
+<li><code>public/monetization.json</code> 是否沒有 secret。</li>
+<li>偽造網址參數是否無法解鎖。</li>
+</ul>
+<h3>工作節奏</h3>
+<p>每一輪都照這個節奏：</p>
+<ol>
+<li>讓 Codex 說明要改哪些檔案。</li>
+<li>讓它實作。</li>
+<li>讓它跑 typecheck / build。</li>
+<li>你用瀏覽器測一次。</li>
+<li>把錯誤訊息或畫面狀態描述貼回去。</li>
+</ol>
+<p>這樣比一次要求完整成品穩定很多。</p></article>
+<article class="tutorial-chapter" id="chapter-03"><div class="chapter-kicker">Chapter 03</div><h1>03. 上傳到 GitHub</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-03-github.webp" alt="GitHub upload chapter art" loading="lazy" /></figure>
+<p><strong>本章重點：GitHub 是 Zeabur 讀取程式碼的地方。你電腦裡改好了，但沒 push，Zeabur 就看不到。</strong></p>
+<h3>先檢查不要上傳的東西</h3>
+<p>請確認 <code>.gitignore</code> 至少忽略：</p>
+<pre><code>node_modules
+dist
+.env
+.env.*
+*.local
+.logs
+tmp-*</code></pre>
+<p>真實 Paddle API key、webhook secret、付款資料、使用者資料，都不要提交到 GitHub。</p>
+<h3>建立 GitHub repo</h3>
+<ol>
+<li>到 GitHub 建立新 repository。</li>
+<li>名稱可以用 <code>paid-quiz-site</code> 或你的產品名稱。</li>
+<li>如果你還不熟，先選 private；要分享教學再選 public。</li>
+<li>不要在 GitHub 網頁上另外建立 README，避免跟本機內容衝突。</li>
+</ol>
+<h3>本機第一次提交</h3>
+<pre><code>git init
+git status
+git add .
+git commit -m &quot;Initial paid quiz site&quot;
+git branch -M main
+git remote add origin https://github.com/你的帳號/你的倉庫.git
+git push -u origin main</code></pre>
+<p>如果你不確定現在有沒有 secret，先問 Codex：</p>
+<pre><code>請幫我檢查目前 git 即將提交的檔案，確認沒有 .env、API key、webhook secret、付款資料或使用者隱私。
+不要刪我的檔案，只列出風險並建議 .gitignore。</code></pre>
+<h3>推送後怎麼確認</h3>
+<ul>
+<li>GitHub 頁面能看到 README。</li>
+<li>最新 commit 是你剛剛的訊息。</li>
+<li><code>server/</code>、<code>src/</code>、<code>public/</code> 都在。</li>
+<li><code>.env.payment.local</code> 不在。</li>
+</ul>
+<h3>常見錯誤</h3>
+<h4>Zeabur 沒更新</h4>
+<p>通常是你還沒 push，或 Zeabur 沒連到正確分支。先確認 GitHub 頁面是否真的有最新 commit。</p>
+<h4>不小心提交 secret</h4>
+<p>不要只是刪掉檔案再 commit。已經推上公開 repo 的 secret 要視為外洩，應該立刻去 Paddle 重新產生 key。</p>
+<h3>本章完成標準</h3>
+<ul>
+<li>GitHub 上有完整專案。</li>
+<li>本機 <code>git status</code> 乾淨。</li>
+<li>repo 裡沒有 secret 或本機付款資料。</li>
+<li>你知道 Zeabur 接下來會從這個 repo 部署。</li>
+</ul></article>
+<article class="tutorial-chapter" id="chapter-04"><div class="chapter-kicker">Chapter 04</div><h1>04. 部署到 Zeabur，先取得 HTTPS 網域</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-04-zeabur.webp" alt="Zeabur deployment chapter art" loading="lazy" /></figure>
+<p><strong>本章重點：先部署網站拿到公開 HTTPS 網域，再回 Paddle 做網站驗證。順序不要反。</strong></p>
+<pre><code>本機 mock 流程跑通 -&gt; GitHub -&gt; Zeabur -&gt; HTTPS 網域 -&gt; Paddle website approval -&gt; Paddle checkout</code></pre>
+<figure class="chapter-figure"><img src="./assets/diagrams/07-domain-before-paddle.svg" alt="先有 Zeabur 網域，再申請 Paddle" loading="lazy" /></figure>
+<h3>為什麼先部署</h3>
+<p>Paddle 會要求你提供 pricing、terms、privacy、refund 等可開啟的網址。沒有正式網域時，你會卡在 checkout not enabled、default payment link、website approval 這些設定。</p>
+<h3>部署前檢查</h3>
+<p>在本機先跑：</p>
+<pre><code>npm install
+npm run build</code></pre>
+<p>如果 build 失敗，把完整錯誤交給 Codex 修。雲端部署時也會跑 build，本機失敗通常代表 Zeabur 也會失敗。</p>
+<h3>重要：Node 必須監聽 PORT 與 0.0.0.0</h3>
+<p>線上服務應該類似：</p>
+<pre><code>const port = Number(process.env.PORT ?? 8080);
+const serverHost = process.env.PAYMENT_SERVER_HOST ?? &quot;0.0.0.0&quot;;
+server.listen(port, serverHost, () =&gt; {
+  console.log(`payment server: http://${serverHost}:${port}/api`);
+});</code></pre>
+<p><code>0.0.0.0</code> 在正式環境是正確的。它代表服務在容器內對外開放，而不是只聽自己。</p>
+<h3>Zeabur 設定</h3>
+<figure class="chapter-figure"><img src="./assets/diagrams/01-zeabur-deploy.svg" alt="Zeabur deploy flow" loading="lazy" /></figure>
+<ol>
+<li>建立 Project。</li>
+<li>選 GitHub repository。</li>
+<li>Region 優先選 Singapore 或 Hong Kong。</li>
+<li>Build Command：<code>npm run build</code>。</li>
+<li>Start Command：<code>npm run start</code>。</li>
+</ol>
+<h3>Variables</h3>
+<figure class="chapter-figure"><img src="./assets/diagrams/02-zeabur-variables.svg" alt="Zeabur variables" loading="lazy" /></figure>
+<p>先放部署必需的公開設定：</p>
+<pre><code>PAYMENT_SERVER_HOST=0.0.0.0
+PAYMENT_STORE_FILE=/data/payment-store.json
+PUBLIC_BASE_URL=https://你的-zeabur-網域
+CORS_ORIGIN=https://你的-zeabur-網域
+PADDLE_ENVIRONMENT=sandbox
+PADDLE_ALLOW_UNSIGNED_WEBHOOKS=false</code></pre>
+<p>Paddle API key 和 price id 可以等 Paddle 設好後再回來補。</p>
+<h3>Volume</h3>
+<figure class="chapter-figure"><img src="./assets/diagrams/03-zeabur-volume.svg" alt="Zeabur volume" loading="lazy" /></figure>
+<p>請掛載：</p>
+<pre><code>Mount path: /data</code></pre>
+<p>這樣付款 session、解鎖 token 才不會在服務重啟後消失。</p>
+<h3>驗收</h3>
+<p>部署後打開：</p>
+<ul>
+<li><code>https://你的網域/</code></li>
+<li><code>https://你的網域/api/health</code></li>
+<li><code>https://你的網域/monetization.json</code></li>
+</ul>
+<p><code>/api/health</code> 應該顯示服務狀態與 Paddle 設定是否齊全，但不應該顯示 secret。</p></article>
+<article class="tutorial-chapter" id="chapter-05"><div class="chapter-kicker">Chapter 05</div><h1>05. 接 Paddle 收費與自動解鎖</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-05-paddle.webp" alt="Paddle payment unlock chapter art" loading="lazy" /></figure>
+<p><strong>本章重點：Paddle 負責收款，你的後端負責建立交易、驗證 webhook、發放報告權限。</strong></p>
+<p>這一章假設你已經有 Zeabur HTTPS 網域，例如：</p>
+<pre><code>https://your-project.zeabur.app</code></pre>
+<h3>Paddle 在流程裡做什麼</h3>
+<pre><code>使用者點擊解鎖
+  -&gt; 後端建立 payment session
+  -&gt; 後端向 Paddle 建立 transaction checkout
+  -&gt; 使用者在 Paddle 付款
+  -&gt; Paddle webhook 通知後端
+  -&gt; 後端驗證簽章與 custom_data
+  -&gt; 後端發放 access token
+  -&gt; 前端自動顯示完整報告</code></pre>
+<p>不要讓前端自己判斷付款成功。真正可信的是 Paddle webhook。</p>
+<h3>Onboarding 產品說明</h3>
+<p>Paddle 要你描述商品時，可以寫：</p>
+<pre><code>We sell a one-time digital career assessment report. Users complete a quiz and receive a personalized online report. The product is digital content access, not employment placement, financial advice, medical advice, or guaranteed career outcome.</code></pre>
+<p>如果看到 <code>Checkout has not yet been enabled for this account</code>，優先檢查 onboarding、website approval、default payment link、product、price、審核狀態。</p>
+<h3>Website approval</h3>
+<figure class="chapter-figure"><img src="./assets/diagrams/04-paddle-domain.svg" alt="Paddle domain" loading="lazy" /></figure>
+<p>建議填：</p>
+<pre><code>Pricing page: https://你的網域/pricing
+Terms: https://你的網域/terms
+Privacy: https://你的網域/privacy
+Refund: https://你的網域/refund</code></pre>
+<p>這些頁面要能直接打開，不要只填首頁。</p>
+<h3>Default payment link</h3>
+<p>填你的已驗證網域，例如：</p>
+<pre><code>https://你的-zeabur-網域/</code></pre>
+<p>它不是 webhook URL，也不是某一份報告的網址，而是 Paddle 建立付款頁時使用的預設網域。</p>
+<h3>Product 與 Price</h3>
+<figure class="chapter-figure"><img src="./assets/diagrams/05-paddle-product-price.svg" alt="Paddle product price" loading="lazy" /></figure>
+<p>建立一個一次性數位產品：</p>
+<table><tbody>
+<tr><td>欄位</td><td>建議</td></tr>
+<tr><td>Product name</td><td>AI Career Action Report，或你的報告名稱</td></tr>
+<tr><td>Description</td><td>One-time access to a personalized digital career assessment report.</td></tr>
+<tr><td>Product type</td><td>Digital product</td></tr>
+<tr><td>Price type</td><td>One-time</td></tr>
+</tbody></table>
+<p>再建立兩個 price：</p>
+<ul>
+<li><code>PADDLE_CNY_PRICE_ID</code>：CNY 9.90。</li>
+<li><code>PADDLE_USD_PRICE_ID</code>：USD 1.99。</li>
+</ul>
+<h3>Webhook</h3>
+<figure class="chapter-figure"><img src="./assets/diagrams/06-paddle-webhook.svg" alt="Paddle webhook" loading="lazy" /></figure>
+<p>通知網址：</p>
+<pre><code>https://你的網域/api/webhooks/paddle</code></pre>
+<p>至少訂閱：</p>
+<ul>
+<li><code>transaction.completed</code></li>
+<li><code>transaction.payment_failed</code></li>
+<li><code>transaction.canceled</code></li>
+</ul>
+<p>後端只應該在 <code>transaction.completed</code> 且 <code>custom_data.payment_session_id</code>、<code>report_id</code> 都匹配時解鎖。</p>
+<h3>Zeabur Variables 補齊</h3>
+<pre><code>PADDLE_ENVIRONMENT=sandbox
+PADDLE_API_KEY=你的_sandbox_api_key
+PADDLE_CNY_PRICE_ID=pri_xxx
+PADDLE_USD_PRICE_ID=pri_xxx
+PADDLE_WEBHOOK_SECRET=你的_webhook_secret
+PADDLE_ALLOW_UNSIGNED_WEBHOOKS=false</code></pre>
+<h3>驗收方式</h3>
+<ol>
+<li>先用 0 元或 mock 解鎖測頁面流程。</li>
+<li>再用 Paddle sandbox 測 checkout。</li>
+<li>在 Paddle 後台確認 webhook 回 200。</li>
+<li>回到報告頁，確認不用手動刷新也能顯示完整報告。</li>
+<li>確認偽造網址參數不能解鎖。</li>
+</ol></article>
+<article class="tutorial-chapter" id="chapter-06"><div class="chapter-kicker">Chapter 06</div><h1>06. 可直接複製的 Codex 提示詞</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-06-prompts.webp" alt="Prompt templates chapter art" loading="lazy" /></figure>
+<p><strong>本章重點：你不需要一次寫完完美需求。把任務拆小，讓 Codex 每次做一件能驗收的事。</strong></p>
+<h3>建立最小產品</h3>
+<pre><code>請建立一個付費測驗網站的最小可用版本。
+
+需求：
+- React + Vite 前端
+- Node 後端
+- 首頁、作答頁、免費導言結果、付費牆、完整報告
+- 先用 mock 付款
+- 不需要登入
+- 付款狀態只能由後端決定
+
+請先列出檔案計畫，再實作，最後跑 typecheck 和 build。</code></pre>
+<h3>加入 Paddle provider</h3>
+<pre><code>請在現有 mock provider 旁新增 Paddle provider。
+
+要求：
+- POST /api/payments/checkout 可根據 region 選 CNY 或 USD price id
+- 建立 Paddle transaction 時寫入 custom_data：payment_session_id、report_id
+- POST /api/webhooks/paddle 驗證 Paddle-Signature
+- 只有 transaction.completed 可以解鎖
+- 重複 webhook 要冪等處理
+- 錯誤簽章、金額不符、reportId 不符都不能解鎖</code></pre>
+<h3>修 Zeabur 部署錯誤</h3>
+<pre><code>Zeabur 部署失敗，以下是完整 log：
+[貼上 log]
+
+請幫我判斷是 build、start、PORT、環境變數、檔案缺失還是記憶體問題。
+修復後請說明我在 Zeabur 後台需要怎麼設定。</code></pre>
+<h3>檢查 secret 是否外洩</h3>
+<pre><code>請檢查這個專案是否可能把 Paddle API key、webhook secret、.env.payment.local 或付款資料提交到 GitHub。
+請列出風險檔案、建議 .gitignore，並不要刪除我未要求刪除的檔案。</code></pre>
+<h3>改善付費牆轉換</h3>
+<pre><code>請把免費結果頁改得更像專業導言版報告，而不是硬推銷。
+免費版可以提供核心心理驅動、行為傾向、內外在落差與完整報告焦點。
+但不要顯示完整職業答案、完整路線、薪資或可保存報告。</code></pre>
+<h3>讓 Codex 自己驗收</h3>
+<pre><code>請完成修改後自己跑：
+- npm run typecheck -- --pretty false
+- npm run build
+- 相關驗證腳本
+
+如果有錯誤，請直接修到通過，再用簡短條列告訴我改了什麼。</code></pre></article>
+<article class="tutorial-chapter" id="chapter-07"><div class="chapter-kicker">Chapter 07</div><h1>07. 上線前檢查清單</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-07-launch.webp" alt="Launch checklist chapter art" loading="lazy" /></figure>
+<p><strong>本章重點：不要只檢查首頁能不能打開，要檢查付款、解鎖、安全、回訪和手機體驗。</strong></p>
+<h3>產品流程</h3>
+<ul>
+<li>[ ] 首頁能清楚開始測驗。</li>
+<li>[ ] 使用者能完整作答。</li>
+<li>[ ] 免費導言版有內容，不是空白推銷。</li>
+<li>[ ] 未付費看不到完整職業答案和完整路線。</li>
+<li>[ ] 付款後完整報告會自動解鎖。</li>
+<li>[ ] 使用者關掉付款頁再回來，仍能查到正確狀態。</li>
+</ul>
+<h3>Paddle</h3>
+<ul>
+<li>[ ] Website approval 已通過。</li>
+<li>[ ] Default payment link 已設定。</li>
+<li>[ ] Product 是一次性數位產品。</li>
+<li>[ ] Price 是 one-time，不是 subscription。</li>
+<li>[ ] Webhook URL 是 <code>https://你的網域/api/webhooks/paddle</code>。</li>
+<li>[ ] <code>transaction.completed</code> 能解鎖。</li>
+<li>[ ] 失敗、取消、重複 webhook 不會錯誤解鎖。</li>
+</ul>
+<h3>Zeabur</h3>
+<ul>
+<li>[ ] <code>PAYMENT_SERVER_HOST=0.0.0.0</code>。</li>
+<li>[ ] <code>PAYMENT_STORE_FILE=/data/payment-store.json</code>。</li>
+<li>[ ] 已掛載 <code>/data</code> volume。</li>
+<li>[ ] <code>PUBLIC_BASE_URL</code> 和 <code>CORS_ORIGIN</code> 都是正式網域。</li>
+<li>[ ] <code>/api/health</code> 可開啟且不洩漏 secret。</li>
+</ul>
+<h3>GitHub 與安全</h3>
+<ul>
+<li>[ ] <code>.env.payment.local</code> 沒有出現在 GitHub。</li>
+<li>[ ] Paddle API key 沒有出現在 <code>public/</code> 或前端 bundle。</li>
+<li>[ ] <code>node_modules</code>、<code>dist</code>、log、付款資料沒有提交。</li>
+<li>[ ] README 或文件沒有直接寫出個人私密聯絡資訊。</li>
+</ul>
+<h3>手機與中國可訪問性</h3>
+<ul>
+<li>[ ] 手機首頁不需要滑很久才看到開始按鈕。</li>
+<li>[ ] 作答頁按鈕不擠壓、不溢出。</li>
+<li>[ ] 微信/支付寶內建瀏覽器至少能正常瀏覽與跳轉。</li>
+<li>[ ] 中國網路環境下首頁能打開。</li>
+</ul>
+<h3>最後一步</h3>
+<p>先用 sandbox 跑通，再切 live。切 live 時重新檢查：API key、price id、webhook secret、Paddle environment、網站驗證狀態。</p></article></section></main></body></html>

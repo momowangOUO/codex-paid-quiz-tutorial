@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="ja">
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Codex Paid Site Guide - Japanese Tutorial" /><title>Japanese Tutorial - Codex Paid Site Guide</title><link rel="icon" type="image/png" href="./assets/brand/tutorial-mascot-icon.png" /><link rel="stylesheet" href="./site.css" /></head>
+<body><header class="tutorial-hero compact-hero"><nav class="topbar"><a class="brand" href="./index.html">Codex Paid Site Guide</a><a href="./index.html">Language</a><a href="https://github.com/momowangOUO/codex-paid-quiz-tutorial" target="_blank" rel="noreferrer">GitHub Star</a></nav><div class="tutorial-hero-grid"><div><p class="eyebrow">Full Tutorial</p><h1>Japanese Tutorial</h1><p class="lead">Complete chapter content is loaded from the ja documentation set.</p><div class="star-callout"><strong>Free Star, real encouragement</strong><span>If this guide helps you, please star the GitHub repository. It costs nothing and helps more builders find it.</span></div></div><img src="./assets/brand/tutorial-hero.webp" alt="Tutorial hero artwork" /></div></header><main class="tutorial-shell"><aside class="tutorial-sidebar"><div class="sidebar-inner"><p class="eyebrow">Chapters</p><a href="#chapter-01"><span>01</span>プロダクトの流れを分解する</a>
+<a href="#chapter-02"><span>02</span>Codex にサイトを作らせる進め方</a>
+<a href="#chapter-03"><span>03</span>GitHub にアップロードする</a>
+<a href="#chapter-04"><span>04</span>先に Zeabur へデプロイする</a>
+<a href="#chapter-05"><span>05</span>Paddle 決済と自動解放</a>
+<a href="#chapter-06"><span>06</span>Codex プロンプト集</a>
+<a href="#chapter-07"><span>07</span>公開前チェックリスト</a></div></aside><section class="tutorial-content"><article class="tutorial-chapter" id="chapter-01"><div class="chapter-kicker">Chapter 01</div><h1>01. プロダクトの流れを分解する</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-01-flow.webp" alt="Product flow chapter art" loading="lazy" /></figure>
+<p><strong>目的：コードを書く前に、ユーザーがどの画面を通り、どの時点で決済と解放が必要になるかを決めます。</strong></p>
+<p>最短の流れは次の形です。</p>
+<pre><code>トップページ -&gt; 診断 -&gt; 無料の導入レポート -&gt; 決済 -&gt; 完全版レポート -&gt; 保存または再閲覧</code></pre>
+<p>最初からログイン、サブスク、クーポン、管理画面を入れないでください。まず「回答して、一回だけ支払い、正しいレポートが開く」ことを証明します。</p>
+<h3>画面ごとの役割</h3>
+<table><tbody>
+<tr><td>画面</td><td>ユーザーが見るもの</td><td>役割</td><td>バックエンド</td></tr>
+<tr><td>トップ</td><td>価値説明と開始ボタン</td><td>診断を始める</td><td>通常不要</td></tr>
+<tr><td>診断</td><td>質問、選択肢、進捗</td><td>回答を集める</td><td>通常不要</td></tr>
+<tr><td>無料導入</td><td>一部の分析</td><td>信頼を作る</td><td>reportId が必要</td></tr>
+<tr><td>ペイウォール</td><td>価格、決済ボタン、待機状態</td><td>payment session を作る</td><td>必要</td></tr>
+<tr><td>完全版</td><td>レーダー、心理プロファイル、方向性</td><td>有料価値を届ける</td><td>access token が必要</td></tr>
+</tbody></table>
+<h3>無料版に出す内容</h3>
+<p>無料版は空の宣伝ページではありません。核心的な動機、行動傾向、自己認識とのずれ、完全版で扱う分析軸を見せます。ただし、完全な職業名、全ルート、保存用レポート、全てのマッチングロジックは出しません。</p>
+<h3>重要なデータ</h3>
+<h4>reportId</h4>
+<p><code>reportId</code> は一つの診断結果を表す番号です。回答、注文、解放、再訪問を同じ結果に結びつけます。</p>
+<h4>payment session</h4>
+<p><code>payment_session</code> は一回の決済試行です。ユーザーは決済ページを閉じたり、失敗後に再試行したりします。そのため状態はフロントエンドだけに置かず、バックエンドに保存します。</p>
+<h4>access token</h4>
+<p><code>accessToken</code> は完全版レポートを開く鍵です。reportId が一度支払われたからといって、全員に見せてはいけません。</p>
+<h3>Codex に渡すプロンプト</h3>
+<pre><code>一回払いでレポートを解放する診断サイトを作りたいです。
+
+ユーザーの流れ：トップページ -&gt; 診断 -&gt; 無料導入レポート -&gt; 決済 -&gt; 完全版レポート。
+
+初版ではログイン、サブスク、クーポンは不要です。
+
+以下を設計してください：
+1. フロントエンドの画面状態
+2. reportId の生成と保存
+3. payment session のデータ構造
+4. access token による解放ロジック
+5. ローカル用 mock 決済フロー
+
+まずファイル計画を出し、その後に最小版を実装してください。</code></pre></article>
+<article class="tutorial-chapter" id="chapter-02"><div class="chapter-kicker">Chapter 02</div><h1>02. Codex にサイトを作らせる進め方</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-02-codex.webp" alt="Codex build workflow chapter art" loading="lazy" /></figure>
+<p><strong>目的：Codex に一度で全部作らせず、検証できる小さな作業に分けます。</strong></p>
+<h3>最初のプロンプト</h3>
+<pre><code>有料診断サイトを作りたいです。
+
+ユーザーは：
+1. トップページを開く
+2. 診断に回答する
+3. 無料導入レポートを見る
+4. 決済ボタンを押す
+5. 支払い成功後に完全版レポートが自動で開く
+
+最小実用版を作ってください。
+条件：
+- フロントエンドは React + Vite
+- バックエンドは Node.js
+- まず mock 決済。Paddle はまだ接続しない
+- ログイン不要
+- secret をフロントエンドに入れない
+- 各ステップのローカル実行と検証方法も説明する</code></pre>
+<p>既存プロジェクトがある場合は、「既存構造を読んで、作り直さずに進めてください」と追加します。</p>
+<h3>推奨構成</h3>
+<pre><code>paid-quiz-site/
+  src/app/
+  src/components/
+  src/data/
+  src/monetization/
+  src/styles/
+  server/payment-server.mjs
+  public/monetization.json
+  package.json
+  .env.payment.example</code></pre>
+<p>画面、データ、公開設定、支払い検証を分けると、後から修正しやすくなります。</p>
+<h3>第 1 パス：診断フローだけ</h3>
+<p>トップ、質問、回答、reportId、無料レポート、解放ボタンだけを作ります。<code>npm install</code> と <code>npm run dev</code> で動かし、自分で一度回答します。</p>
+<h3>第 2 パス：バックエンドと mock 決済</h3>
+<pre><code>Node バックエンドを追加し、まず mock 決済を作ってください。
+
+API：
+- POST /api/payments/checkout
+- GET /api/payments/sessions/:id
+- POST /api/payments/mock-paid
+
+支払い状態はバックエンドが保持し、フロントエンドだけで paid にできないようにしてください。</code></pre>
+<h3>第 3 パス：安全確認</h3>
+<p><code>.env.payment.local</code> が Git に入らないこと、Paddle key がサーバーだけにあること、URL の <code>paid=true</code> で解放されないことを Codex に確認させます。</p>
+<h3>作業リズム</h3>
+<p>ファイル計画、実装、typecheck/build、ブラウザ確認、エラー共有。この小さなループを繰り返す方が、商用サイトでは安全です。</p></article>
+<article class="tutorial-chapter" id="chapter-03"><div class="chapter-kicker">Chapter 03</div><h1>03. GitHub にアップロードする</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-03-github.webp" alt="GitHub upload chapter art" loading="lazy" /></figure>
+<p><strong>目的：Zeabur がデプロイする元になるコードを GitHub に置きます。</strong></p>
+<h3>先に除外するもの</h3>
+<p><code>.gitignore</code> に次のような項目を入れます。</p>
+<pre><code>node_modules
+dist
+.env
+.env.*
+*.local
+.logs
+tmp-*</code></pre>
+<p>Paddle API key、webhook secret、注文データ、ユーザー情報は GitHub に入れません。</p>
+<h3>初回 push</h3>
+<pre><code>git init
+git status
+git add .
+git commit -m &quot;Initial paid quiz site&quot;
+git branch -M main
+git remote add origin https://github.com/your-name/your-repo.git
+git push -u origin main</code></pre>
+<h3>push 前に Codex に確認させる</h3>
+<pre><code>これから commit するファイルを確認し、.env、API key、webhook secret、支払いデータ、ユーザーの個人情報が含まれていないか見てください。削除はせず、リスクと .gitignore の提案だけ出してください。</code></pre>
+<h3>確認ポイント</h3>
+<ul>
+<li>GitHub で README が読める。</li>
+<li>最新 commit が反映されている。</li>
+<li><code>src/</code>、<code>server/</code>、<code>public/</code> がある。</li>
+<li><code>.env.payment.local</code> がない。</li>
+</ul>
+<p>Zeabur が更新されない時は、まず GitHub に本当に最新 commit があるかを確認します。</p></article>
+<article class="tutorial-chapter" id="chapter-04"><div class="chapter-kicker">Chapter 04</div><h1>04. 先に Zeabur へデプロイする</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-04-zeabur.webp" alt="Zeabur deployment chapter art" loading="lazy" /></figure>
+<p><strong>目的：Paddle を設定する前に、公開 HTTPS ドメインを取得します。順番が重要です。</strong></p>
+<pre><code>ローカル mock -&gt; GitHub -&gt; Zeabur -&gt; HTTPS ドメイン -&gt; Paddle 審査 -&gt; Paddle checkout</code></pre>
+<figure class="chapter-figure"><img src="./assets/diagrams/07-domain-before-paddle.svg" alt="Domain before Paddle" loading="lazy" /></figure>
+<h3>なぜ先に Zeabur なのか</h3>
+<p>Paddle は pricing、terms、privacy、refund、default payment link、承認済みドメインを求めます。公開ドメインがないと、コードが正しくても checkout not enabled で止まることがあります。</p>
+<h3>事前確認</h3>
+<pre><code>npm install
+npm run build</code></pre>
+<p>ローカル build が失敗するなら、Zeabur でもほぼ失敗します。ログを Codex に渡して直します。</p>
+<h3>PORT と 0.0.0.0</h3>
+<p>Node サーバーは次のようにします。</p>
+<pre><code>const port = Number(process.env.PORT ?? 8080);
+const serverHost = process.env.PAYMENT_SERVER_HOST ?? &quot;0.0.0.0&quot;;
+server.listen(port, serverHost, () =&gt; {
+  console.log(`payment server: http://${serverHost}:${port}/api`);
+});</code></pre>
+<p>本番コンテナでは <code>0.0.0.0</code> が正しい設定です。外部からコンテナ内のサービスに届くようにします。</p>
+<h3>Zeabur 設定</h3>
+<figure class="chapter-figure"><img src="./assets/diagrams/01-zeabur-deploy.svg" alt="Zeabur deploy flow" loading="lazy" /></figure>
+<ul>
+<li>GitHub repository を選ぶ。</li>
+<li>Region は Singapore または Hong Kong を優先。</li>
+<li>Build Command: <code>npm run build</code>。</li>
+<li>Start Command: <code>npm run start</code>。</li>
+</ul>
+<h3>Variables と Volume</h3>
+<figure class="chapter-figure"><img src="./assets/diagrams/02-zeabur-variables.svg" alt="Zeabur variables" loading="lazy" /></figure>
+<pre><code>PAYMENT_SERVER_HOST=0.0.0.0
+PAYMENT_STORE_FILE=/data/payment-store.json
+PUBLIC_BASE_URL=https://your-zeabur-domain
+CORS_ORIGIN=https://your-zeabur-domain
+PADDLE_ENVIRONMENT=sandbox
+PADDLE_ALLOW_UNSIGNED_WEBHOOKS=false</code></pre>
+<figure class="chapter-figure"><img src="./assets/diagrams/03-zeabur-volume.svg" alt="Zeabur volume" loading="lazy" /></figure>
+<p><code>/data</code> に volume を mount し、payment session と access token が再起動で消えないようにします。</p></article>
+<article class="tutorial-chapter" id="chapter-05"><div class="chapter-kicker">Chapter 05</div><h1>05. Paddle 決済と自動解放</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-05-paddle.webp" alt="Paddle payment unlock chapter art" loading="lazy" /></figure>
+<p><strong>目的：Paddle が支払いを処理し、自分のバックエンドが webhook を検証してレポートを解放します。</strong></p>
+<h3>流れ</h3>
+<pre><code>解放ボタン -&gt; payment session -&gt; Paddle transaction checkout -&gt; 支払い -&gt; webhook -&gt; 検証 -&gt; access token -&gt; 完全版表示</code></pre>
+<p>フロントエンドだけで支払い成功を判断してはいけません。信用するのは webhook です。</p>
+<h3>商品説明</h3>
+<pre><code>We sell a one-time digital career assessment report. Users complete a quiz and receive a personalized online report. The product is digital content access, not employment placement, financial advice, medical advice, or guaranteed career outcome.</code></pre>
+<p><code>Checkout has not yet been enabled</code> が出た場合は、onboarding、website approval、default payment link、product、price、審査状態を確認します。</p>
+<h3>Website approval</h3>
+<figure class="chapter-figure"><img src="./assets/diagrams/04-paddle-domain.svg" alt="Paddle domain" loading="lazy" /></figure>
+<pre><code>Pricing: https://your-domain/pricing
+Terms: https://your-domain/terms
+Privacy: https://your-domain/privacy
+Refund: https://your-domain/refund</code></pre>
+<h3>Product と Price</h3>
+<figure class="chapter-figure"><img src="./assets/diagrams/05-paddle-product-price.svg" alt="Paddle product price" loading="lazy" /></figure>
+<p>一回払いのデジタル商品を作り、CNY 9.90 と USD 1.99 の one-time price を作ります。subscription は選びません。</p>
+<h3>Webhook</h3>
+<figure class="chapter-figure"><img src="./assets/diagrams/06-paddle-webhook.svg" alt="Paddle webhook" loading="lazy" /></figure>
+<p>URL：</p>
+<pre><code>https://your-domain/api/webhooks/paddle</code></pre>
+<p><code>transaction.completed</code> だけで解放します。<code>custom_data.payment_session_id</code> と <code>report_id</code> が自分の記録と一致することも確認してください。</p>
+<h3>Zeabur Variables</h3>
+<pre><code>PADDLE_ENVIRONMENT=sandbox
+PADDLE_API_KEY=your_sandbox_api_key
+PADDLE_CNY_PRICE_ID=pri_xxx
+PADDLE_USD_PRICE_ID=pri_xxx
+PADDLE_WEBHOOK_SECRET=your_webhook_secret
+PADDLE_ALLOW_UNSIGNED_WEBHOOKS=false</code></pre></article>
+<article class="tutorial-chapter" id="chapter-06"><div class="chapter-kicker">Chapter 06</div><h1>06. Codex プロンプト集</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-06-prompts.webp" alt="Prompt templates chapter art" loading="lazy" /></figure>
+<h3>最小版を作る</h3>
+<pre><code>React + Vite と Node で、支払い後にレポートを解放する診断サイトの最小版を作ってください。まず mock 決済で、ログインなし、支払い状態はバックエンドだけが決める形にしてください。ファイル計画、実装、typecheck、build までお願いします。</code></pre>
+<h3>Paddle を追加する</h3>
+<pre><code>mock provider の横に Paddle provider を追加してください。checkout 作成、Paddle-Signature 検証、transaction.completed のみで解放、重複 webhook の冪等処理、reportId 不一致時の拒否を実装してください。</code></pre>
+<h3>Zeabur エラーを直す</h3>
+<pre><code>Zeabur の deploy が失敗しました。以下がログです。原因が build、start、PORT、環境変数、ファイル不足、メモリのどれかを判断し、修正してください。</code></pre>
+<h3>secret を確認する</h3>
+<pre><code>このプロジェクトに Paddle API key、webhook secret、.env.payment.local、注文データが GitHub に入るリスクがないか確認してください。</code></pre></article>
+<article class="tutorial-chapter" id="chapter-07"><div class="chapter-kicker">Chapter 07</div><h1>07. 公開前チェックリスト</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-07-launch.webp" alt="Launch checklist chapter art" loading="lazy" /></figure>
+<h3>プロダクト</h3>
+<ul>
+<li>[ ] 診断を開始できる。</li>
+<li>[ ] 最後まで回答できる。</li>
+<li>[ ] 無料導入レポートに実用的な内容がある。</li>
+<li>[ ] 未払いでは完全版が見えない。</li>
+<li>[ ] 支払い後に自動で解放される。</li>
+</ul>
+<h3>Paddle</h3>
+<ul>
+<li>[ ] Website approval が完了。</li>
+<li>[ ] Default payment link が設定済み。</li>
+<li>[ ] Product は one-time digital product。</li>
+<li>[ ] Price は subscription ではない。</li>
+<li>[ ] Webhook URL が正しい。</li>
+<li>[ ] failed / canceled / duplicate webhook で誤解放しない。</li>
+</ul>
+<h3>Zeabur</h3>
+<ul>
+<li>[ ] <code>PAYMENT_SERVER_HOST=0.0.0.0</code>。</li>
+<li>[ ] <code>/data</code> volume がある。</li>
+<li>[ ] <code>PUBLIC_BASE_URL</code> と <code>CORS_ORIGIN</code> が本番ドメイン。</li>
+<li>[ ] <code>/api/health</code> が secret を表示しない。</li>
+</ul>
+<h3>最後に</h3>
+<p>sandbox で通ってから live に切り替えます。live API key、live price id、live webhook secret、Paddle environment をまとめて確認してください。</p></article></section></main></body></html>
