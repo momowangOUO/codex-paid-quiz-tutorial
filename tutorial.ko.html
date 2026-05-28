@@ -1,226 +1,1680 @@
 <!doctype html>
 <html lang="ko">
 <head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Codex Paid Site Guide - Korean Tutorial" /><title>Korean Tutorial - Codex Paid Site Guide</title><link rel="icon" type="image/png" href="./assets/brand/tutorial-mascot-icon.png" /><link rel="stylesheet" href="./site.css" /></head>
-<body><header class="tutorial-hero compact-hero"><nav class="topbar"><a class="brand" href="./index.html">Codex Paid Site Guide</a><a href="./index.html">언어 선택</a><a href="https://github.com/momowangOUO/codex-paid-quiz-tutorial" target="_blank" rel="noreferrer">⭐ GitHub Star 주기</a></nav><div class="tutorial-hero-grid"><div><p class="eyebrow">전체 가이드</p><h1>전체 가이드</h1><p class="lead">이 페이지는 선택한 언어의 전체 챕터 내용을 불러옵니다. 줄인 버전이 아닙니다.</p><div class="star-callout star-callout-featured"><div class="star-icon" aria-hidden="true">⭐</div><div class="star-copy"><strong>이 가이드가 당신의 시행착오를 조금이라도 줄여줬다면</strong><span>GitHub 저장소에 무료 Star 하나만 부탁드립니다. 돈은 들지 않지만, 처음 유료 웹사이트를 만들려는 사람들이 이 가이드를 더 쉽게 찾게 됩니다.</span></div><a class="star-button" href="https://github.com/momowangOUO/codex-paid-quiz-tutorial" target="_blank" rel="noreferrer">무료 Star로 응원하기 →</a></div></div><img src="./assets/brand/tutorial-hero.webp" alt="Tutorial hero artwork" /></div></header><main class="tutorial-shell"><aside class="tutorial-sidebar"><div class="sidebar-inner"><p class="eyebrow">Chapters</p><a href="#chapter-01"><span>01</span>제품 흐름 나누기</a>
-<a href="#chapter-02"><span>02</span>Codex 로 사이트 만들기</a>
-<a href="#chapter-03"><span>03</span>GitHub 에 업로드하기</a>
-<a href="#chapter-04"><span>04</span>먼저 Zeabur 에 배포하기</a>
-<a href="#chapter-05"><span>05</span>Paddle 결제와 자동 잠금 해제</a>
-<a href="#chapter-06"><span>06</span>Codex 프롬프트 모음</a>
-<a href="#chapter-07"><span>07</span>출시 전 체크리스트</a></div></aside><section class="tutorial-content"><article class="tutorial-chapter" id="chapter-01"><div class="chapter-kicker">Chapter 01</div><h1>01. 제품 흐름 나누기</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-01-flow.webp" alt="Product flow chapter art" loading="lazy" /></figure>
-<p><strong>목표: 코드를 쓰기 전에 사용자가 어떤 화면을 지나 결제와 잠금 해제를 하게 되는지 정합니다.</strong></p>
-<p>가장 짧은 흐름은 다음과 같습니다.</p>
-<pre><code>랜딩 페이지 -&gt; 퀴즈 -&gt; 무료 인트로 리포트 -&gt; 결제 -&gt; 전체 리포트 -&gt; 저장 또는 재방문</code></pre>
-<p>첫 버전에서는 로그인, 구독, 쿠폰, 관리자 화면을 넣지 마세요. 먼저 한 명의 사용자가 답변하고, 한 번 결제하고, 정확한 리포트를 열 수 있는지 확인합니다.</p>
-<h3>화면별 역할</h3>
+<body><header class="tutorial-hero compact-hero"><nav class="topbar"><a class="brand" href="./index.html">Codex Paid Site Guide</a><a href="./index.html">언어 선택</a><a href="https://github.com/momowangOUO/codex-paid-quiz-tutorial" target="_blank" rel="noreferrer">&#11088; GitHub Star 주기</a></nav><div class="tutorial-hero-grid"><div><p class="eyebrow">전체 가이드</p><h1>Codex로 실제 결제되는 웹사이트 만들기 전체 가이드</h1><p class="lead">이 페이지에는 선택한 언어의 7개 챕터 전체 튜토리얼이 들어 있습니다. 메인 버전과 같은 구조로 다시 구성한 것이며, 축약본이 아닙니다.</p><div class="star-callout star-callout-featured"><div class="star-icon" aria-hidden="true">&#11088;</div><div class="star-copy"><strong>이 가이드가 당신의 시행착오를 조금이라도 줄여줬다면</strong><span>GitHub 저장소에 무료 Star 하나만 부탁드립니다. 돈은 들지 않지만, 처음 유료 웹사이트를 만들려는 사람들이 이 가이드를 더 쉽게 찾게 됩니다.</span></div><a class="star-button" href="https://github.com/momowangOUO/codex-paid-quiz-tutorial" target="_blank" rel="noreferrer">무료 Star로 응원하기 →</a></div></div><img src="./assets/brand/tutorial-hero.webp" alt="Tutorial hero artwork" /></div></header><main class="tutorial-shell"><aside class="tutorial-sidebar"><div class="sidebar-inner"><p class="eyebrow">??</p><a href="#chapter-01"><span>01</span>01. 제품 프로세스를 세분화하는 방법</a>
+<a href="#chapter-02"><span>02</span>02. Codex가 0에서 웹사이트 구축을 도와주는 방법</a>
+<a href="#chapter-03"><span>03</span>03. 먼저 GitHub에 업로드하고 Zeabur에 배포 준비</a>
+<a href="#chapter-04"><span>04</span>04. Zeabur에 배포하고 검증 가능한 도메인 이름 얻기</a>
+<a href="#chapter-05"><span>05</span>05. 도메인 이름을 얻은 후 패들 결제를 수락하고 자동으로 잠금을 해제하세요.</a>
+<a href="#chapter-06"><span>06</span>06. 복사 가능한 프롬프트 단어 템플릿</a>
+<a href="#chapter-07"><span>07</span>07. 라이브 체크리스트 시작</a></div></aside><section class="tutorial-content"><article class="tutorial-chapter" id="chapter-01"><div class="chapter-kicker">Chapter 01</div><h1>01. 제품 프로세스를 세분화하는 방법</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-01-flow.webp" alt="제품 흐름 장 아트" loading="lazy" /></figure>
+<p><strong>[이 장의 핵심] 코드를 작성하기 전에 먼저 &quot;사용자가 보게 될 페이지, 각 단계에서 수행되는 작업, 백엔드가 필요한 단계&quot;를 명확하게 분류하세요. </strong></p>
+<p>코드 작성을 시작하기 전에 한 가지 질문에만 대답하면 됩니다.</p>
+<pre><code>사용자는 사이트 접속부터 결제, 잠금 해제까지 어떤 화면을 거치게 되나요# </code></pre>
+<p>이 장에서는 아키텍처 다이어그램에 대해 설명하지 않지만 먼저 제품을 Codex가 이해할 수 있는 작은 작업으로 나눕니다.</p>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>Codex는 명확한 작업 경계를 요구합니다. 제품 프로세스는 로드맵과 같습니다. 먼저 사용자가 어디에 들어왔는지, 어디에서 질문에 답변하는지, 어디서 지불하는지, 어디에서 보고서를 읽는지 파악하여 나중에 코드를 작성할 때 여기저기서 보충하지 않아도 됩니다.</blockquote>
+<h3>먼저 가장 짧은 사용자 경로를 그립니다.</h3>
+<p><strong>[이 섹션의 핵심] 먼저 홈페이지에서 전체 보고서까지 사용자를 위한 최단 경로를 작성합니다. </strong></p>
+<p>유료 퀴즈 사이트로 가는 최단 경로는 다음과 같습니다:</p>
+<pre><code>홈페이지
+  -&gt; 답변 페이지
+  -&gt; 무료 소개 보고서
+  -&gt; 결제 페이지
+  -&gt; 전체 보고서
+  -&gt; 보고서를 저장하거나 다시 엽니다.</code></pre>
+<p>아직 로그인할 필요는 없습니다. 저렴한 일회성 보고서에서 가장 중요한 것은 마찰을 줄이는 것입니다.</p>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>로그인, 회원가입, 백엔드, 할인코드 모두 추후 추가 가능합니다. 첫 번째 버전에서는 더 많은 선반을 장식하기 전에 카운터가 실제로 돈을 모을 수 있는지 확인하는 것처럼 사용자가 전체 구매를 완료할 수 있습니다.</blockquote>
+<h3>각 페이지에서 수행할 작업</h3>
+<p><strong>[이 섹션의 핵심] 첫 번째 버전이 너무 무거워지는 것을 방지하기 위해 각 페이지는 하나의 주요 작업만 담당합니다. </strong></p>
+<h4>홈</h4>
+<p>홈페이지는 사용자가 시작하도록 하는 역할만 담당합니다.</p>
+<p>가지고 있어야 할 것:</p>
+<ul>
+<li>이 퀴즈가 사용자가 해결하는 데 도움이 되는 문제를 설명하는 한 문장입니다.</li>
+<li>시작 버튼.</li>
+<li>선택사항: 언어 전환, 케이스 입력.</li>
+</ul>
+<p>처음에 &quot;결제하여 잠금 해제&quot; 또는 &quot;지금 구매&quot;라고 쓰지 마세요. 사용자가 아직 시간을 투자하지 않았으며, 너무 일찍 돈을 인출하면 완료율이 낮아집니다.</p>
+<h4>답변 페이지</h4>
+<p>답변 페이지는 사용자가 질문을 완료할 수 있도록 하는 역할만 담당합니다.</p>
+<p>가지고 있어야 할 것:</p>
+<ul>
+<li>현재 문제 번호.</li>
+<li>질문.</li>
+<li>옵션.</li>
+<li>이전 질문/다음 질문입니다.</li>
+<li>진행 상황이 표시됩니다.</li>
+<li>그림이나 시각 자료.</li>
+</ul>
+<p>초보자는 먼저 5문제의 테스트 버전을 수행한 다음 프로세스를 통과한 후 48문제로 확장하는 것이 좋습니다.</p>
+<h4>무료 소개 보고서</h4>
+<p>무료 버전은 기분전환용도 아니고 공허한 이야기도 아닙니다. 사용자가 당신이 전문가라고 생각하게 만듭니다.</p>
+<p>다음을 표시할 수 있습니다.</p>
+<ul>
+<li>핵심 심리적 동인.</li>
+<li>행동 경향과 잠재적인 정체 지점.</li>
+<li>자기 인식과 외부 성과 사이의 격차.</li>
+<li>전체 보고서는 어떤 방향으로 계속 분석할 것인가.</li>
+</ul>
+<p>표시하지 않음:</p>
+<ul>
+<li>직업 답변을 완료하세요.</li>
+<li>전체 경로.</li>
+<li>상세한 실행 계획.</li>
+<li>저장할 수 있는 전체 보고서.</li>
+</ul>
+<h4>페이월</h4>
+<p>페이월은 사용자가 지불하는 것만 허용합니다.</p>
+<p>가지고 있어야 할 것:</p>
+<ul>
+<li>현재 가격.</li>
+<li>명확한 결제 버튼.</li>
+<li>결제 후 지침을 자동으로 잠금 해제합니다.</li>
+<li>결제 실패 또는 보류 상태입니다.</li>
+</ul>
+<p>한 번에 너무 많은 결제 방법 버튼을 입력하지 마세요. 백엔드는 지역에 따라 입구를 추천할 수 있습니다.</p>
+<h4>전체 보고서</h4>
+<p>완전한 보고서는 사용자가 &quot;이것은 임의의 텍스트 조각이 아니다&quot;라는 느낌을 주어야 합니다.</p>
+<p>포함할 수 있는 것:</p>
+<ul>
+<li>경력 레이더.</li>
+<li>심리적 프로파일링.</li>
+<li>적합한 직업 유형.</li>
+<li>다양한 개발 경로.</li>
+<li>위험 경계.</li>
+<li>대체 방향.</li>
+<li>보고서를 저장합니다.</li>
+</ul>
+<h3>Codex에 양식 제출</h3>
+<p><strong>[이 섹션의 핵심] 페이지, 사용자 작업, 백엔드 참여 방법을 표로 정리한 후 Codex에 제출합니다. </strong></p>
+<p>귀하의 제품 프로세스를 다음 표로 구성하고 Codex에 게시하십시오.</p>
 <table><tbody>
-<tr><td>화면</td><td>사용자가 보는 것</td><td>역할</td><td>백엔드 필요 여부</td></tr>
-<tr><td>랜딩</td><td>가치 설명과 시작 버튼</td><td>퀴즈 시작</td><td>보통 불필요</td></tr>
-<tr><td>퀴즈</td><td>질문, 선택지, 진행률</td><td>답변 수집</td><td>보통 불필요</td></tr>
-<tr><td>무료 인트로</td><td>일부 분석</td><td>신뢰 형성</td><td>reportId 필요</td></tr>
-<tr><td>결제벽</td><td>가격, 결제 버튼, 대기 상태</td><td>payment session 생성</td><td>필요</td></tr>
-<tr><td>전체 리포트</td><td>레이더, 심리 프로필, 방향</td><td>유료 가치 전달</td><td>access token 필요</td></tr>
+<tr><td>페이지</td><td>사용자에게 표시되는 내용</td><td>사용자가 할 수 있는 작업</td><td>백엔드가 관련되어야 하는가</td></tr>
+<tr><td>홈</td><td>제품 설명, 시작 버튼</td><td>퀴즈 시작</td><td>필요하지 않음</td></tr>
+<tr><td>답변 페이지</td><td>질문 및 옵션</td><td>답변, 다음 질문</td><td>실시간으로 저장하려는 경우가 아니면 필요하지 않음</td></tr>
+<tr><td>무료 보고서</td><td>부분 분석, 잠금 해제 버튼</td><td>결제하려면 클릭하세요</td><td>결제 세션을 생성해야 합니다</td></tr>
+<tr><td>패들 체크아웃</td><td>결제 양식</td><td>결제</td><td>패들 가공</td></tr>
+<tr><td>전체 보고서</td><td>모든 분석</td><td>보기, 저장</td><td>확인 액세스 토큰이 필요합니다</td></tr>
 </tbody></table>
-<h3>무료 리포트의 범위</h3>
-<p>무료 리포트는 빈 광고 페이지가 아니어야 합니다. 핵심 동기, 행동 경향, 자기 인식과 실제 표현의 차이, 전체 리포트에서 다룰 분석 축을 보여줄 수 있습니다. 다만 전체 직업명, 전체 경로, 저장용 리포트, 모든 매칭 로직은 숨깁니다.</p>
-<h3>핵심 데이터</h3>
-<h4>reportId</h4>
-<p><code>reportId</code> 는 하나의 퀴즈 결과를 나타내는 번호입니다. 답변, 주문, 잠금 해제, 재방문이 모두 같은 결과를 가리켜야 합니다.</p>
-<h4>payment session</h4>
-<p><code>payment_session</code> 은 한 번의 결제 시도입니다. 사용자는 결제를 닫거나 실패 후 재시도할 수 있으므로 상태는 프론트엔드가 아니라 백엔드에 저장해야 합니다.</p>
-<h4>access token</h4>
-<p><code>accessToken</code> 은 전체 리포트를 여는 열쇠입니다. 어떤 reportId 가 한 번 결제되었다고 해서 모든 사람이 볼 수 있게 만들면 안 됩니다.</p>
-<h3>Codex 프롬프트</h3>
-<pre><code>일회성 결제로 리포트를 잠금 해제하는 퀴즈 사이트를 만들고 싶습니다.
+<h3>보고서 ID란 무엇인가요?</h3>
+<p><strong>【이 섹션의 핵심】<code>reportId</code>는 특정 테스트 보고서의 번호입니다. </strong></p>
+<p><code>reportId</code>는 보고서의 번호입니다.</p>
+<p>사용자가 질문에 대답한 후 프런트 엔드 또는 백 엔드는 <code>reportId</code>를 생성하고 모든 후속 작업은 이를 중심으로 진행됩니다.</p>
+<pre><code>이 답변 -&gt; 보고서 ID
+이 주문 -&gt; 신고 ID
+이번에 잠금 해제 -&gt; ReportId
+이 전체 보고서 -&gt; 보고서 ID</code></pre>
+<p><code>reportId</code>가 없으면 결제 플랫폼에서 &quot;누군가 지불했습니다&quot;라고 알려주며 어떤 보고서를 잠금 해제해야 할지 알 수 없습니다.</p>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote><code>reportId</code>는 픽업번호와 같습니다. 사용자가 식사를 주문하고, 결제를 한 후, 식사를 받으러 돌아올 때에도 동일한 번호를 사용하여 동일한 내용에 해당해야 합니다.</blockquote>
+<h3>결제 세션이란 무엇인가요?</h3>
+<p><strong>[이 섹션의 핵심] <code>payment_session</code>는 특정 결제 시도에 대한 기록입니다. </strong></p>
+<p><code>payment_session</code>는 결제 시도입니다.</p>
+<p>사용자는 다음을 수행할 수 있습니다.</p>
+<ul>
+<li>결제를 클릭하고 페이지를 닫습니다.</li>
+<li>결제에 실패했습니다.</li>
+<li>결제를 다시 시도하세요.</li>
+<li>결제가 성공적으로 이루어졌으나 프런트 엔드가 되돌아오지 않습니다.</li>
+</ul>
+<p>따라서 프런트엔드 상태에만 의존하지 마십시오. 저장할 백엔드:```json</p>
+<p>{</p>
+<p>  &quot;sessionId&quot;: &quot;pay_xxx&quot;,</p>
+<p>  &quot;reportId&quot;: &quot;rep_xxx&quot;,</p>
+<p>  &quot;provider&quot;: &quot;paddle&quot;,</p>
+<p>  &quot;providerOrderId&quot;: &quot;txn_xxx&quot;,</p>
+<p>  &quot;status&quot;: &quot;pending&quot;</p>
+<p>}</p>
+<pre><code>
+결제가 성공적으로 완료되면 다음으로 변경하세요.```json
+{
+  &quot;status&quot;: &quot;paid&quot;,
+  &quot;paidAt&quot;: &quot;2026-05-28T00:00:00.000Z&quot;
+}</code></pre>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>보고서에는 여러 번의 결제 시도가 있을 수 있습니다. 사용자는 처음에는 결제 페이지를 닫을 수 있지만 두 번째에는 성공합니다. <code>payment_session</code>는 상태 혼란을 피하기 위해 이러한 시도를 별도로 기록할 수 있습니다.</blockquote>
+<h3>액세스 토큰이란 무엇인가요?</h3>
+<p><strong>【이 섹션의 핵심】<code>accessToken</code>는 성공적인 결제 후 전체 보고서를 여는 열쇠입니다. </strong></p>
+<p><code>accessToken</code>는 보고를 완료하는 데 핵심입니다.</p>
+<p>결제가 성공한 후 백엔드는 추측할 수 없는 토큰을 보고서에 보냅니다. 다음에 사용자가 돌아올 때 프런트 엔드는 백엔드에 토큰을 묻습니다.</p>
+<pre><code>이 토큰에는 보고서 reportId를 볼 수 있는 권한이 있습니까# </code></pre>
+<p>전체 보고서는 백엔드에서 &#x27;예&#x27;라고 답한 후에만 표시됩니다.</p>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>전체 보고서를 표시하려면 &quot;누군가 이 보고서 ID에 대해 비용을 지불했습니다&quot;에만 의존해서는 안 됩니다. 그렇지 않으면 다른 사람이 동일한 보고서 ID를 볼 수 있습니다. <code>accessToken</code>는 전용열쇠와 같아서, 열쇠를 가진 사람만이 열 수 있습니다.</blockquote>
+<h3>첫 번째 버전에서는 아무것도 할 수 없습니다</h3>
+<p><strong>【이 섹션의 핵심】 첫 번째 버전은 잠금 해제를 위한 일회성 결제만 유지하며, 복잡한 기능을 수행하지 않으면 출시 속도가 느려집니다. </strong></p>
+<p>더 빨리 온라인에 접속하려면 첫 번째 버전을 건너뛸 수 있습니다.</p>
+<ul>
+<li>사용자 등록.</li>
+<li>백엔드 CMS.</li>
+<li>할인 코드.</li>
+<li>구독하다.</li>
+<li>복잡한 데이터베이스.</li>
+<li>자동 이메일.</li>
+<li>여러 제품 패키지.</li>
+</ul>
+<p>잠금을 해제하려면 먼저 일회성 결제를 한 후 천천히 추가해야 합니다.</p>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>제품 초기 단계에서 가장 확인해야 할 것은 &quot;테스트를 완료하고 결제할 의향이 있는 사람이 있는가# &quot;이다. 처음에 많은 주변 기능을 수행하는 것보다 먼저 이 메인 라인을 실행하는 것이 더 가치 있습니다.</blockquote>
+<h3>Codex의 제품 프로세스 프롬프트</h3>
+<p><strong>[이 섹션의 핵심] 이미 해체된 제품 프로세스를 Codex에서 실행할 수 있는 프롬프트 단어로 직접 변환합니다. </strong></p>
+<p>이것을 복사하세요:</p>
+<pre><code>일회성 비용으로 보고서를 잠금해제하는 퀴즈 사이트를 만들고 싶습니다.
 
-사용자 흐름: 랜딩 페이지 -&gt; 퀴즈 -&gt; 무료 인트로 리포트 -&gt; 결제 -&gt; 전체 리포트.
+다음 사용자 경로에 따라 코드를 디자인하십시오.
+홈 -&gt; 답변 페이지 -&gt; 무료 소개 보고서 -&gt; 결제 -&gt; 전체 보고서
 
-첫 버전은 로그인, 구독, 쿠폰 없이 진행합니다.
+첫 번째 버전의 경우 로그인, 구독, 할인 코드가 필요하지 않습니다.
 
-다음을 설계해 주세요:
-1. 프론트엔드 화면 상태
-2. reportId 생성과 저장
-3. payment session 데이터 구조
-4. access token 잠금 해제 로직
-5. 로컬 mock 결제 흐름
+디자인을 도와주세요:
+1. 프런트 엔드 페이지 상태
+2. ReportId 생성 및 저장 방법
+3. 결제 세션 데이터 구조
+4. 액세스 토큰 잠금 해제 로직
+5. 모의결제 테스트 과정
 
-먼저 파일 계획을 출력한 뒤 최소 버전을 구현해 주세요.</code></pre></article>
-<article class="tutorial-chapter" id="chapter-02"><div class="chapter-kicker">Chapter 02</div><h1>02. Codex 로 사이트 만들기</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-02-codex.webp" alt="Codex build workflow chapter art" loading="lazy" /></figure>
-<p><strong>목표: Codex 에게 한 번에 모든 것을 맡기지 말고, 검증 가능한 작은 단계로 나눕니다.</strong></p>
-<h3>첫 프롬프트</h3>
-<pre><code>유료 퀴즈 사이트를 만들고 싶습니다.
+파일 계획을 먼저 출력한 후 최소 버전을 구현하십시오.</code></pre>
+<h3>이 장의 완료 기준</h3>
+<p><strong>【이 섹션의 핵심】이 장을 완료한 후에는 전체 유료 잠금 해제 프로세스를 중국어로 설명할 수 있어야 합니다. </strong></p>
+<p>완료되면 다음과 같이 명확하게 말할 수 있어야 합니다.</p>
+<ul>
+<li>사용자가 거치는 페이지.</li>
+<li>백엔드가 필요한 단계는 무엇입니까?</li>
+<li>결제가 이루어졌는지 확인하기 위해 프런트 엔드에만 의존할 수 없는 이유는 무엇입니까?</li>
+<li><code>reportId</code>, <code>payment_session</code>, <code>accessToken</code>는 무엇을 담당하는가?</li>
+</ul>
+<p>다음 장에서는 Codex가 실제로 코드를 작성하는 과정을 시작합니다.</p></article>
+<article class="tutorial-chapter" id="chapter-02"><div class="chapter-kicker">Chapter 02</div><h1>02. Codex가 0에서 웹사이트 구축을 도와주는 방법</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-02-codex.webp" alt="Codex 빌드 워크플로우 챕터 아트" loading="lazy" /></figure>
+<p><strong>[이 장의 핵심] 웹 사이트 구축 작업을 여러 개의 작은 라운드로 나누고 각 라운드에서 허용 가능한 작업을 Codex에 요청하십시오. </strong></p>
+<p>이 장에서는 한 가지에 대해서만 설명합니다. <strong>웹 사이트 작성 방법을 모를 때 Codex에 명령을 내리는 방법. </strong></p>
+<p>“완전한 상업용 웹사이트를 구축할 수 있게 도와주세요.”라고 말하면서 시작하지 마세요. 이 범위는 너무 크고 코덱스는 한 번에 너무 많이 변경되기 쉽습니다. 웹사이트를 수용할 수 있는 일련의 작은 작업으로 나누어야 합니다.</p>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>Codex는 작은 작업을 처리할 때 더 안정적입니다. 한꺼번에 &quot;건물 전체를 지어주세요&quot;라고 말하는 것이 아니라, 건설 파트너에게 공사를 해달라고 부탁하는 것보다 먼저 기초를 확인한 다음 벽을 쌓은 다음 물과 전기를 연결하는 것과 같다고 생각하시면 됩니다.</blockquote>
+<h3>먼저 코덱스에게 어떤 제품을 만들고 싶은지 알려주세요</h3>
+<p><strong>【이 섹션의 핵심】 먼저 Codex가 제품 목표와 제한 사항을 이해할 수 있도록 완전한 프롬프트 단어를 사용하십시오. </strong></p>
+<p>이 단락을 첫 번째 프롬프트로 복사하세요.</p>
+<pre><code>유료퀴즈사이트를 만들겠습니다.
 
-사용자는:
-1. 랜딩 페이지를 열고
-2. 퀴즈를 완료하고
-3. 무료 인트로 리포트를 보고
-4. 결제 버튼을 누르고
-5. 결제 성공 후 전체 리포트를 자동으로 봅니다.
+대상 사용자는 다음을 수행합니다.
+1. 홈페이지를 엽니다.
+2. 시험 문제 세트를 완성하세요
+3. 보고서의 무료 소개 버전을 확인하세요
+4. 결제 버튼 클릭
+5. 결제가 완료되면 전체 보고서가 자동으로 잠금 해제됩니다.
 
-최소 실행 버전을 만들어 주세요.
-조건:
-- 프론트엔드는 React + Vite
-- 백엔드는 Node.js
-- 먼저 mock 결제, 실제 Paddle 은 아직 연결하지 않음
-- 로그인 불필요
-- secret 을 프론트엔드에 넣지 않음
-- 각 단계의 로컬 실행 및 검증 방법 설명</code></pre>
-<p>기존 프로젝트가 있다면 “기존 구조를 먼저 읽고, 새로 만들지 말고 이어서 작업해 주세요”라고 덧붙입니다.</p>
-<h3>추천 구조</h3>
-<pre><code>paid-quiz-site/
-  src/app/
-  src/components/
-  src/data/
-  src/monetization/
-  src/styles/
-  server/payment-server.mjs
-  public/monetization.json
-  package.json
-  .env.payment.example</code></pre>
-<p>화면, 데이터, 공개 설정, 결제 검증을 분리하면 나중에 수정하기 쉽습니다.</p>
-<h3>1단계: 퀴즈 흐름만 만들기</h3>
-<p>랜딩, 질문, 답변, reportId, 무료 리포트, 잠금 해제 버튼만 만듭니다. <code>npm install</code>, <code>npm run dev</code> 후 직접 한 번 답변합니다.</p>
-<h3>2단계: 백엔드와 mock 결제</h3>
-<pre><code>Node 백엔드를 추가하고 mock 결제를 먼저 만들어 주세요.
+먼저 사용 가능한 최소 버전을 만드는 데 도움을 주세요.
+요구사항:
+- React + Vite를 이용한 프론트엔드
+- Node.js를 사용한 백엔드
+- 모의결제를 먼저 사용하고, 실제 패들은 받지 않습니다.
+- 로그인 계정이 필요하지 않습니다
+- 프론트엔드에 어떤 비밀도 넣지 마세요
+- 모든 단계에서 로컬로 실행하고 검증하는 방법을 알려주세요.</code></pre>
+<p>이미 프로젝트가 있으면 다음을 추가하세요.</p>
+<pre><code>먼저 기존 프로젝트 구조를 읽고 프로젝트를 다시 빌드하지 마십시오. 기존 코딩 스타일을 고수하려고 노력하세요.</code></pre>
+<h3>처음 만들 때, 만드는 것들은 작아야 합니다.</h3>
+<p><strong>[이 섹션의 핵심] 첫 번째 버전은 프로세스를 실행할 수 있는 가장 작은 웹사이트만 구축합니다. </strong></p>
+<p>첫 번째 버전에는 다음 페이지만 필요합니다.</p>
+<table><tbody>
+<tr><td>페이지</td><td>목적</td><td>최소 요구사항</td></tr>
+<tr><td>홈페이지</td><td>사용자가 퀴즈를 시작하도록 허용</td><td>제목, 시작 버튼</td></tr>
+<tr><td>답변 페이지</td><td>답변 수집</td><td>최소 3-5개의 시험 문제, 나중에 확장</td></tr>
+<tr><td>무료 결과 페이지</td><td>신뢰 구축</td><td>부분적인 분석은 표시하지만 전체 경력 답변은 표시하지 않음</td></tr>
+<tr><td>페이월</td><td>잠금 해제용 부트스트랩</td><td>하나의 결제 버튼, 하나의 대기 상태</td></tr>
+<tr><td>전체 보고서 페이지</td><td>확인 잠금 해제</td><td>모의결제 후 전체 내용 보기</td></tr>
+</tbody></table>
+<p>아직 요청하지 마세요.</p>
+<ul>
+<li>다국어.</li>
+<li>아름다운 애니메이션.</li>
+</ul>
+<p>-백엔드 관리.</p>
+<ul>
+<li>PDF/긴 이미지 저장.</li>
+<li>진짜 패들.</li>
+<li>문제은행을 완성하세요.</li>
+</ul>
+<p>나중에 모두 추가할 수 있습니다. 첫 번째 단계는 프로세스가 원활하게 진행되는 한입니다.</p>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>최소 버전은 최종 제품은 아니지만 해당 경로가 실현 가능함을 증명하는 데 사용됩니다. 경로가 구현되면 시각적, 다국어, 보고서 저장 및 실제 결제를 추가하여 더욱 안정적이 될 것입니다.</blockquote>
+<h3>권장 프로젝트 구조</h3>
+<p><strong>【이 섹션의 핵심】프런트엔드, 백엔드, 데이터 및 구성을 분리하려면 Codex가 사전에 필요합니다. </strong></p>
+<p>다음 구조에 따라 Codex를 구축하도록 요청할 수 있습니다.</p>
+<pre><code>유료 퀴즈 사이트/
+  소스/
+    앱/
+      앱.tsx
+    구성요소/
+    데이터/
+      질문.ts
+    수익화/
+      config.ts
+    스타일/
+      전역.css
+  서버/
+    지불 서버.mjs
+  공개/
+    수익화.json
+  패키지.json
+  .env.지불.예</code></pre>
+<p>각 디렉토리의 의미:</p>
+<table><tbody>
+<tr><td>목차</td><td>목적</td></tr>
+<tr><td><code>src/app</code></td><td>페이지 흐름</td></tr>
+<tr><td><code>src/components</code></td><td>버튼, 카드, 질문, 보고서 모듈</td></tr>
+<tr><td><code>src/data</code></td><td>질문, 결과 유형, 샘플 보고서 자료</td></tr>
+<tr><td><code>src/monetization</code></td><td>프런트 엔드에서 공개 유료 구성 읽기</td></tr>
+<tr><td><code>server</code></td><td>백엔드 API, 결제 세션, 웹훅</td></tr>
+<tr><td><code>public</code></td><td>브라우저에 노출될 수 있는 파일</td></tr>
+</tbody></table>
+<p>초보자가 저지르는 가장 흔한 실수는 모든 것을 하나의 파일에 밀어넣는 것입니다. 코덱스를 디렉토리별로 분할하면 나중에 관리하기가 더 쉬워집니다.</p>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>프로젝트 구조는 보관 캐비닛과 같습니다. 제목, 페이지, 스타일, 결제 인터페이스가 각자의 위치에 배치되어 나중에 특정 부분을 수정해야 할 때 큰 파일을 뒤질 필요가 없습니다.</blockquote>
+<h3>1라운드: 퀴즈만 진행</h3>
+<p><strong>[이 섹션의 핵심] 먼저 사용자가 홈페이지에서 결과 페이지까지의 질문에 답변할 수 있는지 확인합니다. </strong></p>
+<p>코덱스에:</p>
+<pre><code>먼저 기본 테스트 과정을 완료하고 결제를 수락하지 마세요.
 
-API:
-- POST /api/payments/checkout
-- GET /api/payments/sessions/:id
-- POST /api/payments/mock-paid
+요구사항:
+- 홈페이지에 &quot;Start Quiz&quot;가 있습니다.
+- 답변 페이지에는 한 번에 하나의 질문이 표시됩니다.
+- 사용자는 답변을 선택한 후 다음 질문으로 이동할 수 있습니다.
+- 답변 후 ReportId 생성
+- 결과 페이지로 이동
+- 결과 페이지에는 무료 소개와 &quot;전체 보고서 잠금 해제&quot; 버튼이 표시됩니다.
 
-결제 상태는 백엔드가 저장하고, 프론트엔드만으로 paid 가 될 수 없게 해 주세요.</code></pre>
-<h3>3단계: 보안 점검</h3>
-<p><code>.env.payment.local</code> 이 Git 에 들어가지 않는지, Paddle key 가 서버에만 있는지, URL 의 <code>paid=true</code> 로 잠금 해제가 되지 않는지 확인시킵니다.</p>
-<h3>작업 리듬</h3>
-<p>파일 계획, 구현, typecheck/build, 브라우저 테스트, 오류 공유를 반복하세요. 결제가 있는 제품은 이 방식이 훨씬 안전합니다.</p></article>
-<article class="tutorial-chapter" id="chapter-03"><div class="chapter-kicker">Chapter 03</div><h1>03. GitHub 에 업로드하기</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-03-github.webp" alt="GitHub upload chapter art" loading="lazy" /></figure>
-<p><strong>목표: Zeabur 가 배포할 코드를 GitHub 에 둡니다. 로컬에만 있으면 Zeabur 는 볼 수 없습니다.</strong></p>
-<h3>커밋하면 안 되는 것</h3>
-<p><code>.gitignore</code> 에 다음을 넣습니다.</p>
-<pre><code>node_modules
-dist
-.env
+다음 정보도 제공하세요.
+- npm 스크립트
+- 로컬 작동 모드
+- 최소한의 테스트 방법</code></pre>
+<p>수락:```bash</p>
+<p>npm install</p>
+<p>npm run dev</p>
+<pre><code>
+현지 웹사이트를 열고 직접 답변해보세요. 비전을 바꾸려고 서두르지 말고, 먼저 그 길이 완성될 수 있는지 확인하세요.
+
+## 2라운드: 백엔드에서 결제 상태를 저장하도록 허용
+
+**【이 섹션의 핵심】프런트엔드가 스스로 결정하도록 두지 않고 결제 상태를 백엔드에 맡겨서 저장하세요. **
+
+코덱스에:
+</code></pre>
+<p>이제 Node 백엔드를 추가하고 먼저 모의결제를 해보세요.</p>
+<p>백엔드 API:</p>
+<ul>
+<li>POST /api/결제/체크아웃</li>
+</ul>
+<p>  ReportId 수신, 결제 세션 생성, sessionId 및 checkoutUrl 반환</p>
+<ul>
+<li>GET /api/결제/세션/:id</li>
+</ul>
+<p>  반품 보류 중/결제 완료/실패</p>
+<ul>
+<li>POST /api/결제/mock-complete</li>
+</ul>
+<p>  로컬 테스트의 경우에만 세션을 유료로 표시하세요.</p>
+<p>데이터는 먼저 JSON 파일에 저장될 수 있습니다.</p>
+<p>보고서 잠금을 해제하기 위해 프런트엔드가 URL 매개변수에만 의존할 수 없는지 확인하세요.</p>
+<pre><code>
+수락:
+
+- 결제가 이루어지지 않으면 전체 보고서를 볼 수 없습니다.
+- 모의 완료 후 잠금해제 가능합니다.
+- 페이지를 새로 고친 후에도 백엔드는 보고서가 잠금 해제되었는지 여부를 계속 알 수 있습니다.
+
+## 3차: 페이월 스위치 추가
+
+**【이 섹션의 핵심】공개 구성을 사용하여 페이월 스위치를 제어하여 개발 및 사전 출시 테스트를 용이하게 합니다. **
+
+코덱스에:
+</code></pre>
+<p>페이월을 켜고 끌 수 있도록 public/monetization.json을 추가하세요.</p>
+<p>기본값:</p>
+<p>{</p>
+<p>  &quot;활성화됨&quot;: 거짓,</p>
+<p>  &quot;checkoutMode&quot;: &quot;API&quot;,</p>
+<p>  &quot;apiBaseUrl&quot;: &quot;/api&quot;,</p>
+<p>  &quot;공급자&quot;: &quot;모의&quot;</p>
+<p>}</p>
+<p>요구사항:</p>
+<ul>
+<li>활성화=false일 경우 개발 및 테스트가 편리하며 전체 보고서를 직접 볼 수 있습니다.</li>
+<li>활성화=true인 경우 잠금 해제 전 결제가 이루어져야 합니다.</li>
+<li>공개 파일에는 API 키나 비밀이 포함될 수 없습니다.</li>
+</ul>
+<pre><code>
+라이브로 전환하기 전에 계속해서 테스트를 수행하게 되므로 이 단계는 중요합니다. 스위치가 없으면 사용자에게 설익은 페이월을 쉽게 적용할 수 있습니다.
+
+## 4라운드: 먼저 GitHub에 업로드 준비
+
+**【이 섹션의 핵심】 업로드하기 전에 Codex가 창고의 보안 및 `.gitignore`를 확인하도록 하세요. **
+
+로컬 모의 프로세스가 실행된 후 먼저 프로젝트를 GitHub에 업로드하기에 적합한 상태로 구성합니다.
+
+코덱스에:
+</code></pre>
+<p>이 프로젝트가 GitHub에 업로드하기에 적합한지 확인해주세요.</p>
+<p>요구사항:</p>
+<ul>
+<li>.gitignore는 .env, .env.*, *.local, node_modules, dist, 로그 및 임시 파일을 무시해야 합니다.</li>
+<li>프로젝트를 스캔하여 Paddle API 키, 웹훅 비밀 또는 관리자 토큰이 없는지 확인하세요.</li>
+<li>README를 통해 다른 사람들이 프로젝트의 목적을 이해할 수 있는지 확인</li>
+<li>GitHub에 처음 업로드할 때 실행할 git 명령을 알려주세요.</li>
+<li>비밀이 발견되면 파일 경로를 나열하고 해당 키를 취소하거나 교체하도록 알려주세요.</li>
+</ul>
+<pre><code>
+수락하는 동안 GitHub 저장소에서 프로젝트 파일을 볼 수 있어야 하지만 `.env`, `.env.payment.local` 또는 API 키는 볼 수 없습니다.
+
+## 5라운드: Zeabur 배치 다시 준비
+
+**【이 섹션의 핵심】Codex가 Zeabur가 구축하고 시작할 수 있는 형태로 프로젝트를 구성하도록 합니다. **
+
+GitHub 저장소가 준비된 후에는 아직 Paddle을 선택하려고 서두르지 마세요. Paddle은 나중에 웹사이트 도메인 이름을 입력하고 확인하도록 요청하며, 열 수 있는 HTTPS 도메인 이름을 사용하려면 기본 결제 링크도 요구합니다.
+
+따라서 올바른 순서는 다음과 같습니다.
+</code></pre>
+<p>로컬 모의 실행 -&gt; GitHub에 업로드 -&gt; Zeabur에 배포 -&gt; HTTPS 도메인 이름 가져오기 -&gt; Paddle 설정</p>
+<pre><code>
+코덱스에:
+</code></pre>
+<p>이 프로젝트를 Zeabur에 배포할 수 있는 구조로 구성해 주세요.</p>
+<p>요구사항:</p>
+<ul>
+<li>npm run build는 프런트엔드 dist를 생성할 수 있습니다.</li>
+<li>npm run start는 동일한 Node 서비스를 시작할 수 있습니다.</li>
+<li>노드 서비스는 dist 정적 파일과 /api/*를 모두 제공해야 합니다.</li>
+<li>서버는 process.env.PORT를 수신해야 합니다.</li>
+<li>호스트는 0.0.0.0을 사용합니다.</li>
+<li>비밀을 유출하지 않고 /api/health를 추가했습니다.</li>
+<li>.env, .local, node_modules, dist 및 로컬 데이터 파일을 GitHub에 제출하지 마세요.</li>
+<li>아직 패들 키를 요청하지 마세요. 이제 검증 가능한 HTTPS 도메인 이름만 얻으려고 하기 때문입니다.</li>
+</ul>
+<p>다음 사항도 알려주십시오.</p>
+<ol>
+<li>GitHub에 어떤 파일을 제출해야 합니까?</li>
+<li>Zeabur의 빌드 명령 및 시작 명령</li>
+<li>Zeabur에서는 어떤 변수를 먼저 설정해야 합니까?</li>
+<li>웹사이트와 /api/health에 모두 접근 가능한지 확인하는 방법</li>
+</ol>
+<pre><code>
+이 단계가 완료되면 다음과 유사한 공식 URL이 생성됩니다.
+</code></pre>
+<p>https://your-project.zeabur.app</p>
+<pre><code>
+그러면 이 URL은 Paddle의 웹사이트 확인, 가격 페이지, 기본 결제 링크 및 웹훅 URL로 채워집니다.
+
+## 6라운드: HTTPS 도메인 이름을 얻은 후 모의를 Paddle로 대체
+
+**[이 섹션의 핵심] Zeabur 도메인 이름을 얻은 후 Codex를 실제 Paddle에 연결합니다. **
+
+Zeabur 웹사이트가 열리고 `/api/health`가 정상일 때까지 기다린 다음 Codex를 제공합니다.
+</code></pre>
+<p>새 Paddle 공급자를 추가하되 모의 공급자는 유지하세요.</p>
+<p>요구사항:</p>
+<ul>
+<li>Paddle 생성 트랜잭션 API를 사용하여 POST /api/결제/체크아웃</li>
+<li>사용자 지역이나 버튼 선택에 따라 CNY 가격 / USD 가격을 사용합니다.</li>
+<li>custom_data에는 reportId 및 Payment_session_id가 포함되어야 합니다.</li>
+<li>POST /api/webhooks/paddle 추가</li>
+<li>웹훅은 패들 서명을 확인해야 합니다.</li>
+<li>거래만 수락하세요. 잠금 해제가 완료되었습니다.</li>
+<li>반복적으로 전송할 때 웹훅은 멱등원이어야 합니다.</li>
+<li>서명 오류, 금액 불일치, 가격 ID 불일치 등의 경우 잠금 해제가 불가능합니다.</li>
+</ul>
+<pre><code></code></pre>
+<p>PADDLE_ENVIRONMENT</p>
+<p>PADDLE_API_KEY</p>
+<p>PADDLE_CNY_PRICE_ID</p>
+<p>PADDLE_USD_PRICE_ID</p>
+<p>PADDLE_WEBHOOK_SECRET</p>
+<p>PUBLIC_BASE_URL</p>
+<pre><code>
+참고: `PUBLIC_BASE_URL`는 Zeabur에서 제공한 HTTPS 도메인 이름으로 채워야 합니다. 예:
+</code></pre>
+<p>https://your-project.zeabur.app</p>
+<pre><code></code></pre>
+<p>https://your-project.zeabur.app/api/webhooks/paddle</p>
+<pre><code>
+## 7라운드: Codex가 활성화되기 전에 보안 검사를 수행하도록 합니다.
+
+**[이 섹션의 핵심] Codex가 활성화되기 전에 결제, 키, 웹훅 및 배포 위험을 확인하도록 하세요. **
+
+코덱스에:
+</code></pre>
+<p>이 프로젝트가 출시하기에 적합한지 확인하시기 바랍니다.</p>
+<p>확인해야 할 핵심 사항:</p>
+<ol>
+<li>공개 파일에 API 키, 웹훅 비밀, 관리자 토큰이 있나요?</li>
+<li>결제 잠금 해제는 백엔드에서만 확인할 수 있는지 여부</li>
+<li>웹훅이 검증되었나요?</li>
+<li>웹훅이 반복되면 권한이 반복적으로 부여되나요?</li>
+<li>Zeabur가 PORT를 읽습니까?</li>
+<li>/api/health 제공 여부</li>
+<li>빌드 및 시작 스크립트를 사용할 수 있습니까?</li>
+</ol>
+<p>문제를 나열하고 직접 수정하세요.</p>
+<pre><code>
+## Codex에 오류를 어떻게 보고해야 합니까?
+**[이 섹션의 핵심] 오류를 보고할 때 조치, 현상, 예상 결과 및 로그를 제공해야 합니다. **
+
+그냥 &quot;깨졌다&quot;고 말하지 마세요. 게시할 내용은 다음 4가지입니다.
+</code></pre>
+<p>내가 한 일:</p>
+<p>어떤 오류가 표시됩니까?</p>
+<p>내가 기대하는 바는 다음과 같습니다.</p>
+<p>관련 화면 설명 또는 로그:</p>
+<pre><code>
+예:
+</code></pre>
+<p>Zeabur에서 웹사이트를 열면 502가 보입니다.</p>
+<p>Zeabur 로그에는 npm run start가 시작되었지만 웹 페이지를 열 수 없다고 표시됩니다.</p>
+<p>서버가 process.env.PORT를 수신하고 있는지, 호스트가 0.0.0.0인지 확인하세요.</p>
+<pre><code>
+&gt; 💡 **왜 이러는 걸까요#  **
+&gt; &quot;Broken&quot;에는 위치 정보가 없습니다. 로그, 화면 상태, 방금 수행한 작업은 문제의 위치를 ​​파악하는 Codex의 단서입니다.
+
+## 초보자는 인증을 건너뛰면 안 됩니다
+
+**【이 섹션의 핵심】 유형 확인을 실행하고 각 변경 라운드 후에 빌드합니다. **
+
+각 단계가 끝나면 Codex를 실행합니다.```bash
+npm run typecheck
+npm run build</code></pre>
+<p>이러한 스크립트를 사용할 수 없는 경우 Codex에서 이를 채우도록 합니다.</p>
+<pre><code>이 프로젝트에 typecheck 및 빌드 스크립트를 추가하고 로컬에서 실행할 수 있는지 확인하세요.</code></pre>
+<h3>이 장의 완료 기준</h3>
+<p><strong>【이 섹션의 핵심】이 장을 완료한 후에는 로컬에서 실행 가능한 모의 유료 웹사이트를 갖게 됩니다. </strong></p>
+<p>이 장을 완료한 후에는 다음을 수행해야 합니다.</p>
+<ul>
+<li>로컬에서 실행 가능한 퀴즈사이트입니다.</li>
+<li>노드 백엔드.</li>
+<li>모의 결제 잠금 해제 프로세스.</li>
+<li>공개 프로필.</li>
+<li>명확한 Codex 프롬프트 단어 세트.</li>
+</ul>
+<p>다음 장에서는 먼저 프로젝트를 GitHub에 업로드합니다. GitHub 웨어하우스가 준비되면 이를 Zeabur에 배포하여 HTTPS 도메인 이름을 가져옵니다.</p></article>
+<article class="tutorial-chapter" id="chapter-03"><div class="chapter-kicker">Chapter 03</div><h1>03. 먼저 GitHub에 업로드하고 Zeabur에 배포 준비</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-03-github.webp" alt="GitHub 업로드 챕터 아트" loading="lazy" /></figure>
+<p>이 장은 Zeabur 앞에 위치한다.</p>
+<p><strong>[이 장의 핵심] Zeabur는 일반적으로 배포를 위해 GitHub에서 코드를 가져오므로 먼저 로컬 프로젝트를 GitHub 저장소에 업로드합니다. </strong></p>
+<p>세 가지의 관계를 다음과 같이 이해할 수 있습니다.</p>
+<pre><code>컴퓨터: 코드를 작성하고 테스트하는 곳
+GitHub: 코드 저장을 위한 클라우드 웨어하우스
+Zeabur: GitHub에서 코드를 가져와 웹사이트에서 실행</code></pre>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>Zeabur는 컴퓨터 데스크탑에서 직접 파일을 읽지 않습니다. 일반적으로 GitHub 리포지토리에 연결한 다음 리포지토리를 업데이트할 때마다 다시 배포합니다. 여기서 GitHub는 &quot;프로젝트 전송 스테이션&quot;과 같고 Zeabur는 &quot;전송 스테이션에서 프로젝트를 시작하고 실행하는 사람&quot;과 같습니다.</blockquote>
+<h4>1단계: 이미 GitHub 계정이 있는지 확인하세요.</h4>
+<p><strong>【이 단계의 핵심】 프로젝트 코드를 저장하려면 GitHub 계정이 필요합니다. </strong></p>
+<p>다음은 구체적인 실행 단계입니다.</p>
+<ol>
+<li>GitHub 공식 웹사이트를 엽니다.</li>
+<li>이미 로그인되어 있는 경우 다음 단계를 진행하세요.</li>
+<li>아직 계정이 없다면 등록하세요.</li>
+<li>GitHub 사용자 이름을 기억하세요. 나중에 창고 주소로 사용됩니다.</li>
+</ol>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>GitHub는 프로그래머가 일반적으로 사용하는 코드 저장소 플랫폼입니다. 웨어하우스는 모든 중요한 수정 사항을 저장하는 &quot;프로젝트 전용 클라우드 폴더&quot;로 이해될 수 있습니다.</blockquote>
+<h4>2단계: GitHub에 새 저장소 만들기</h4>
+<p><strong>【이 단계의 핵심】웹사이트 코드를 저장하기 위한 저장소를 특별히 생성합니다. </strong></p>
+<p>다음은 구체적인 실행 단계입니다.</p>
+<ol>
+<li>GitHub를 엽니다.</li>
+<li>오른쪽 상단의 <code>+</code>를 클릭하세요.</li>
+<li><code>New repository</code>를 선택하세요.</li>
+<li><code>Repository name</code>에 프로젝트 이름을 입력합니다. 예:</li>
+</ol>
+<pre><code>유료 퀴즈 사이트</code></pre>
+<ol>
+<li><code>Description</code>를 먼저 작성할 수 있습니다.</li>
+</ol>
+<pre><code>Codex로 구축된 유료 퀴즈 웹사이트입니다.</code></pre>
+<ol>
+<li>가시성은 <code>Public</code> 또는 <code>Private</code>를 선택할 수 있습니다.</li>
+<li>아직 로컬 프로젝트가 없다면 <code>Add a README file</code>를 확인해보세요.</li>
+<li>이미 로컬 프로젝트가 있는 경우 로컬 파일과의 충돌을 피하기 위해 먼저 README를 확인하지 않는 것이 좋습니다.</li>
+<li><code>Create repository</code>를 클릭하세요.</li>
+</ol>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>레포(Repo)는 저장소(Repository)의 약자로 창고를 의미합니다. 하나의 저장소는 하나의 프로젝트에 해당합니다. 귀하의 웹 사이트 코드, 문서 및 배포 구성은 모두 이 창고에 배치됩니다.</blockquote>
+<h4>3단계: 비밀글을 업로드하지 않도록 먼저 확인하세요.</h4>
+<p><strong>[이 단계의 핵심] 처음 업로드하기 전에 키, 주문, 배경 데이터가 GitHub에 푸시되지 않는지 확인하세요. </strong></p>
+<p>다음 콘텐츠를 업로드하지 마세요.</p>
+<ul>
+<li><code>.env</code></li>
+</ul>
+<p>-<code>.env.payment.local</code></p>
+<p>-패들 API 키</p>
+<ul>
+<li>패들 웹훅 비밀</li>
+</ul>
+<p>-관리자 토큰</p>
+<ul>
+<li>실제 주문정보</li>
+<li>결제 플랫폼 백엔드 화면</li>
+</ul>
+<p>-<code>node_modules</code></p>
+<p>-<code>dist</code></p>
+<ul>
+<li>로그 파일</li>
+</ul>
+<p>프로젝트 루트 디렉터리에는 <code>.gitignore</code>가 있어야 합니다. 최소한 다음을 포함하는 것이 좋습니다.</p>
+<pre><code>.env
 .env.*
-*.local
+*.로컬
+node_modules
+거리
 .logs
-tmp-*</code></pre>
-<p>Paddle API key, webhook secret, 주문 데이터, 사용자 정보는 GitHub 에 올리지 않습니다.</p>
-<h3>첫 push</h3>
-<pre><code>git init
+tmp-*
+*.로그</code></pre>
+<pre><code>이 프로젝트가 GitHub에 업로드하기에 적합한지 확인해주세요.
+
+요구사항:
+1. .gitignore는 .env, .env.*, *.local, node_modules, dist, 로그 및 임시 파일을 제외해야 합니다.
+2. 프로젝트를 스캔하여 Paddle API 키, 웹훅 비밀 또는 관리자 토큰이 없는지 확인합니다.
+3. 비밀을 찾으면 파일 경로를 알려주고 해당 키를 취소하거나 교체하도록 제안하십시오.
+4. 내 비즈니스 코드를 삭제하지 마세요.</code></pre>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>GitHub는 코드 저장에 적합하며 키 저장에는 적합하지 않습니다. API 키는 백엔드 키와 같습니다. 공개 저장소나 커밋 기록에 들어가면 노출된 것으로 간주되어 나중에 다시 생성해야 합니다.</blockquote>
+<h4>4단계: 이 머신에 Git이 설치되어 있는지 확인</h4>
+<p><strong>[이 단계의 핵심] Git은 GitHub에 로컬 프로젝트를 제출하기 위한 도구입니다. </strong></p>
+<p>터미널에서 실행:```bash</p>
+<p>git --version</p>
+<pre><code>
+다음과 같은 내용이 표시되면:
+</code></pre>
+<p>자식 버전 2.x.x</p>
+<pre><code>
+설명이 설치되었습니다.
+
+시스템에서 `git`를 찾을 수 없다는 메시지가 표시되면 계속하기 전에 Git을 설치하세요.
+
+&gt; 💡 **왜 이러는 걸까요#  **
+&gt; Git은 &quot;버전 기록 도구&quot;입니다. 변경한 파일을 기록하고 네이티브 코드를 GitHub에 푸시할 수도 있습니다. GitHub는 클라우드 플랫폼이고 Git은 GitHub와 로컬로 통신하는 데 사용하는 도구입니다.
+
+### 5단계: 프로젝트 루트 디렉터리에서 Git 초기화
+
+**【이 단계의 핵심】 프로젝트가 아직 Git 웨어하우스가 아닌 경우 먼저 Git 웨어하우스로 만드세요. **
+
+프로젝트 루트 디렉터리에서 실행합니다.```bash
+git status</code></pre>
+<p>파일 상태가 표시되면 해당 파일이 이미 Git 저장소라는 의미입니다.</p>
+<p>다음과 같은 내용이 표시되면:</p>
+<pre><code>치명적: git 저장소가 아님</code></pre>
+<p>그냥 실행하세요:```bash</p>
+<p>git init</p>
+<pre><code>
+그런 다음 다음을 실행합니다.```bash
+git status</code></pre>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote><code>git init</code>는 프로젝트 폴더에 &quot;변경 로그&quot;를 넣는 것과 같습니다. 이 순간부터 Git은 이 프로젝트를 추적하는 방법을 알고 있습니다.</blockquote>
+<h4>6단계: 첫 번째 커밋에 파일 추가</h4>
+<p><strong>【이 단계의 핵심】현재 프로젝트 상태를 커밋으로 저장합니다. </strong></p>
+<p>구현하다:```bash</p>
+<p>git add .</p>
+<p>git commit -m &quot;Initial paid quiz website&quot;</p>
+<pre><code>git config --global user.name &quot;你的名字&quot;
+git config --global user.email &quot;你的邮箱&quot;</code></pre>
+<p>그런 다음 다시 실행하십시오.```bash</p>
+<p>git commit -m &quot;Initial paid quiz website&quot;</p>
+<pre><code>
+&gt; 💡 **왜 이러는 걸까요#  **
+&gt; 커밋은 &quot;아카이브&quot;로 이해될 수 있습니다. GitHub에 파일을 느슨하게 덤프하는 대신 특정 버전을 로컬에 저장한 다음 해당 버전을 푸시합니다.
+
+### 7단계: GitHub 원격 저장소에 연결
+
+**[이 단계의 핵심] 로컬 Git에 이 프로젝트를 푸시해야 하는 GitHub 저장소를 알려줍니다. **
+
+GitHub가 창고를 구축한 후 일반적으로 다음과 같은 주소를 제공합니다.
+</code></pre>
+<p>https://github.com/yourusername/yourwarehousename.git</p>
+<pre><code>
+터미널에서 실행:```bash
+git branch -M main
+git remote add origin https://github.com/你的用户名/你的仓库名.git</code></pre>
+<p><code>origin already exists</code> 메시지가 나타나면 이미 원격 주소가 있다는 의미입니다. 다음을 볼 수 있습니다.```bash</p>
+<p>git remote -v</p>
+<pre><code>
+주소가 잘못된 경우 다음으로 변경할 수 있습니다.```bash
+git remote set-url origin https://github.com/你的用户名/你的仓库名.git</code></pre>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote><code>origin</code>는 원격웨어 하우스의 로컬 Git 별명입니다. Git에게 다음과 같이 말합니다. 이제부터 원본으로 푸시한다는 것은 이 GitHub 저장소로 푸시한다는 뜻입니다.</blockquote>
+<h4>8단계: GitHub로 푸시</h4>
+<p><strong>【이 단계의 핵심】GitHub에 로컬 커밋을 업로드합니다. </strong></p>
+<p>구현하다:```bash</p>
+<p>git push -u origin main</p>
+<pre><code>
+처음 푸시하면 GitHub에서 로그인 또는 승인을 요청할 수 있습니다.
+
+푸시 성공 후:
+
+1. GitHub 리포지토리 페이지를 엽니다.
+2. 웹페이지를 새로고침하세요.
+3. 프로젝트 파일이 보이는지 확인하세요.
+4. README가 정상적으로 표시되는지 확인합니다.
+5. `.env`, `.env.payment.local`가 창고에 나타나지 않는지 확인합니다.
+
+&gt; 💡 **왜 이러는 걸까요#  **
+&gt; `git push`는 &quot;로컬 아카이브를 클라우드 창고에 업로드&quot;입니다. 그러면 Zeabur는 컴퓨터의 폴더 대신 GitHub의 코드를 읽습니다.
+
+### 9단계: 변경할 때마다 업데이트하려면 3단계를 사용하세요.
+
+**[이 단계의 핵심] 향후 웹 사이트를 수정한 후 추가, 커밋, 푸시의 세 단계를 사용하여 GitHub에 동기화합니다. **
+
+각 변경 후 실행:```bash
 git status
 git add .
-git commit -m &quot;Initial paid quiz site&quot;
-git branch -M main
-git remote add origin https://github.com/your-name/your-repo.git
-git push -u origin main</code></pre>
-<h3>push 전 Codex 점검</h3>
-<pre><code>커밋할 파일을 확인해서 .env, API key, webhook secret, 결제 데이터, 사용자 개인정보가 포함되어 있지 않은지 봐 주세요. 파일을 삭제하지 말고 위험과 .gitignore 제안만 알려 주세요.</code></pre>
-<h3>확인</h3>
-<ul>
-<li>GitHub 에서 README 가 읽힌다.</li>
-<li>최신 commit 이 반영되어 있다.</li>
-<li><code>src/</code>, <code>server/</code>, <code>public/</code> 이 있다.</li>
-<li><code>.env.payment.local</code> 이 없다.</li>
-</ul>
-<p>Zeabur 가 갱신되지 않으면 먼저 GitHub 에 정말 최신 commit 이 있는지 확인합니다.</p></article>
-<article class="tutorial-chapter" id="chapter-04"><div class="chapter-kicker">Chapter 04</div><h1>04. 먼저 Zeabur 에 배포하기</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-04-zeabur.webp" alt="Zeabur deployment chapter art" loading="lazy" /></figure>
-<p><strong>목표: Paddle 설정 전에 공개 HTTPS 도메인을 얻습니다. 순서가 중요합니다.</strong></p>
-<pre><code>로컬 mock -&gt; GitHub -&gt; Zeabur -&gt; HTTPS 도메인 -&gt; Paddle 심사 -&gt; Paddle checkout</code></pre>
-<figure class="chapter-figure"><img src="./assets/diagrams/07-domain-before-paddle.svg" alt="Domain before Paddle" loading="lazy" /></figure>
-<h3>왜 Zeabur 가 먼저인가</h3>
-<p>Paddle 은 pricing, terms, privacy, refund, default payment link, 승인된 도메인을 요구합니다. 공개 도메인이 없으면 코드가 맞아도 checkout not enabled 로 막힐 수 있습니다.</p>
-<h3>사전 확인</h3>
-<pre><code>npm install
-npm run build</code></pre>
-<p>로컬 build 가 실패하면 Zeabur 도 대부분 실패합니다. 로그를 Codex 에게 주고 먼저 고칩니다.</p>
-<h3>PORT 와 0.0.0.0</h3>
-<p>Node 서버는 다음과 같이 작성합니다.</p>
-<pre><code>const port = Number(process.env.PORT ?? 8080);
-const serverHost = process.env.PAYMENT_SERVER_HOST ?? &quot;0.0.0.0&quot;;
+git commit -m &quot;Describe what changed&quot;
+git push</code></pre>
+<p>제출 메시지는 더 구체적일 수 있습니다. 예를 들면 다음과 같습니다.```bash</p>
+<p>git commit -m &quot;Add Paddle webhook unlock flow&quot;</p>
+<pre><code>
+또는:```bash
+git commit -m &quot;Improve unpaid report preview&quot;</code></pre>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>Zeabur는 일반적으로 GitHub 저장소에서 변경 사항을 모니터링합니다. 새 커밋을 푸시한 후 Zeabur는 온라인 서비스를 다시 배포해야 한다는 것을 알게 됩니다.</blockquote>
+<h4>10단계: 업로드 후 Zeabur 입력</h4>
+<p><strong>【이 단계의 핵심】GitHub 창고에 이미 코드가 있는지 확인한 다음 Zeabur로 이동하여 배포할 이 창고를 선택합니다. </strong></p>
+<p>다음 장으로 진행하기 전에 다음 사항을 확인하십시오.</p>
+<ol>
+<li>GitHub 창고 페이지를 열 수 있습니다.</li>
+<li>README를 표시할 수 있습니다.</li>
+<li>주요 코드 파일이 업로드되었습니다.</li>
+<li><code>.env</code>, <code>.local</code> 및 API 키는 업로드되지 않습니다.</li>
+<li>창고 주소를 알고 있습니다. 예:</li>
+</ol>
+<pre><code>https://github.com/yourusername/paid-quiz-site</code></pre>
+<p>이 창고는 다음 장에서 Zeabur에서 선택됩니다.</p>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>Zeabur의 배포 항목은 일반적으로 &quot;GitHub repo 선택&quot;입니다. 저장소에 아직 코드가 없으면 Zeabur에는 배포할 항목이 없습니다.</blockquote>
+<h4>이 장의 완료 기준</h4>
+<p><strong>【이 장의 핵심】GitHub에서 전체 프로젝트를 볼 수 있어야 하며 키가 유출되지 않았는지 확인할 수 있어야 합니다. </strong></p>
+<p>완료 후 항목별로 확인해주세요.</p>
+<ol>
+<li>GitHub 저장소가 생성되었습니다.</li>
+<li>기본 프로젝트는 이미 <code>git commit</code>입니다.</li>
+<li>기본 프로젝트는 <code>git push</code>였습니다.</li>
+<li>프로젝트 파일은 GitHub 페이지에서 보실 수 있습니다.</li>
+<li><code>.env</code>가 업로드되지 않습니다.</li>
+<li><code>.env.payment.local</code>가 업로드되지 않습니다.</li>
+<li>API 키, 웹훅 비밀번호, 관리자 토큰은 웨어하우스에 표시되지 않습니다.</li>
+<li>Zeabur로 이동하여 배포할 저장소를 선택할 준비가 되었습니다.</li>
+</ol></article>
+<article class="tutorial-chapter" id="chapter-04"><div class="chapter-kicker">Chapter 04</div><h1>04. Zeabur에 배포하고 검증 가능한 도메인 이름 얻기</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-04-zeabur.webp" alt="Zeabur 전개 장 아트" loading="lazy" /></figure>
+<p>이 장에서는 이전 장을 완료하고 프로젝트를 GitHub에 업로드했다고 가정합니다. 이제 GitHub 저장소를 Zeabur에 배포할 차례입니다.</p>
+<p><strong>[이 장의 핵심] 먼저 웹사이트에 공개적으로 액세스할 수 있는 HTTPS 도메인 이름을 부여한 다음 이 도메인 이름을 웹사이트 확인, 기본 결제 링크 및 웹훅을 위해 패들에 사용합니다. </strong></p>
+<p>권장되는 순서는 다음과 같습니다.</p>
+<pre><code>로컬 모의 프로세스가 원활하게 실행됩니다.
+  -&gt; GitHub에 업로드
+  -&gt; Zeabur에 배포
+  -&gt; HTTPS 도메인 이름 가져오기
+  -&gt; 가격/약관/개인정보/환불 페이지 준비
+  -&gt; Paddle로 돌아가서 웹사이트 확인 및 결제 설정을 수행하세요.</code></pre>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>Paddle은 실제 결제 페이지를 생성하기 전에 일반적으로 귀하의 웹사이트가 존재하는지, 열 수 있는지, 약관 및 개인 정보 보호 정책이 있는지 확인합니다. 아직 도메인 이름을 공개하지 않은 경우, 매장 주소 없이 계산원을 신청하려는 것처럼 많은 설정이 중간에 막히게 됩니다.</blockquote>
+<figure class="chapter-figure"><img src="./assets/diagrams/07-domain-before-paddle.svg" alt="지불 순서 지침 배포" loading="lazy" /></figure>
+<h4>1단계: 먼저 가지고 있는 프로젝트가 이 컴퓨터에서 실행될 수 있는지 확인하세요.</h4>
+<p><strong>【이 단계의 핵심】먼저 프로젝트가 컴퓨터에 설치 및 빌드될 수 있는지 확인한 다음 Zeabur에 배포합니다. </strong></p>
+<p>다음은 구체적인 실행 단계입니다.</p>
+<ol>
+<li>프로젝트 폴더를 엽니다.</li>
+<li>프로젝트 루트 디렉터리에서 터미널을 엽니다.</li>
+<li>실행:```bash</li>
+</ol>
+<p>npm install</p>
+<p>npm run build</p>
+<pre><code>
+4. `npm run build`가 성공하면 다음 단계를 계속합니다.
+5. 실패하면 전체 오류를 Codex에 게시하세요.
+</code></pre>
+<p>npm 실행 빌드가 실패했습니다. 오류 로그는 다음과 같습니다.</p>
+<p>[전체 로그 게시]</p>
+<p>Zeabur에 배포할 수 있도록 문제를 해결하도록 도와주세요.</p>
+<p>복구 후 다시 npm run build를 실행해 주세요.</p>
+<pre><code>
+&gt; 💡 **왜 이러는 걸까요#  **
+&gt; Zeabur는 배포 시 빌드도 실행합니다. 로컬 빌드가 실패하고 일반적으로 클라우드도 실패합니다. 먼저 자신의 컴퓨터에서 수정하면 실수를 추측하는 데 소요되는 시간을 줄일 수 있습니다.
+
+### 2단계: 백엔드가 하드 코딩된 포트가 아닌지 확인
+
+**[이 단계의 핵심] Node 백엔드는 Zeabur가 제공한 `PORT`를 수신해야 하며 `0.0.0.0`를 사용하여 외부 액세스를 허용해야 합니다. **
+
+Codex가 백엔드 시작 코드를 확인하도록 해주세요. 목표는 다음과 같이 작성됩니다.```js
+const port = Number(process.env.PORT ##  8080);
+const serverHost = process.env.PAYMENT_SERVER_HOST ##  &quot;0.0.0.0&quot;;
+
 server.listen(port, serverHost, () =&gt; {
   console.log(`payment server: http://${serverHost}:${port}/api`);
 });</code></pre>
-<p>프로덕션 컨테이너에서 <code>0.0.0.0</code> 은 올바른 설정입니다. 외부 트래픽이 컨테이너 안의 서비스에 도달하게 합니다.</p>
-<h3>Zeabur 설정</h3>
-<figure class="chapter-figure"><img src="./assets/diagrams/01-zeabur-deploy.svg" alt="Zeabur deploy flow" loading="lazy" /></figure>
+<p>이 프롬프트를 Codex에 직접 복사할 수 있습니다.</p>
+<pre><code>서버 시작 코드를 확인하세요.
+
+요구사항:
+1. 포트는 먼저 process.env.PORT를 읽어야 합니다.
+2. 호스트는 기본적으로 0.0.0.0을 사용합니다.
+3. localhost를 하드코딩하지 마세요.
+4. 8080과 같이 로컬 개발에 사용할 수 있는 기본 포트를 유지합니다.
+5. 수정 후 왜 Zeabur를 이렇게 설정해야 하는지 설명해주세요.</code></pre>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>내 컴퓨터에서 <code>localhost</code>는 &quot;나에게만 열리는 문&quot;과 같습니다. Zeabur 컨테이너에서 자신에게만 서비스가 개방되면 외부 사용자는 진입할 수 없습니다. <code>0.0.0.0</code>는 &quot;이 서비스는 컨테이너 외부에서 액세스할 수 있다&quot;는 의미입니다.</blockquote>
+<h4>3단계: 프로젝트에 프로덕션 시작 명령이 있는지 확인</h4>
+<p><strong>【이 단계의 핵심】Zeabur는 구축 방법과 시작 방법을 알아야 합니다. </strong></p>
+<p><code>package.json</code>를 열고 최소한 다음을 확인하십시오.```json</p>
+<p>{</p>
+<p>  &quot;scripts&quot;: {</p>
+<p>    &quot;build&quot;: &quot;npm run build:runtime-careers &amp;&amp; tsc --noEmit &amp;&amp; node scripts/vite-build.mjs&quot;,</p>
+<p>    &quot;start&quot;: &quot;node server/payment-server.mjs&quot;</p>
+<p>  }</p>
+<p>}</p>
+<pre><code>
+다양한 프로젝트의 `build` 내용은 다를 수 있지만 원칙은 동일합니다.
+
+1. `npm run build`는 프런트 엔드 정적 파일 생성을 담당합니다.
+2. `npm run start`는 온라인 서비스 출시를 담당합니다.
+3. 온라인 서비스는 프런트엔드 페이지와 `/api/*`를 모두 제공해야 합니다.
+
+Codex에 대한 팁 단어:
+</code></pre>
+<p>package.json이 Zeabur 배포에 적합한지 확인하세요.</p>
+<p>요구사항:</p>
+<ol>
+<li>npm run build는 프로덕션 파일을 생성할 수 있습니다.</li>
+<li>npm run start는 단일 노드 서비스를 시작할 수 있습니다.</li>
+<li>이 노드 서비스는 프런트엔드 dist와 /api/*를 모두 제공해야 합니다.</li>
+<li>스크립트가 누락된 경우 직접 작성해주세요.</li>
+</ol>
+<pre><code>
+&gt; 💡 **왜 이러는 걸까요#  **
+&gt; Zeabur는 컴퓨터의 &quot;미리보기 버튼&quot;을 클릭하지 않습니다. 명령이 있을 때만 실행됩니다. 빌드는 &quot;웹 사이트를 패키징하는 것&quot;을 의미하고 시작은 &quot;다른 사람이 액세스할 수 있도록 패키징된 웹 사이트를 내보내는 것&quot;을 의미합니다.
+
+### 4단계: GitHub 저장소가 최신 버전인지 확인
+
+**【이 단계의 핵심】Zeabur에 들어가기 전에 먼저 배포하려는 최신 코드가 GitHub에서 이미 사용 가능한지 확인하세요. **
+
+다음은 구체적인 실행 단계입니다.
+
+1. GitHub 리포지토리 페이지를 엽니다.
+2. README가 정상적으로 표시되는지 확인합니다.
+3. 최신 커밋이 방금 푸시한 버전인지 확인하세요.
+4. 로컬 터미널에서 실행합니다.```bash
+git status</code></pre>
+<ol>
+<li>제출되지 않은 수정 사항이 있는 경우 이전 장의 <code>git add</code>, <code>git commit</code> 및 <code>git push</code> 프로세스로 돌아갑니다.</li>
+<li><code>.env</code> 및 <code>.env.payment.local</code>가 GitHub 파일 목록에 나타나지 않는지 확인합니다.</li>
+</ol>
+<p>다시 한 번 다음 파일을 제출하지 않음을 확인하세요.</p>
+<p>-<code>.env</code></p>
+<p>-<code>.env.payment.local</code></p>
+<p>-<code>node_modules</code></p>
+<p>-<code>dist</code></p>
 <ul>
-<li>GitHub repository 선택.</li>
-<li>Region 은 Singapore 또는 Hong Kong 우선.</li>
-<li>Build Command: <code>npm run build</code>.</li>
-<li>Start Command: <code>npm run start</code>.</li>
+<li>로그 파일</li>
+<li>실제 주문정보</li>
 </ul>
-<h3>Variables 와 Volume</h3>
-<figure class="chapter-figure"><img src="./assets/diagrams/02-zeabur-variables.svg" alt="Zeabur variables" loading="lazy" /></figure>
-<pre><code>PAYMENT_SERVER_HOST=0.0.0.0
-PAYMENT_STORE_FILE=/data/payment-store.json
-PUBLIC_BASE_URL=https://your-zeabur-domain
-CORS_ORIGIN=https://your-zeabur-domain
+<p>-패들 API 키</p>
+<ul>
+<li>웹훅 비밀</li>
+</ul>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>Zeabur는 GitHub에서 코드를 가져옵니다. 컴퓨터의 수정 사항이 아직 푸시되지 않은 경우 Zeabur는 이를 볼 수 없습니다. Zeabur는 대부분 GitHub 페이지에 표시되는 모든 것을 가져옵니다.</blockquote>
+<h4>5단계: Zeabur에서 새 서비스 만들기</h4>
+<p><strong>【이 단계의 핵심】Zeabur가 GitHub 저장소에 연결하고 코드를 웹사이트에 배포하도록 합니다. </strong></p>
+<p>다음은 구체적인 실행 단계입니다.</p>
+<ol>
+<li>제아버를 엽니다.</li>
+<li>새 프로젝트를 생성합니다.</li>
+<li>GitHub에서 배포를 선택합니다.</li>
+<li>Zeabur가 GitHub에 대한 승인을 요구하는 경우, 승인을 위한 페이지 메시지를 따르십시오.</li>
+<li>창고 목록에서 이전 장에서 업로드한 창고를 선택하세요.</li>
+<li>일반적으로 <code>main</code> 지점을 선택합니다.</li>
+<li>지역은 싱가포르 또는 홍콩 인근 지역에 우선권을 부여합니다.</li>
+<li>Zeabur가 노드 프로젝트를 자동으로 감지하도록 하세요.</li>
+<li>명령을 입력하라는 메시지가 나타나면 다음을 입력하세요.</li>
+</ol>
+<pre><code>빌드 명령: npm run build
+시작 명령: npm run start</code></pre>
+<figure class="chapter-figure"><img src="./assets/diagrams/01-zeabur-deploy.svg" alt="Zeabur 서비스 배포 지침" loading="lazy" /></figure>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>지역은 서버가 위치한 지역입니다. 사용자가 주로 아시아에 있는 경우 일반적으로 싱가포르나 홍콩 근처 지역을 선택하면 액세스 경로가 더 짧아집니다. 여기에는 본토 서버가 필요하지 않으므로 ICP 제출이 첫 번째 단계가 아닙니다.</blockquote>
+<h4>6단계: 먼저 최소 환경 변수를 입력하세요.</h4>
+<p><strong>[이 단계의 핵심] 배포의 첫 번째 라운드는 웹사이트를 실행하는 것뿐이므로 Paddle 라이브 키를 즉시 입력할 필요가 없습니다. </strong></p>
+<p>먼저 Zeabur의 변수를 입력합니다.```bash</p>
+<p>PAYMENT_SERVER_HOST=0.0.0.0</p>
+<p>PAYMENT_STORE_FILE=/data/payment-store.json</p>
+<p>PUBLIC_BASE_URL=https://你的-zeabur-域名</p>
+<p>CORS_ORIGIN=https://你的-zeabur-域名</p>
+<p>PADDLE_ENVIRONMENT=sandbox</p>
+<p>PADDLE_ALLOW_UNSIGNED_WEBHOOKS=false</p>
+<pre><code>
+아직 Zeabur 도메인 이름이 없다면 이를 먼저 배포하고 도메인 이름을 얻은 후 다시 돌아올 수 있습니다.```bash
+PUBLIC_BASE_URL=
+CORS_ORIGIN=</code></pre>
+<p>실제 URL로 변경하세요.</p>
+<figure class="chapter-figure"><img src="./assets/diagrams/02-zeabur-variables.svg" alt="Zeabur 환경변수 표시" loading="lazy" /></figure>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>환경 변수는 &quot;배포 플랫폼이 사용자를 위해 보관하는 작은 메모&quot;와 같습니다. 코드는 이러한 값을 읽을 수 있지만 프런트 엔드 공용 파일에 패키지되어 있지 않습니다. Paddle API 키는 나중에 웹페이지 코드에 기록되는 대신 여기에 배치되어야 합니다.</blockquote>
+<h4>7단계: <code>/data</code> 마운트</h4>
+<p><strong>【이 단계의 핵심】다시 시작해도 손실되지 않는 저장 위치를 백엔드에 제공합니다. </strong></p>
+<p>다음은 구체적인 실행 단계입니다.</p>
+<ol>
+<li>Zeabur 서비스에서 볼륨 또는 스토리지 설정을 찾으세요.</li>
+<li>새 볼륨을 추가합니다.</li>
+<li>마운트 경로를 입력합니다.</li>
+</ol>
+<pre><code>/데이터</code></pre>
+<ol>
+<li>환경 변수에 다음이 포함되어 있는지 확인합니다.```bash</li>
+</ol>
+<p>PAYMENT_STORE_FILE=/data/payment-store.json</p>
+<pre><code>
+![Zeabur 볼륨 신호](../../assets/diagrams/03-zeabur-volume.svg)
+
+&gt; 💡 **왜 이러는 걸까요#  **
+&gt; 주문 및 잠금해제 기록이 서비스 임시 디렉토리에만 존재하는 경우, 서비스 재시작 후 사라질 수 있습니다. `/data` 볼륨은 지속적으로 저장할 수 있는 작은 하드디스크를 서비스에 연결하는 것과 같습니다.
+
+### 8단계: 온라인 URL을 열고 세 페이지를 확인하세요.
+
+**【이 단계의 핵심】웹사이트, API 및 공개 구성에 외부에서 액세스할 수 있는지 확인합니다. **
+
+성공적으로 배포되면 다음과 같은 결과를 얻게 됩니다.
+</code></pre>
+<p>https://your-project.zeabur.app</p>
+<pre><code>
+하나씩 열어주세요:
+</code></pre>
+<p>https://도메인/</p>
+<p>https://도메인/api/health</p>
+<p>https://yourdomain/monetization.json</p>
+<pre><code>
+다음을 확인해야 합니다.
+
+1. 홈페이지를 오픈할 수 있습니다.
+2. `/api/health`는 서비스 상태를 반환합니다.
+3. `/api/health`는 어떤 비밀도 표시하지 않습니다.
+4. `/monetization.json`에 접근할 수 있습니다.
+5. `/monetization.json`에는 Paddle API 키 또는 웹훅 비밀이 포함되어 있지 않습니다.
+6. 모의 결제 프로세스는 계속 테스트할 수 있습니다.
+
+&gt; 💡 **왜 이러는 걸까요#  **
+&gt; Paddle은 나중에 외부에서 귀하의 웹 사이트에 액세스합니다. 로컬 웹페이지를 직접 열 수 있는 것만으로는 충분하지 않습니다. 공개 URL에 실제로 액세스할 수 있는지 확인해야 합니다.
+
+### 9단계: Paddle에 필요한 공개 페이지 준비
+
+**【이 단계의 핵심】먼저 Paddle에 들어간 후 입력할 URL이 없는 것을 방지하기 위해 결제 플랫폼이 읽을 기본 지침 페이지를 준비합니다. **
+
+패들은 다음을 요구할 수 있습니다:
+</code></pre>
+<p>/가격</p>
+<p>/용어</p>
+<p>/개인정보</p>
+<p>/환불</p>
+<pre><code>
+이 페이지는 처음에는 매우 단순할 수 있지만 최소한 다음 사항을 명시해야 합니다.
+
+1. 무엇을 팔고 있나요?
+2. 사용자가 결제 후 얻게 되는 것.
+3. 가격은 얼마인가요?
+4. 일회성 구매인지 여부.
+5. 환불 규정은 무엇입니까?
+6. 문제가 발생하면 사용자가 어디로 연락해야 합니까?
+Codex에 대한 팁 단어:
+</code></pre>
+<p>Paddle 검토에 필요한 공개 페이지를 추가할 수 있도록 도와주세요.</p>
+<ol>
+<li>/가격</li>
+</ol>
+<p>2./용어</p>
+<p>3./개인정보 보호</p>
+<p>4./환불</p>
+<p>요구사항:</p>
+<ul>
+<li>명확하고 보수적으로 작성하고 효과를 위해 과장하지 마십시오.</li>
+<li>취업, 수입, 치료 결과를 약속하지 마세요.</li>
+<li>모든 페이지는 Zeabur 도메인 이름을 통해 직접 액세스할 수 있습니다.</li>
+<li>페이지에 API 키, 주문 정보 또는 개인 연락처 정보를 포함하지 마십시오.</li>
+</ul>
+<pre><code>
+&gt; 💡 **왜 이러는 걸까요#  **
+&gt; 결제 플랫폼은 판매하는 제품이 명확한지, 사용자가 구매한 제품을 알고 있는지, 분쟁이 발생할 경우 규칙이 있는지 여부를 판단해야 합니다. 페이지는 간결할 수 있지만 비어 있거나 모호할 수는 없습니다.
+
+### 10단계: 이 도메인 이름을 Paddle에 남겨두세요.
+
+**[이 단계의 핵심] Zeabur 도메인 이름을 다음 장의 Paddle 설정의 기초로 사용합니다. **
+
+이 장을 완료한 후 다음 세 가지 값을 기록하십시오.
+</code></pre>
+<p>웹사이트 홈페이지: https://yourdomainname/</p>
+<p>웹훅 URL: https://yourdomain/api/webhooks/paddle</p>
+<p>상태 확인: https://yourdomain/api/health</p>
+<pre><code>
+다음 장에서는 이를 패들(Paddle)로 채울 것입니다.
+
+&gt; 💡 **왜 이러는 걸까요#  **
+&gt; 이 단계는 매장을 오픈하기 전 집번호를 받는 것과 같습니다. 집 번호가 결정되면 계산원, 결제 알림 및 사용자 반송 페이지를 방문할 수 있습니다.
+
+### 이 장의 완료 기준
+
+**[이 장의 핵심] 웹사이트가 이 컴퓨터에서만 실행될 수 있는 것이 아니라 온라인 상태임을 증명할 수 있어야 합니다. **
+
+완료 후 항목별로 확인해주세요.
+
+1. GitHub 저장소에는 최신 코드가 포함되어 있습니다.
+2. Zeabur가 성공적으로 배포되었습니다.
+3. 홈페이지를 열 수 있습니다.
+4. `/api/health`를 열 수 있습니다.
+5. `/monetization.json`에는 비밀이 포함되어 있지 않습니다.
+6. `/data` 볼륨이 마운트되었습니다.
+7. HTTPS 도메인 이름이 있습니다.
+8. 웹훅 URL이 다음과 같아야 한다는 것을 이미 알고 있습니다.
+</code></pre>
+<p>https://yourdomain/api/webhooks/paddle</p></article>
+<article class="tutorial-chapter" id="chapter-05"><div class="chapter-kicker">Chapter 05</div><h1>05. 도메인 이름을 얻은 후 패들 결제를 수락하고 자동으로 잠금을 해제하세요.</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-05-paddle.webp" alt="패들 결제 잠금 해제 챕터 아트" loading="lazy" /></figure>
+<p>이 장에서는 사용자가 이전 장을 완료하고 HTTPS 도메인 이름을 얻었다고 가정합니다. 예:</p>
+<pre><code>https://your-project.zeabur.app</code></pre>
+<p><strong>【이 장의 핵심】Zeabur 도메인 이름을 사용하여 Paddle 설정을 완료한 다음 백엔드가 Paddle 웹훅을 통해 보고서를 자동으로 잠금 해제하도록 합니다. </strong></p>
+<p>이 장은 코드로 시작하지 않고 먼저 Paddle이 백그라운드에서 필요로 하는 것들을 완성합니다.</p>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>패들은 단지 버튼만 제공하는 것이 아닙니다. 계정, 제품, 도메인, 결제 페이지, 알림 주소를 확인합니다. 백그라운드 데이터가 완성되지 않은 경우, 코드를 올바르게 작성하더라도 <code>checkout not enabled</code> 등의 오류가 발생할 수 있습니다.</blockquote>
+<h4>1단계: 먼저 전체 링크에서 Paddle이 수행하는 작업을 이해합니다.</h4>
+<p><strong>【이 단계의 핵심】Paddle은 돈을 모으고 지불 결과를 알리는 역할을 담당하며 웹 사이트는 주문 생성 및 보고서 잠금 해제를 담당합니다. </strong></p>
+<p>전체 프로세스는 다음과 같습니다.</p>
+<pre><code>사용자가 클릭하여 잠금 해제
+  -&gt; 귀하의 웹사이트 백엔드가 결제 세션을 생성합니다.
+  -&gt; 백엔드는 Paddle에게 결제 생성을 요청합니다.
+  -&gt; 사용자는 Paddle 페이지에서 결제합니다.
+  -&gt; Paddle은 웹후크를 사용하여 백엔드에 알립니다.
+  -&gt; 백엔드는 결제가 유효한지 확인합니다.
+  -&gt; 백엔드 잠금해제 해당 reportId</code></pre>
+<p>귀하의 웹사이트는 다음 세 가지 작업을 수행해야 합니다.</p>
+<ol>
+<li>결제를 생성합니다.</li>
+<li>웹훅을 수신하고 확인합니다.</li>
+<li>결제 확인 후 접근 권한이 부여됩니다.</li>
+</ol>
+<p>패들은 세 가지 일을 합니다:</p>
+<ol>
+<li>결제 페이지를 표시합니다.</li>
+<li>일부 지역에서는 신용카드, PayPal 또는 현지 결제 수단을 사용하여 처리합니다.</li>
+<li>결제 결과를 백엔드로 다시 보냅니다.</li>
+</ol>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>사용자 결제는 프론트엔드 웹페이지에 맡겨져 판단할 수 없습니다. 프런트 엔드는 매장 디스플레이 영역과 같고, 백 엔드는 계산원 시스템과 같으며, Paddle은 제3자 계산대와 같습니다. 계산대가 백엔드에 &quot;금액이 확인되었습니다&quot;라고 통보한 경우에만 백엔드가 문을 열고 보고서를 전달해야 합니다.</blockquote>
+<h4>2단계: 패들 온보딩 완료</h4>
+<p><strong>【이 단계의 핵심】먼저 결제를 생성할 수 있는 Paddle 계정을 만드세요. </strong></p>
+<p>Paddle 백엔드를 입력하고 필요에 따라 다음 페이지를 채우십시오.</p>
+<ol>
+<li>계정 또는 회사 정보.</li>
+<li>판매하는 제품의 유형.</li>
+<li>제품 설명.</li>
+<li>연소득 범위.</li>
+<li>결제방법</li>
+<li>웹사이트 도메인 이름.</li>
+<li>Paddle의 허용 가능한 사용 정책을 준수합니다.</li>
+</ol>
+<p>제품 설명은 다음과 같이 보수적이고 명확하게 작성할 수 있습니다.</p>
+<pre><code>일회성 디지털 경력 평가 보고서를 판매합니다.
+사용자는 퀴즈를 풀고 맞춤형 온라인 보고서를 받습니다.
+이 제품은 취업 알선, 재정 조언, 의료 조언 또는 직업 결과 보장이 아닌 디지털 콘텐츠 액세스입니다.</code></pre>
+<p>패들이 표시되는 경우:</p>
+<pre><code>이 계정에 대한 Checkout이 아직 활성화되지 않았습니다.</code></pre>
+<p>우선순위 확인:</p>
+<ol>
+<li>Onboarding 완료 여부.</li>
+<li>홈페이지 승인이 완료되었나요?</li>
+<li>기본 결제 링크 설정 여부.</li>
+<li>상품 및 가격의 유무.</li>
+<li>계정이 아직 Paddle 검토를 기다리고 있나요?</li>
+</ol>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>이 단계는 캐셔를 오픈하기 위한 가맹점 리뷰와 같습니다. Paddle은 귀하가 판매하는 제품, 사용자가 구매하는 제품, 플랫폼 정책을 준수하는지 여부를 알아야 합니다. 이는 단순한 기술 API가 아닙니다.</blockquote>
+<h4>3단계: 웹사이트 인증 제출</h4>
+<p><strong>[이 단계의 핵심] 이전 장에서 얻은 Zeabur 도메인 이름을 Paddle에 입력하고 이것이 귀하의 판매 웹사이트인지 Paddle이 확인하도록 합니다. </strong></p>
+<p>Paddle의 웹사이트 승인 또는 도메인 확인 페이지에서 다음을 입력하세요.</p>
+<pre><code>https://your-zeabur-도메인 이름</code></pre>
+<pre><code>https://도메인/가격</code></pre>
+<pre><code>https://도메인/약관
+https://도메인/개인정보
+https://도메인/환불</code></pre>
+<p>이러한 URL은 직접 열 수 있어야 하며 웹사이트 홈페이지만 채울 수는 없습니다.</p>
+<figure class="chapter-figure"><img src="./assets/diagrams/04-paddle-domain.svg" alt="패들 웹사이트 확인 지침" loading="lazy" /></figure>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>Paddle은 가격이 어디에 있는지, 규칙이 어디에 있는지, 개인 정보 보호 지침이 어디에 있는지, 환불 지침이 어디에 있는지 등 사용자의 관점에서 웹사이트를 살펴봐야 합니다. 전체 경로가 포함된 URL은 홈페이지보다 전달하기가 더 쉽습니다.</blockquote>
+<h4>4단계: 기본 결제 링크 설정</h4>
+<p><strong>[이 단계의 핵심] Tell Paddle: 나중에 결제를 생성할 때 결제 페이지에 어떤 확인된 도메인 이름을 사용해야 하는지. </strong></p>
+<p>기본 결제 링크를 작성하는 것이 좋습니다:</p>
+<pre><code>https://your-zeabur-domain/</code></pre>
+<p>여기서 흔히 저지르는 오해:</p>
+<ol>
+<li>사용자에게 게시하려는 제품 링크가 아닙니다.</li>
+<li>웹훅 URL이 아닙니다.</li>
+<li>특정 ReportId에 대한 결과페이지가 아닙니다.</li>
+<li>Paddle이 결제 생성 시 사용하는 계정 수준의 결제 도메인 이름입니다.</li>
+</ol>
+<p>기본 결제 링크가 설정되지 않은 경우 API 키가 정확하더라도 백엔드에서 거래 결제를 생성하지 못할 수 있습니다.</p>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>기본 결제 링크는 &#x27;결제 시스템에서 기본적으로 사용하는 매장 주소&#x27;라고 생각하시면 됩니다. 이 주소가 없으면 Paddle은 결제 페이지를 호스팅할 승인된 웹사이트를 알 수 없습니다.</blockquote>
+<h4>5단계: 일회성 제품 만들기</h4>
+<p><strong>【이 단계의 핵심】Paddle에서 판매하려는 디지털 리포팅 제품을 만듭니다. </strong></p>
+<p>다음을 작성하는 것이 좋습니다.</p>
+<table><tbody>
+<tr><td>필드</td><td>추천 글쓰기</td></tr>
+<tr><td>제품명</td><td>AI 경력 활동 보고서 또는 보고서 이름</td></tr>
+<tr><td>설명</td><td>개인화된 디지털 경력 평가 보고서에 대한 일회성 액세스.</td></tr>
+<tr><td>제품 유형</td><td>디지털 제품</td></tr>
+<tr><td>세금 카테고리</td><td>디지털 상품, eBook 또는 현재 귀하의 Paddle 계정에 허용되는 가장 가까운 카테고리</td></tr>
+</tbody></table>
+<p>제품이 실제로 월별 요금을 청구하지 않는 한 구독이나 장기 멤버십으로 작성하지 마십시오.</p>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>제품은 &quot;당신이 판매하는 것&quot;입니다. 일회성 보고서의 경우 제품은 수업, 직업 서비스 또는 인적 컨설팅 약속이 아닌 디지털 콘텐츠에 대한 일회성 액세스여야 합니다.</blockquote>
+<h4>6단계: 일회성 가격 2개 생성</h4>
+<p><strong>【이 단계의 핵심】동일 제품에 대해 국내 및 해외 두 가지 일회성 가격을 설정합니다. </strong></p>
+<p>먼저 빌드하는 것이 좋습니다:</p>
+<table><tbody>
+<tr><td>목적</td><td>통화 및 가격</td><td>설명</td></tr>
+<tr><td>국내 가격</td><td>9.90위안</td><td>중국 지역 또는 중국 사용자를 위한</td></tr>
+<tr><td>해외 가격</td><td>USD 1.99</td><td>해외 신용카드/PayPal 사용자를 위한</td></tr>
+</tbody></table>
+<p>가격 유형 선택:</p>
+<pre><code>일회성</code></pre>
+<p>구독을 선택하지 마세요.</p>
+<p>생성 후 두 개의 가격 ID를 복사합니다.```bash</p>
+<p>PADDLE_CNY_PRICE_ID=pri_xxx</p>
+<p>PADDLE_USD_PRICE_ID=pri_xxx</p>
+<pre><code>
+![패들 제품 및 가격 설명](../../assets/diagrams/05-paddle-product-price.svg)
+
+&gt; 💡 **왜 이러는 걸까요#  **
+&gt; 상품은 상품 그 자체이며, 가격은 해당 상품의 일정한 판매가격입니다. 제품에는 RMB 가격, USD 가격 등 여러 가격이 있을 수 있습니다. 백엔드가 결제를 생성할 때 가격 ID를 사용하여 이번에 청구해야 하는 금액을 Paddle에 알려줍니다.
+
+### 7단계: API 키를 생성하고 Zeabur 변수에 넣습니다.
+
+**【이 단계의 핵심】API 키는 백엔드에서만 사용되며 프런트엔드 공개 파일에 넣어서는 안 됩니다. **
+
+Paddle 개발자 도구에서 API 키를 만듭니다.
+
+그런 다음 Zeabur의 변수를 입력하고 다음을 입력합니다.```bash
 PADDLE_ENVIRONMENT=sandbox
-PADDLE_ALLOW_UNSIGNED_WEBHOOKS=false</code></pre>
-<figure class="chapter-figure"><img src="./assets/diagrams/03-zeabur-volume.svg" alt="Zeabur volume" loading="lazy" /></figure>
-<p><code>/data</code> 에 volume 을 마운트해 payment session 과 access token 이 재시작 후에도 유지되도록 합니다.</p></article>
-<article class="tutorial-chapter" id="chapter-05"><div class="chapter-kicker">Chapter 05</div><h1>05. Paddle 결제와 자동 잠금 해제</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-05-paddle.webp" alt="Paddle payment unlock chapter art" loading="lazy" /></figure>
-<p><strong>목표: Paddle 은 결제를 처리하고, 내 백엔드는 webhook 을 검증해 리포트를 해제합니다.</strong></p>
-<h3>흐름</h3>
-<pre><code>해제 버튼 -&gt; payment session -&gt; Paddle transaction checkout -&gt; 결제 -&gt; webhook -&gt; 검증 -&gt; access token -&gt; 전체 리포트 표시</code></pre>
-<p>프론트엔드만으로 결제 성공을 판단하지 마세요. 신뢰할 수 있는 것은 webhook 입니다.</p>
-<h3>상품 설명</h3>
-<pre><code>We sell a one-time digital career assessment report. Users complete a quiz and receive a personalized online report. The product is digital content access, not employment placement, financial advice, medical advice, or guaranteed career outcome.</code></pre>
-<p><code>Checkout has not yet been enabled</code> 가 나오면 onboarding, website approval, default payment link, product, price, 심사 상태를 먼저 확인합니다.</p>
-<h3>Website approval</h3>
-<figure class="chapter-figure"><img src="./assets/diagrams/04-paddle-domain.svg" alt="Paddle domain" loading="lazy" /></figure>
-<pre><code>Pricing: https://your-domain/pricing
-Terms: https://your-domain/terms
-Privacy: https://your-domain/privacy
-Refund: https://your-domain/refund</code></pre>
-<h3>Product 와 Price</h3>
-<figure class="chapter-figure"><img src="./assets/diagrams/05-paddle-product-price.svg" alt="Paddle product price" loading="lazy" /></figure>
-<p>일회성 디지털 상품을 만들고 CNY 9.90, USD 1.99 one-time price 를 만듭니다. subscription 은 선택하지 않습니다.</p>
-<h3>Webhook</h3>
-<figure class="chapter-figure"><img src="./assets/diagrams/06-paddle-webhook.svg" alt="Paddle webhook" loading="lazy" /></figure>
-<p>URL:</p>
-<pre><code>https://your-domain/api/webhooks/paddle</code></pre>
-<p><code>transaction.completed</code> 에서만 잠금 해제합니다. <code>custom_data.payment_session_id</code> 와 <code>report_id</code> 가 백엔드 기록과 일치하는지도 확인해야 합니다.</p>
-<h3>Zeabur Variables</h3>
-<pre><code>PADDLE_ENVIRONMENT=sandbox
-PADDLE_API_KEY=your_sandbox_api_key
+PADDLE_API_KEY=你的_sandbox_api_key
 PADDLE_CNY_PRICE_ID=pri_xxx
-PADDLE_USD_PRICE_ID=pri_xxx
-PADDLE_WEBHOOK_SECRET=your_webhook_secret
-PADDLE_ALLOW_UNSIGNED_WEBHOOKS=false</code></pre></article>
-<article class="tutorial-chapter" id="chapter-06"><div class="chapter-kicker">Chapter 06</div><h1>06. Codex 프롬프트 모음</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-06-prompts.webp" alt="Prompt templates chapter art" loading="lazy" /></figure>
-<h3>최소 버전 만들기</h3>
-<pre><code>React + Vite 와 Node 로 결제 후 리포트를 잠금 해제하는 퀴즈 사이트 최소 버전을 만들어 주세요. 먼저 mock 결제, 로그인 없음, 결제 상태는 백엔드만 결정하는 구조로 해 주세요. 파일 계획, 구현, typecheck, build 까지 진행해 주세요.</code></pre>
-<h3>Paddle 추가</h3>
-<pre><code>mock provider 옆에 Paddle provider 를 추가해 주세요. checkout 생성, Paddle-Signature 검증, transaction.completed 에서만 잠금 해제, 중복 webhook 멱등 처리, reportId 불일치 거절을 구현해 주세요.</code></pre>
-<h3>Zeabur 오류 수정</h3>
-<pre><code>Zeabur deploy 가 실패했습니다. 아래 로그를 보고 원인이 build, start, PORT, 환경 변수, 파일 누락, 메모리 문제 중 무엇인지 판단하고 수정해 주세요.</code></pre>
-<h3>secret 점검</h3>
-<pre><code>이 프로젝트에 Paddle API key, webhook secret, .env.payment.local, 주문 데이터가 GitHub 에 올라갈 위험이 없는지 확인해 주세요.</code></pre></article>
-<article class="tutorial-chapter" id="chapter-07"><div class="chapter-kicker">Chapter 07</div><h1>07. 출시 전 체크리스트</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-07-launch.webp" alt="Launch checklist chapter art" loading="lazy" /></figure>
-<h3>제품</h3>
+PADDLE_USD_PRICE_ID=pri_xxx</code></pre>
+<p>참고:</p>
+<ol>
+<li>샌드박스 키는 샌드박스 가격과 일치합니다.</li>
+<li>라이브 키는 라이브 가격과 쌍을 이룹니다.</li>
+<li>섞지 마세요.</li>
+<li><code>public/monetization.json</code>에 API 키를 쓰지 마십시오.</li>
+<li>프런트 엔드 <code>.tsx</code>, <code>.js</code> 및 <code>.html</code>에 API 키를 쓰지 마십시오.</li>
+</ol>
+<p>올바른 개념은 다음과 같습니다.</p>
+<pre><code>브라우저 프런트 엔드: &quot;결제하고 싶습니다&quot;만 알 수 있습니다.
+백엔드: 결제를 생성하려면 API 키를 Paddle로 가져가세요.
+패들: 결제 페이지 URL로 돌아가기</code></pre>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>API 키는 결제 백엔드 키와 같습니다. 사용자의 브라우저는 공개된 장소이므로 프런트 엔드에 있는 모든 항목이 표시될 수 있습니다. 키는 백엔드 또는 배포 플랫폼의 환경 변수에만 배치될 수 있습니다.</blockquote>
+<h4>8단계: 웹훅 설정</h4>
+<p><strong>【이 단계의 핵심】결제가 완료된 후 웹사이트에 통보할 주소를 Paddle에 알려주세요. </strong></p>
+<p>패들 알림 대상을 입력하세요.</p>
+<pre><code>https://your-zeabur-domain/api/webhooks/paddle</code></pre>
+<p>최소한 다음 이벤트를 선택하세요.</p>
+<pre><code>거래.완료
+거래.결제_실패
+거래.취소됨
+transaction.past_due</code></pre>
+<p>그런 다음 웹훅 비밀을 복사하고 Zeabur 변수에 입력합니다.```bash</p>
+<p>PADDLE_WEBHOOK_SECRET=你的_webhook_secret</p>
+<p>PADDLE_ALLOW_UNSIGNED_WEBHOOKS=false</p>
+<pre><code>
+![패들 웹훅 신호](../../assets/diagrams/06-paddle-webhook.svg)
+
+&gt; 💡 **왜 이러는 걸까요#  **
+&gt; 웹훅은 Paddle이 적극적으로 백엔드에 &quot;이 트랜잭션이 완료되었습니다.&quot;라고 호출하는 것과 같습니다. 웹훅 비밀은 양측이 합의한 비밀번호와 같습니다. 비밀번호가 없으면 누군가 가짜 전화를 걸어 돈을 지불했다고 말할 수도 있습니다.
+
+### 9단계: 백엔드에서 Paddle 체크아웃을 생성하도록 허용
+
+**[이 단계의 핵심] 사용자가 결제 버튼을 클릭하면 프런트엔드에서는 백엔드만 요청하고 Paddle API 키에는 직접 접속하지 않습니다. **
+
+프런트엔드 요청:```http
+POST /api/payments/checkout
+Content-Type: application/json
+
+{
+  &quot;reportId&quot;: &quot;rep_xxx&quot;,
+  &quot;region&quot;: &quot;domestic&quot;
+}</code></pre>
+<p>백엔드는 다음을 수행해야 합니다.</p>
+<ol>
+<li>로컬 결제 세션을 생성하세요.</li>
+<li>지역에 따라 <code>PADDLE_CNY_PRICE_ID</code> 또는 <code>PADDLE_USD_PRICE_ID</code>를 선택하세요.</li>
+<li>Paddle 생성 트랜잭션 API를 호출합니다.</li>
+<li><code>reportId</code>를 <code>custom_data</code>에 넣습니다.</li>
+<li><code>payment_session_id</code>를 <code>custom_data</code>에 넣습니다.</li>
+<li>Paddle 거래 ID를 저장하세요.</li>
+<li>Paddle 체크아웃 URL을 프런트 엔드로 반환합니다.</li>
+</ol>
+<p>Codex에 대한 팁 단어:</p>
+<pre><code>이미 Zeabur HTTPS 도메인 이름이 있고 이제 Paddle에 연결하고 싶습니다.
+
+새 패들 공급자를 추가하세요.
+
+요구사항:
+1. 테스트를 용이하게 하기 위해 모의 공급자를 유지하십시오.
+2. POST /api/paids/checkout은 Paddle 생성 트랜잭션을 호출합니다.
+3. 국내에서는 PADDLE_CNY_PRICE_ID, 해외에서는 PADDLE_USD_PRICE_ID를 사용하세요.
+4. 거래 custom_data에는 reportId 및 Payment_session_id가 포함되어야 합니다.
+5. 모든 비밀은 process.env에서만 읽을 수 있습니다.
+6. public/monetization.json에는 비밀이 포함될 수 없습니다.</code></pre>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote><code>custom_data</code>는 패들 주문 시 입력하는 &quot;스티커 메모&quot;입니다. 웹후크가 다시 돌아오면 백엔드는 이 메모를 사용하여 이 결제가 어떤 보고 및 결제 세션에 해당하는지 파악합니다.</blockquote>
+<h4>10단계: 웹훅만 보고서 잠금을 해제하도록 허용</h4>
+<p><strong>【이 단계의 핵심】단지 사용자가 페이지로 돌아오거나 URL에 더 많은 매개변수가 있거나 프런트엔드 표시가 성공했다는 이유만으로 직접 잠금을 해제하지 마세요. </strong></p>
+<p>Paddle은 백엔드에 다음을 알립니다.</p>
+<pre><code>POST /api/webhooks/패들</code></pre>
+<p>백엔드는 다음 사항을 확인해야 합니다.</p>
+<ol>
+<li>원시 본체로 <code>Paddle-Signature</code>를 확인합니다.</li>
+<li><code>transaction.completed</code>만 허용됩니다.</li>
+<li><code>custom_data.payment_session_id</code>를 확인하세요.</li>
+<li><code>custom_data.report_id</code>를 확인하세요.</li>
+<li>가격ID를 확인하세요.</li>
+<li>금액을 확인하세요.</li>
+<li>통화를 확인하세요.</li>
+<li>반복되는 웹후크는 멱등원이어야 합니다.</li>
+<li>모든 점검을 통과한 후에만 <code>accessToken</code>를 작성하십시오.</li>
+</ol>
+<p>Codex에 대한 팁 단어:</p>
+<pre><code>POST /api/webhooks/paddle을 구현하세요.
+
+요구사항:
+1. 패들시그니처 확인을 위해 반드시 생바디를 사용해야 합니다.
+2. 거래 완료 잠금 해제만 허용됩니다.
+3. transaction.pay_failed / transaction.canceled / transaction.past_due는 잠금 해제되지 않습니다.
+4. custom_data의 reportId 및 Payment_session_id는 로컬 세션과 일치해야 합니다.
+5. 가격 ID, 금액, 통화가 일치하지 않으면 잠금 해제가 불가능합니다.
+6. 반복된 웹훅 권한은 반복적으로 발급될 수 없습니다.
+7. 모든 오류는 문제 해결을 용이하게 하기 위해 Payment_events에 기록되어야 합니다.</code></pre>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>사용자의 결제 페이지가 귀하의 웹사이트로 다시 이동합니다. 이는 브라우저가 반환되었다는 의미일 뿐, 금액이 확인되었다는 의미는 아닙니다. 진정으로 신뢰할 수 있는 신호는 Paddle 서버에서 전송된 서명이 검증된 웹훅입니다.</blockquote>
+<h4>11단계: 고정된 순서로 샌드박스 테스트</h4>
+<p><strong>[이 단계의 핵심] 먼저 샌드박스를 사용하여 전체 링크가 통과할 수 있는지 확인한 다음 라이브로 전환합니다. </strong></p>
+<p>다음으로 다음 순서로 테스트하세요.</p>
+<ol>
+<li>Zeabur 환경 변수에 대한 샌드박스 API 키를 입력합니다.</li>
+<li>Zeabur 환경 변수에 샌드박스 가격 ID를 입력합니다.</li>
+<li>샌드박스 웹훅 비밀로 Zeabur 환경 변수를 입력합니다.</li>
+<li>재배포.</li>
+<li>온라인 도메인 이름을 엽니다.</li>
+<li>퀴즈를 완성하세요.</li>
+<li>결제를 클릭하세요.</li>
+<li>Paddle 샌드박스 체크아웃으로 이동합니다.</li>
+<li>패들에서 제공하는 테스트 카드로 결제하세요.</li>
+<li>Paddle 알림 로그를 엽니다.</li>
+<li>Zeabur 로그를 엽니다.</li>
+<li>웹훅이 성공적으로 반환되는지 확인합니다.</li>
+<li>신고 페이지로 돌아가서 자동 잠금 해제를 확인하세요.</li>
+</ol>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>샌드박스는 결제 플랫폼에서 제공하는 테스트 환경입니다. 실제로 돈을 모으지 않고도 API, 웹훅, 잠금 해제 로직이 올바른지 확인할 수 있습니다.</blockquote>
+<h4>12단계: 일반적인 오류 문제 해결</h4>
+<p><strong>【이 단계의 핵심】오류가 표시되면 먼저 계정 설정, 환경 변수, 코드 또는 웹훅 문제인지 확인하세요. </strong></p>
+<h5>Checkout이 아직 활성화되지 않았습니다.</h5>
+<p>우선순위 확인:</p>
+<ol>
+<li>패들 온보딩 완료 여부.</li>
+<li>홈페이지 인증 통과 여부.</li>
+<li>기본 결제 링크 설정 여부.</li>
+<li>상품 및 가격의 설정 여부.</li>
+<li>계정이 아직 Paddle에서 검토 중인지 여부.</li>
+</ol>
+<h5>인증 헤더 형식이 잘못되었습니다.</h5>
+<p>환경 변수에는 키 자체만 포함됩니다.```bash</p>
+<p>PADDLE_API_KEY=pdl_sdbx_xxx</p>
+<pre><code>
+요청 헤더는 다음과 같습니다.
+</code></pre>
+<p>승인: 베어러 pdl_sdbx_xxx</p>
+<pre><code>
+환경 변수에 쓰지 마십시오:```bash
+PADDLE_API_KEY=Bearer pdl_sdbx_xxx</code></pre>
+<h5>결제 후 잠금이 해제되지 않음</h5>
+<p>순서대로 확인하세요:</p>
+<ol>
+<li>Paddle 알림 로그가 웹훅을 보내나요?</li>
+<li>Zeabur 로그가 요청을 받았습니까?</li>
+<li>Webhook URL이 <code>/api/webhooks/paddle</code>인지 여부.</li>
+<li>Webhook 비밀이 일관성이 있는지 여부.</li>
+<li>이벤트가 <code>transaction.completed</code>인가요?</li>
+<li><code>custom_data</code>에는 <code>payment_session_id</code> 및 <code>report_id</code>가 있습니다.</li>
+<li><code>/data/payment-store.json</code>가 성공적으로 작성되었는지 여부.</li>
+</ol>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>결제실패는 동일한 사유로 발생하지 않을 수 있습니다. 질문을 &quot;Paddle이 알림을 보냈는지, Zeabur가 알림을 받았는지, 백엔드가 확인을 통과했는지, 데이터가 기록되었는지&quot;로 분할하면 어느 섹션이 멈췄는지 빠르게 찾을 수 있습니다.</blockquote>
+<h4>13단계: 라이브로 전환하기 전 최종 확인</h4>
+<p><strong>【이 단계의 핵심】Sandbox가 실행된 후 Paddle의 라이브 데이터를 교체합니다. </strong></p>
+<p>실시간으로 전환하기 전에 확인하세요.</p>
+<ol>
+<li>패들 라이브 온보딩을 통과했습니다.</li>
+<li>라이브 홈페이지 승인이 완료되었습니다.</li>
+<li>라이브 기본 결제 링크가 설정되었습니다.</li>
+<li>라이브 상품이 생성되었습니다.</li>
+<li>실시간 일회성 가격이 설정되었습니다.</li>
+<li>Zeabur 변수가 라이브 API 키로 대체되었습니다.</li>
+<li>Zeabur 변수가 실시간 가격 ID로 대체되었습니다.</li>
+<li>Zeabur 변수가 라이브 웹훅 비밀로 대체되었습니다.</li>
+<li><code>PADDLE_ENVIRONMENT=live</code>.</li>
+<li>시험 입구, 0위안 잠금 해제, 모의 버튼이 모두 닫힙니다.</li>
+</ol>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>샌드박스와 라이브는 서로 다른 세계입니다. 샌드박스 키는 실제 돈을 받을 수 없으며 라이브 키를 무작위 테스트에 사용해서는 안 됩니다. 전환 시 키, 가격 ID, 웹훅 비밀번호가 혼합되지 않도록 세트로 교체하세요.</blockquote>
+<h4>이 장의 완료 기준</h4>
+<p><strong>[이 장의 핵심] 사용자가 실제로 지불했음을 증명할 수 있어야 하며 보고서는 백엔드에 의해 자동으로 잠금 해제됩니다. </strong></p>
+<p>완료 후 항목별로 확인해주세요.</p>
+<ol>
+<li>사용자가 결제 버튼을 클릭하여 Paddle 결제를 엽니다.</li>
+<li>Paddle sandbox가 결제한 후 웹훅이 Zeabur 백엔드로 돌아갑니다.</li>
+<li>백엔드는 <code>transaction.completed</code> 이후에만 잠금 해제됩니다.</li>
+<li>잘못된 서명은 잠금 해제되지 않습니다.</li>
+<li>잘못된 금액은 잠금 해제되지 않습니다.</li>
+<li>잘못된 가격 ID는 잠금 해제되지 않습니다.</li>
+<li>중복된 Webhook은 반복적으로 발행되지 않습니다.</li>
+<li>사용자는 보고서 페이지를 새로 고친 후에도 잠금 해제된 콘텐츠를 계속 볼 수 있습니다.</li>
+<li>브라우저를 변경하거나 액세스 토큰이 없으면 다른 사람의 전체 보고서를 볼 수 없습니다.</li>
+</ol>
+<p>이 모든 것이 확립되면 패들 액세스는 정말 성공적입니다.</p></article>
+<article class="tutorial-chapter" id="chapter-06"><div class="chapter-kicker">Chapter 06</div><h1>06. 복사 가능한 프롬프트 단어 템플릿</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-06-prompts.webp" alt="프롬프트 템플릿 장 아트" loading="lazy" /></figure>
+<p><strong>[이 장의 핵심] 다음은 웹사이트 구축, GitHub 업로드, Zeabur 배포, Paddle 연결 및 오류 문제 해결을 위해 Codex에 직접 게시할 수 있는 프롬프트 단어 모음입니다. </strong></p>
+<p>이 장은 도구 상자입니다. 아래 프롬프트 단어를 Codex에 직접 붙여넣은 다음 괄호 안의 내용을 자신의 프로젝트로 바꿀 수 있습니다.</p>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>초보자에게 가장 어려운 것은 &quot;무엇을 해야할지 아는 것&quot;이 아니라 &quot;Codex에 어떻게 요청해야 할지 모르는 것&quot;일 때가 많습니다. 템플릿은 표현 비용을 줄이고 요구사항을 더욱 안정적으로 만들 수 있습니다.</blockquote>
+<h3>0. Codex가 먼저 프로젝트를 읽도록 하세요</h3>
+<p><strong>[이 섹션의 핵심] 수정하기 전에 Codex가 프로젝트 구조를 이해하도록 하십시오. </strong></p>
+<pre><code>이 프로젝트를 먼저 읽어보시고 성급하게 수정하지 마세요.
+
+나에게 말해주세요:
+1. 프론트 엔드 입구는 어디에 있습니까?
+2. 백엔드 입구는 어디에 있나요?
+3. 결제 구성은 어디에 있나요?
+4. 로컬에서 실행하는 방법
+5. GitHub에 제출할 수 없는 파일
+
+그런 다음 변경을 위해 제안된 다음 단계를 나열하십시오.</code></pre>
+<h3>1. 빈 디렉터리에서 최소 버전 만들기</h3>
+<p><strong>[이 섹션의 핵심] 빈 프로젝트에서 시작할 때 먼저 Codex에 최소 실행 가능 버전을 생성하도록 요청하세요. </strong></p>
+<pre><code>현재 디렉터리에 유료 퀴즈 사이트의 사용 가능한 최소 버전을 만드세요.
+
+기술 요구 사항:
+- React + Vite 프론트엔드
+- Node.js 백엔드
+- 모의카드로 먼저 결제
+- 실제 패들과 연결되지 않음
+- 로그인이 필요하지 않습니다
+
+제품 프로세스:
+홈 -&gt; 답변 페이지 -&gt; 무료 소개 보고서 -&gt; 결제 버튼 -&gt; 모의 잠금 해제 -&gt; 전체 보고서
+
+다음을 제공하십시오:
+- package.json 스크립트
+- 프런트엔드 페이지
+- 백엔드 API
+- 공개/monetization.json
+- .env.지불.예제
+- 로컬 작동 지침</code></pre>
+<h3>2. 제목 및 결과 페이지 추가</h3>
+<p><strong>[이 섹션의 핵심] 프로세스가 완료되면 질문 수 및 결과 페이지가 확장됩니다. </strong></p>
+<pre><code>시험 문제를 [질문 수]개의 질문으로 확장할 수 있도록 도와주세요.
+
+요구사항:
+- 각 질문에는 3~5개의 옵션이 있습니다.
+- 사용자는 한 번에 하나의 질문만 볼 수 있습니다.
+- 진행 프롬프트가 있습니다
+- 답변 후 ReportId 생성
+- 결과 페이지는 답변을 바탕으로 안정적인 결과를 생성합니다.
+- 새로 고친 후에도 현재 보고서를 잃지 마세요
+
+로컬 데이터를 먼저 사용하고 데이터베이스에 연결하지 마십시오.</code></pre>
+<h3>3. 무료 소개 보고서 최적화</h3>
+<p><strong>【이 섹션의 핵심】무료 페이지는 신뢰를 구축해야 하며 과장된 광고로 작성되어서는 안 됩니다. </strong></p>
+<pre><code>미지급 결과 페이지를 최적화하세요.
+
+스타일:
+- 전문적이고 객관적이며 신뢰할 수 있는 분
+- 마케팅을 과장하지 마세요.
+- “먼저 조금 공개해라”, “고충점을 정확히 짚어라” 같은 말은 하지 마세요.
+
+콘텐츠 구조:
+1. 핵심 심리적 원동력
+2. 행동 경향과 잠재적인 정체 지점
+3. 자기 인식과 내부 및 외부 성과의 조화
+4. 완성된 보고서는 분석 방향을 이어갑니다.
+
+제한사항:
+- 전체 경력 답변을 표시하지 않습니다.
+- 전체 행동 경로를 보여주지 않습니다.
+- 보고서 저장 입구 전체를 표시하지 않습니다.</code></pre>
+<h3>4. 모의 페이월 추가</h3>
+<p><strong>【이 섹션의 핵심】모의 결제를 사용하여 잠금 해제 논리를 먼저 테스트하고, 실제 결제를 받기 위해 서두르지 마세요. </strong></p>
+<pre><code>모의 페이월을 추가해 주세요.
+
+요구사항:
+- public/monetization.json이 스위치를 활성화했습니다.
+- 활성화=false인 경우 개발에 편리하며 전체 보고서를 직접 볼 수 있습니다.
+- 활성화=true일 경우, 결제 없이 무료 소개만 시청할 수 있습니다.
+-결제 버튼을 클릭하면 결제 세션이 생성됩니다.
+- 모의는 결제 성공 후 자동으로 잠금 해제됩니다.
+- 프런트 엔드는 URL 매개변수로 가짜 잠금 해제를 할 수 없습니다.</code></pre>
+<h3>5. 먼저 GitHub에 업로드하세요</h3>
+<p><strong>[이 섹션의 핵심] 배포하기 전에 Codex에서 GitHub 업로드 보안을 확인하세요. </strong></p>
+<pre><code>이 프로젝트가 GitHub에 업로드하기에 적합한지 확인해주세요.
+
+요구사항:
+- .gitignore는 .env, .env.*, *.local, node_modules, dist, 로그, 임시 파일을 무시합니다.
+- 프로젝트를 스캔하여 Paddle API 키, 웹훅 비밀 또는 관리자 토큰이 없는지 확인하세요.
+- README가 프로젝트의 목적과 로컬에서 실행하는 방법을 설명할 수 있는지 확인하세요.
+-GitHub에 처음 업로드할 때 어떤 명령어를 실행해야 하는지 알려주세요.
+- 원격 원본이 존재하지 않는 경우 GitHub repo에 연결하는 방법을 알려주세요.
+- 비밀이 발견되면 파일 경로를 나열하고 해당 키를 취소하거나 교체하도록 알려주세요.
+
+로컬 키, 실제 주문 데이터 또는 배경 화면 데이터를 Git에 제출하지 마세요.</code></pre>
+<h3>6. 그런 다음 Zeabur에 배포합니다.</h3>
+<p><strong>[이 섹션의 핵심] GitHub 저장소가 준비되면 Codex에서 Zeabur 배포 조건을 확인하도록 합니다. </strong></p>
+<pre><code>Zeabur에 배포할 수 있도록 프로젝트를 검토하고 조정하시기 바랍니다.
+
+요구사항:
+- npm run build는 프런트엔드 파일을 생성할 수 있습니다.
+- npm run start는 단일 노드 서비스를 시작할 수 있습니다.
+- 서비스 청취 process.env.PORT
+- 호스트 사용 가능 0.0.0.0
+- 동일한 서비스가 프런트엔드 dist 및 /api를 제공합니다.
+- /api/health 추가됨
+- .gitignore는 .env, *.local, node_modules, dist, 로그, 임시 파일을 무시합니다.
+- API 키를 제출하지 마세요.
+- 패들 공급자가 활성화되지 않은 경우 패들 키가 누락되어도 서비스가 중단되지 않아야 합니다.
+
+Zeabur Variables에는 무엇을 채워야 하는지 알려주세요.</code></pre>
+<h3>7. 도메인 이름을 확보한 후 Paddle에 연결합니다.</h3>
+<p><strong>[이 섹션의 핵심] Zeabur HTTPS 도메인 이름이 준비되면 Paddle에 연결합니다. </strong></p>
+<pre><code>이미 Zeabur HTTPS 도메인 이름이 있고 이제 Paddle에 연결하고 싶습니다.
+
+새 패들 공급자를 추가하세요.
+
+환경 변수:
+-PADDLE_ENVIRONMENT
+-PADDLE_API_KEY
+- PADDLE_CNY_PRICE_ID
+-PADDLE_USD_PRICE_ID
+- PADDLE_WEBHOOK_SECRET
+- PUBLIC_BASE_URL
+
+백엔드 요구 사항:
+- POST /api/결제/체크아웃 호출 패들 거래 생성
+- custom_data는 reportId 및 Payment_session_id를 작성합니다.
+- POST /api/webhooks/paddle 검증 패들 서명
+- 거래만 수락하세요. 잠금 해제가 완료되었습니다.
+- 실패, 취소, 만료는 잠금 해제되지 않습니다.
+- 웹훅 반복 전송은 멱등성이 있어야 합니다.
+- 가격 ID, 금액, 통화가 일치하지 않아 잠금 해제할 수 없습니다.</code></pre>
+<h3>8. 왜 Zeabur 502인지 확인해보세요</h3>
+<p><strong>【이 섹션의 핵심】502를 만나면 위치 확인을 위해 Zeabur 로그를 Codex에 게시하세요. </strong></p>
+<pre><code>Zeabur가 배포된 후 웹사이트를 열면 502가 표시됩니다.
+
+이것은 Zeabur 로그입니다:
+[포스트 로그]
+
+확인하세요:
+1. package.json 시작 스크립트
+2. 서버가 process.env.PORT를 수신하는지 여부
+3. 호스트가 0.0.0.0인지 여부
+4. 빌드 후 정적 파일 경로가 올바른가요?
+5. 환경변수 부족으로 프로세스가 종료되는지 여부
+
+직접 고쳐주세요.</code></pre>
+<h3>9. 결제 후 패들이 잠금 해제되지 않는 이유 확인</h3>
+<p><strong>【이 섹션의 핵심】결제 후에도 잠금이 해제되지 않으면 Paddle webhook과 Zeabur 로그를 동시에 확인하세요. </strong></p>
+<pre><code>결제 후 패들 페이지가 잠금 해제되지 않습니다.
+
+나는 다음 정보를 가지고 있습니다:
+- 패들 거래 ID : [입력]
+- 결제 세션 ID: [입력]
+- 보고서 ID: [입력]
+- Zeabur 로그 : [포스트 로그]
+- 패들 웹훅 로그: [포스트 로그]
+
+확인하세요:
+1. 웹훅 수신 여부
+2. 웹훅 서명이 검증되었나요?
+3. event_type이 transaction.completed인지 여부
+4. custom_data에 Payment_session_id 및 reportId가 포함되어 있는지 여부
+5. 스토어 파일 쓰기 성공 여부
+6. 프론트엔드에서 급여를 받을지 여부를 투표합니다.</code></pre>
+<h3>10. 온라인 접속 전 보안 감사</h3>
+<p><strong>[이 섹션의 핵심] 온라인에 접속하기 전에 비밀, 서명 확인, 권한 및 우회 위험을 중앙에서 확인합니다. </strong></p>
+<pre><code>온라인에 접속하기 전에 보안 감사를 수행하십시오.
+
+핵심 사항:
+- 공개파일의 비밀유출 여부
+- .env가 git에 의해 추적되는지 여부
+- API 키가 백엔드 process.env에만 있는지 여부
+- 웹훅의 서명 확인 여부
+- 잘못된 서명은 잠금 해제할 수 없습니다.
+- 중복된 Webhook은 반복적으로 발급되지 않습니다.
+- 결제 없이는 전체 보고서에 액세스할 수 없습니다.
+- 동일한 액세스 토큰으로는 다른 사람의 ReportId를 잠금 해제할 수 없습니다.
+
+문제를 나열하고 수정하세요.</code></pre>
+<h3>11. 보고서를 제품과 비슷하게 만들기</h3>
+<p><strong>【이 섹션의 핵심】기본 링크가 실행된 후 Codex가 보고 경험을 최적화하도록 하세요. </strong></p>
+<pre><code>유료 제품처럼 보이도록 전체 보고서 페이지를 최적화하세요.
+
+요구사항:
+- 첫 화면에서 핵심 결론과 레이더를 확인하세요
+- 심리적 프로파일링이 주요 판매 포인트입니다.
+- 긴 글이 아닌 다방향 짧은 모듈
+- 급여 및 채용 시장 설명이 제거되었습니다.
+- 성격 특성, 적합한 직업 유형, 개발 경로 및 위험 경계에 중점을 둡니다.
+- 대체 직업은 원클릭으로 전환할 수 있지만, 다시 잠글 수는 없습니다.
+- 보고서를 저장할 때 레이아웃이 잘리지 않습니다.</code></pre>
+<h3>12. Codex를 과하게 사용하지 마세요.</h3>
+<p><strong>【이 절의 핵심】작은 변경만 하려는 경우 Codex의 수정 범위를 명확하게 제한해야 합니다. </strong></p>
+<p>Codex가 너무 많이 변경되었다고 생각되면 다음 단락을 사용하십시오.</p>
+<pre><code>새로운 기능 추가를 중단해주세요.
+이번에는 제가 지적한 문제만 수정하겠습니다.
+불필요한 파일을 리팩터링하지 마세요.
+시각적 스타일을 변경하지 마십시오.
+기존 기능을 제거하지 마세요.
+계속하기 전에 어떤 파일을 변경할지 설명해 주세요.</code></pre>
+<h3>13. 매번 끝날 때마다 확인이 필요합니다</h3>
+<p><strong>【이 섹션의 핵심】 각 수정 후에 Codex는 확인을 실행하고 결과를 설명해야 합니다. </strong></p>
+<p>각 작업이 끝나면 다음을 추가하세요.</p>
+<pre><code>완료되면 다음을 실행하세요.
+- npm 실행 유형 검사
+- npm 실행 빌드
+
+프로젝트에 이러한 명령이 없는 경우 대체 확인 방법을 설명해 주세요.
+마지막으로 변경된 사항과 이를 수동으로 테스트하는 방법을 요약해 주세요.</code></pre>
+<h3>사용 제안</h3>
+<p><strong>【이 섹션의 핵심】한 번에 하나의 템플릿만 붙여넣고 다음 단계로 진행하기 전에 승인이 통과될 때까지 기다립니다. </strong></p>
+<p>초보자를 위한 가장 안정적인 방법은 다음과 같습니다.</p>
+<ol>
+<li>한 번에 하나의 프롬프트 단어만 게시하십시오.</li>
+<li>코덱스가 수정될 때까지 기다립니다.</li>
+<li>달리세요.</li>
+<li>화면 상태를 설명하거나 오류를 게시합니다.</li>
+<li>다음 단계로 이동합니다.</li>
+</ol>
+<p>&quot;완벽한 웹사이트 + 결제 승인 + 배포 + 다국어 + 아트 업그레이드&quot;를 한꺼번에 요구하지 마세요. 그런 식으로 실패하면 어느 단계가 깨졌는지 알기가 어렵습니다.</p></article>
+<article class="tutorial-chapter" id="chapter-07"><div class="chapter-kicker">Chapter 07</div><h1>07. 라이브 체크리스트 시작</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-07-launch.webp" alt="출시 체크리스트 챕터 아트" loading="lazy" /></figure>
+<p><strong>[이 장의 핵심] 온라인에 접속하기 전에 제품 프로세스, GitHub, Zeabur, Paddle, 환경 변수 및 결제 보안을 하나씩 확인하십시오. </strong></p>
+<p>온라인에 접속하기 전에 &quot;페이지가 아름다운지 아닌지&quot;만 보지 마십시오. 유료사이트에서 가장 중요한 점은 사용자가 결제를 완료하고 결제 후 물건을 받을 수 있으며, 결제하지 않은 사람은 우회할 수 없다는 점이다.</p>
+<p>이 목록을 하나씩 살펴보세요.</p>
+<blockquote>💡 <strong>왜 이러는 걸까요#  </strong></blockquote>
+<blockquote>유료 웹사이트의 위험성은 페이지의 시각적인 모습에만 국한되지 않습니다. 주문, 웹훅, 키, 잠금해제 권한 중 하나라도 오류가 있는 경우, 사용자는 &#x27;결제했지만 볼 수 없음&#x27; 또는 &#x27;결제하지 않았지만 볼 수 없음&#x27; 문제가 발생할 수 있습니다.</blockquote>
+<h3>1. 기본 기능</h3>
+<p><strong>[이 섹션의 핵심] 먼저 사용자가 홈 페이지에서 보고서 페이지로 이동할 수 있는지 확인합니다. </strong></p>
 <ul>
-<li>[ ] 퀴즈를 시작할 수 있다.</li>
-<li>[ ] 끝까지 답변할 수 있다.</li>
-<li>[ ] 무료 인트로 리포트에 실질적인 내용이 있다.</li>
-<li>[ ] 미결제 상태에서 전체 리포트가 보이지 않는다.</li>
-<li>[ ] 결제 후 자동으로 잠금 해제된다.</li>
+<li>[ ] 홈페이지를 열 수 있습니다.</li>
+<li>[ ] 사용자가 퀴즈를 시작할 수 있습니다.</li>
+<li>[ ] 사용자는 모든 질문을 완료할 수 있습니다.</li>
+<li>[ ] 응답 후 <code>reportId</code>를 생성합니다.</li>
+<li>[ ] 보고서의 무료 소개 버전이 표시될 수 있습니다.</li>
+<li>[ ] 미납 시 전체 보고서가 잠깁니다.</li>
+<li>[ ] 결제 버튼을 누르면 결제 세션을 생성할 수 있습니다.</li>
+<li>[ ] 결제 성공 후 자동으로 잠금이 해제될 수 있습니다.</li>
+<li>[ ] 페이지를 새로 고친 후에도 잠금 해제된 보고서를 열 수 있습니다.</li>
+<li>[ ] 브라우저를 변경하거나 토큰 없이는 다른 사람의 전체 보고서를 볼 수 없습니다.</li>
 </ul>
-<h3>Paddle</h3>
+<h3>2. Codex 배송검사</h3>
+<p><strong>【이 섹션의 핵심】Codex가 기본 검사를 실행하고 오류 없이 온라인 상태가 되도록 합니다. </strong></p>
+<p>Codex를 실행해 보세요:```bash</p>
+<p>npm run typecheck</p>
+<p>npm run build</p>
+<pre><code>
+실패하면 열심히 온라인에 접속하지 마십시오. 오류를 Codex에 다시 게시하세요.
+</code></pre>
+<p>이것은 npm 실행 빌드의 버그입니다. 이를 해결하도록 도와주세요.</p>
+<p>[게시 오류]</p>
+<pre><code>
+## 3. 공문서 조사
+
+**【이 섹션의 핵심】사용자가 볼 수 있는 파일에 비밀이 없는지 확인하세요. **
+
+사용자는 다음 파일을 볼 수 있습니다.
+</code></pre>
+<p>공개/*</p>
+<p>거리/*</p>
+<p>프론트엔드 패키지 js/css</p>
+<pre><code>
+다음이 포함되어 있지 않은지 확인하세요.
+
+- 패들 API 키.
+- 웹훅 비밀.
+- 관리 토큰.
+- `.env.payment.local` 콘텐츠.
+- 개인 테스트 주문 정보.
+
+Codex에 문의하여 다음 사항을 확인할 수 있습니다.
+</code></pre>
+<p>API 키, 웹훅 시크릿, 어드민 토큰이 유출되지 않았는지 확인하기 위해 퍼블릭, dist, 프론트엔드 소스코드를 스캔해주세요.</p>
+<pre><code>
+## 4. GitHub 확인
+
+**【이 섹션의 핵심】Zeabur가 GitHub에서 최신 보안 버전을 다운로드할 것인지 확인하세요. **
+
+Zeabur는 GitHub에서 코드를 가져오므로 배포하기 전에 저장소 상태를 확인하세요.
+
+- [ ] GitHub 저장소가 생성되었습니다.
+- [ ] 이 시스템의 최신 수정 사항이 커밋되었습니다.
+- [ ] 이 기계의 최신 수정 사항이 푸시되었습니다.
+- [ ] 최신 README 및 코드는 GitHub 페이지에서 확인하실 수 있습니다.
+- [ ] .env가 업로드되지 않았습니다.
+- [ ] .env.pay.local이 업로드되지 않았습니다.
+- [ ] Paddle API 키, 웹훅 비밀, 관리자 토큰이 창고에 표시되지 않습니다.
+- [ ] GitHub 창고 주소를 Zeabur에 복사하여 사용할 수 있습니다.
+
+## 5. 지아부르 검사
+
+**【이 섹션의 핵심】온라인 서비스를 시작하고 액세스할 수 있으며 결제 정보를 저장할 수 있는지 확인하세요. **
+
+공개적으로 액세스 가능한 HTTPS 도메인 이름을 얻으려면 먼저 이 작업을 수행하십시오. Paddle의 웹사이트 확인, 기본 결제 링크 및 웹훅에는 모두 이 도메인 이름이 필요합니다.
+
+- [ ] GitHub 저장소가 최신 코드입니다.
+- [ ] Zeabur는 올바른 저장소와 분기를 연결합니다.
+- [ ] 빌드 명령은 `npm run build`입니다.
+- [ ] 시작 명령은 `npm run start`입니다.
+- [ ] 서비스 수신 `process.env.PORT`.
+- [ ] 호스트는 `0.0.0.0`를 사용합니다.
+- [ ] `/api/health`에 액세스할 수 있습니다.
+- [ ] `/monetization.json`에 액세스할 수 있습니다.
+- [ ] `/data` 볼륨 세트.
+- [ ] `PAYMENT_STORE_FILE=/data/payment-store.json`.
+- [ ] `https://你的项目.zeabur.app`와 같은 Zeabur HTTPS 도메인 이름을 얻었습니다.
+
+## 6. 패들 점검
+
+**【이 섹션의 핵심】Paddle 계정, 도메인 이름, 제품, 가격 및 웹훅이 모두 준비되었는지 확인하세요. **
+
+Zeabur 웹사이트가 열리면 Paddle을 하세요. 도메인 이름이 없을 때 결제를 강요하지 마세요.
+
+- [ ] 패들 온보딩이 완료되었습니다.
+- [ ] 웹사이트 도메인 이름이 확인되었습니다.
+- [ ] 가격 페이지는 Zeabur 도메인 이름 아래의 공개 페이지를 작성합니다.
+- [ ] 서비스 약관 / 개인 정보 보호 정책 / 환불 정책은 모두 경로가 포함된 URL을 사용합니다.
+- [ ] 기본 결제 링크는 확인된 도메인 이름으로 설정됩니다.
+- [ ] 제품이 생성되었습니다.
+- [ ] 일회성 가격이 설정되었습니다.
+- [ ] CNY 가격 ID가 Zeabur 환경 변수에 채워집니다.
+- [ ] USD 가격 ID가 Zeabur 환경 변수에 채워집니다.
+- [ ] API 키는 올바른 환경(샌드박스 또는 라이브)입니다.
+- [ ] 웹훅 대상은 `https://你的域名/api/webhooks/paddle`를 가리킵니다.
+- [ ] Webhook 비밀이 Zeabur 변수에 채워집니다.
+- [ ] `transaction.completed` 이벤트가 선택되었습니다.
+- [ ] 샌드박스 결제로 인해 웹훅이 실행될 수 있습니다.
+
+## 7. 환경변수 확인
+
+**【이 섹션의 핵심】배포 플랫폼의 변수가 완전하고 환경이 일관성이 있는지 확인합니다. **
+
+최소한 Zeabur 변수. 처음으로 도메인 이름을 얻으려는 경우 Paddle 관련 변수를 비워 두거나 자리 표시자 값을 사용할 수 있습니다. Paddle이 제품, 가격, 웹훅을 작성하기 전에 이를 기다립니다.```bash
+PAYMENT_SERVER_HOST=0.0.0.0
+PAYMENT_STORE_FILE=/data/payment-store.json
+PUBLIC_BASE_URL=https://你的域名
+CORS_ORIGIN=https://你的域名
+PADDLE_ENVIRONMENT=sandbox
+PADDLE_API_KEY=...
+PADDLE_CNY_PRICE_ID=pri_...
+PADDLE_USD_PRICE_ID=pri_...
+PADDLE_WEBHOOK_SECRET=...
+PADDLE_ALLOW_UNSIGNED_WEBHOOKS=false</code></pre>
+<p>라이브로 전환할 때 모든 샌드박스를 라이브로 교체하세요. 그것들을 섞지 마십시오.</p>
+<h3>8. 유료보안점검</h3>
+<p><strong>【이 섹션의 핵심】실제 결제가 성공한 경우에만 잠금이 해제된다는 점을 확인하세요. </strong></p>
+<p>최소한 다음 시나리오를 테스트하십시오.</p>
 <ul>
-<li>[ ] Website approval 완료.</li>
-<li>[ ] Default payment link 설정.</li>
-<li>[ ] Product 는 one-time digital product.</li>
-<li>[ ] Price 는 subscription 이 아니다.</li>
-<li>[ ] Webhook URL 이 맞다.</li>
-<li>[ ] failed / canceled / duplicate webhook 으로 잘못 해제되지 않는다.</li>
+<li>[ ] URL과 <code># paid=true</code>는 잠금 해제되지 않습니다.</li>
+<li>[ ] 세션 ID를 임의로 변경하면 잠금이 해제되지 않습니다.</li>
+<li>[ ] 오류 웹훅 비밀이 잠금 해제되지 않습니다.</li>
+<li>[ ] 중복된 웹훅이 여러 번 발행되지 않습니다.</li>
+<li>[ ] <code>transaction.payment_failed</code>는 잠금 해제되지 않습니다.</li>
+<li>[ ] <code>transaction.completed</code>가 잠금 해제됩니다.</li>
+<li>[ ] 동일한 주문에 대해 다른 보고서 ID를 잠금 해제할 수 없습니다.</li>
 </ul>
-<h3>Zeabur</h3>
+<h3>9. 실제 사용자 경험 확인</h3>
+<p><strong>【이 섹션의 핵심】휴대폰과 컴퓨터를 사용하여 전체 과정을 한 번만 진행하세요. </strong></p>
+<p>휴대폰에서 한 번, 컴퓨터에서 한 번 실행하세요.</p>
 <ul>
-<li>[ ] <code>PAYMENT_SERVER_HOST=0.0.0.0</code>.</li>
-<li>[ ] <code>/data</code> volume 이 있다.</li>
-<li>[ ] <code>PUBLIC_BASE_URL</code> 과 <code>CORS_ORIGIN</code> 이 운영 도메인이다.</li>
-<li>[ ] <code>/api/health</code> 가 secret 을 표시하지 않는다.</li>
+<li>[ ] 홈페이지 카피가 이해가 됩니다.</li>
+<li>[ ] 시작버튼이 눈에 띕니다.</li>
+<li>[ ] 답변 페이지에서 계속 슬라이드할 필요가 없습니다.</li>
+<li>[ ] 전문적인 느낌의 무료 보고서입니다.</li>
+<li>[ ] 결제버튼이 선명해졌습니다.</li>
+<li>[ ] 결제 후 대기 프롬프트가 있습니다.</li>
+<li>[ ] 잠금 해제 후 전체 보고서 레이아웃이 안정적입니다.</li>
+<li>[ ] 보고서 저장이 실패하거나 잘리지 않습니다.</li>
 </ul>
-<h3>마지막</h3>
-<p>sandbox 에서 통과한 뒤 live 로 전환합니다. live API key, live price id, live webhook secret, Paddle environment 를 함께 확인하세요.</p></article></section></main></body></html>
+<h3>10. 온라인 접속 전 시험장 입구를 닫아주세요</h3>
+<p><strong>【이 섹션의 핵심】공식 출시 전에 모든 테스트 바로가기를 닫습니다. </strong></p>
+<p>이러한 테스트 기능이 있는 경우 라이브로 전환하기 전에 해당 기능을 끄십시오.</p>
+<ul>
+<li>[ ] 버튼을 누르면 결과 페이지로 바로 이동합니다.</li>
+<li>[ ] 0위안 테스트 잠금 해제 버튼.</li>
+<li>[ ] 모의결제 버튼.</li>
+<li>[ ] 관리자 구성 항목.</li>
+<li>[ ] 모든 디버그 패널.</li>
+</ul>
+<p>일부러 보관하고 싶다면 적어도 일반 사용자가 볼 수 없는 곳에 보관하세요.</p>
+<h3>11. 접속 후 첫날 시청해야 할 것</h3>
+<p><strong>【이 섹션의 핵심】 출시 첫날에는 결제 링크 및 잠금 해제 실패에 중점을 둡니다. </strong></p>
+<p>온라인 접속 후 방문 횟수만 보지 마세요. 하이라이트:</p>
+<ul>
+<li>퀴즈를 시작한 사람은 몇 명입니까?</li>
+<li>퀴즈를 완료한 사람은 몇 명입니까?</li>
+<li>결제를 클릭한 사람 수.</li>
+<li>Paddle 체크아웃이 켜져 있나요?</li>
+<li>웹훅 성공률.</li>
+<li>결제 성공 후 잠금해제 실패는 없나요?</li>
+<li>사용자가 &#x27;유료인데 볼 수 없습니다&#x27;라고 신고한 적이 있나요?</li>
+</ul>
+<p>저가형 제품은 결제링크 오류가 가장 두렵습니다. 첫날에 더 많은 로그를 읽어보세요.</p>
+<h3>한 문장으로 합격</h3>
+<p><strong>【이 섹션의 핵심】알 수 없는 사용자는 테스트를 완료하고 비용을 지불하며 자동으로 전체 보고서를 볼 수 있는 경우에만 온라인에서 성공한 것으로 간주될 수 있습니다. </strong></p>
+<p>안정적으로 할 수 있을 때:</p>
+<pre><code>알 수 없는 사용자가 웹사이트 열기 -&gt; 퀴즈 완료 -&gt; 결제 -&gt; 자동으로 전체 보고서 보기</code></pre>
+<p>그 때는 정말 온라인이죠.</p></article></section></main></body></html>

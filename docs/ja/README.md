@@ -1,13 +1,13 @@
-# チュートリアル目次
-[简体中文](../../README.md) · [繁體中文](../../README.zh-TW.md) · [English](../../README.en.md) · **日本語** · [한국어](../../README.ko.md)
-![Tutorial cover](../../assets/brand/tutorial-hero.webp)
+# チュートリアルディレクトリ
+**簡体字中国語** · [繁体字中国語](../../README.zh-TW.md) · [英語](../../README.en.md) · [日本語](../../README.ja.md) · [한국어](../../README.ko.md)
+![チュートリアルカバー](../../assets/brand/tutorial-hero.webp)
 
-1. [プロダクトの流れを分解する](01-product-flow.md)
-2. [Codex にサイトを作らせる進め方](02-codex-build-workflow.md)
-3. [GitHub にアップロードする](03-upload-to-github.md)
-4. [先に Zeabur へデプロイする](04-zeabur-deployment.md)
-5. [Paddle 決済と自動解放](05-payment-unlock.md)
-6. [Codex プロンプト集](06-prompt-templates.md)
-7. [公開前チェックリスト](07-launch-checklist.md)
+1. 【プロダクトフローの解体方法】(01-product-flow.md)
+2. [Codex で 0 から Web サイトを構築する方法](02-codex-build-workflow.md)
+3. [GitHubへアップロード](03-upload-to-github.md)
+4. [Zeabur にデプロイして検証可能なドメイン名を取得](04-zeabur-deployment.md)
+5. [ドメイン名を取得したら、Paddle 支払いを受け入れ、自動的にロックを解除します] (05-payment-unlock.md)
+6. [直接コピーできるCodexプロンプトワード](06-prompt-templates.md)
+7. [発売前チェックリスト](07-launch-checklist.md)
 
-[ホームへ戻る](../../README.ja.md)
+[ホームページに戻る](../../README.md)

@@ -653,7 +653,7 @@ th {
 
 .star-callout-featured {
   position: relative;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: auto minmax(0, 1fr);
   gap: 18px;
   align-items: center;
   margin-top: 26px;
@@ -705,6 +705,7 @@ th {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  grid-column: 1 / -1;
   min-height: 46px;
   border: 1px solid rgba(255, 255, 255, 0.26);
   background: var(--red);

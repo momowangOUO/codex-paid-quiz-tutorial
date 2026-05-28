@@ -1,72 +1,237 @@
-# 01. Design the Product Flow
+# 01. How to break down the product process
 
 ![Product flow chapter art](../../assets/chapters/chapter-01-flow.webp)
-**Goal: define the user journey before asking Codex to write code.** A paid quiz site is much easier to build when every screen has one job.
+**[Core of this chapter] Before writing code, first clearly break down "which pages the user will see, what each step does, and which step requires a backend." **
 
-The shortest useful path is:
+Before you start writing code, you only need to answer one question:
 
 ```text
-Landing page -> quiz -> free intro report -> payment -> full report -> save or revisit report
-```
+What screens will users go through from entering the site to paying to unlock?
+```This chapter will not talk about the architecture diagram, but first break the product into small tasks that Codex can understand.
 
-Do not begin with accounts, subscriptions, coupon systems, or dashboards. First prove that one person can answer the quiz, pay once, and unlock the right report.
+> 💡 **Why do this#  **
+> Codex requires clear task boundaries. The product process is like a road map: first know where users come in, where they answer questions, where they pay, and where they read reports, so that when writing code later, you won’t make up for it here and there.
 
-## Screen responsibilities
+## First draw the shortest user path
 
-| Screen | What the user sees | Main job | Backend needed? |
+**[Core of this section] First write the shortest route for users from the home page to the complete report. **
+
+The shortest path to a paid quiz site is:
+
+```text
+Home page
+  -> Answer page
+  -> Free introductory report
+  -> Payment page
+  -> Full report
+  -> Save or open report again
+```You don't need to log in yet. The most important thing about low-priced one-time reports is to reduce friction.
+
+> 💡 **Why do this#  **
+> Login, membership, backend, and discount codes can all be added later. The first version first allows users to complete a complete purchase, just like confirming that the counter can really collect money before decorating more shelves.
+
+## What to do on each page
+
+**[Core of this section] Each page is only responsible for one main task to avoid the first version becoming too heavy. **
+
+### Home
+
+The homepage is only responsible for getting users started.
+
+Need to have:
+
+- One sentence describing what problem this quiz helps users solve.
+- Start button.
+- Optional: language switching, case entry.
+
+Don’t write “pay to unlock” or “buy now” at the beginning. Users haven’t invested time yet, and withdrawing money too early will reduce the completion rate.
+
+### Answer page
+
+The answer page is only responsible for allowing users to complete the questions.
+
+Need to have:
+
+- Current question number.
+- Question.
+- Options.
+- Previous question/Next question.
+- Progress prompts.
+- Pictures or visual aids.
+
+Newbies are advised to do a 5-question test version first, and then expand it to 48 questions after the process is passed.
+
+### Free Introduction Report
+
+The free version is not meant to titillate, nor is it empty talk. It makes users think you are professional.
+
+Can display:
+
+- Core psychological drivers.
+- Behavioral tendencies and potential stuck points.
+- The gap between self-perception and external performance.
+- Which directions will the full report continue to analyze.
+
+Don't show:
+
+- Complete Career Answers.
+- Full path.
+- Detailed action plan.
+- Full report that can be saved.
+
+### Paywall
+
+Paywalls only allow users to pay.
+
+Need to have:
+
+- Current price.
+- A clear payment button.
+- Automatically unlock instructions after payment.
+- Payment failed or pending status.
+
+Don’t cram too many payment method buttons at once. The backend can recommend an entrance based on the region.
+
+### Full report
+
+The complete report should make users feel that "this is not just a random piece of text".
+
+Can contain:
+
+- Career Radar.
+- Psychological profiling.
+- Suitable career type.
+- Multiple development routes.
+- Risk boundaries.
+- Alternate directions.
+- Save the report.
+
+## Submit the form to Codex
+
+**[Core of this section] Organize the pages, user actions, and back-end participation methods into a table, and then submit it to Codex. **
+
+Organize your product process into this table and post it to Codex:
+
+| Page | What users see | What users can do | Should the backend be involved |
 | --- | --- | --- | --- |
-| Landing page | Value proposition and start button | Start the quiz | Usually no |
-| Quiz | Question, options, progress | Collect answers | Usually no |
-| Free intro report | Partial professional analysis | Build trust | Needs a reportId |
-| Paywall | Price, payment button, waiting state | Create payment session | Yes |
-| Full report | Radar, profile, career directions, routes | Deliver paid value | Yes, via access token |
+| Home | Product Description, Start Button | Start Quiz | Not Required |
+| Answer page | Questions and options | Answer, next question | Not required unless you want to save it in real time |
+| Free report | Partial analysis, unlock button | Click to pay | Need to create payment session |
+| Paddle checkout | Payment form | Payment | Paddle processing |
+| Full report | All analysis | View, save | Requires verification access token |
 
-## What the free report should contain
+## What is reportId?
+**【Core of this section】`reportId` is the number of a certain test report. **
 
-The free report should not feel like a trick. It should provide real but partial value: core motivation, behavioral tendency, self-perception gap, and what the full report will analyze next. It should not reveal the full career answer, full action plan, downloadable report, or every matching rule.
+`reportId` is the number of a report.
 
-## Three objects to define early
+After the user answers the question, the front end or the back end generates a `reportId`, and all subsequent actions revolve around it:
 
-### reportId
+```text
+This answer -> reportId
+This order -> reportId
+Unlock this time -> reportId
+This full report -> reportId
+```Without `reportId`, the payment platform tells you "someone paid" and you don't know which report to unlock.
 
-`reportId` identifies one quiz result. Answers, payments, unlocks, and revisits should all point to the same report.
+> 💡 **Why do this#  **
+> `reportId` is like the pickup number. When a user orders a meal, pays for it, and comes back to pick up the meal, the same number must be used to correspond to the same content.
 
-### payment session
+## What is payment session?
+**[Core of this section] `payment_session` is a record of a certain payment attempt. **
 
-A `payment_session` records one payment attempt. A user may close checkout, retry, or pay successfully while the frontend never returns. This state belongs on the backend.
+`payment_session` is a payment attempt.
 
-```json
+A user might:
+
+- Click to pay but close the page.
+- Payment failed.
+- Retry payment.
+- The payment was successful but the front end did not jump back.
+
+So don't just rely on front-end state. Backend to save:```json
 {
   "sessionId": "pay_xxx",
   "reportId": "rep_xxx",
   "provider": "paddle",
+  "providerOrderId": "txn_xxx",
   "status": "pending"
+}
+```After successful payment, change to:```json
+{
+  "status": "paid",
+  "paidAt": "2026-05-28T00:00:00.000Z"
 }
 ```
 
-### access token
+> 💡 **Why do this#  **
+> A report may have multiple payment attempts. The user may close the payment page for the first time, but succeed the second time. `payment_session` can record these attempts separately to avoid status confusion.
 
-An `accessToken` is the key to the paid report. Do not unlock a report merely because a reportId was paid once; otherwise another user who finds the reportId may see the paid content.
+## What is access token?
+**【Core of this section】`accessToken` is the key to open the complete report after successful payment. **
 
-## Prompt for Codex
+`accessToken` is the key to complete reporting.
+
+After the payment is successful, the backend sends an unguessable token to the report. The next time the user comes back, the front end will ask the back end with the token:
 
 ```text
-I want to build a one-time paid quiz report website.
+Does this token have permission to view the report reportId?
+```The full report will be displayed only after the backend says yes.
 
-User path: landing page -> quiz -> free intro report -> payment -> full report.
+> 💡 **Why do this#  **
+> You should not only rely on "someone has paid for this reportId" to display the complete report, otherwise others may be able to view the same reportId. `accessToken` is like an exclusive key, only the person with the key can open it.
 
-First version: no login, no subscription, no coupons.
+## You can do nothing in the first version
 
-Please design:
-1. frontend page states
-2. reportId generation and storage
-3. payment session model
-4. access token unlock logic
-5. mock payment flow for local testing
+**【Core of this Section】The first version only retains one-time payment to unlock, and if you don’t do complex functions that will slow down the launch. **
 
-Output the file plan first, then implement the minimum version.
+In order to go online faster, you can skip the first version:
+
+- User registration.
+- Backend CMS.
+- Discount code.
+- Subscribe.
+- Complex database.
+- Automatic emails.
+- Multiple product packages.
+
+You first need to make a one-time payment to unlock it, and then add more slowly.
+
+> 💡 **Why do this#  **
+> What needs to be verified most in the early stages of the product is "Is anyone willing to complete the test and pay# " It is more valuable to run through this main line first than to do many peripheral functions at the beginning.
+
+## Product process prompts for Codex
+
+**[Core of this section] Turn the already dismantled product process directly into prompt words that can be executed by Codex. **
+
+Copy this:
+
+```text
+I want to make a quiz site that unlocks reports for a one-time fee.
+
+Please design the code according to this user path:
+Home -> Answer Page -> Free Introduction Report -> Payment -> Full Report
+
+For the first version, no login, no subscription, no discount code is required.
+
+Please help me design:
+1. Front-end page status
+2. How to generate and save reportId
+3. payment session data structure
+4. access token unlocking logic
+5. Mock payment test process
+
+Please output the file plan first, and then implement the minimum version.
 ```
 
-## Completion standard
+## Completion criteria for this chapter
 
-You should be able to explain which screens exist, which step needs the backend, why URL parameters cannot unlock paid content, and what `reportId`, `payment_session`, and `accessToken` each do.
+**【Core of this Section】After completing this chapter, you should be able to explain the entire paid unlocking process in Mandarin. **
+
+When finished you should be able to clearly say:
+
+- Which pages users go through.
+- Which step requires backend.
+- Why can't we just rely on the front end to determine that payment has been made?
+- What are `reportId`, `payment_session`, and `accessToken` responsible for?
+The next chapter will start making Codex actually write code.

@@ -1,310 +1,1598 @@
 <!doctype html>
 <html lang="en">
 <head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Codex Paid Site Guide - English Tutorial" /><title>English Tutorial - Codex Paid Site Guide</title><link rel="icon" type="image/png" href="./assets/brand/tutorial-mascot-icon.png" /><link rel="stylesheet" href="./site.css" /></head>
-<body><header class="tutorial-hero compact-hero"><nav class="topbar"><a class="brand" href="./index.html">Codex Paid Site Guide</a><a href="./index.html">Choose language</a><a href="https://github.com/momowangOUO/codex-paid-quiz-tutorial" target="_blank" rel="noreferrer">⭐ Star the repo</a></nav><div class="tutorial-hero-grid"><div><p class="eyebrow">Full Tutorial</p><h1>Full Tutorial</h1><p class="lead">This page loads the complete chapter content for the selected language. It is not a shortened version.</p><div class="star-callout star-callout-featured"><div class="star-icon" aria-hidden="true">⭐</div><div class="star-copy"><strong>If this guide saved you from even one painful detour</strong><span>Please give the GitHub repository a free Star. It costs you nothing, but it helps this guide reach more builders trying to ship their first paid website.</span></div><a class="star-button" href="https://github.com/momowangOUO/codex-paid-quiz-tutorial" target="_blank" rel="noreferrer">Support with a free Star →</a></div></div><img src="./assets/brand/tutorial-hero.webp" alt="Tutorial hero artwork" /></div></header><main class="tutorial-shell"><aside class="tutorial-sidebar"><div class="sidebar-inner"><p class="eyebrow">Chapters</p><a href="#chapter-01"><span>01</span>Design the Product Flow</a>
-<a href="#chapter-02"><span>02</span>Build the Site with Codex</a>
-<a href="#chapter-03"><span>03</span>Upload to GitHub</a>
-<a href="#chapter-04"><span>04</span>Deploy to Zeabur First</a>
-<a href="#chapter-05"><span>05</span>Connect Paddle and Unlock Reports</a>
-<a href="#chapter-06"><span>06</span>Prompt Templates</a>
-<a href="#chapter-07"><span>07</span>Launch Checklist</a></div></aside><section class="tutorial-content"><article class="tutorial-chapter" id="chapter-01"><div class="chapter-kicker">Chapter 01</div><h1>01. Design the Product Flow</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-01-flow.webp" alt="Product flow chapter art" loading="lazy" /></figure>
-<p><strong>Goal: define the user journey before asking Codex to write code.</strong> A paid quiz site is much easier to build when every screen has one job.</p>
-<p>The shortest useful path is:</p>
-<pre><code>Landing page -&gt; quiz -&gt; free intro report -&gt; payment -&gt; full report -&gt; save or revisit report</code></pre>
-<p>Do not begin with accounts, subscriptions, coupon systems, or dashboards. First prove that one person can answer the quiz, pay once, and unlock the right report.</p>
-<h3>Screen responsibilities</h3>
+<body><header class="tutorial-hero compact-hero"><nav class="topbar"><a class="brand" href="./index.html">Codex Paid Site Guide</a><a href="./index.html">Choose language</a><a href="https://github.com/momowangOUO/codex-paid-quiz-tutorial" target="_blank" rel="noreferrer">&#11088; Star the repo</a></nav><div class="tutorial-hero-grid"><div><p class="eyebrow">Full Tutorial</p><h1>Build a Real Paid Website with Codex</h1><p class="lead">This page contains the complete seven-chapter tutorial for this language. It is rebuilt from the same canonical structure as the main version, not a shortened edition.</p><div class="star-callout star-callout-featured"><div class="star-icon" aria-hidden="true">&#11088;</div><div class="star-copy"><strong>If this guide saved you from even one painful detour</strong><span>Please give the GitHub repository a free Star. It costs you nothing, but it helps this guide reach more builders trying to ship their first paid website.</span></div><a class="star-button" href="https://github.com/momowangOUO/codex-paid-quiz-tutorial" target="_blank" rel="noreferrer">Support with a free Star →</a></div></div><img src="./assets/brand/tutorial-hero.webp" alt="Tutorial hero artwork" /></div></header><main class="tutorial-shell"><aside class="tutorial-sidebar"><div class="sidebar-inner"><p class="eyebrow">Chapters</p><a href="#chapter-01"><span>01</span>01. How to break down the product process</a>
+<a href="#chapter-02"><span>02</span>02. How to let Codex help you build a website from 0</a>
+<a href="#chapter-03"><span>03</span>03. First upload to GitHub and prepare to deploy to Zeabur</a>
+<a href="#chapter-04"><span>04</span>04. Deploy to Zeabur and get a verifiable domain name</a>
+<a href="#chapter-05"><span>05</span>05. After you have a domain name, accept Paddle payment and automatically unlock it.</a>
+<a href="#chapter-06"><span>06</span>06. Copyable prompt word template</a>
+<a href="#chapter-07"><span>07</span>07. Go Live Checklist</a></div></aside><section class="tutorial-content"><article class="tutorial-chapter" id="chapter-01"><div class="chapter-kicker">Chapter 01</div><h1>01. How to break down the product process</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-01-flow.webp" alt="Product flow chapter art" loading="lazy" /></figure>
+<p><strong>[Core of this chapter] Before writing code, first clearly break down &quot;which pages the user will see, what each step does, and which step requires a backend.&quot; </strong></p>
+<p>Before you start writing code, you only need to answer one question:</p>
+<pre><code>What screens will users go through from entering the site to paying to unlock# </code></pre>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>Codex requires clear task boundaries. The product process is like a road map: first know where users come in, where they answer questions, where they pay, and where they read reports, so that when writing code later, you won’t make up for it here and there.</blockquote>
+<h3>First draw the shortest user path</h3>
+<p><strong>[Core of this section] First write the shortest route for users from the home page to the complete report. </strong></p>
+<p>The shortest path to a paid quiz site is:</p>
+<pre><code>Home page
+  -&gt; Answer page
+  -&gt; Free introductory report
+  -&gt; Payment page
+  -&gt; Full report
+  -&gt; Save or open report again</code></pre>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>Login, membership, backend, and discount codes can all be added later. The first version first allows users to complete a complete purchase, just like confirming that the counter can really collect money before decorating more shelves.</blockquote>
+<h3>What to do on each page</h3>
+<p><strong>[Core of this section] Each page is only responsible for one main task to avoid the first version becoming too heavy. </strong></p>
+<h4>Home</h4>
+<p>The homepage is only responsible for getting users started.</p>
+<p>Need to have:</p>
+<ul>
+<li>One sentence describing what problem this quiz helps users solve.</li>
+<li>Start button.</li>
+<li>Optional: language switching, case entry.</li>
+</ul>
+<p>Don’t write “pay to unlock” or “buy now” at the beginning. Users haven’t invested time yet, and withdrawing money too early will reduce the completion rate.</p>
+<h4>Answer page</h4>
+<p>The answer page is only responsible for allowing users to complete the questions.</p>
+<p>Need to have:</p>
+<ul>
+<li>Current question number.</li>
+<li>Question.</li>
+<li>Options.</li>
+<li>Previous question/Next question.</li>
+<li>Progress prompts.</li>
+<li>Pictures or visual aids.</li>
+</ul>
+<p>Newbies are advised to do a 5-question test version first, and then expand it to 48 questions after the process is passed.</p>
+<h4>Free Introduction Report</h4>
+<p>The free version is not meant to titillate, nor is it empty talk. It makes users think you are professional.</p>
+<p>Can display:</p>
+<ul>
+<li>Core psychological drivers.</li>
+<li>Behavioral tendencies and potential stuck points.</li>
+<li>The gap between self-perception and external performance.</li>
+<li>Which directions will the full report continue to analyze.</li>
+</ul>
+<p>Don&#x27;t show:</p>
+<ul>
+<li>Complete Career Answers.</li>
+<li>Full path.</li>
+<li>Detailed action plan.</li>
+<li>Full report that can be saved.</li>
+</ul>
+<h4>Paywall</h4>
+<p>Paywalls only allow users to pay.</p>
+<p>Need to have:</p>
+<ul>
+<li>Current price.</li>
+<li>A clear payment button.</li>
+<li>Automatically unlock instructions after payment.</li>
+<li>Payment failed or pending status.</li>
+</ul>
+<p>Don’t cram too many payment method buttons at once. The backend can recommend an entrance based on the region.</p>
+<h4>Full report</h4>
+<p>The complete report should make users feel that &quot;this is not just a random piece of text&quot;.</p>
+<p>Can contain:</p>
+<ul>
+<li>Career Radar.</li>
+<li>Psychological profiling.</li>
+<li>Suitable career type.</li>
+<li>Multiple development routes.</li>
+<li>Risk boundaries.</li>
+<li>Alternate directions.</li>
+<li>Save the report.</li>
+</ul>
+<h3>Submit the form to Codex</h3>
+<p><strong>[Core of this section] Organize the pages, user actions, and back-end participation methods into a table, and then submit it to Codex. </strong></p>
+<p>Organize your product process into this table and post it to Codex:</p>
 <table><tbody>
-<tr><td>Screen</td><td>What the user sees</td><td>Main job</td><td>Backend needed?</td></tr>
-<tr><td>Landing page</td><td>Value proposition and start button</td><td>Start the quiz</td><td>Usually no</td></tr>
-<tr><td>Quiz</td><td>Question, options, progress</td><td>Collect answers</td><td>Usually no</td></tr>
-<tr><td>Free intro report</td><td>Partial professional analysis</td><td>Build trust</td><td>Needs a reportId</td></tr>
-<tr><td>Paywall</td><td>Price, payment button, waiting state</td><td>Create payment session</td><td>Yes</td></tr>
-<tr><td>Full report</td><td>Radar, profile, career directions, routes</td><td>Deliver paid value</td><td>Yes, via access token</td></tr>
+<tr><td>Page</td><td>What users see</td><td>What users can do</td><td>Should the backend be involved</td></tr>
+<tr><td>Home</td><td>Product Description, Start Button</td><td>Start Quiz</td><td>Not Required</td></tr>
+<tr><td>Answer page</td><td>Questions and options</td><td>Answer, next question</td><td>Not required unless you want to save it in real time</td></tr>
+<tr><td>Free report</td><td>Partial analysis, unlock button</td><td>Click to pay</td><td>Need to create payment session</td></tr>
+<tr><td>Paddle checkout</td><td>Payment form</td><td>Payment</td><td>Paddle processing</td></tr>
+<tr><td>Full report</td><td>All analysis</td><td>View, save</td><td>Requires verification access token</td></tr>
 </tbody></table>
-<h3>What the free report should contain</h3>
-<p>The free report should not feel like a trick. It should provide real but partial value: core motivation, behavioral tendency, self-perception gap, and what the full report will analyze next. It should not reveal the full career answer, full action plan, downloadable report, or every matching rule.</p>
-<h3>Three objects to define early</h3>
-<h4>reportId</h4>
-<p><code>reportId</code> identifies one quiz result. Answers, payments, unlocks, and revisits should all point to the same report.</p>
-<h4>payment session</h4>
-<p>A <code>payment_session</code> records one payment attempt. A user may close checkout, retry, or pay successfully while the frontend never returns. This state belongs on the backend.</p>
+<h3>What is reportId?</h3>
+<p><strong>【Core of this section】<code>reportId</code> is the number of a certain test report. </strong></p>
+<p><code>reportId</code> is the number of a report.</p>
+<p>After the user answers the question, the front end or the back end generates a <code>reportId</code>, and all subsequent actions revolve around it:</p>
+<pre><code>This answer -&gt; reportId
+This order -&gt; reportId
+Unlock this time -&gt; reportId
+This full report -&gt; reportId</code></pre>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote><code>reportId</code> is like the pickup number. When a user orders a meal, pays for it, and comes back to pick up the meal, the same number must be used to correspond to the same content.</blockquote>
+<h3>What is payment session?</h3>
+<p><strong>[Core of this section] <code>payment_session</code> is a record of a certain payment attempt. </strong></p>
+<p><code>payment_session</code> is a payment attempt.</p>
+<p>A user might:</p>
+<ul>
+<li>Click to pay but close the page.</li>
+<li>Payment failed.</li>
+<li>Retry payment.</li>
+<li>The payment was successful but the front end did not jump back.</li>
+</ul>
+<p>So don&#x27;t just rely on front-end state. Backend to save:```json</p>
+<p>{</p>
+<p>  &quot;sessionId&quot;: &quot;pay_xxx&quot;,</p>
+<p>  &quot;reportId&quot;: &quot;rep_xxx&quot;,</p>
+<p>  &quot;provider&quot;: &quot;paddle&quot;,</p>
+<p>  &quot;providerOrderId&quot;: &quot;txn_xxx&quot;,</p>
+<p>  &quot;status&quot;: &quot;pending&quot;</p>
+<p>}</p>
 <pre><code>{
-  &quot;sessionId&quot;: &quot;pay_xxx&quot;,
-  &quot;reportId&quot;: &quot;rep_xxx&quot;,
-  &quot;provider&quot;: &quot;paddle&quot;,
-  &quot;status&quot;: &quot;pending&quot;
+  &quot;status&quot;: &quot;paid&quot;,
+  &quot;paidAt&quot;: &quot;2026-05-28T00:00:00.000Z&quot;
 }</code></pre>
-<h4>access token</h4>
-<p>An <code>accessToken</code> is the key to the paid report. Do not unlock a report merely because a reportId was paid once; otherwise another user who finds the reportId may see the paid content.</p>
-<h3>Prompt for Codex</h3>
-<pre><code>I want to build a one-time paid quiz report website.
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>A report may have multiple payment attempts. The user may close the payment page for the first time, but succeed the second time. <code>payment_session</code> can record these attempts separately to avoid status confusion.</blockquote>
+<h3>What is access token?</h3>
+<p><strong>【Core of this section】<code>accessToken</code> is the key to open the complete report after successful payment. </strong></p>
+<p><code>accessToken</code> is the key to complete reporting.</p>
+<p>After the payment is successful, the backend sends an unguessable token to the report. The next time the user comes back, the front end will ask the back end with the token:</p>
+<pre><code>Does this token have permission to view the report reportId# </code></pre>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>You should not only rely on &quot;someone has paid for this reportId&quot; to display the complete report, otherwise others may be able to view the same reportId. <code>accessToken</code> is like an exclusive key, only the person with the key can open it.</blockquote>
+<h3>You can do nothing in the first version</h3>
+<p><strong>【Core of this Section】The first version only retains one-time payment to unlock, and if you don’t do complex functions that will slow down the launch. </strong></p>
+<p>In order to go online faster, you can skip the first version:</p>
+<ul>
+<li>User registration.</li>
+<li>Backend CMS.</li>
+<li>Discount code.</li>
+<li>Subscribe.</li>
+<li>Complex database.</li>
+<li>Automatic emails.</li>
+<li>Multiple product packages.</li>
+</ul>
+<p>You first need to make a one-time payment to unlock it, and then add more slowly.</p>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>What needs to be verified most in the early stages of the product is &quot;Is anyone willing to complete the test and pay# &quot; It is more valuable to run through this main line first than to do many peripheral functions at the beginning.</blockquote>
+<h3>Product process prompts for Codex</h3>
+<p><strong>[Core of this section] Turn the already dismantled product process directly into prompt words that can be executed by Codex. </strong></p>
+<p>Copy this:</p>
+<pre><code>I want to make a quiz site that unlocks reports for a one-time fee.
 
-User path: landing page -&gt; quiz -&gt; free intro report -&gt; payment -&gt; full report.
+Please design the code according to this user path:
+Home -&gt; Answer Page -&gt; Free Introduction Report -&gt; Payment -&gt; Full Report
 
-First version: no login, no subscription, no coupons.
+For the first version, no login, no subscription, no discount code is required.
 
-Please design:
-1. frontend page states
-2. reportId generation and storage
-3. payment session model
-4. access token unlock logic
-5. mock payment flow for local testing
+Please help me design:
+1. Front-end page status
+2. How to generate and save reportId
+3. payment session data structure
+4. access token unlocking logic
+5. Mock payment test process
 
-Output the file plan first, then implement the minimum version.</code></pre>
-<h3>Completion standard</h3>
-<p>You should be able to explain which screens exist, which step needs the backend, why URL parameters cannot unlock paid content, and what <code>reportId</code>, <code>payment_session</code>, and <code>accessToken</code> each do.</p></article>
-<article class="tutorial-chapter" id="chapter-02"><div class="chapter-kicker">Chapter 02</div><h1>02. Build the Site with Codex</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-02-codex.webp" alt="Codex build workflow chapter art" loading="lazy" /></figure>
-<p><strong>Goal: use Codex as an engineering partner, not as a one-shot website generator.</strong> Split the work into small passes that can be tested.</p>
-<h3>First prompt</h3>
-<pre><code>I want to build a paid quiz website.
+Please output the file plan first, and then implement the minimum version.</code></pre>
+<h3>Completion criteria for this chapter</h3>
+<p><strong>【Core of this Section】After completing this chapter, you should be able to explain the entire paid unlocking process in Mandarin. </strong></p>
+<p>When finished you should be able to clearly say:</p>
+<ul>
+<li>Which pages users go through.</li>
+<li>Which step requires backend.</li>
+<li>Why can&#x27;t we just rely on the front end to determine that payment has been made?</li>
+<li>What are <code>reportId</code>, <code>payment_session</code>, and <code>accessToken</code> responsible for?</li>
+</ul>
+<p>The next chapter will start making Codex actually write code.</p></article>
+<article class="tutorial-chapter" id="chapter-02"><div class="chapter-kicker">Chapter 02</div><h1>02. How to let Codex help you build a website from 0</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-02-codex.webp" alt="Codex build workflow chapter art" loading="lazy" /></figure>
+<p><strong>[Core of this chapter] Divide the website building task into multiple small rounds, and ask Codex to do something acceptable in each round. </strong></p>
+<p>This chapter only talks about one thing: <strong>How to command Codex when you don’t know how to write a website. </strong></p>
+<p>Don’t just start by saying, “Help me build a complete commercial website.” This range is too large, and the Codex is easy to change too much at once. You need to break the website into a series of small tasks that can be accepted.</p>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>Codex is more stable when handling small tasks. You can think of it like asking a construction partner to do the construction: first confirm the foundation, then build the walls, and then connect water and electricity, rather than saying &quot;please build the entire building&quot; at once.</blockquote>
+<h3>First tell Codex what product you want to make</h3>
+<p><strong>【Core of this section】First use a complete prompt word to let Codex understand the product goals and limitations. </strong></p>
+<p>Copy this paragraph as the first prompt:</p>
+<pre><code>I&#x27;m going to make a paid quiz site.
 
-Users will:
-1. open the landing page
-2. complete a quiz
-3. see a free intro report
-4. click a payment button
-5. automatically unlock the full report after payment succeeds
+Target users will:
+1. Open the homepage
+2. Complete a set of test questions
+3. See the free introductory version of the report
+4. Click the payment button
+5. The full report will be automatically unlocked after successful payment.
 
-Please create a minimum viable version.
+Please help me create a minimum usable version first.
 Requirements:
-- React + Vite frontend
-- Node.js backend
-- mock payment first, no real Paddle yet
-- no login required
-- never put secrets in frontend code
-- tell me how to run and verify each step locally</code></pre>
-<p>If you already have a project, add:</p>
-<pre><code>Please inspect the existing project structure first. Do not rebuild the project from scratch. Reuse existing patterns where possible.</code></pre>
-<h3>Suggested structure</h3>
+- Front-end using React + Vite
+- Backend using Node.js
+- Use mock payment first, do not accept real Paddle
+- No login account required
+- Don&#x27;t put any secrets into the frontend
+- Tell me how to run and verify locally at every step</code></pre>
+<pre><code>Please read the existing project structure first and do not rebuild the project; try to stick to the existing coding style.</code></pre>
+<h3>The first time it is built, the things it builds must be small.</h3>
+<p><strong>[Core of this section] The first version only builds the smallest website that can run through the process. </strong></p>
+<p>The first version only requires these pages:</p>
+<table><tbody>
+<tr><td>Page</td><td>Purpose</td><td>Minimum Requirements</td></tr>
+<tr><td>Home page</td><td>Let users start the quiz</td><td>A title, a start button</td></tr>
+<tr><td>Answer page</td><td>Collect answers</td><td>At least 3-5 test questions, expand later</td></tr>
+<tr><td>Free results page</td><td>Build trust</td><td>Show partial analysis, but not full career answers</td></tr>
+<tr><td>Paywall</td><td>Bootstrap to Unlock</td><td>One payment button, one waiting state</td></tr>
+<tr><td>Full report page</td><td>Verification unlock</td><td>Show full content after mock payment</td></tr>
+</tbody></table>
+<p>Don’t ask for it yet:</p>
+<ul>
+<li>Multilingual.</li>
+<li>Beautiful animations.</li>
+</ul>
+<p>-Backend management.</p>
+<ul>
+<li>PDF/long image saving.</li>
+<li>Real Paddle.</li>
+<li>Complete question bank.</li>
+</ul>
+<p>These can all be added later. The first step is as long as the process runs smoothly.</p>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>The minimal version is not the final product, but is used to prove that the route is feasible. After the route is feasible, it will be more stable by adding visual, multi-language, report saving and real payment.</blockquote>
+<h3>Recommended project structure</h3>
+<p><strong>【Core of this section】Require Codex in advance to separate front-end, back-end, data and configuration. </strong></p>
+<p>You can ask Codex to be built according to this structure:</p>
 <pre><code>paid-quiz-site/
-  src/app/
-  src/components/
-  src/data/
-  src/monetization/
-  src/styles/
-  server/payment-server.mjs
-  public/monetization.json
+  src/
+    app/
+      App.tsx
+    components/
+    data/
+      questions.ts
+    monetization/
+      config.ts
+    styles/
+      globals.css
+  server/
+    payment-server.mjs
+  public/
+    monetization.json
   package.json
   .env.payment.example</code></pre>
-<p>The important rule is separation: UI in frontend files, payment verification in backend files, public config in <code>public/</code>, secrets in environment variables.</p>
-<h3>Pass 1: quiz flow only</h3>
-<p>Ask Codex to implement only the basic path: landing page, one-question-at-a-time quiz, reportId generation, free report screen, and unlock button. Run it locally with <code>npm install</code> and <code>npm run dev</code>, then complete the quiz yourself.</p>
-<h3>Pass 2: backend state and mock payment</h3>
-<pre><code>Add a Node backend with mock payment.
-
-API:
-- POST /api/payments/checkout creates a payment session for a reportId
-- GET /api/payments/sessions/:id returns pending / paid / failed
-- POST /api/payments/mock-paid marks a session paid for local testing
+<table><tbody>
+<tr><td>Table of Contents</td><td>Purpose</td></tr>
+<tr><td><code>src/app</code></td><td>Page flow</td></tr>
+<tr><td><code>src/components</code></td><td>Button, card, question, report module</td></tr>
+<tr><td><code>src/data</code></td><td>Questions, result types, sample report materials</td></tr>
+<tr><td><code>src/monetization</code></td><td>Front-end reads public paid configuration</td></tr>
+<tr><td><code>server</code></td><td>Backend API, payment session, webhook</td></tr>
+<tr><td><code>public</code></td><td>Files that can be exposed to browsers</td></tr>
+</tbody></table>
+<p>The most common mistake newbies make is cramming everything into one file. Let the Codex be split by directory, which will be easier to maintain later.</p>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>The project structure is like a storage cabinet. The title, page, style, and payment interface are placed in their own places, so that when you need to modify a certain piece later, you don&#x27;t have to rummage through a large file.</blockquote>
+<h3>Round 1: Quiz process only</h3>
+<p><strong>[Core of this section] First confirm that users can answer the questions from the home page to the results page. </strong></p>
+<p>To Codex:</p>
+<pre><code>Please complete the main test process first and do not accept payment.
 
 Requirements:
-- payment status is stored on the backend
-- frontend cannot decide paid status by itself
-- paywall is disabled by default and can be enabled by config later</code></pre>
-<h3>Pass 3: safety before real payment</h3>
-<p>Ask Codex to verify that <code>.env.payment.local</code> is ignored, Paddle keys only exist on the server, <code>public/monetization.json</code> has no secret, and fake URL parameters cannot unlock the report.</p>
-<h3>Working rhythm</h3>
-<p>Use this loop for every feature: ask for a file plan, implement, run typecheck/build, test in the browser, then paste the exact error or describe the visible state back to Codex. This is slower than a single prompt, but far more reliable for a paid product.</p></article>
-<article class="tutorial-chapter" id="chapter-03"><div class="chapter-kicker">Chapter 03</div><h1>03. Upload to GitHub</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-03-github.webp" alt="GitHub upload chapter art" loading="lazy" /></figure>
-<p><strong>Goal: GitHub becomes the source that Zeabur deploys from. If the code is only on your computer, Zeabur cannot see it.</strong></p>
-<h3>Check what must not be committed</h3>
-<p>Your <code>.gitignore</code> should cover:</p>
-<pre><code>node_modules
-dist
-.env
+- There is &quot;Start Quiz&quot; on the homepage
+- The answer page displays one question at a time
+- Users can move to the next question after selecting the answer
+- Generate a reportId after answering
+- Go to results page
+- Results page shows free introduction and an &quot;Unlock full report&quot; button
+
+Please also provide:
+- npm scripts
+- Local operation mode
+- Minimal testing method</code></pre>
+<p>npm install</p>
+<p>npm run dev</p>
+<pre><code>
+## Round 2: Let the backend save payment status
+
+**【Core of this section】Leave the payment status to the back-end to save it, rather than letting the front-end decide on its own. **
+
+To Codex:
+</code></pre>
+<p>Now please add the Node backend and make mock payment first.</p>
+<p>Backend API:</p>
+<ul>
+<li>POST /api/payments/checkout</li>
+</ul>
+<p>  Receive reportId, create payment session, return sessionId and checkoutUrl</p>
+<ul>
+<li>GET /api/payments/sessions/:id</li>
+</ul>
+<p>  Return pending / paid / failed</p>
+<ul>
+<li>POST /api/payments/mock-complete</li>
+</ul>
+<p>  Only for local testing, mark a session as paid</p>
+<p>The data can be stored in the JSON file first.</p>
+<p>Please make sure that the frontend cannot rely on URL parameters alone to unlock the report.</p>
+<pre><code>
+- Full report cannot be seen when payment is not made.
+- Can be unlocked after mock complete.
+- After refreshing the page, the backend still knows whether the report is unlocked or not.
+
+## Round 3: Add paywall switch
+
+**【Core of this section】Use public configuration to control the paywall switch to facilitate development and pre-launch testing. **
+
+To Codex:
+</code></pre>
+<p>Please add public/monetization.json to enable the paywall to be turned on and off.</p>
+<p>Default:</p>
+<p>{</p>
+<p>  &quot;enabled&quot;: false,</p>
+<p>  &quot;checkoutMode&quot;: &quot;api&quot;,</p>
+<p>  &quot;apiBaseUrl&quot;: &quot;/api&quot;,</p>
+<p>  &quot;provider&quot;: &quot;mock&quot;</p>
+<p>}</p>
+<p>Requirements:</p>
+<ul>
+<li>When enabled=false, it is convenient for me to develop and test, and I can directly view the full report</li>
+<li>When enabled=true, payment must be made before unlocking</li>
+<li>public files cannot contain API keys or secrets</li>
+</ul>
+<pre><code>
+## Round 4: Prepare to upload to GitHub first
+
+**【Core of this section】Let Codex check the security and `.gitignore` of the warehouse before uploading. **
+
+After the local mock process runs through, first organize the project into a state suitable for uploading to GitHub.
+
+To Codex:
+</code></pre>
+<p>Please check if this project is suitable for upload to GitHub.</p>
+<p>Requirements:</p>
+<ul>
+<li>.gitignore must ignore .env, .env.*, *.local, node_modules, dist, logs and temporary files</li>
+<li>Scan the project to confirm that there is no Paddle API key, webhook secret, or admin token</li>
+<li>Confirm that the README allows others to understand the purpose of the project</li>
+<li>Tell me what git commands to execute when uploading to GitHub for the first time</li>
+<li>If a secret is found, please list the file path and remind me to revoke or replace the corresponding key</li>
+</ul>
+<pre><code>
+## Round 5: Preparing for Zeabur deployment again
+
+**【Core of this section】Let Codex organize the project into a form that Zeabur can build and start. **
+
+After the GitHub repository is ready, don’t rush to pick up Paddle yet. Paddle will later ask you to fill in and verify the website domain name, and will also require the default payment link to use an HTTPS domain name that can be opened.
+
+So the correct order is:
+</code></pre>
+<p>Run local mock -&gt; upload to GitHub -&gt; deploy to Zeabur -&gt; get HTTPS domain name -&gt; then set up Paddle</p>
+<pre><code></code></pre>
+<p>Please organize this project into a structure that can be deployed to Zeabur.</p>
+<p>Requirements:</p>
+<ul>
+<li>npm run build can generate front-end dist</li>
+<li>npm run start can start the same Node service</li>
+<li>The Node service must provide both dist static files and /api/*</li>
+<li>The server must listen to process.env.PORT</li>
+<li>host uses 0.0.0.0</li>
+<li>Added /api/health without leaking any secrets</li>
+<li>Do not submit .env, .local, node_modules, dist, and local data files to GitHub</li>
+<li>Don’t ask for the Paddle key yet, because now you just want to get the verifiable HTTPS domain name</li>
+</ul>
+<p>Please also tell me:</p>
+<ol>
+<li>What files should be submitted to GitHub?</li>
+<li>Zeabur’s build command and start command</li>
+<li>What variables should be set first on Zeabur?</li>
+<li>How to confirm that both the website and /api/health can be accessed</li>
+</ol>
+<pre><code></code></pre>
+<p>https://your-project.zeabur.app</p>
+<pre><code>
+## Round 6: After you have an HTTPS domain name, replace mock with Paddle
+
+**[Core of this section] After getting the Zeabur domain name, let the Codex connect to the real Paddle. **
+
+Wait until the Zeabur website can be opened and `/api/health` is normal, then give Codex:
+</code></pre>
+<p>Please add a new Paddle provider but keep the mock provider.</p>
+<p>Requirements:</p>
+<ul>
+<li>POST /api/payments/checkout using Paddle create transaction API</li>
+<li>Use CNY price / USD price based on user region or button selection</li>
+<li>custom_data must contain reportId and payment_session_id</li>
+<li>Added POST /api/webhooks/paddle</li>
+<li>webhook must verify Paddle-Signature</li>
+<li>Only accept transaction.completed unlock</li>
+<li>webhook must be idempotent when sending repeatedly</li>
+<li>Wrong signature, inconsistent amount, and inconsistent price id cannot be unlocked</li>
+</ul>
+<pre><code></code></pre>
+<p>PADDLE_ENVIRONMENT</p>
+<p>PADDLE_API_KEY</p>
+<p>PADDLE_CNY_PRICE_ID</p>
+<p>PADDLE_USD_PRICE_ID</p>
+<p>PADDLE_WEBHOOK_SECRET</p>
+<p>PUBLIC_BASE_URL</p>
+<pre><code></code></pre>
+<p>https://your-project.zeabur.app</p>
+<pre><code></code></pre>
+<p>https://your-project.zeabur.app/api/webhooks/paddle</p>
+<pre><code>
+## Round 7: Let Codex do security checks before going live
+
+**【Core of this Section】Let Codex check payments, keys, webhooks, and deployment risks before going live. **
+
+To Codex:
+</code></pre>
+<p>Please check if this project is suitable for launch.</p>
+<p>Key points to check:</p>
+<ol>
+<li>Are there API key, webhook secret, and admin token in the public file?</li>
+<li>Whether payment unlocking can only be confirmed by the backend</li>
+<li>Is the webhook verified?</li>
+<li>Will repeated webhook grant permissions repeatedly?</li>
+<li>Will Zeabur read PORT?</li>
+<li>Whether to provide /api/health</li>
+<li>Are build and start scripts available?</li>
+</ol>
+<p>Please list the issues and fix them directly.</p>
+<pre><code>
+## How should you report errors to Codex
+
+**[Core of this section] When reporting an error, you must provide actions, phenomena, expected results and logs. **
+
+Don&#x27;t just say &quot;broken.&quot; Here are four things to post:
+</code></pre>
+<p>What I did:</p>
+<p>What error do I see:</p>
+<p>How I expect it should be:</p>
+<p>Related screen descriptions or logs:</p>
+<pre><code></code></pre>
+<p>I see 502 when I open the website in Zeabur.</p>
+<p>Zeabur logs show that npm run start is started, but the web page cannot be opened.</p>
+<p>Please check whether the server is listening to process.env.PORT and whether the host is 0.0.0.0.</p>
+<pre><code>
+&gt; 💡 **Why do this#  **
+&gt; &quot;Broken&quot; has no location information. Logs, screen status, and what you just did are Codex’s clues to determine the location of the problem.
+
+## Newbies should not skip verification
+
+**【Core of this section】Run typecheck and build after each round of changes. **
+
+After each stage, let Codex run:```bash
+npm run typecheck
+npm run build</code></pre>
+<pre><code>Please add typecheck and build scripts to this project and make sure it can run locally.</code></pre>
+<h3>Completion criteria for this chapter</h3>
+<p><strong>【Core of this Section】After completing this chapter, you should have a locally runnable mock paid website. </strong></p>
+<p>After completing this chapter, you should have:</p>
+<ul>
+<li>A quiz website that can be run locally.</li>
+<li>A Node backend.</li>
+<li>A mock payment unlocking process.</li>
+<li>A public profile.</li>
+<li>A clear set of Codex prompt words.</li>
+</ul>
+<p>In the next chapter, upload the project to GitHub first; after the GitHub warehouse is ready, deploy it to Zeabur to get the HTTPS domain name.</p></article>
+<article class="tutorial-chapter" id="chapter-03"><div class="chapter-kicker">Chapter 03</div><h1>03. First upload to GitHub and prepare to deploy to Zeabur</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-03-github.webp" alt="GitHub upload chapter art" loading="lazy" /></figure>
+<p>This chapter is placed before Zeabur.</p>
+<p><strong>[Core of this chapter] First upload the local project to the GitHub repository, because Zeabur usually pulls code from GitHub for deployment. </strong></p>
+<p>You can understand the relationship between the three as:</p>
+<pre><code>Your computer: where you write code and test
+GitHub: a cloud warehouse for storing code
+Zeabur: Take code from GitHub and run it into a website</code></pre>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>Zeabur does not read files directly from your computer desktop. It usually connects to your GitHub repository, and then redeploys it every time you update the repository. GitHub is like a &quot;project transfer station&quot; here, and Zeabur is like &quot;the person who starts and runs the projects in the transfer station.&quot;</blockquote>
+<h4>Step 1: Confirm you already have a GitHub account</h4>
+<p><strong>【Core of this step】You need a GitHub account to save the project code. </strong></p>
+<p>Next are the specific execution steps:</p>
+<ol>
+<li>Open the GitHub official website.</li>
+<li>If you are already logged in, continue to the next step.</li>
+<li>If you don’t have an account yet, register one.</li>
+<li>Remember your GitHub username, it will be used for the warehouse address later.</li>
+</ol>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>GitHub is a code repository platform commonly used by programmers. The warehouse can be understood as &quot;a cloud folder dedicated to a project&quot;, which stores every important modification.</blockquote>
+<h4>Step 2: Create a new repository on GitHub</h4>
+<p><strong>【Core of this step】Create a repo specifically to store website code. </strong></p>
+<p>Next are the specific execution steps:</p>
+<ol>
+<li>Open GitHub.</li>
+<li>Click <code>+</code> in the upper right corner.</li>
+<li>Select <code>New repository</code>.</li>
+<li>Fill in the project name in <code>Repository name</code>, for example:</li>
+</ol>
+<pre><code>paid-quiz-site</code></pre>
+<ol>
+<li><code>Description</code> can be written first:</li>
+</ol>
+<pre><code>A paid quiz website built with Codex.</code></pre>
+<ol>
+<li>Visibility can select <code>Public</code> or <code>Private</code>.</li>
+<li>If you don’t have a local project yet, you can check <code>Add a README file</code>.</li>
+<li>If you already have a local project, it is recommended not to check README first to avoid conflicts with local files.</li>
+<li>Click <code>Create repository</code>.</li>
+</ol>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>Repo is the abbreviation of repository, which means warehouse. One repo corresponds to one project. Your website code, documentation, and deployment configuration will all be placed in this warehouse.</blockquote>
+<h4>Step 3: Check first not to upload the secret</h4>
+<p><strong>[Core of this step] Before uploading for the first time, confirm that the key, order, and background data will not be pushed to GitHub. </strong></p>
+<p>Don&#x27;t upload this content:</p>
+<ul>
+<li><code>.env</code></li>
+</ul>
+<p>-<code>.env.payment.local</code></p>
+<p>-Paddle API key</p>
+<ul>
+<li>Paddle webhook secret</li>
+</ul>
+<p>-Admin token</p>
+<ul>
+<li>Real order information</li>
+<li>Payment platform backend screen</li>
+</ul>
+<p>-<code>node_modules</code></p>
+<p>-<code>dist</code></p>
+<ul>
+<li>log file</li>
+</ul>
+<p>The project root directory should have <code>.gitignore</code>. It is recommended to include at least:</p>
+<pre><code>.env
 .env.*
 *.local
+node_modules
+dist
 .logs
-tmp-*</code></pre>
-<p>Never commit Paddle API keys, webhook secrets, order data, user data, or local payment store files.</p>
-<h3>Create the repository</h3>
-<p>Create a GitHub repository, preferably without generating an extra README online. Then run:</p>
-<pre><code>git init
+tmp-*
+*.log</code></pre>
+<pre><code>Please check if this project is suitable for upload to GitHub.
+
+Requirements:
+1. .gitignore must exclude .env, .env.*, *.local, node_modules, dist, logs, and temporary files.
+2. Scan the project to confirm that there is no Paddle API key, webhook secret, or admin token.
+3. If you find a secret, please tell me the file path and suggest me to revoke or replace the corresponding key.
+4. Don&#x27;t delete my business code.</code></pre>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>GitHub is suitable for saving code, not suitable for saving keys. API keys are like backend keys. Once they enter a public repository or commit history, they should be considered exposed and need to be regenerated later.</blockquote>
+<h4>Step 4: Confirm that Git has been installed on this machine</h4>
+<p><strong>[Core of this step] Git is a tool for submitting local projects to GitHub. </strong></p>
+<p>Execute in terminal:```bash</p>
+<p>git --version</p>
+<pre><code></code></pre>
+<p>git version 2.x.x</p>
+<pre><code>
+If the system prompts that `git` cannot be found, please install Git before continuing.
+
+&gt; 💡 **Why do this#  **
+&gt; Git is a &quot;version recording tool&quot;. It will record which files you have changed and can also push native code to GitHub. GitHub is a cloud platform, and Git is the tool you use to communicate with GitHub locally.
+
+### Step 5: Initialize Git in the project root directory
+
+**【Core of this step】If your project is not a Git warehouse yet, make it a Git warehouse first. **
+
+Execute in the project root directory:```bash
+git status</code></pre>
+<p>If you see something like:</p>
+<pre><code>fatal: not a git repository</code></pre>
+<p>git init</p>
+<pre><code>git status</code></pre>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote><code>git init</code> is like putting a &quot;change log&quot; in the project folder. From this moment on, Git knows to track this project.</blockquote>
+<h4>Step 6: Add the file to the first commit</h4>
+<p><strong>【Core of this step】Save the current project status as a commit. </strong></p>
+<p>implement:```bash</p>
+<p>git add .</p>
+<p>git commit -m &quot;Initial paid quiz website&quot;</p>
+<pre><code>git config --global user.name &quot;你的名字&quot;
+git config --global user.email &quot;你的邮箱&quot;</code></pre>
+<p>git commit -m &quot;Initial paid quiz website&quot;</p>
+<pre><code>
+&gt; 💡 **Why do this#  **
+&gt; Commit can be understood as an &quot;archive&quot;. Instead of dumping your files loosely on GitHub, you save a specific version locally and then push that version.
+
+### Step 7: Connect to GitHub remote repository
+
+**[Core of this step] Tell local Git: which GitHub repository this project should be pushed to. **
+
+After GitHub builds the warehouse, it will give you an address, which usually looks like this:
+</code></pre>
+<p>https://github.com/yourusername/yourwarehousename.git</p>
+<pre><code>git branch -M main
+git remote add origin https://github.com/你的用户名/你的仓库名.git</code></pre>
+<p>git remote -v</p>
+<pre><code>git remote set-url origin https://github.com/你的用户名/你的仓库名.git</code></pre>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote><code>origin</code> is the nickname of the local Git for the remote warehouse. You tell Git: From now on, when I say push to origin, I mean push to this GitHub repository.</blockquote>
+<h4>Step 8: Push to GitHub</h4>
+<p><strong>【Core of this step】Upload the local commit to GitHub. </strong></p>
+<p>implement:```bash</p>
+<p>git push -u origin main</p>
+<pre><code>
+After successful push:
+
+1. Open the GitHub repository page.
+2. Refresh the web page.
+3. Confirm that you can see your project file.
+4. Confirm that README is displayed normally.
+5. Confirm that `.env` and `.env.payment.local` do not appear in the warehouse.
+
+&gt; 💡 **Why do this#  **
+&gt; `git push` is &quot;upload the local archive to the cloud warehouse&quot;. Zeabur will then read the code on GitHub instead of the folder on your computer.
+
+### Step 9: Use three steps to update every time you make changes.
+
+**[Core of this step] After modifying the website in the future, use the three steps of add, commit, and push to synchronize it to GitHub. **
+
+Execute after each change:```bash
 git status
 git add .
-git commit -m &quot;Initial paid quiz site&quot;
-git branch -M main
-git remote add origin https://github.com/your-name/your-repo.git
-git push -u origin main</code></pre>
-<h3>Ask Codex to audit before pushing</h3>
-<pre><code>Please inspect the files I am about to commit. Confirm that no .env file, API key, webhook secret, payment record, or user private data will be pushed. Do not delete files unless I ask; only list risks and .gitignore recommendations.</code></pre>
-<h3>Confirm after push</h3>
-<ul>
-<li>GitHub displays the README correctly.</li>
-<li>The latest commit is the one you just pushed.</li>
-<li><code>src/</code>, <code>server/</code>, and <code>public/</code> are present.</li>
-<li><code>.env.payment.local</code> is not present.</li>
-</ul>
-<h3>Common mistakes</h3>
-<p>If Zeabur does not redeploy, first check whether GitHub actually has the new commit. If a secret was pushed to a public repository, treat it as leaked and rotate it in Paddle immediately.</p>
-<h3>Completion standard</h3>
-<p>You have a clean Git status locally, a readable GitHub repository remotely, and no secrets in the public code.</p></article>
-<article class="tutorial-chapter" id="chapter-04"><div class="chapter-kicker">Chapter 04</div><h1>04. Deploy to Zeabur First</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-04-zeabur.webp" alt="Zeabur deployment chapter art" loading="lazy" /></figure>
-<p><strong>Goal: get a real HTTPS domain before configuring Paddle. The order matters.</strong></p>
-<pre><code>local mock flow -&gt; GitHub -&gt; Zeabur -&gt; HTTPS domain -&gt; Paddle website approval -&gt; Paddle checkout</code></pre>
-<figure class="chapter-figure"><img src="./assets/diagrams/07-domain-before-paddle.svg" alt="Domain before Paddle" loading="lazy" /></figure>
-<h3>Why Zeabur first</h3>
-<p>Paddle often needs a pricing page, terms page, privacy policy, refund policy, default payment link, and approved domain. Without a public domain, you may be blocked by checkout-not-enabled errors even if your code is correct.</p>
-<h3>Pre-deploy check</h3>
-<p>Run locally:</p>
-<pre><code>npm install
-npm run build</code></pre>
-<p>If build fails locally, paste the full log to Codex and fix it before deploying.</p>
-<h3>Listen on PORT and 0.0.0.0</h3>
-<p>Your Node server should look like:</p>
-<pre><code>const port = Number(process.env.PORT ?? 8080);
-const serverHost = process.env.PAYMENT_SERVER_HOST ?? &quot;0.0.0.0&quot;;
+git commit -m &quot;Describe what changed&quot;
+git push</code></pre>
+<p>git commit -m &quot;Add Paddle webhook unlock flow&quot;</p>
+<pre><code>git commit -m &quot;Improve unpaid report preview&quot;</code></pre>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>Zeabur typically monitors GitHub repositories for changes. After you push the new commit, Zeabur knows that the online service needs to be redeployed.</blockquote>
+<h4>Step 10: Upload and then enter Zeabur</h4>
+<p><strong>【Core of this step】Confirm that the GitHub warehouse already has code, and then go to Zeabur to select this warehouse for deployment. </strong></p>
+<p>Before proceeding to the next chapter, please confirm:</p>
+<ol>
+<li>The GitHub warehouse page can be opened.</li>
+<li>README can be displayed.</li>
+<li>The main code files have been uploaded.</li>
+<li><code>.env</code>, <code>.local</code> and API key are not uploaded.</li>
+<li>You know the warehouse address, for example:</li>
+</ol>
+<pre><code>https://github.com/yourusername/paid-quiz-site</code></pre>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>Zeabur&#x27;s deployment entry is usually &quot;Select a GitHub repo&quot;. If the repository doesn&#x27;t have the code yet, Zeabur has nothing to deploy to.</blockquote>
+<h4>Completion criteria for this chapter</h4>
+<p><strong>【Core of this Chapter】You need to be able to see the complete project on GitHub and confirm that no keys are leaked. </strong></p>
+<p>After completion, please confirm item by item:</p>
+<ol>
+<li>The GitHub repository has been created.</li>
+<li>The native project is already <code>git commit</code>.</li>
+<li>The native project has been <code>git push</code>.</li>
+<li>Project files can be seen on the GitHub page.</li>
+<li><code>.env</code> is not uploaded.</li>
+<li><code>.env.payment.local</code> is not uploaded.</li>
+<li>API key, webhook secret, and admin token do not appear in the warehouse.</li>
+<li>You are ready to go to Zeabur and select this repository for deployment.</li>
+</ol></article>
+<article class="tutorial-chapter" id="chapter-04"><div class="chapter-kicker">Chapter 04</div><h1>04. Deploy to Zeabur and get a verifiable domain name</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-04-zeabur.webp" alt="Zeabur deployment chapter art" loading="lazy" /></figure>
+<p>This chapter assumes that you have completed the previous chapter and uploaded the project to GitHub. Now it’s time to deploy the GitHub repository to Zeabur.</p>
+<p><strong>[Core of this chapter] First, let your website have a publicly accessible HTTPS domain name, and then use this domain name to Paddle for website verification, default payment link and webhook. </strong></p>
+<p>The recommended order is:</p>
+<pre><code>Local mock process runs smoothly
+  -&gt; Upload to GitHub
+  -&gt; Deploy to Zeabur
+  -&gt; Get HTTPS domain name
+  -&gt; Prepare pricing / terms / privacy / refund page
+  -&gt; Go back to Paddle to do website verification and checkout settings</code></pre>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>Paddle usually checks whether your website exists, can be opened, and has terms and privacy policy before creating a real payment page. When you haven&#x27;t made your domain name public yet, just like you want to apply for a cashier without a store address, many settings will get stuck halfway.</blockquote>
+<figure class="chapter-figure"><img src="./assets/diagrams/07-domain-before-paddle.svg" alt="Deployment to payment sequence instructions" loading="lazy" /></figure>
+<h4>Step 1: First confirm that the project you have can run on this machine</h4>
+<p><strong>【Core of this step】First confirm that the project can be installed and built on your computer, and then deploy it to Zeabur. </strong></p>
+<p>Next are the specific execution steps:</p>
+<ol>
+<li>Open the project folder.</li>
+<li>Open a terminal in the project root directory.</li>
+<li>Execute:```bash</li>
+</ol>
+<p>npm install</p>
+<p>npm run build</p>
+<pre><code>
+4. If `npm run build` is successful, continue to the next step.
+5. If it fails, post the complete error to Codex:
+</code></pre>
+<p>npm run build failed, this is the error log:</p>
+<p>[Post full log]</p>
+<p>Please help me fix it so it can be deployed to Zeabur.</p>
+<p>After repairing, please run npm run build again.</p>
+<pre><code>
+&gt; 💡 **Why do this#  **
+&gt; Zeabur will also run build when deployed. The local build fails, and the cloud usually fails too. Fixing it on your own computer first can reduce the time spent guessing mistakes.
+
+### Step 2: Confirm that the backend is not a hard-coded port
+
+**[Core of this step] The Node backend must listen to the `PORT` given to it by Zeabur, and use `0.0.0.0` to allow external access. **
+
+Please let Codex check the backend startup code. The target is written like this:```js
+const port = Number(process.env.PORT ##  8080);
+const serverHost = process.env.PAYMENT_SERVER_HOST ##  &quot;0.0.0.0&quot;;
+
 server.listen(port, serverHost, () =&gt; {
   console.log(`payment server: http://${serverHost}:${port}/api`);
 });</code></pre>
-<p><code>0.0.0.0</code> is correct in production containers. It allows traffic from outside the container instead of only from inside localhost.</p>
-<h3>Zeabur settings</h3>
-<figure class="chapter-figure"><img src="./assets/diagrams/01-zeabur-deploy.svg" alt="Zeabur deploy flow" loading="lazy" /></figure>
+<pre><code>Please check the server startup code.
+
+Requirements:
+1. The port must read process.env.PORT first.
+2. The host uses 0.0.0.0 by default.
+3. Don’t hardcode localhost.
+4. Keep the default port available for local development, such as 8080.
+5. After modification, please explain why Zeabur needs to be set like this.</code></pre>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>On my own computer, <code>localhost</code> is like a &quot;door only opened to myself&quot;. In the Zeabur container, if the service is only opened to yourself, external users will not be able to enter. <code>0.0.0.0</code> means &quot;this service can be accessed outside the container&quot;.</blockquote>
+<h4>Step 3: Confirm that the project has a production startup command</h4>
+<p><strong>【Core of this step】Zeabur needs to know how to build and how to start. </strong></p>
+<p>Open <code>package.json</code> and confirm that at least:```json</p>
+<p>{</p>
+<p>  &quot;scripts&quot;: {</p>
+<p>    &quot;build&quot;: &quot;npm run build:runtime-careers &amp;&amp; tsc --noEmit &amp;&amp; node scripts/vite-build.mjs&quot;,</p>
+<p>    &quot;start&quot;: &quot;node server/payment-server.mjs&quot;</p>
+<p>  }</p>
+<p>}</p>
+<pre><code>
+1. `npm run build` is responsible for generating front-end static files.
+2. `npm run start` is responsible for launching online services.
+3. Online services must provide both front-end pages and `/api/*`.
+
+Tip words for Codex:
+</code></pre>
+<p>Please check if package.json is suitable for Zeabur deployment.</p>
+<p>Requirements:</p>
 <ol>
-<li>Create a project.</li>
-<li>Connect your GitHub repository.</li>
-<li>Pick Singapore or Hong Kong if your audience includes mainland China.</li>
-<li>Build Command: <code>npm run build</code>.</li>
-<li>Start Command: <code>npm run start</code>.</li>
+<li>npm run build can generate production files.</li>
+<li>npm run start can start a single Node service.</li>
+<li>This Node service should provide both front-end dist and /api/*.</li>
+<li>If scripts are missing, please fill them in directly.</li>
 </ol>
-<h3>Variables</h3>
-<figure class="chapter-figure"><img src="./assets/diagrams/02-zeabur-variables.svg" alt="Zeabur variables" loading="lazy" /></figure>
-<p>Start with:</p>
-<pre><code>PAYMENT_SERVER_HOST=0.0.0.0
-PAYMENT_STORE_FILE=/data/payment-store.json
-PUBLIC_BASE_URL=https://your-zeabur-domain
-CORS_ORIGIN=https://your-zeabur-domain
-PADDLE_ENVIRONMENT=sandbox
-PADDLE_ALLOW_UNSIGNED_WEBHOOKS=false</code></pre>
-<p>Add Paddle API key and price IDs after Paddle setup is ready.</p>
-<h3>Volume</h3>
-<figure class="chapter-figure"><img src="./assets/diagrams/03-zeabur-volume.svg" alt="Zeabur volume" loading="lazy" /></figure>
-<p>Mount a volume at <code>/data</code>. This prevents payment sessions and access tokens from disappearing when the service restarts.</p>
-<h3>Verification</h3>
-<p>Open:</p>
+<pre><code>
+&gt; 💡 **Why do this#  **
+&gt; Zeabur does not click the &quot;preview button&quot; on your computer. It will only execute on command. Build means &quot;packaging the website&quot;, and start means &quot;exporting the packaged website for others to access&quot;.
+
+### Step 4: Confirm that the GitHub repository is the latest version
+
+**【Core of this step】Before entering Zeabur, first confirm that the latest code you want to deploy is already available on GitHub. **
+
+Next are the specific execution steps:
+
+1. Open your GitHub repository page.
+2. Confirm that README can be displayed normally.
+3. Confirm that the latest commit is the version you just pushed.
+4. Execute in the local terminal:```bash
+git status</code></pre>
+<ol>
+<li>If there are unsubmitted modifications, go back to the process <code>git add</code>, <code>git commit</code>, and <code>git push</code> in the previous chapter.</li>
+<li>Confirm that <code>.env</code> and <code>.env.payment.local</code> do not appear in the GitHub file list.</li>
+</ol>
+<p>Again, confirm not to submit these files:</p>
+<p>-<code>.env</code></p>
+<p>-<code>.env.payment.local</code></p>
+<p>-<code>node_modules</code></p>
+<p>-<code>dist</code></p>
 <ul>
-<li><code>https://your-domain/</code></li>
-<li><code>https://your-domain/api/health</code></li>
-<li><code>https://your-domain/monetization.json</code></li>
+<li>log file</li>
+<li>Real order information</li>
 </ul>
-<p><code>/api/health</code> should confirm service status and payment readiness, but it must not reveal secrets.</p></article>
-<article class="tutorial-chapter" id="chapter-05"><div class="chapter-kicker">Chapter 05</div><h1>05. Connect Paddle and Unlock Reports</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-05-paddle.webp" alt="Paddle payment unlock chapter art" loading="lazy" /></figure>
-<p><strong>Goal: Paddle collects money; your backend verifies the payment and unlocks the correct report.</strong></p>
-<p>This chapter assumes you already have a Zeabur HTTPS domain.</p>
-<h3>The payment flow</h3>
-<pre><code>user clicks unlock
-  -&gt; backend creates payment session
-  -&gt; backend creates Paddle transaction checkout
-  -&gt; user pays on Paddle
-  -&gt; Paddle sends webhook to backend
-  -&gt; backend verifies signature and custom_data
-  -&gt; backend issues access token
-  -&gt; frontend shows full report</code></pre>
-<p>The frontend should never decide that a payment succeeded. Trust the webhook.</p>
-<h3>Product description for onboarding</h3>
-<p>You can describe the product conservatively:</p>
-<pre><code>We sell a one-time digital career assessment report. Users complete a quiz and receive a personalized online report. The product is digital content access, not employment placement, financial advice, medical advice, or guaranteed career outcome.</code></pre>
-<p>If Paddle says checkout is not enabled, check onboarding, website approval, default payment link, product, price, and review status before debugging code.</p>
-<h3>Website approval</h3>
-<figure class="chapter-figure"><img src="./assets/diagrams/04-paddle-domain.svg" alt="Paddle domain" loading="lazy" /></figure>
-<p>Use real URLs:</p>
-<pre><code>Pricing page: https://your-domain/pricing
-Terms: https://your-domain/terms
-Privacy: https://your-domain/privacy
-Refund: https://your-domain/refund</code></pre>
-<h3>Default payment link</h3>
-<p>Use the verified domain root:</p>
+<p>-Paddle API key</p>
+<ul>
+<li>Webhook secret</li>
+</ul>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>Zeabur will pull code from GitHub. If the modifications on your computer have not been pushed yet, Zeabur will not be able to see them. Zeabur will mostly get whatever is displayed on the GitHub page.</blockquote>
+<h4>Step 5: Create a new service in Zeabur</h4>
+<p><strong>【Core of this step】Let Zeabur connect to your GitHub repository and deploy the code into a website. </strong></p>
+<p>Next are the specific execution steps:</p>
+<ol>
+<li>Open Zeabur.</li>
+<li>Create a new Project.</li>
+<li>Select Deploy from GitHub.</li>
+<li>If Zeabur requires authorization for GitHub, follow the page prompts for authorization.</li>
+<li>Select the warehouse uploaded in the previous chapter in the warehouse list.</li>
+<li>Select the branch, usually <code>main</code>.</li>
+<li>Region gives priority to areas near Singapore or Hong Kong.</li>
+<li>Let Zeabur automatically detect Node projects.</li>
+<li>If it asks you to fill in a command, fill in:</li>
+</ol>
+<pre><code>Build Command: npm run build
+Start Command: npm run start</code></pre>
+<figure class="chapter-figure"><img src="./assets/diagrams/01-zeabur-deploy.svg" alt="Zeabur service deployment instructions" loading="lazy" /></figure>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>Region is the region where the server is located. If your users are mainly in Asia, the access path will usually be shorter if they choose areas near Singapore or Hong Kong. There is no need for a mainland server here, so ICP filing is not the first step.</blockquote>
+<h4>Step 6: Fill in the minimum environment variables first</h4>
+<p><strong>[Core of this step] The first round of deployment is just to get the website running, there is no need to fill in the Paddle live key immediately. </strong></p>
+<p>First fill in the Variables of Zeabur:```bash</p>
+<p>PAYMENT_SERVER_HOST=0.0.0.0</p>
+<p>PAYMENT_STORE_FILE=/data/payment-store.json</p>
+<p>PUBLIC_BASE_URL=https://你的-zeabur-域名</p>
+<p>CORS_ORIGIN=https://你的-zeabur-域名</p>
+<p>PADDLE_ENVIRONMENT=sandbox</p>
+<p>PADDLE_ALLOW_UNSIGNED_WEBHOOKS=false</p>
+<pre><code>PUBLIC_BASE_URL=
+CORS_ORIGIN=</code></pre>
+<figure class="chapter-figure"><img src="./assets/diagrams/02-zeabur-variables.svg" alt="Zeabur environment variable indication" loading="lazy" /></figure>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>Environment variables are like &quot;little notes that the deployment platform keeps for you&quot;. Code can read these values, but they are not packaged into the front-end public files. The Paddle API key should be placed here in the future instead of being written into the web page code.</blockquote>
+<h4>Step 7: Mount <code>/data</code></h4>
+<p><strong>【Core of this step】Give the backend a storage location that will not be lost due to restarting. </strong></p>
+<p>Next are the specific execution steps:</p>
+<ol>
+<li>Find the Volume or Storage setting in the Zeabur service.</li>
+<li>Add a new volume.</li>
+<li>Fill in Mount path:</li>
+</ol>
+<pre><code>/data</code></pre>
+<ol>
+<li>Confirm that the environment variables include:```bash</li>
+</ol>
+<p>PAYMENT_STORE_FILE=/data/payment-store.json</p>
+<pre><code>
+![Zeabur Volume Signal](../../assets/diagrams/03-zeabur-volume.svg)
+
+&gt; 💡 **Why do this#  **
+&gt; If order and unlock records only exist in the service temporary directory, they may disappear after the service is restarted. `/data` volume is like connecting a small hard disk that can be saved continuously to the service.
+
+### Step 8: Open the online URL and check the three pages
+
+**【Core of this step】Confirm that the website, API, and public configuration can be accessed externally. **
+
+After successful deployment, you will get something like:
+</code></pre>
+<p>https://your-project.zeabur.app</p>
+<pre><code></code></pre>
+<p>https://yourdomain/</p>
+<p>https://yourdomain/api/health</p>
+<p>https://yourdomain/monetization.json</p>
+<pre><code>
+1. The homepage can be opened.
+2. `/api/health` will return the service status.
+3. `/api/health` does not display any secret.
+4. `/monetization.json` is accessible.
+5. `/monetization.json` does not contain Paddle API key or webhook secret.
+6. The mock payment process can still be tested.
+
+&gt; 💡 **Why do this#  **
+&gt; Paddle will later access your website from the outside. It is not enough that you can open the local web page yourself. You must confirm that the public URL can really be accessed.
+
+### Step 9: Prepare the public pages required by Paddle
+
+**【Core of this step】First prepare the basic instruction page that the payment platform will read to avoid having no URL to fill in after entering Paddle. **
+
+Paddle may ask for:
+</code></pre>
+<p>/pricing</p>
+<p>/terms</p>
+<p>/privacy</p>
+<p>/refund</p>
+<pre><code>
+1. What are you selling?
+2. What users will get after paying.
+3. What’s the price?
+4. Whether it is a one-time purchase.
+5. What are the refund rules.
+6. Where should users contact you if they encounter problems?
+Tip words for Codex:
+</code></pre>
+<p>Please help me add the public pages required for Paddle review:</p>
+<ol>
+<li>/pricing</li>
+</ol>
+<p>2./terms</p>
+<p>3./privacy</p>
+<p>4./refund</p>
+<p>Requirements:</p>
+<ul>
+<li>Write clearly, conservatively, and don’t exaggerate for effect.</li>
+<li>Do not promise employment, income, or therapeutic results.</li>
+<li>Every page can be accessed directly through the Zeabur domain name.</li>
+<li>Do not include API keys, order information or personal contact information on the page.</li>
+</ul>
+<pre><code>
+&gt; 💡 **Why do this#  **
+&gt; The payment platform needs to determine whether what you are selling is clear, whether users know what they bought, and whether there are rules when disputes arise. Pages can be concise, but they cannot be blank or vague.
+
+### Step 10: Leave this domain name to Paddle
+
+**[Core of this step] Use the Zeabur domain name as the basis for the Paddle settings in the next chapter. **
+
+After completing this chapter, record these three values:
+</code></pre>
+<p>Website homepage: https://yourdomainname/</p>
+<p>Webhook URL: https://yourdomain/api/webhooks/paddle</p>
+<p>Health check: https://yourdomain/api/health</p>
+<pre><code>
+&gt; 💡 **Why do this#  **
+&gt; This step is like getting the house number before opening a store. After the house number is determined, the cashier, payment notification, and user bounce page have places to go.
+
+### Completion criteria for this chapter
+
+**[Core of this chapter] You need to be able to prove that the website is online, not that it can only run on this machine. **
+
+After completion, please confirm item by item:
+
+1. The GitHub repository contains the latest code.
+2. Zeabur is deployed successfully.
+3. The home page can be opened.
+4. `/api/health` can be opened.
+5. `/monetization.json` does not contain secret.
+6. `/data` volume is mounted.
+7. You’ve got an HTTPS domain name.
+8. You already know that the webhook URL should be:
+</code></pre>
+<p>https://yourdomain/api/webhooks/paddle</p></article>
+<article class="tutorial-chapter" id="chapter-05"><div class="chapter-kicker">Chapter 05</div><h1>05. After you have a domain name, accept Paddle payment and automatically unlock it.</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-05-paddle.webp" alt="Paddle payment unlock chapter art" loading="lazy" /></figure>
+<p>This chapter assumes that you have completed the previous chapter and obtained an HTTPS domain name, for example:</p>
+<pre><code>https://your-project.zeabur.app</code></pre>
+<p><strong>【Core of this Chapter】Use the Zeabur domain name to complete the Paddle settings, and then let the backend automatically unlock the report through the Paddle webhook. </strong></p>
+<p>This chapter does not start with the code, but first completes the things that Paddle needs in the background.</p>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>Paddle doesn’t just give you a button. It checks your account, products, domains, payment pages, and notification addresses. When the background data is not completed, even if the code is written correctly, errors such as <code>checkout not enabled</code> may occur.</blockquote>
+<h4>Step 1: First understand what Paddle does in the entire link</h4>
+<p><strong>【Core of this step】Paddle is responsible for collecting money and notifying payment results, and your website is responsible for creating orders and unlocking reports. </strong></p>
+<p>The complete process is:</p>
+<pre><code>User clicks to unlock
+  -&gt; Your website backend creates a payment session
+  -&gt; The backend requests Paddle to create a checkout
+  -&gt; User pays on Paddle page
+  -&gt; Paddle uses webhooks to notify your backend
+  -&gt; The backend confirms that the payment is valid
+  -&gt; Backend unlock corresponding reportId</code></pre>
+<ol>
+<li>Create a checkout.</li>
+<li>Receive and verify the webhook.</li>
+<li>Access rights will be issued after payment is confirmed.</li>
+</ol>
+<p>Paddle does three things:</p>
+<ol>
+<li>Display the payment page.</li>
+<li>Process credit card, PayPal or local payment methods available in some areas.</li>
+<li>Send payment results back to your backend.</li>
+</ol>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>User payment cannot be left to the front-end web page to judge. The front end is like a store display area, the back end is like a cashier system, and Paddle is like a third-party checkout counter. Only when the checkout desk notifies the backend that &quot;the money has been confirmed&quot; should the backend open the door and deliver the report.</blockquote>
+<h4>Step 2: Complete Paddle onboarding</h4>
+<p><strong>【Core of this step】First make the Paddle account eligible to create a checkout. </strong></p>
+<p>Enter the Paddle backend and fill in the following pages as required:</p>
+<ol>
+<li>Account or company information.</li>
+<li>The type of product you sell.</li>
+<li>Product description.</li>
+<li>Annual income range.</li>
+<li>Payment method.</li>
+<li>Website domain name.</li>
+<li>Comply with Paddle acceptable use policy.</li>
+</ol>
+<p>Product descriptions can be written conservatively and clearly, for example:</p>
+<pre><code>We sell a one-time digital career assessment report.
+Users complete a quiz and receive a personalized online report.
+The product is digital content access, not employment placement, financial advice, medical advice, or guaranteed career outcome.</code></pre>
+<pre><code>Checkout has not yet been enabled for this account</code></pre>
+<ol>
+<li>Whether Onboarding is completed.</li>
+<li>Is Website approval completed?</li>
+<li>Whether the Default payment link is set.</li>
+<li>Whether Product and price exist.</li>
+<li>Is the account still waiting for Paddle review?</li>
+</ol>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>This step is like a merchant review to open a cashier. Paddle needs to know what you sell, what users buy, and whether it complies with platform policies. It&#x27;s not just a technical API.</blockquote>
+<h4>Step 3: Submit website verification</h4>
+<p><strong>[Core of this step] Fill in the Zeabur domain name obtained in the previous chapter to Paddle, and let Paddle confirm that this is your sales website. </strong></p>
+<p>Fill in the following on Paddle’s website approval or domain verification page:</p>
+<pre><code>https://your-zeabur-domain name</code></pre>
+<pre><code>https://yourdomain/pricing</code></pre>
+<pre><code>https://yourdomain/terms
+https://yourdomain/privacy
+https://yourdomain/refund</code></pre>
+<figure class="chapter-figure"><img src="./assets/diagrams/04-paddle-domain.svg" alt="Paddle website verification instructions" loading="lazy" /></figure>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>Paddle needs to look at your website from the user&#x27;s perspective: where are the prices, where are the rules, where are the privacy instructions, and where are the refund instructions. A URL with a complete path is easier to pass than just the home page.</blockquote>
+<h4>Step 4: Set default payment link</h4>
+<p><strong>[Core of this step] Tell Paddle: Which verified domain name should be used for the payment page when creating a checkout in the future. </strong></p>
+<p>Default payment link It is recommended to fill in:</p>
 <pre><code>https://your-zeabur-domain/</code></pre>
-<p>This is not a customer-facing product link and not a webhook URL. It is the account-level domain Paddle uses for checkout.</p>
-<h3>Product and prices</h3>
-<figure class="chapter-figure"><img src="./assets/diagrams/05-paddle-product-price.svg" alt="Paddle product price" loading="lazy" /></figure>
-<p>Create one one-time digital product, then two one-time prices:</p>
-<ul>
-<li><code>PADDLE_CNY_PRICE_ID</code>: CNY 9.90.</li>
-<li><code>PADDLE_USD_PRICE_ID</code>: USD 1.99.</li>
-</ul>
-<p>Do not choose subscription unless the product truly charges monthly.</p>
-<h3>Webhook</h3>
-<figure class="chapter-figure"><img src="./assets/diagrams/06-paddle-webhook.svg" alt="Paddle webhook" loading="lazy" /></figure>
-<p>Webhook URL:</p>
-<pre><code>https://your-domain/api/webhooks/paddle</code></pre>
-<p>Subscribe to at least <code>transaction.completed</code>, <code>transaction.payment_failed</code>, and <code>transaction.canceled</code>. Unlock only on <code>transaction.completed</code> when <code>custom_data.payment_session_id</code> and <code>report_id</code> match your backend records.</p>
-<h3>Zeabur variables</h3>
-<pre><code>PADDLE_ENVIRONMENT=sandbox
-PADDLE_API_KEY=your_sandbox_api_key
+<ol>
+<li>It is not a product link you want to post to users.</li>
+<li>It is not a webhook URL.</li>
+<li>It is not a result page for a certain reportId.</li>
+<li>It is the account-level payment domain name used by Paddle when creating checkout.</li>
+</ol>
+<p>If the default payment link is not set, your backend may not be able to create a transaction checkout even if the API key is correct.</p>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>You can think of default payment link as &quot;the store address used by the payment system by default&quot;. Without this address, Paddle doesn&#x27;t know which approved website to host the payment page on.</blockquote>
+<h4>Step 5: Create a one-time product</h4>
+<p><strong>【Core of this step】Create the digital reporting product you want to sell in Paddle. </strong></p>
+<p>It is recommended to fill in:</p>
+<table><tbody>
+<tr><td>Field</td><td>Suggested writing</td></tr>
+<tr><td>Product name</td><td>AI Career Action Report, or your report name</td></tr>
+<tr><td>Description</td><td>One-time access to a personalized digital career assessment report.</td></tr>
+<tr><td>Product type</td><td>Digital product</td></tr>
+<tr><td>Tax category</td><td>Digital goods, eBooks, or the closest category currently allowed for your Paddle account</td></tr>
+</tbody></table>
+<p>Don’t write it as a subscription, don’t write it as a long-term membership, unless your product really charges a monthly fee.</p>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>Product is “what you sell”. For a one-time report, the product should be a one-time access to digital content, not a class, career services or human consulting commitment.</blockquote>
+<h4>Step 6: Create two one-time prices</h4>
+<p><strong>【Core of this step】Establish two one-time prices, domestic and overseas, for the same product. </strong></p>
+<p>It is recommended to build first:</p>
+<table><tbody>
+<tr><td>Purpose</td><td>Currency and Price</td><td>Description</td></tr>
+<tr><td>Domestic price</td><td>CNY 9.90</td><td>For China area or Chinese users</td></tr>
+<tr><td>Overseas Price</td><td>USD 1.99</td><td>For Overseas Credit Card / PayPal Users</td></tr>
+</tbody></table>
+<p>Price type selection:</p>
+<pre><code>One-time</code></pre>
+<p>After creation, copy the two price ids:```bash</p>
+<p>PADDLE_CNY_PRICE_ID=pri_xxx</p>
+<p>PADDLE_USD_PRICE_ID=pri_xxx</p>
+<pre><code>
+![Paddle product and price description](../../assets/diagrams/05-paddle-product-price.svg)
+
+&gt; 💡 **Why do this#  **
+&gt; Product is the product itself, and Price is a certain selling price of this product. A product can have multiple prices, such as RMB price and USD price. When the backend creates a checkout, it will use the price id to tell Paddle how much it should charge this time.
+
+### Step 7: Create API key and put it in Zeabur Variables
+
+**【Core of this step】API key is only used by the backend and must not be put into the front-end public files. **
+
+Create an API key in Paddle Developer tools.
+
+Then enter Zeabur&#x27;s Variables and fill in:```bash
+PADDLE_ENVIRONMENT=sandbox
+PADDLE_API_KEY=你的_sandbox_api_key
 PADDLE_CNY_PRICE_ID=pri_xxx
-PADDLE_USD_PRICE_ID=pri_xxx
-PADDLE_WEBHOOK_SECRET=your_webhook_secret
-PADDLE_ALLOW_UNSIGNED_WEBHOOKS=false</code></pre>
-<h3>Test sequence</h3>
-<p>First test mock or free unlock, then Paddle sandbox checkout, then confirm webhook returns 200, then confirm the report unlocks automatically after payment. Finally verify that fake URL parameters still cannot unlock.</p></article>
-<article class="tutorial-chapter" id="chapter-06"><div class="chapter-kicker">Chapter 06</div><h1>06. Prompt Templates</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-06-prompts.webp" alt="Prompt templates chapter art" loading="lazy" /></figure>
-<p><strong>Goal: copy small, testable prompts instead of asking Codex to build everything at once.</strong></p>
-<h3>Minimum product</h3>
-<pre><code>Build a minimum paid quiz website.
+PADDLE_USD_PRICE_ID=pri_xxx</code></pre>
+<ol>
+<li>Sandbox key matches sandbox price.</li>
+<li>Live key is paired with live price.</li>
+<li>Don’t mix.</li>
+<li>Do not write the API key into <code>public/monetization.json</code>.</li>
+<li>Do not write the API key into the front-end <code>.tsx</code>, <code>.js</code>, and <code>.html</code>.</li>
+</ol>
+<p>The correct concept is:</p>
+<pre><code>Browser front-end: only knows &quot;I want to pay&quot;
+Your backend: Take the API key to Paddle to create a checkout
+Paddle: Return to payment page URL</code></pre>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>API key is like a checkout backend key. The user&#x27;s browser is a public place, and anything put on the front end may be seen. The key can only be placed in the environment variables of the backend or deployment platform.</blockquote>
+<h4>Step 8: Set up webhook</h4>
+<p><strong>【Core of this step】Let Paddle know which address to notify your website after payment is completed. </strong></p>
+<p>Fill in Paddle Notification destination:</p>
+<pre><code>https://your-zeabur-domain/api/webhooks/paddle</code></pre>
+<pre><code>transaction.completed
+transaction.payment_failed
+transaction.canceled
+transaction.past_due</code></pre>
+<p>PADDLE_WEBHOOK_SECRET=你的_webhook_secret</p>
+<p>PADDLE_ALLOW_UNSIGNED_WEBHOOKS=false</p>
+<pre><code>
+![Paddle Webhook signal](../../assets/diagrams/06-paddle-webhook.svg)
+
+&gt; 💡 **Why do this#  **
+&gt; Webhook is like Paddle proactively making a call to your backend: &quot;This transaction is completed.&quot; Webhook secret is like the password agreed by both parties. Without a secret code, someone could also fake a phone call and say they paid.
+
+### Step 9: Let the backend create the Paddle checkout
+
+**[Core of this step] When the user clicks the payment button, the front end only requests your back end and does not directly contact the Paddle API key. **
+
+Front-end request:```http
+POST /api/payments/checkout
+Content-Type: application/json
+
+{
+  &quot;reportId&quot;: &quot;rep_xxx&quot;,
+  &quot;region&quot;: &quot;domestic&quot;
+}</code></pre>
+<ol>
+<li>Create a local payment session.</li>
+<li>Select <code>PADDLE_CNY_PRICE_ID</code> or <code>PADDLE_USD_PRICE_ID</code> according to the region.</li>
+<li>Call Paddle create transaction API.</li>
+<li>Put <code>reportId</code> into <code>custom_data</code>.</li>
+<li>Put <code>payment_session_id</code> into <code>custom_data</code>.</li>
+<li>Save the Paddle transaction id.</li>
+<li>Return the Paddle checkout URL to the front end.</li>
+</ol>
+<p>Tip words for Codex:</p>
+<pre><code>I already have a Zeabur HTTPS domain name and now want to connect to Paddle.
+
+Please add a new Paddle provider.
 
 Requirements:
+1. Keep the mock provider to facilitate testing.
+2. POST /api/payments/checkout calls Paddle create transaction.
+3. Use PADDLE_CNY_PRICE_ID domestically and PADDLE_USD_PRICE_ID overseas.
+4. transaction custom_data must contain reportId and payment_session_id.
+5. All secrets can only be read from process.env.
+6. public/monetization.json cannot contain any secrets.</code></pre>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote><code>custom_data</code> is the &quot;sticky note&quot; you put in your Paddle order. When the webhook comes back, the backend relies on this note to know: which report and payment session this payment corresponds to.</blockquote>
+<h4>Step 10: Only let the webhook unlock the report</h4>
+<p><strong>【Core of this step】Do not unlock directly just because the user returns to the page, the URL has more parameters, or the front-end display is successful. </strong></p>
+<p>Paddle notifies your backend:</p>
+<pre><code>POST /api/webhooks/paddle</code></pre>
+<ol>
+<li>Verify <code>Paddle-Signature</code> with raw body.</li>
+<li>Only <code>transaction.completed</code> is accepted.</li>
+<li>Check <code>custom_data.payment_session_id</code>.</li>
+<li>Check <code>custom_data.report_id</code>.</li>
+<li>Check the price id.</li>
+<li>Check the amount.</li>
+<li>Check the currency.</li>
+<li>Repeated webhooks must be idempotent.</li>
+<li>Write <code>accessToken</code> only after all checks pass.</li>
+</ol>
+<p>Tip words for Codex:</p>
+<pre><code>Please implement POST /api/webhooks/paddle.
+
+Requirements:
+1. Raw body must be used to verify Paddle-Signature.
+2. Only transaction.completed unlocks are accepted.
+3. transaction.payment_failed / transaction.canceled / transaction.past_due are not unlocked.
+4. The reportId and payment_session_id in custom_data must match the local session.
+5. The price id, amount, and currency cannot be unlocked if they do not match.
+6. Repeated webhook permissions cannot be issued repeatedly.
+7. Any errors must be written to payment_events to facilitate troubleshooting.</code></pre>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>The user&#x27;s payment page jumps back to your website. It only means that the browser has returned, but it does not mean that the money has been confirmed. The truly reliable signal is the signature-verified webhook sent from the Paddle server.</blockquote>
+<h4>Step 11: Test the sandbox in a fixed order</h4>
+<p><strong>[Core of this step] First use sandbox to prove that the entire link can go through, and then switch to live. </strong></p>
+<p>Next, test in this order:</p>
+<ol>
+<li>Fill in the sandbox API key for Zeabur environment variables.</li>
+<li>Fill in the sandbox price id in the Zeabur environment variable.</li>
+<li>Fill in the Zeabur environment variable with sandbox webhook secret.</li>
+<li>Redeploy.</li>
+<li>Open the online domain name.</li>
+<li>Complete the quiz.</li>
+<li>Click Pay.</li>
+<li>Jump to the Paddle sandbox checkout.</li>
+<li>Pay with the test card provided by Paddle.</li>
+<li>Open the Paddle notification log.</li>
+<li>Open Zeabur logs.</li>
+<li>Confirm that the webhook returns successfully.</li>
+<li>Return to the report page and confirm automatic unlocking.</li>
+</ol>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>Sandbox is a testing environment provided by the payment platform. It allows you to confirm whether the API, webhook, and unlocking logic are correct without actually collecting money.</blockquote>
+<h4>Step 12: Troubleshoot common errors</h4>
+<p><strong>【Core of this step】When you see an error, first determine whether it is an issue with account settings, environment variables, code or webhook. </strong></p>
+<h5>Checkout has not yet been enabled</h5>
+<p>Priority checks:</p>
+<ol>
+<li>Whether Paddle onboarding is completed.</li>
+<li>Whether the website verification is passed.</li>
+<li>Whether the Default payment link is set.</li>
+<li>Whether Product and price are established.</li>
+<li>Whether the account is still under review by Paddle.</li>
+</ol>
+<h5>Authentication header incorrectly formatted</h5>
+<p>The environment variable only contains the key itself:```bash</p>
+<p>PADDLE_API_KEY=pdl_sdbx_xxx</p>
+<pre><code></code></pre>
+<p>Authorization: Bearer pdl_sdbx_xxx</p>
+<pre><code>PADDLE_API_KEY=Bearer pdl_sdbx_xxx</code></pre>
+<h5>Not unlocked after payment</h5>
+<p>Check in order:</p>
+<ol>
+<li>Does Paddle notification log send webhook?</li>
+<li>Has Zeabur logs received the request?</li>
+<li>Whether the Webhook URL is <code>/api/webhooks/paddle</code>.</li>
+<li>Whether the Webhook secret is consistent.</li>
+<li>Is the event <code>transaction.completed</code>?</li>
+<li>Does <code>custom_data</code> have <code>payment_session_id</code> and <code>report_id</code>.</li>
+<li>Whether <code>/data/payment-store.json</code> is written successfully.</li>
+</ol>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>Payment failure may not be due to the same reason. By splitting the question into &quot;Did Paddle send a notification, did Zeabur receive it, did the backend pass the verification, and did the data get written,&quot; you can quickly locate which section is stuck.</blockquote>
+<h4>Step 13: Make final confirmation before switching to live</h4>
+<p><strong>【Core of this step】After the Sandbox is run through, replace the live data of Paddle. </strong></p>
+<p>Confirm before switching to live:</p>
+<ol>
+<li>Paddle live onboarding passed.</li>
+<li>Live website approval has been passed.</li>
+<li>Live default payment link has been set.</li>
+<li>Live product has been created.</li>
+<li>Live one-time price has been established.</li>
+<li>Zeabur Variables have been replaced by live API keys.</li>
+<li>Zeabur Variables have been replaced by live price id.</li>
+<li>Zeabur Variables have been replaced by live webhook secret.</li>
+<li><code>PADDLE_ENVIRONMENT=live</code>.</li>
+<li>The test entrance, 0 yuan unlock, and mock buttons are all closed.</li>
+</ol>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>Sandbox and live are two different worlds. Sandbox keys cannot accept real money, and live keys should not be used for random testing. When switching, replace them in sets to avoid mixing key, price id, and webhook secret.</blockquote>
+<h4>Completion criteria for this chapter</h4>
+<p><strong>[Core of this Chapter] You must be able to prove that the user actually paid, and the report will be automatically unlocked by the backend. </strong></p>
+<p>After completion, please confirm item by item:</p>
+<ol>
+<li>The user clicks the payment button to open the Paddle checkout.</li>
+<li>After Paddle sandbox pays, the webhook returns to the Zeabur backend.</li>
+<li>The backend is only unlocked after <code>transaction.completed</code>.</li>
+<li>Wrong signature will not be unlocked.</li>
+<li>Wrong amount will not be unlocked.</li>
+<li>Wrong price id will not be unlocked.</li>
+<li>Duplicate webhooks will not be issued repeatedly.</li>
+<li>Users can still see the unlocked content after refreshing the report page.</li>
+<li>When changing browsers or without access token, you cannot see other people’s complete reports.</li>
+</ol>
+<p>When all of these are established, Paddle access is truly successful.</p></article>
+<article class="tutorial-chapter" id="chapter-06"><div class="chapter-kicker">Chapter 06</div><h1>06. Copyable prompt word template</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-06-prompts.webp" alt="Prompt templates chapter art" loading="lazy" /></figure>
+<p><strong>[Core of this chapter] Here is a collection of prompt words that can be directly posted to Codex for building a website, uploading to GitHub, deploying Zeabur, connecting to Paddle and troubleshooting errors. </strong></p>
+<p>This chapter is a toolbox. You can paste the prompt words below directly to Codex, and then replace the content in brackets with your own project.</p>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>For beginners, the most difficult thing is often not &quot;knowing what to do&quot;, but &quot;not knowing how to ask Codex to do it&quot;. Templates can reduce expression costs and make requirements more stable.</blockquote>
+<h3>0. Let Codex read the project first</h3>
+<p><strong>[Core of this section] Before making any modifications, let Codex understand the project structure. </strong></p>
+<pre><code>Please read this project first and do not rush to modify it.
+
+Please tell me:
+1. Where is the front-end entrance?
+2. Where is the backend entrance?
+3. Where is the payment configuration?
+4. How to run it locally
+5. Which files cannot be submitted to GitHub
+
+Then list your proposed next steps for change.</code></pre>
+<h3>1. Create a minimal version from an empty directory</h3>
+<p><strong>[Core of this section] When starting from an empty project, first ask Codex to create a minimum runnable version. </strong></p>
+<pre><code>Please create a minimum usable version of a paid quiz site in the current directory.
+
+Technical requirements:
 - React + Vite frontend
-- Node backend
-- landing page, quiz page, free intro report, paywall, full report
-- mock payment first
-- no login
-- backend is the only authority for paid status
+- Node.js backend
+- Pay with mock first
+- Not connected to real Paddle
+- No login required
 
-Please output a file plan first, implement it, then run typecheck and build.</code></pre>
-<h3>Add Paddle</h3>
-<pre><code>Add a Paddle provider beside the mock provider.
+Product process:
+Home -&gt; Answer page -&gt; Free introduction report -&gt; Payment button -&gt; Mock unlock -&gt; Full report
+
+Please provide:
+- package.json scripts
+- Front-end page
+- Backend API
+- public/monetization.json
+- .env.payment.example
+- Local operation instructions</code></pre>
+<h3>2. Add title and results page</h3>
+<p><strong>[Core of this section] After the process is completed, the number of questions and results page will be expanded. </strong></p>
+<pre><code>Please help me expand the test questions into [number of questions] questions.
 
 Requirements:
-- POST /api/payments/checkout chooses CNY or USD price by region
-- create Paddle transaction with custom_data: payment_session_id and report_id
-- POST /api/webhooks/paddle verifies Paddle-Signature
-- only transaction.completed unlocks
-- duplicate webhooks are idempotent
-- bad signature, wrong reportId, or wrong amount never unlocks</code></pre>
-<h3>Fix Zeabur deployment</h3>
-<pre><code>Zeabur deployment failed. Here is the full log:
-[paste log]
+- Each question has 3-5 options
+- Users only see one question at a time
+- There are progress prompts
+- Generate reportId after answering
+- The results page generates a stable result based on the answer
+- Don&#x27;t lose current reports after refreshing
 
-Please determine whether this is a build script, start script, PORT, environment variable, missing file, or memory issue. Fix the code and tell me what to configure in Zeabur.</code></pre>
-<h3>Audit secrets</h3>
-<pre><code>Inspect this project for possible secret leaks: Paddle API key, webhook secret, .env.payment.local, order data, or user private data. List risky files and .gitignore recommendations. Do not delete files unless I ask.</code></pre>
-<h3>Improve conversion without hype</h3>
-<pre><code>Make the locked report feel like a professional intro report, not a hard-sell page. It may show core motivation, behavioral tendency, self-perception gap, and full-report focus areas. It must not reveal the full career answer, route, salary, or saved report.</code></pre></article>
-<article class="tutorial-chapter" id="chapter-07"><div class="chapter-kicker">Chapter 07</div><h1>07. Launch Checklist</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-07-launch.webp" alt="Launch checklist chapter art" loading="lazy" /></figure>
-<p><strong>Goal: verify product flow, payment, unlock security, mobile behavior, and secrets before going live.</strong></p>
-<h3>Product flow</h3>
+Use local data first, do not connect to the database.</code></pre>
+<h3>3. Optimize the free introductory report</h3>
+<p><strong>【Core of this section】Unpaid pages should build trust and should not be written as exaggerated advertisements. </strong></p>
+<pre><code>Please optimize the unpaid results page.
+
+Style:
+- Professional, objective and credible
+- Don’t exaggerate your marketing
+- Don’t say things like “reveal a little first” or “hit the pain points precisely”.
+
+Content structure:
+1. Core psychological driving force
+2. Behavioral tendencies and potential stuck points
+3. Reconciling self-awareness with internal and external performance
+4. The complete report will continue the direction of analysis
+
+Limitations:
+- Does not show full career answers
+- Does not show the complete route of action
+-Do not display the complete report saving entrance</code></pre>
+<h3>4. Add mock paywall</h3>
+<p><strong>【Core of this section】Use mock payment to test the unlocking logic first, and don’t rush to receive real payment. </strong></p>
+<pre><code>Please add a mock paywall.
+
+Requirements:
+- public/monetization.json has enabled switch
+- When enabled=false, it is convenient for development and you can view the complete report directly.
+- When enabled=true, you can only watch the free introduction without paying.
+-Click the payment button to create a payment session
+- The mock is automatically unlocked after successful payment
+- The front end cannot be fake unlocked by URL parameters.</code></pre>
+<h3>5. Upload to GitHub first</h3>
+<p><strong>【Core of this section】Please Codex check GitHub upload security before deployment. </strong></p>
+<pre><code>Please check if this project is suitable for upload to GitHub.
+
+Requirements:
+- .gitignore ignores .env, .env.*, *.local, node_modules, dist, logs, temporary files
+- Scan the project to confirm that there is no Paddle API key, webhook secret, or admin token
+- Confirm that the README can explain the purpose of the project and how to run it locally
+-Tell me what commands to execute when uploading to GitHub for the first time
+- If the remote origin does not exist, please tell me how to connect to the GitHub repo
+- If a secret is found, please list the file path and remind me to revoke or replace the corresponding key
+
+Please do not submit local keys, real order data or background screen data to Git.</code></pre>
+<h3>6. Then deploy to Zeabur</h3>
+<p><strong>[Core of this section] After the GitHub repository is ready, let Codex check the Zeabur deployment conditions. </strong></p>
+<pre><code>Please review and adjust the project so that it can be deployed to Zeabur.
+
+Requirements:
+- npm run build can produce front-end files
+- npm run start can start single Node service
+- Service listening process.env.PORT
+- host available 0.0.0.0
+- The same service provides front-end dist and /api
+- Added /api/health
+- .gitignore ignores .env, *.local, node_modules, dist, logs, temporary files
+- Do not submit any API key
+- When the Paddle provider is not enabled, missing Paddle key should not cause the service to crash
+
+Please tell me what should be filled in Zeabur Variables.</code></pre>
+<h3>7. Connect to Paddle after you have a domain name</h3>
+<p><strong>[Core of this section] After the Zeabur HTTPS domain name is ready, connect to Paddle. </strong></p>
+<pre><code>I already have a Zeabur HTTPS domain name and now want to connect to Paddle.
+
+Please add a new Paddle provider.
+
+Environment variables:
+-PADDLE_ENVIRONMENT
+-PADDLE_API_KEY
+- PADDLE_CNY_PRICE_ID
+-PADDLE_USD_PRICE_ID
+- PADDLE_WEBHOOK_SECRET
+- PUBLIC_BASE_URL
+
+Backend requirements:
+- POST /api/payments/checkout call Paddle create transaction
+- custom_data writes reportId and payment_session_id
+- POST /api/webhooks/paddle verification Paddle-Signature
+- Only accept transaction.completed unlock
+- Failure, cancellation, expiration will not unlock
+- Webhook repeated sending must be idempotent
+- Price id, amount, and currency do not match and cannot be unlocked</code></pre>
+<h3>8. Check why Zeabur 502</h3>
+<p><strong>【Core of this section】When encountering 502, post the Zeabur log to Codex for positioning. </strong></p>
+<pre><code>After Zeabur is deployed, a 502 is displayed when opening the website.
+
+This is the Zeabur log:
+[post log]
+
+Please check:
+1. package.json start script
+2. Whether the server listens to process.env.PORT
+3. Whether host is 0.0.0.0
+4. Is the static file path correct after build?
+5. Whether the process exits due to lack of environment variables
+
+Please fix it directly.</code></pre>
+<h3>9. Check why Paddle is not unlocked after payment</h3>
+<p><strong>【Core of this Section】When it is not unlocked after payment, check the Paddle webhook and Zeabur logs at the same time. </strong></p>
+<pre><code>Paddle page is not unlocked after payment.
+
+I have this information:
+- Paddle transaction id: [fill in]
+- payment session id: [fill in]
+- reportId: [fill in]
+- Zeabur log: [Post log]
+- Paddle webhook log: [post log]
+
+Please check:
+1. Whether the webhook is received
+2. Is the webhook signature verified?
+3. Whether event_type is transaction.completed
+4. Whether custom_data contains payment_session_id and reportId
+5. Whether the store file is successfully written
+6. The front-end polls whether to get paid</code></pre>
+<h3>10. Security audit before going online</h3>
+<p><strong>[Core of this section] Centrally check secrets, signature verification, permissions and bypass risks before going online. </strong></p>
+<pre><code>Please do a security audit before going online.
+
+Key points:
+- Whether the public file leaks the secret
+- Whether .env is tracked by git
+- Whether the API key is only in the backend process.env
+- Whether webhook verifies signature
+- Wrong signature cannot be unlocked
+- Duplicate webhooks are not issued repeatedly
+- Full report cannot be accessed without payment
+- The same access token cannot unlock other people&#x27;s reportId
+
+Please list the issues and fix them.</code></pre>
+<h3>11. Make reports more like products</h3>
+<p><strong>【Core of this section】After the basic link is running through, let Codex optimize the reporting experience. </strong></p>
+<pre><code>Please optimize the full report page to look more like a paid product.
+
+Requirements:
+- See the core conclusions and radar on the first screen
+- Psychological profiling is the main selling point
+- Multi-directional short modules, not a long article
+- Removed salary and job market descriptions
+- Focus on personality traits, suitable career types, development routes, and risk boundaries
+- The alternative profession can be switched with one click, but cannot be re-locked.
+- The layout is not cropped when saving the report</code></pre>
+<h3>12. Please don’t overdo Codex</h3>
+<p><strong>【Core of this section】When you only want to make small changes, you must clearly limit the modification scope of the Codex. </strong></p>
+<p>When you feel that the Codex has changed too much, use this paragraph:</p>
+<pre><code>Please stop adding new features.
+This time only the issues I pointed out will be fixed.
+Don&#x27;t refactor extraneous files.
+Don’t change the visual style.
+Don&#x27;t remove existing functionality.
+Please explain which files you will change before proceeding.</code></pre>
+<h3>13. Require verification at the end of each time</h3>
+<p><strong>【Core of this section】After each modification, Codex is required to run a check and explain the results. </strong></p>
+<p>Add at the end of each task:</p>
+<pre><code>Once complete please run:
+- npm run typecheck
+- npm run build
+
+If the project does not have these commands, please describe an alternative verification method.
+Finally, please summarize what has been changed and how I should test it manually.</code></pre>
+<h3>Usage suggestions</h3>
+<p><strong>【Core of this section】Only paste one template at a time, and wait until the acceptance is passed before proceeding to the next step. </strong></p>
+<p>The most stable way for novices is:</p>
+<ol>
+<li>Post only one prompt word at a time.</li>
+<li>Wait for the Codex to be modified.</li>
+<li>Run.</li>
+<li>Describe the screen status or post errors.</li>
+<li>Go to the next step.</li>
+</ol>
+<p>Don’t ask for “complete website + payment acceptance + deployment + multi-language + art upgrade” all at once. When it fails that way it&#x27;s hard to know which step is broken.</p></article>
+<article class="tutorial-chapter" id="chapter-07"><div class="chapter-kicker">Chapter 07</div><h1>07. Go Live Checklist</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-07-launch.webp" alt="Launch checklist chapter art" loading="lazy" /></figure>
+<p><strong>【Core of this Chapter】Check the product process, GitHub, Zeabur, Paddle, environment variables and payment security one by one before going online. </strong></p>
+<p>Don’t just look at “whether the page is beautiful or not” before going online. The most important thing about a paid website is that users can complete payment, get things after payment, and people who have not paid cannot bypass it.</p>
+<p>Go through this list one by one.</p>
+<blockquote>💡 <strong>Why do this#  </strong></blockquote>
+<blockquote>The risk of paid websites is not only the visual appearance of the page. If there is an error in any of the order, webhook, key, and unlocking permissions, users may encounter the problem of &quot;paid but unable to see&quot; or &quot;not paid yet able to view&quot;.</blockquote>
+<h3>1. Basic functions</h3>
+<p><strong>[Core of this section] First confirm that users can go from the home page to the report page. </strong></p>
 <ul>
-<li>[ ] Landing page starts the quiz clearly.</li>
-<li>[ ] User can finish all questions.</li>
-<li>[ ] Free intro report provides real value without revealing the full answer.</li>
-<li>[ ] Paywall shows the correct single recommended price.</li>
-<li>[ ] Paid report unlocks automatically after payment.</li>
-<li>[ ] Returning users can reopen the correct report with the correct token.</li>
+<li>[ ] Home page can be opened.</li>
+<li>[ ] User can start quizzes.</li>
+<li>[ ] User can complete all questions.</li>
+<li>[ ] Generate <code>reportId</code> after answering.</li>
+<li>[ ] Free introductory version of the report can be displayed.</li>
+<li>[ ] Full report locked in case of non-payment.</li>
+<li>[ ] Payment button can create payment session.</li>
+<li>[ ] It can be automatically unlocked after successful payment.</li>
+<li>[ ] After refreshing the page, the unlocked report can still be opened.</li>
+<li>[ ] When changing browsers or without token, you cannot see other people&#x27;s complete reports.</li>
 </ul>
-<h3>Paddle</h3>
+<h3>2. Codex delivery inspection</h3>
+<p><strong>【Core of this section】Let Codex run basic checks and go online without errors. </strong></p>
+<p>Let Codex run:```bash</p>
+<p>npm run typecheck</p>
+<p>npm run build</p>
+<pre><code></code></pre>
+<p>This is a bug with npm run build, please help me fix it.</p>
+<p>[Posting error]</p>
+<pre><code>
+## 3. Public document inspection
+
+**【Core of this section】Confirm that there is no secret in the files that users can see. **
+
+These files can be seen by users:
+</code></pre>
+<p>public/*</p>
+<p>dist/*</p>
+<p>Front-end packaged js/css</p>
+<pre><code>
+- Paddle API key.
+- Webhook secret.
+- Admin token.
+- `.env.payment.local` content.
+- Your private test order information.
+
+You can ask Codex to check:
+</code></pre>
+<p>Please scan the public, dist and front-end source code to confirm that the API key, webhook secret, and admin token are not leaked.</p>
+<pre><code>
+## 4. GitHub check
+
+**【Core of this section】Confirm that Zeabur will get the latest security version on GitHub. **
+
+Zeabur will pull the code from GitHub, so confirm the repository status before deploying.
+
+- [ ] GitHub repo has been created.
+- [ ] The latest modification of this machine has been committed.
+- [ ] The latest modification of this machine has been pushed.
+- [ ] The latest README and code can be seen on the GitHub page.
+- [ ] .env is not uploaded.
+- [ ] .env.payment.local is not uploaded.
+- [ ] Paddle API key, webhook secret, and admin token do not appear in the warehouse.
+- [ ] The GitHub warehouse address can be copied to Zeabur for use.
+
+## 5. Zeabur inspection
+
+**【Core of this section】Confirm that the online service can be started, accessed, and payment information can be saved. **
+
+Do this first to get a publicly accessible HTTPS domain name. Paddle&#x27;s website verification, default payment link and webhook all require this domain name.
+
+- [ ] GitHub repo is the latest code.
+- [ ] Zeabur connects correct repo and branch.
+- [ ] Build command is `npm run build`.
+- [ ] Start command is `npm run start`.
+- [ ] Service listening `process.env.PORT`.
+- [ ] Host uses `0.0.0.0`.
+- [ ] `/api/health` is accessible.
+- [ ] `/monetization.json` is accessible.
+- [ ] `/data` volume set.
+- [ ] `PAYMENT_STORE_FILE=/data/payment-store.json`.
+- [ ] Got the Zeabur HTTPS domain name, such as `https://你的项目.zeabur.app`.
+
+## 6. Paddle inspection
+
+**【Core of this section】Confirm that the Paddle account, domain name, product, price and webhook are all ready. **
+
+After the Zeabur website can be opened, do Paddle. Don’t force payment when you don’t have a domain name.
+
+- [ ] Paddle onboarding completed.
+- [ ] The website domain name is verified.
+- [ ] Pricing page fill in the public page under the Zeabur domain name.
+- [ ] Terms of service / Privacy policy / Refund policy all use URLs with paths.
+- [ ] Default payment link is set to a verified domain name.
+- [ ] Product created.
+- [ ] One-time price established.
+- [ ] CNY price id is filled in the Zeabur environment variable.
+- [ ] USD price id is filled in the Zeabur environment variable.
+- [ ] API key is the correct environment: sandbox or live.
+- [ ] Webhook destination points to `https://你的域名/api/webhooks/paddle`.
+- [ ] Webhook secret is filled in Zeabur Variables.
+- [ ] `transaction.completed` event selected.
+- [ ] sandbox payment can trigger webhook.
+
+## 7. Environment variable check
+
+**【Core of this section】Confirm that the variables on the deployment platform are complete and the environment is consistent. **
+
+Zeabur Variables at least. When you just want to get a domain name for the first time, Paddle related variables can be left blank or use placeholder values; wait for Paddle to build product, price, and webhook before filling them in:```bash
+PAYMENT_SERVER_HOST=0.0.0.0
+PAYMENT_STORE_FILE=/data/payment-store.json
+PUBLIC_BASE_URL=https://你的域名
+CORS_ORIGIN=https://你的域名
+PADDLE_ENVIRONMENT=sandbox
+PADDLE_API_KEY=...
+PADDLE_CNY_PRICE_ID=pri_...
+PADDLE_USD_PRICE_ID=pri_...
+PADDLE_WEBHOOK_SECRET=...
+PADDLE_ALLOW_UNSIGNED_WEBHOOKS=false</code></pre>
+<h3>8. Paid security inspection</h3>
+<p><strong>【Core of this section】Confirm that it will be unlocked only if the real payment is successful. </strong></p>
+<p>Test at least these scenarios:</p>
 <ul>
-<li>[ ] Website approval passed.</li>
-<li>[ ] Default payment link is set.</li>
-<li>[ ] Product is a one-time digital product.</li>
-<li>[ ] Prices are one-time, not subscriptions.</li>
-<li>[ ] Webhook URL is <code>https://your-domain/api/webhooks/paddle</code>.</li>
-<li>[ ] <code>transaction.completed</code> unlocks.</li>
-<li>[ ] Failed, canceled, and duplicate webhooks do not unlock incorrectly.</li>
+<li>[ ] URL plus <code># paid=true</code> will not unlock.</li>
+<li>[ ] Changing the session id randomly will not unlock it.</li>
+<li>[ ] Error webhook secret will not be unlocked.</li>
+<li>[ ] Duplicate webhook will not be issued multiple times.</li>
+<li>[ ] <code>transaction.payment_failed</code> will not unlock.</li>
+<li>[ ] <code>transaction.completed</code> will be unlocked.</li>
+<li>[ ] Another reportId cannot be unlocked for the same order.</li>
 </ul>
-<h3>Zeabur</h3>
+<h3>9. Real user experience check</h3>
+<p><strong>【Core of this section】Go through the complete process once with your mobile phone and computer. </strong></p>
+<p>Run once on your phone and once on your computer:</p>
 <ul>
-<li>[ ] <code>PAYMENT_SERVER_HOST=0.0.0.0</code>.</li>
-<li>[ ] <code>PAYMENT_STORE_FILE=/data/payment-store.json</code>.</li>
-<li>[ ] <code>/data</code> volume is mounted.</li>
-<li>[ ] <code>PUBLIC_BASE_URL</code> and <code>CORS_ORIGIN</code> match the production domain.</li>
-<li>[ ] <code>/api/health</code> works and reveals no secrets.</li>
+<li>[ ] The homepage copy is understandable.</li>
+<li>[ ] Start button is obvious.</li>
+<li>[ ] There is no need to keep sliding on the answer page.</li>
+<li>[ ] Free reports with a professional feel.</li>
+<li>[ ] The payment button is clear.</li>
+<li>[ ] There is a waiting prompt after payment.</li>
+<li>[ ] The full report layout is stable after unlocking.</li>
+<li>[ ] Saving reports does not fail or get clipped.</li>
 </ul>
-<h3>Security</h3>
+<h3>10. Close the test entrance before going online</h3>
+<p><strong>【Core of this section】Close all test shortcuts before official launch. </strong></p>
+<p>If you have these test features, be sure to turn them off before going live:</p>
 <ul>
-<li>[ ] No <code>.env.payment.local</code> on GitHub.</li>
-<li>[ ] No Paddle API key in <code>public/</code> or frontend bundle.</li>
-<li>[ ] No <code>node_modules</code>, <code>dist</code>, logs, payment store, or private user data committed.</li>
+<li>[ ] button to jump directly to the results page.</li>
+<li>[ ] 0 yuan test unlock button.</li>
+<li>[ ] mock payment button.</li>
+<li>[ ] admin configurator entry.</li>
+<li>[ ] any debug panel.</li>
 </ul>
-<h3>Final switch to live</h3>
-<p>After sandbox works, switch to live carefully: live API key, live price IDs, live webhook secret, live Paddle environment, and verified production domain.</p></article></section></main></body></html>
+<p>If you want to keep it on purpose, at least keep it out of sight for regular users.</p>
+<h3>11. What to watch on the first day after going online</h3>
+<p><strong>【Core of this section】On the first day of launch, focus on payment links and unlocking failures. </strong></p>
+<p>Don’t just look at the number of visits after going online. Highlights:</p>
+<ul>
+<li>How many people started the quiz.</li>
+<li>How many people completed the quiz.</li>
+<li>How many people clicked to pay.</li>
+<li>Is Paddle checkout turned on?</li>
+<li>webhook success rate.</li>
+<li>Is there any unlocking failure after successful payment?</li>
+<li>Have users reported &quot;paid but can&#x27;t see it&quot;?</li>
+</ul>
+<p>Low-priced products are most afraid of errors in the payment link. Please read more logs on the first day.</p>
+<h3>Acceptance in one sentence</h3>
+<p><strong>【Core of this section】Unknown users can only be considered successful online if they can complete the test, pay and automatically see the complete report. </strong></p>
+<p>When you can do it stably:</p>
+<pre><code>Unknown users open the website -&gt; complete the quiz -&gt; make payment -&gt; automatically see the full report</code></pre></article></section></main></body></html>

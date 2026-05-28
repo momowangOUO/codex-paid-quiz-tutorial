@@ -1,63 +1,325 @@
-# 04. 먼저 Zeabur 에 배포하기
+# 04. Zeabur에 배포하고 검증 가능한 도메인 이름 얻기
 
-![Zeabur deployment chapter art](../../assets/chapters/chapter-04-zeabur.webp)
-**목표: Paddle 설정 전에 공개 HTTPS 도메인을 얻습니다. 순서가 중요합니다.**
+![Zeabur 전개 장 아트](../../assets/chapters/chapter-04-zeabur.webp)
+이 장에서는 이전 장을 완료하고 프로젝트를 GitHub에 업로드했다고 가정합니다. 이제 GitHub 저장소를 Zeabur에 배포할 차례입니다.
+
+**[이 장의 핵심] 먼저 웹사이트에 공개적으로 액세스할 수 있는 HTTPS 도메인 이름을 부여한 다음 이 도메인 이름을 웹사이트 확인, 기본 결제 링크 및 웹훅을 위해 패들에 사용합니다. **
+
+권장되는 순서는 다음과 같습니다.
 
 ```text
-로컬 mock -> GitHub -> Zeabur -> HTTPS 도메인 -> Paddle 심사 -> Paddle checkout
+로컬 모의 프로세스가 원활하게 실행됩니다.
+  -> GitHub에 업로드
+  -> Zeabur에 배포
+  -> HTTPS 도메인 이름 가져오기
+  -> 가격/약관/개인정보/환불 페이지 준비
+  -> Paddle로 돌아가서 웹사이트 확인 및 결제 설정을 수행하세요.
 ```
 
-![Domain before Paddle](../../assets/diagrams/07-domain-before-paddle.svg)
+> 💡 **왜 이러는 걸까요#  **
+> Paddle은 실제 결제 페이지를 생성하기 전에 일반적으로 귀하의 웹사이트가 존재하는지, 열 수 있는지, 약관 및 개인 정보 보호 정책이 있는지 확인합니다. 아직 도메인 이름을 공개하지 않은 경우, 매장 주소 없이 계산원을 신청하려는 것처럼 많은 설정이 중간에 막히게 됩니다.
 
-## 왜 Zeabur 가 먼저인가
+![지불 순서 지침 배포](../../assets/diagrams/07-domain-before-paddle.svg)
 
-Paddle 은 pricing, terms, privacy, refund, default payment link, 승인된 도메인을 요구합니다. 공개 도메인이 없으면 코드가 맞아도 checkout not enabled 로 막힐 수 있습니다.
+### 1단계: 먼저 가지고 있는 프로젝트가 이 컴퓨터에서 실행될 수 있는지 확인하세요.
 
-## 사전 확인
+**【이 단계의 핵심】먼저 프로젝트가 컴퓨터에 설치 및 빌드될 수 있는지 확인한 다음 Zeabur에 배포합니다. **
 
-```bash
+다음은 구체적인 실행 단계입니다.
+
+1. 프로젝트 폴더를 엽니다.
+2. 프로젝트 루트 디렉터리에서 터미널을 엽니다.
+3. 실행:```bash
 npm install
 npm run build
 ```
 
-로컬 build 가 실패하면 Zeabur 도 대부분 실패합니다. 로그를 Codex 에게 주고 먼저 고칩니다.
+4. `npm run build`가 성공하면 다음 단계를 계속합니다.
+5. 실패하면 전체 오류를 Codex에 게시하세요.
 
-## PORT 와 0.0.0.0
+```text
+npm 실행 빌드가 실패했습니다. 오류 로그는 다음과 같습니다.
+[전체 로그 게시]
 
-Node 서버는 다음과 같이 작성합니다.
+Zeabur에 배포할 수 있도록 문제를 해결하도록 도와주세요.
+복구 후 다시 npm run build를 실행해 주세요.
+```
 
-```js
-const port = Number(process.env.PORT ?? 8080);
-const serverHost = process.env.PAYMENT_SERVER_HOST ?? "0.0.0.0";
+> 💡 **왜 이러는 걸까요#  **
+> Zeabur는 배포 시 빌드도 실행합니다. 로컬 빌드가 실패하고 일반적으로 클라우드도 실패합니다. 먼저 자신의 컴퓨터에서 수정하면 실수를 추측하는 데 소요되는 시간을 줄일 수 있습니다.
+
+### 2단계: 백엔드가 하드 코딩된 포트가 아닌지 확인
+
+**[이 단계의 핵심] Node 백엔드는 Zeabur가 제공한 `PORT`를 수신해야 하며 `0.0.0.0`를 사용하여 외부 액세스를 허용해야 합니다. **
+
+Codex가 백엔드 시작 코드를 확인하도록 해주세요. 목표는 다음과 같이 작성됩니다.```js
+const port = Number(process.env.PORT ##  8080);
+const serverHost = process.env.PAYMENT_SERVER_HOST ##  "0.0.0.0";
+
 server.listen(port, serverHost, () => {
   console.log(`payment server: http://${serverHost}:${port}/api`);
 });
 ```
 
-프로덕션 컨테이너에서 `0.0.0.0` 은 올바른 설정입니다. 외부 트래픽이 컨테이너 안의 서비스에 도달하게 합니다.
+이 프롬프트를 Codex에 직접 복사할 수 있습니다.
 
-## Zeabur 설정
+```text
+서버 시작 코드를 확인하세요.
 
-![Zeabur deploy flow](../../assets/diagrams/01-zeabur-deploy.svg)
+요구사항:
+1. 포트는 먼저 process.env.PORT를 읽어야 합니다.
+2. 호스트는 기본적으로 0.0.0.0을 사용합니다.
+3. localhost를 하드코딩하지 마세요.
+4. 8080과 같이 로컬 개발에 사용할 수 있는 기본 포트를 유지합니다.
+5. 수정 후 왜 Zeabur를 이렇게 설정해야 하는지 설명해주세요.
+```
 
-- GitHub repository 선택.
-- Region 은 Singapore 또는 Hong Kong 우선.
-- Build Command: `npm run build`.
-- Start Command: `npm run start`.
+> 💡 **왜 이러는 걸까요#  **
+> 내 컴퓨터에서 `localhost`는 "나에게만 열리는 문"과 같습니다. Zeabur 컨테이너에서 자신에게만 서비스가 개방되면 외부 사용자는 진입할 수 없습니다. `0.0.0.0`는 "이 서비스는 컨테이너 외부에서 액세스할 수 있다"는 의미입니다.
 
-## Variables 와 Volume
+### 3단계: 프로젝트에 프로덕션 시작 명령이 있는지 확인
 
-![Zeabur variables](../../assets/diagrams/02-zeabur-variables.svg)
+**【이 단계의 핵심】Zeabur는 구축 방법과 시작 방법을 알아야 합니다. **
 
-```bash
+`package.json`를 열고 최소한 다음을 확인하십시오.```json
+{
+  "scripts": {
+    "build": "npm run build:runtime-careers && tsc --noEmit && node scripts/vite-build.mjs",
+    "start": "node server/payment-server.mjs"
+  }
+}
+```
+
+다양한 프로젝트의 `build` 내용은 다를 수 있지만 원칙은 동일합니다.
+
+1. `npm run build`는 프런트 엔드 정적 파일 생성을 담당합니다.
+2. `npm run start`는 온라인 서비스 출시를 담당합니다.
+3. 온라인 서비스는 프런트엔드 페이지와 `/api/*`를 모두 제공해야 합니다.
+
+Codex에 대한 팁 단어:
+
+```text
+package.json이 Zeabur 배포에 적합한지 확인하세요.
+
+요구사항:
+1. npm run build는 프로덕션 파일을 생성할 수 있습니다.
+2. npm run start는 단일 노드 서비스를 시작할 수 있습니다.
+3. 이 노드 서비스는 프런트엔드 dist와 /api/*를 모두 제공해야 합니다.
+4. 스크립트가 누락된 경우 직접 작성해주세요.
+```
+
+> 💡 **왜 이러는 걸까요#  **
+> Zeabur는 컴퓨터의 "미리보기 버튼"을 클릭하지 않습니다. 명령이 있을 때만 실행됩니다. 빌드는 "웹 사이트를 패키징하는 것"을 의미하고 시작은 "다른 사람이 액세스할 수 있도록 패키징된 웹 사이트를 내보내는 것"을 의미합니다.
+
+### 4단계: GitHub 저장소가 최신 버전인지 확인
+
+**【이 단계의 핵심】Zeabur에 들어가기 전에 먼저 배포하려는 최신 코드가 GitHub에서 이미 사용 가능한지 확인하세요. **
+
+다음은 구체적인 실행 단계입니다.
+
+1. GitHub 리포지토리 페이지를 엽니다.
+2. README가 정상적으로 표시되는지 확인합니다.
+3. 최신 커밋이 방금 푸시한 버전인지 확인하세요.
+4. 로컬 터미널에서 실행합니다.```bash
+git status
+```
+
+5. 제출되지 않은 수정 사항이 있는 경우 이전 장의 `git add`, `git commit` 및 `git push` 프로세스로 돌아갑니다.
+6. `.env` 및 `.env.payment.local`가 GitHub 파일 목록에 나타나지 않는지 확인합니다.
+
+다시 한 번 다음 파일을 제출하지 않음을 확인하세요.
+
+-`.env`
+-`.env.payment.local`
+-`node_modules`
+-`dist`
+- 로그 파일
+- 실제 주문정보
+-패들 API 키
+- 웹훅 비밀
+
+> 💡 **왜 이러는 걸까요#  **
+> Zeabur는 GitHub에서 코드를 가져옵니다. 컴퓨터의 수정 사항이 아직 푸시되지 않은 경우 Zeabur는 이를 볼 수 없습니다. Zeabur는 대부분 GitHub 페이지에 표시되는 모든 것을 가져옵니다.
+
+### 5단계: Zeabur에서 새 서비스 만들기
+
+**【이 단계의 핵심】Zeabur가 GitHub 저장소에 연결하고 코드를 웹사이트에 배포하도록 합니다. **
+
+다음은 구체적인 실행 단계입니다.
+
+1. 제아버를 엽니다.
+2. 새 프로젝트를 생성합니다.
+3. GitHub에서 배포를 선택합니다.
+4. Zeabur가 GitHub에 대한 승인을 요구하는 경우, 승인을 위한 페이지 메시지를 따르십시오.
+5. 창고 목록에서 이전 장에서 업로드한 창고를 선택하세요.
+6. 일반적으로 `main` 지점을 선택합니다.
+7. 지역은 싱가포르 또는 홍콩 인근 지역에 우선권을 부여합니다.
+8. Zeabur가 노드 프로젝트를 자동으로 감지하도록 하세요.
+9. 명령을 입력하라는 메시지가 나타나면 다음을 입력하세요.
+
+```text
+빌드 명령: npm run build
+시작 명령: npm run start
+```
+
+![Zeabur 서비스 배포 지침](../../assets/diagrams/01-zeabur-deploy.svg)
+
+> 💡 **왜 이러는 걸까요#  **
+> 지역은 서버가 위치한 지역입니다. 사용자가 주로 아시아에 있는 경우 일반적으로 싱가포르나 홍콩 근처 지역을 선택하면 액세스 경로가 더 짧아집니다. 여기에는 본토 서버가 필요하지 않으므로 ICP 제출이 첫 번째 단계가 아닙니다.
+
+### 6단계: 먼저 최소 환경 변수를 입력하세요.
+
+**[이 단계의 핵심] 배포의 첫 번째 라운드는 웹사이트를 실행하는 것뿐이므로 Paddle 라이브 키를 즉시 입력할 필요가 없습니다. **
+
+먼저 Zeabur의 변수를 입력합니다.```bash
 PAYMENT_SERVER_HOST=0.0.0.0
 PAYMENT_STORE_FILE=/data/payment-store.json
-PUBLIC_BASE_URL=https://your-zeabur-domain
-CORS_ORIGIN=https://your-zeabur-domain
+PUBLIC_BASE_URL=https://你的-zeabur-域名
+CORS_ORIGIN=https://你的-zeabur-域名
 PADDLE_ENVIRONMENT=sandbox
 PADDLE_ALLOW_UNSIGNED_WEBHOOKS=false
 ```
 
-![Zeabur volume](../../assets/diagrams/03-zeabur-volume.svg)
+아직 Zeabur 도메인 이름이 없다면 이를 먼저 배포하고 도메인 이름을 얻은 후 다시 돌아올 수 있습니다.```bash
+PUBLIC_BASE_URL=
+CORS_ORIGIN=
+```
 
-`/data` 에 volume 을 마운트해 payment session 과 access token 이 재시작 후에도 유지되도록 합니다.
+실제 URL로 변경하세요.
+
+![Zeabur 환경변수 표시](../../assets/diagrams/02-zeabur-variables.svg)
+
+> 💡 **왜 이러는 걸까요#  **
+> 환경 변수는 "배포 플랫폼이 사용자를 위해 보관하는 작은 메모"와 같습니다. 코드는 이러한 값을 읽을 수 있지만 프런트 엔드 공용 파일에 패키지되어 있지 않습니다. Paddle API 키는 나중에 웹페이지 코드에 기록되는 대신 여기에 배치되어야 합니다.
+
+### 7단계: `/data` 마운트
+
+**【이 단계의 핵심】다시 시작해도 손실되지 않는 저장 위치를 백엔드에 제공합니다. **
+
+다음은 구체적인 실행 단계입니다.
+
+1. Zeabur 서비스에서 볼륨 또는 스토리지 설정을 찾으세요.
+2. 새 볼륨을 추가합니다.
+3. 마운트 경로를 입력합니다.
+
+```text
+/데이터
+```
+
+4. 환경 변수에 다음이 포함되어 있는지 확인합니다.```bash
+PAYMENT_STORE_FILE=/data/payment-store.json
+```
+
+![Zeabur 볼륨 신호](../../assets/diagrams/03-zeabur-volume.svg)
+
+> 💡 **왜 이러는 걸까요#  **
+> 주문 및 잠금해제 기록이 서비스 임시 디렉토리에만 존재하는 경우, 서비스 재시작 후 사라질 수 있습니다. `/data` 볼륨은 지속적으로 저장할 수 있는 작은 하드디스크를 서비스에 연결하는 것과 같습니다.
+
+### 8단계: 온라인 URL을 열고 세 페이지를 확인하세요.
+
+**【이 단계의 핵심】웹사이트, API 및 공개 구성에 외부에서 액세스할 수 있는지 확인합니다. **
+
+성공적으로 배포되면 다음과 같은 결과를 얻게 됩니다.
+
+```text
+https://your-project.zeabur.app
+```
+
+하나씩 열어주세요:
+
+```text
+https://도메인/
+https://도메인/api/health
+https://yourdomain/monetization.json
+```
+
+다음을 확인해야 합니다.
+
+1. 홈페이지를 오픈할 수 있습니다.
+2. `/api/health`는 서비스 상태를 반환합니다.
+3. `/api/health`는 어떤 비밀도 표시하지 않습니다.
+4. `/monetization.json`에 접근할 수 있습니다.
+5. `/monetization.json`에는 Paddle API 키 또는 웹훅 비밀이 포함되어 있지 않습니다.
+6. 모의 결제 프로세스는 계속 테스트할 수 있습니다.
+
+> 💡 **왜 이러는 걸까요#  **
+> Paddle은 나중에 외부에서 귀하의 웹 사이트에 액세스합니다. 로컬 웹페이지를 직접 열 수 있는 것만으로는 충분하지 않습니다. 공개 URL에 실제로 액세스할 수 있는지 확인해야 합니다.
+
+### 9단계: Paddle에 필요한 공개 페이지 준비
+
+**【이 단계의 핵심】먼저 Paddle에 들어간 후 입력할 URL이 없는 것을 방지하기 위해 결제 플랫폼이 읽을 기본 지침 페이지를 준비합니다. **
+
+패들은 다음을 요구할 수 있습니다:
+
+```text
+/가격
+/용어
+/개인정보
+/환불
+```
+
+이 페이지는 처음에는 매우 단순할 수 있지만 최소한 다음 사항을 명시해야 합니다.
+
+1. 무엇을 팔고 있나요?
+2. 사용자가 결제 후 얻게 되는 것.
+3. 가격은 얼마인가요?
+4. 일회성 구매인지 여부.
+5. 환불 규정은 무엇입니까?
+6. 문제가 발생하면 사용자가 어디로 연락해야 합니까?
+Codex에 대한 팁 단어:
+
+```text
+Paddle 검토에 필요한 공개 페이지를 추가할 수 있도록 도와주세요.
+
+1. /가격
+2./용어
+3./개인정보 보호
+4./환불
+
+요구사항:
+- 명확하고 보수적으로 작성하고 효과를 위해 과장하지 마십시오.
+- 취업, 수입, 치료 결과를 약속하지 마세요.
+- 모든 페이지는 Zeabur 도메인 이름을 통해 직접 액세스할 수 있습니다.
+- 페이지에 API 키, 주문 정보 또는 개인 연락처 정보를 포함하지 마십시오.
+```
+
+> 💡 **왜 이러는 걸까요#  **
+> 결제 플랫폼은 판매하는 제품이 명확한지, 사용자가 구매한 제품을 알고 있는지, 분쟁이 발생할 경우 규칙이 있는지 여부를 판단해야 합니다. 페이지는 간결할 수 있지만 비어 있거나 모호할 수는 없습니다.
+
+### 10단계: 이 도메인 이름을 Paddle에 남겨두세요.
+
+**[이 단계의 핵심] Zeabur 도메인 이름을 다음 장의 Paddle 설정의 기초로 사용합니다. **
+
+이 장을 완료한 후 다음 세 가지 값을 기록하십시오.
+
+```text
+웹사이트 홈페이지: https://yourdomainname/
+웹훅 URL: https://yourdomain/api/webhooks/paddle
+상태 확인: https://yourdomain/api/health
+```
+
+다음 장에서는 이를 패들(Paddle)로 채울 것입니다.
+
+> 💡 **왜 이러는 걸까요#  **
+> 이 단계는 매장을 오픈하기 전 집번호를 받는 것과 같습니다. 집 번호가 결정되면 계산원, 결제 알림 및 사용자 반송 페이지를 방문할 수 있습니다.
+
+### 이 장의 완료 기준
+
+**[이 장의 핵심] 웹사이트가 이 컴퓨터에서만 실행될 수 있는 것이 아니라 온라인 상태임을 증명할 수 있어야 합니다. **
+
+완료 후 항목별로 확인해주세요.
+
+1. GitHub 저장소에는 최신 코드가 포함되어 있습니다.
+2. Zeabur가 성공적으로 배포되었습니다.
+3. 홈페이지를 열 수 있습니다.
+4. `/api/health`를 열 수 있습니다.
+5. `/monetization.json`에는 비밀이 포함되어 있지 않습니다.
+6. `/data` 볼륨이 마운트되었습니다.
+7. HTTPS 도메인 이름이 있습니다.
+8. 웹훅 URL이 다음과 같아야 한다는 것을 이미 알고 있습니다.
+
+```text
+https://yourdomain/api/webhooks/paddle
+```
+
+다음 장의 Paddle로 돌아가서 이 도메인 이름을 사용하여 웹사이트 확인, 기본 결제 링크, 웹훅 및 체크아웃을 완료하세요.

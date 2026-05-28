@@ -1,226 +1,1686 @@
 <!doctype html>
 <html lang="ja">
 <head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Codex Paid Site Guide - Japanese Tutorial" /><title>Japanese Tutorial - Codex Paid Site Guide</title><link rel="icon" type="image/png" href="./assets/brand/tutorial-mascot-icon.png" /><link rel="stylesheet" href="./site.css" /></head>
-<body><header class="tutorial-hero compact-hero"><nav class="topbar"><a class="brand" href="./index.html">Codex Paid Site Guide</a><a href="./index.html">言語を選択</a><a href="https://github.com/momowangOUO/codex-paid-quiz-tutorial" target="_blank" rel="noreferrer">⭐ GitHub に Star</a></nav><div class="tutorial-hero-grid"><div><p class="eyebrow">完全ガイド</p><h1>完全ガイド</h1><p class="lead">このページは選択した言語の章全体を読み込みます。短縮版ではありません。</p><div class="star-callout star-callout-featured"><div class="star-icon" aria-hidden="true">⭐</div><div class="star-copy"><strong>このガイドで少しでも遠回りを避けられたなら</strong><span>GitHub リポジトリに無料の Star をお願いします。費用はかかりませんが、最初の課金サイトを作りたい人にこのガイドが届きやすくなります。</span></div><a class="star-button" href="https://github.com/momowangOUO/codex-paid-quiz-tutorial" target="_blank" rel="noreferrer">無料 Star で応援する →</a></div></div><img src="./assets/brand/tutorial-hero.webp" alt="Tutorial hero artwork" /></div></header><main class="tutorial-shell"><aside class="tutorial-sidebar"><div class="sidebar-inner"><p class="eyebrow">Chapters</p><a href="#chapter-01"><span>01</span>プロダクトの流れを分解する</a>
-<a href="#chapter-02"><span>02</span>Codex にサイトを作らせる進め方</a>
-<a href="#chapter-03"><span>03</span>GitHub にアップロードする</a>
-<a href="#chapter-04"><span>04</span>先に Zeabur へデプロイする</a>
-<a href="#chapter-05"><span>05</span>Paddle 決済と自動解放</a>
-<a href="#chapter-06"><span>06</span>Codex プロンプト集</a>
-<a href="#chapter-07"><span>07</span>公開前チェックリスト</a></div></aside><section class="tutorial-content"><article class="tutorial-chapter" id="chapter-01"><div class="chapter-kicker">Chapter 01</div><h1>01. プロダクトの流れを分解する</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-01-flow.webp" alt="Product flow chapter art" loading="lazy" /></figure>
-<p><strong>目的：コードを書く前に、ユーザーがどの画面を通り、どの時点で決済と解放が必要になるかを決めます。</strong></p>
-<p>最短の流れは次の形です。</p>
-<pre><code>トップページ -&gt; 診断 -&gt; 無料の導入レポート -&gt; 決済 -&gt; 完全版レポート -&gt; 保存または再閲覧</code></pre>
-<p>最初からログイン、サブスク、クーポン、管理画面を入れないでください。まず「回答して、一回だけ支払い、正しいレポートが開く」ことを証明します。</p>
-<h3>画面ごとの役割</h3>
+<body><header class="tutorial-hero compact-hero"><nav class="topbar"><a class="brand" href="./index.html">Codex Paid Site Guide</a><a href="./index.html">言語を選択</a><a href="https://github.com/momowangOUO/codex-paid-quiz-tutorial" target="_blank" rel="noreferrer">&#11088; GitHub に Star</a></nav><div class="tutorial-hero-grid"><div><p class="eyebrow">完全ガイド</p><h1>Codexで本当に課金できるサイトを作る完全ガイド</h1><p class="lead">このページには、選択した言語の七章構成のチュートリアル全体が含まれています。メイン版と同じ構造から再構築したもので、短縮版ではありません。</p><div class="star-callout star-callout-featured"><div class="star-icon" aria-hidden="true">&#11088;</div><div class="star-copy"><strong>このガイドで少しでも遠回りを避けられたなら</strong><span>GitHub リポジトリに無料の Star をお願いします。費用はかかりませんが、最初の課金サイトを作りたい人にこのガイドが届きやすくなります。</span></div><a class="star-button" href="https://github.com/momowangOUO/codex-paid-quiz-tutorial" target="_blank" rel="noreferrer">無料 Star で応援する →</a></div></div><img src="./assets/brand/tutorial-hero.webp" alt="Tutorial hero artwork" /></div></header><main class="tutorial-shell"><aside class="tutorial-sidebar"><div class="sidebar-inner"><p class="eyebrow">?</p><a href="#chapter-01"><span>01</span>01. 製品のプロセスを分解する方法</a>
+<a href="#chapter-02"><span>02</span>02. Codex を使って 0 から Web サイトを構築する方法</a>
+<a href="#chapter-03"><span>03</span>03. まず GitHub にアップロードし、Zeabur にデプロイする準備をします</a>
+<a href="#chapter-04"><span>04</span>04. Zeabur にデプロイして検証可能なドメイン名を取得する</a>
+<a href="#chapter-05"><span>05</span>05. ドメイン名を取得したら、Paddle 支払いを受け入れ、自動的にロックを解除します。</a>
+<a href="#chapter-06"><span>06</span>06. コピー可能なプロンプト Word テンプレート</a>
+<a href="#chapter-07"><span>07</span>07. 本番稼働チェックリスト</a></div></aside><section class="tutorial-content"><article class="tutorial-chapter" id="chapter-01"><div class="chapter-kicker">Chapter 01</div><h1>01. 製品のプロセスを分解する方法</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-01-flow.webp" alt="製品フロー章アート" loading="lazy" /></figure>
+<p><strong>[この章の核心] コードを記述する前に、まず「ユーザーに表示されるページ、各ステップの動作、およびバックエンドが必要なステップ」を明確に分類します。 </strong></p>
+<p>コードを書き始める前に、次の 1 つの質問に答えるだけで済みます。</p>
+<pre><code>ユーザーはサイトにアクセスしてから、ロックを解除するための支払いまでどのような画面を通過することになりますか# </code></pre>
+<p>この章ではアーキテクチャ図については説明しませんが、まず製品を Codex が理解できる小さなタスクに分割します。</p>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>Codex には明確なタスク境界が必要です。製品プロセスはロードマップのようなものです。まず、ユーザーがどこに来て、どこで質問に答え、どこで支払いをし、どこでレポートを読んでいるかを把握します。そうすることで、後でコードを書くときに、あちこちで補うことがなくなります。</blockquote>
+<h3>最初に最短のユーザー パスを描画します</h3>
+<p><strong>[このセクションの核心] まず、ユーザーがホームページから完全なレポートに至るまでの最短ルートを記述します。 </strong></p>
+<p>有料クイズ サイトへの最短パスは次のとおりです。</p>
+<pre><code>ホームページ
+  → 解答ページ
+  → 無料紹介レポート
+  -&gt; 支払いページ
+  -&gt; レポート全文
+  -&gt; レポートを保存するか、再度開きます</code></pre>
+<p>まだログインする必要はありません。低価格のワンタイムレポートで最も重要なことは、摩擦を減らすことです。</p>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>ログイン、メンバーシップ、バックエンド、割引コードはすべて後から追加できます。最初のバージョンでは、棚をさらに飾る前に、カウンターが実際にお金を集めることができるかどうかを確認するのと同じように、ユーザーは最初に完全な購入を完了できます。</blockquote>
+<h3>各ページで行うべきこと</h3>
+<p><strong>[このセクションの核心] 最初のバージョンが重くなりすぎるのを避けるために、各ページは 1 つの主要なタスクのみを担当します。 </strong></p>
+<h4>ホーム</h4>
+<p>ホームページは、ユーザーを開始させることのみを担当します。</p>
+<p>必要なもの:</p>
+<ul>
+<li>このクイズがユーザーの解決に役立つ問題を説明する 1 文。</li>
+<li>スタートボタン。</li>
+<li>オプション: 言語の切り替え、ケースの入力。</li>
+</ul>
+<p>最初に「お金を払ってロックを解除する」または「今すぐ購入する」と書かないでください。ユーザーはまだ時間を投資していないため、お金を引き出すのが早すぎると完了率が低下します。</p>
+<h4>回答ページ</h4>
+<p>回答ページは、ユーザーが質問に回答できるようにすることのみを担当します。</p>
+<p>必要なもの:</p>
+<ul>
+<li>現在の質問番号。</li>
+<li>質問。</li>
+<li>オプション。</li>
+<li>前の質問/次の質問。</li>
+<li>進行状況のプロンプト。</li>
+<li>写真または視覚補助。</li>
+</ul>
+<p>初心者は、最初に 5 問のテスト バージョンを実行し、プロセスが完了したら 48 問に拡張することをお勧めします。</p>
+<h4>無料導入レポート</h4>
+<p>無料版は刺激を目的としたものではなく、また空虚な話でもありません。ユーザーにあなたがプロフェッショナルであると思わせます。</p>
+<p>表示できるもの:</p>
+<ul>
+<li>中心的な心理的要因。</li>
+<li>行動傾向と潜在的な行き詰まりポイント。</li>
+<li>自己認識と外部パフォーマンスとの間のギャップ。</li>
+<li>完全なレポートではどのような方向に分析が続けられるか。</li>
+</ul>
+<p>表示しない:</p>
+<ul>
+<li>キャリアに関する完全な回答。</li>
+<li>フルパス。</li>
+<li>詳細な行動計画。</li>
+<li>保存可能な完全なレポート。</li>
+</ul>
+<h4>ペイウォール</h4>
+<p>ペイウォールではユーザーは支払いのみを許可されます。</p>
+<p>必要なもの:</p>
+<ul>
+<li>現在の価格。</li>
+<li>明確な支払いボタン。</li>
+<li>支払い後に指示が自動的にロック解除されます。</li>
+<li>支払いが失敗または保留中のステータス。</li>
+</ul>
+<p>一度に多くの支払い方法ボタンを詰め込まないでください。バックエンドは、地域に基づいて入り口を推奨できます。</p>
+<h4>完全なレポート</h4>
+<p>完全なレポートは、ユーザーに「これは単なるランダムなテキストではない」と感じてもらえるはずです。</p>
+<p>以下を含めることができます:</p>
+<ul>
+<li>キャリアレーダー。</li>
+<li>心理学的プロファイリング。</li>
+<li>適切なキャリアタイプ。</li>
+<li>複数の開発ルート。</li>
+<li>リスク境界。</li>
+<li>別の方向。</li>
+<li>レポートを保存します。</li>
+</ul>
+<h3>フォームを Codex に送信する</h3>
+<p><strong>[このセクションの核心] ページ、ユーザー アクション、バックエンド参加方法を表に整理し、Codex に送信します。 </strong></p>
+<p>製品プロセスを次の表に整理し、Codex に投稿します。</p>
 <table><tbody>
-<tr><td>画面</td><td>ユーザーが見るもの</td><td>役割</td><td>バックエンド</td></tr>
-<tr><td>トップ</td><td>価値説明と開始ボタン</td><td>診断を始める</td><td>通常不要</td></tr>
-<tr><td>診断</td><td>質問、選択肢、進捗</td><td>回答を集める</td><td>通常不要</td></tr>
-<tr><td>無料導入</td><td>一部の分析</td><td>信頼を作る</td><td>reportId が必要</td></tr>
-<tr><td>ペイウォール</td><td>価格、決済ボタン、待機状態</td><td>payment session を作る</td><td>必要</td></tr>
-<tr><td>完全版</td><td>レーダー、心理プロファイル、方向性</td><td>有料価値を届ける</td><td>access token が必要</td></tr>
+<tr><td>ページ</td><td>ユーザーに表示されるもの</td><td>ユーザーができること</td><td>バックエンドが関与する必要があるか</td></tr>
+<tr><td>ホーム</td><td>製品説明、スタートボタン</td><td>クイズを開始</td><td>不要</td></tr>
+<tr><td>回答ページ</td><td>質問とオプション</td><td>答え、次の質問</td><td>リアルタイムで保存する場合を除き、必要ありません</td></tr>
+<tr><td>無料レポート</td><td>部分分析、ロック解除ボタン</td><td>クリックして支払う</td><td>支払いセッションを作成する必要があります</td></tr>
+<tr><td>パドルチェックアウト</td><td>お支払いフォーム</td><td>お支払い</td><td>パドル加工</td></tr>
+<tr><td>完全なレポート</td><td>すべての分析</td><td>表示、保存</td><td>検証アクセス トークンが必要です</td></tr>
 </tbody></table>
-<h3>無料版に出す内容</h3>
-<p>無料版は空の宣伝ページではありません。核心的な動機、行動傾向、自己認識とのずれ、完全版で扱う分析軸を見せます。ただし、完全な職業名、全ルート、保存用レポート、全てのマッチングロジックは出しません。</p>
-<h3>重要なデータ</h3>
-<h4>reportId</h4>
-<p><code>reportId</code> は一つの診断結果を表す番号です。回答、注文、解放、再訪問を同じ結果に結びつけます。</p>
-<h4>payment session</h4>
-<p><code>payment_session</code> は一回の決済試行です。ユーザーは決済ページを閉じたり、失敗後に再試行したりします。そのため状態はフロントエンドだけに置かず、バックエンドに保存します。</p>
-<h4>access token</h4>
-<p><code>accessToken</code> は完全版レポートを開く鍵です。reportId が一度支払われたからといって、全員に見せてはいけません。</p>
-<h3>Codex に渡すプロンプト</h3>
-<pre><code>一回払いでレポートを解放する診断サイトを作りたいです。
+<h3>レポート ID とは何ですか?</h3>
+<p><strong>【このセクションの核心】 <code>reportId</code> は、特定のテストレポートの番号です。 </strong></p>
+<p><code>reportId</code> はレポートの番号です。</p>
+<p>ユーザーが質問に回答すると、フロントエンドまたはバックエンドは <code>reportId</code> を生成し、その後のすべてのアクションはそれを中心に展開します。</p>
+<pre><code>この回答 -&gt; reportId
+この注文 -&gt; レポート ID
+今回のロック解除 -&gt; reportId
+この完全なレポート -&gt; レポート ID</code></pre>
+<p><code>reportId</code> がないと、支払いプラットフォームは「誰かが支払いました」と通知し、どのレポートのロックを解除すればよいのかわかりません。</p>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<p>&gt;<code>reportId</code>はピックアップ番号のようなものです。ユーザーが食事を注文し、支払いをし、食事を取りに戻ってくるとき、同じコンテンツに対応するには同じ番号を使用する必要があります。</p>
+<h3>支払いセッションとは何ですか?</h3>
+<p><strong>[このセクションの核心] <code>payment_session</code> は、特定の支払い試行の記録です。 </strong></p>
+<p><code>payment_session</code> は支払いの試行です。</p>
+<p>ユーザーは次のようなことを行う可能性があります。</p>
+<ul>
+<li>クリックして支払いますが、ページを閉じます。</li>
+<li>支払いに失敗しました。</li>
+<li>支払いを再試行します。</li>
+<li>支払いは成功しましたが、フロントエンドがジャンプバックしませんでした。</li>
+</ul>
+<p>したがって、フロントエンドの状態だけに依存しないでください。保存するバックエンド:```json</p>
+<p>{</p>
+<p>  &quot;sessionId&quot;: &quot;pay_xxx&quot;,</p>
+<p>  &quot;reportId&quot;: &quot;rep_xxx&quot;,</p>
+<p>  &quot;provider&quot;: &quot;paddle&quot;,</p>
+<p>  &quot;providerOrderId&quot;: &quot;txn_xxx&quot;,</p>
+<p>  &quot;status&quot;: &quot;pending&quot;</p>
+<p>}</p>
+<pre><code>
+支払いが成功したら、次のように変更します。```json
+{
+  &quot;status&quot;: &quot;paid&quot;,
+  &quot;paidAt&quot;: &quot;2026-05-28T00:00:00.000Z&quot;
+}</code></pre>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>レポートには複数回の支払い試行が含まれる場合があります。ユーザーは初めて支払いページを閉じる可能性がありますが、2 回目は成功します。 <code>payment_session</code> は、ステータスの混乱を避けるために、これらの試行を個別に記録できます。</blockquote>
+<h3>アクセストークンとは何ですか?</h3>
+<p><strong>【このセクションの核心】 <code>accessToken</code> は、支払いが成功した後に完全なレポートを開くためのキーです。 </strong></p>
+<p><code>accessToken</code> はレポートを完了するための鍵です。</p>
+<p>支払いが成功すると、バックエンドは推測不可能なトークンをレポートに送信します。次回ユーザーが戻ってきたときに、フロントエンドはトークンを使用してバックエンドに質問します。</p>
+<pre><code>このトークンにはレポート reportId を表示する権限がありますか# </code></pre>
+<p>完全なレポートは、バックエンドが「はい」と応答した後にのみ表示されます。</p>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>完全なレポートを表示するには、「誰かがこのレポート ID に料金を支払った」ということだけに頼るべきではありません。そうしないと、他の人が同じレポート ID を表示できる可能性があります。 <code>accessToken</code>は専用の鍵のようなもので、鍵を持っている人だけが開けることができます。</blockquote>
+<h3>最初のバージョンでは何もできません</h3>
+<p><strong>【このセクションの核心】 最初のバージョンでは、ロックを解除するために 1 回限りの支払いが必要であり、複雑な機能を実行しないと起動が遅くなります。 </strong></p>
+<p>より速くオンラインにするには、最初のバージョンをスキップできます。</p>
+<ul>
+<li>ユーザー登録。</li>
+<li>バックエンド CMS。</li>
+<li>割引コード。</li>
+<li>購読する。</li>
+<li>複雑なデータベース。</li>
+<li>自動メール。</li>
+<li>複数の製品パッケージ。</li>
+</ul>
+<p>ロックを解除するには、まず 1 回限りの支払いを行ってから、ゆっくりと追加料金を支払う必要があります。</p>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>製品の初期段階で最も確認する必要があるのは、「テストを完了して料金を支払う意思のある人がいるかどうか」です。最初に多くの周辺機能を実行するよりも、最初にこの主要な行を実行する方が価値があります。</blockquote>
+<h3>Codex の製品プロセス プロンプト</h3>
+<p><strong>[このセクションの核心] すでに分解されている製品プロセスを、Codex で実行できるプロンプト ワードに直接変換します。 </strong></p>
+<p>これをコピーします:</p>
+<pre><code>1回限りの料金でレポートをアンロックできるクイズサイトを作りたいです。
 
-ユーザーの流れ：トップページ -&gt; 診断 -&gt; 無料導入レポート -&gt; 決済 -&gt; 完全版レポート。
+このユーザー パスに従ってコードを設計してください。
+ホーム -&gt; 回答ページ -&gt; 無料紹介レポート -&gt; お支払い -&gt; 完全なレポート
 
-初版ではログイン、サブスク、クーポンは不要です。
+最初のバージョンでは、ログイン、サブスクリプション、割引コードは必要ありません。
 
-以下を設計してください：
-1. フロントエンドの画面状態
-2. reportId の生成と保存
-3. payment session のデータ構造
-4. access token による解放ロジック
-5. ローカル用 mock 決済フロー
+デザインを手伝ってください:
+1. フロントエンドページのステータス
+2. reportIdの生成と保存方法
+3. 支払いセッションのデータ構造
+4. アクセストークンロック解除ロジック
+5. 模擬支払いテストプロセス
 
-まずファイル計画を出し、その後に最小版を実装してください。</code></pre></article>
-<article class="tutorial-chapter" id="chapter-02"><div class="chapter-kicker">Chapter 02</div><h1>02. Codex にサイトを作らせる進め方</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-02-codex.webp" alt="Codex build workflow chapter art" loading="lazy" /></figure>
-<p><strong>目的：Codex に一度で全部作らせず、検証できる小さな作業に分けます。</strong></p>
-<h3>最初のプロンプト</h3>
-<pre><code>有料診断サイトを作りたいです。
+最初にファイルプランを出力してから、最小バージョンを実装してください。</code></pre>
+<h3>この章の完了基準</h3>
+<p><strong>【このセクションの核心】この章を完了すると、有料のロック解除プロセス全体を中国語で説明できるようになります。 </strong></p>
+<p>終わったら、次のようにはっきり言えるはずです。</p>
+<ul>
+<li>ユーザーがどのページを経由するか。</li>
+<li>どのステップにバックエンドが必要か。</li>
+<li>支払いが完了したかどうかをフロントエンドだけで判断できないのはなぜですか?</li>
+<li><code>reportId</code>、<code>payment_session</code>、および <code>accessToken</code> は何を担当しますか?</li>
+</ul>
+<p>次の章では、Codex に実際にコードを記述していきます。</p></article>
+<article class="tutorial-chapter" id="chapter-02"><div class="chapter-kicker">Chapter 02</div><h1>02. Codex を使って 0 から Web サイトを構築する方法</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-02-codex.webp" alt="Codex ビルド ワークフローの章アート" loading="lazy" /></figure>
+<p><strong>[この章の核心] Web サイト構築タスクを複数の小さなラウンドに分割し、Codex に各ラウンドで許容できる作業を行うよう依頼します。 </strong></p>
+<p>この章では、<strong>Web サイトの作成方法がわからない場合に Codex をコマンドで実行する方法についてのみ説明します。 </strong></p>
+<p>「完全な商用 Web サイトの構築を手伝ってください」とだけ言って始めないでください。この範囲は大きすぎるため、コーデックスは一度に変更されすぎてしまう可能性があります。 Web サイトを、受け入れ可能な一連の小さなタスクに分割する必要があります。</p>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>小規模なタスクを処理する場合、Codex はより安定しています。一度に「建物全体を建ててください」と言うのではなく、まず基礎を確認して壁を作り、水道や電気を引くという工事をパートナーに依頼するのと同じと考えると良いでしょう。</blockquote>
+<h3>まず、作りたい製品を Codex に伝えます</h3>
+<p><strong>【このセクションの核心】まず、Codex に製品の目標と制限を理解させるために、完全なプロンプト ワードを使用します。 </strong></p>
+<p>この段落を最初のプロンプトとしてコピーします。</p>
+<pre><code>有料クイズサイトを作ります。
 
-ユーザーは：
-1. トップページを開く
-2. 診断に回答する
-3. 無料導入レポートを見る
-4. 決済ボタンを押す
-5. 支払い成功後に完全版レポートが自動で開く
+対象となるユーザーは次のとおりです。
+1.ホームページを開く
+2. 一連のテスト質問を完了する
+3. レポートの無料入門版を参照してください。
+4. 支払いボタンをクリックします
+5. 支払いが成功すると、完全なレポートが自動的にロック解除されます。
 
-最小実用版を作ってください。
-条件：
-- フロントエンドは React + Vite
-- バックエンドは Node.js
-- まず mock 決済。Paddle はまだ接続しない
-- ログイン不要
-- secret をフロントエンドに入れない
-- 各ステップのローカル実行と検証方法も説明する</code></pre>
-<p>既存プロジェクトがある場合は、「既存構造を読んで、作り直さずに進めてください」と追加します。</p>
-<h3>推奨構成</h3>
-<pre><code>paid-quiz-site/
-  src/app/
-  src/components/
-  src/data/
-  src/monetization/
-  src/styles/
-  server/payment-server.mjs
-  public/monetization.json
-  package.json
+最初に使用可能な最小限のバージョンを作成するのを手伝ってください。
+要件:
+- React + Vite を使用したフロントエンド
+- Node.jsを使用したバックエンド
+- 最初に模擬支払いを使用し、実際の Paddle は受け入れないでください
+- ログインアカウントは必要ありません
+- フロントエンドにシークレットを入れないでください
+- 各ステップでローカルで実行および検証する方法を教えてください</code></pre>
+<p>すでにプロジェクトがある場合は、これを追加します。</p>
+<pre><code>最初に既存のプロジェクト構造を読み、プロジェクトを再構築しないでください。既存のコーディング スタイルに固執するようにしてください。</code></pre>
+<h3>初めてビルドするときは、ビルドするものは小さい必要があります。</h3>
+<p><strong>[このセクションの核心] 最初のバージョンでは、プロセスを実行できる最小の Web サイトのみが構築されます。 </strong></p>
+<p>最初のバージョンでは、次のページのみが必要です。</p>
+<table><tbody>
+<tr><td>ページ</td><td>目的</td><td>最小要件</td></tr>
+<tr><td>ホームページ</td><td>ユーザーがクイズを開始できるようにする</td><td>タイトル、スタートボタン</td></tr>
+<tr><td>回答ページ</td><td>回答を集める</td><td>少なくとも 3 ～ 5 つのテスト質問、後で拡張</td></tr>
+<tr><td>無料の結果ページ</td><td>信頼を築く</td><td>部分的な分析を表示しますが、完全なキャリアの回答は表示しません</td></tr>
+<tr><td>ペイウォール</td><td>ロックを解除するブートストラップ</td><td>支払いボタン 1 つ、待機状態 1 つ</td></tr>
+<tr><td>完全なレポートページ</td><td>認証ロック解除</td><td>模擬支払い後に完全なコンテンツを表示</td></tr>
+</tbody></table>
+<p>まだ求めないでください:</p>
+<ul>
+<li>多言語対応。</li>
+<li>美しいアニメーション。</li>
+</ul>
+<p>-バックエンド管理。</p>
+<ul>
+<li>PDF/長尺画像の保存。</li>
+<li>本物のパドル。</li>
+<li>完全な質問バンク。</li>
+</ul>
+<p>これらはすべて後で追加できます。最初のステップは、プロセスがスムーズに実行される限り続きます。</p>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>最小バージョンは最終製品ではありませんが、ルートが実現可能であることを証明するために使用されます。ルートが実現可能になったら、ビジュアル、多言語、レポート保存、実際の支払いを追加することで、より安定します。</blockquote>
+<h3>推奨されるプロジェクト構造</h3>
+<p><strong>【このセクションの核心】フロントエンド、バックエンド、データ、構成を分離するには、Codex を事前に必要とします。 </strong></p>
+<p>次の構造に従って Codex を構築するように依頼できます。</p>
+<pre><code>有料クイズサイト/
+  ソース/
+    アプリ/
+      App.tsx
+    コンポーネント/
+    データ/
+      質問.ts
+    マネタイズ/
+      config.ts
+    スタイル/
+      グローバル.css
+  サーバー/
+    支払いサーバー.mjs
+  公共/
+    収益化.json
+  パッケージ.json
   .env.payment.example</code></pre>
-<p>画面、データ、公開設定、支払い検証を分けると、後から修正しやすくなります。</p>
-<h3>第 1 パス：診断フローだけ</h3>
-<p>トップ、質問、回答、reportId、無料レポート、解放ボタンだけを作ります。<code>npm install</code> と <code>npm run dev</code> で動かし、自分で一度回答します。</p>
-<h3>第 2 パス：バックエンドと mock 決済</h3>
-<pre><code>Node バックエンドを追加し、まず mock 決済を作ってください。
+<p>各ディレクトリの意味は次のとおりです。</p>
+<table><tbody>
+<tr><td>目次</td><td>目的</td></tr>
+<tr><td><code>src/app</code></td><td>ページの流れ</td></tr>
+<tr><td><code>src/components</code></td><td>ボタン、カード、質問、レポート モジュール</td></tr>
+<tr><td><code>src/data</code></td><td>質問、結果の種類、レポートのサンプル資料</td></tr>
+</tbody></table>
+<p>| <code>src/monetization</code> |フロントエンドはパブリックな有料設定を読み取ります。</p>
+<table><tbody>
+<tr><td><code>server</code></td><td>バックエンド API、支払いセッション、Webhook</td></tr>
+<tr><td><code>public</code></td><td>ブラウザに公開できるファイル</td></tr>
+</tbody></table>
+<p>初心者が犯す最も一般的な間違いは、すべてを 1 つのファイルに詰め込むことです。 Codex をディレクトリごとに分割すると、後で保守しやすくなります。</p>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>プロジェクトの構造は保管庫のようなものです。タイトル、ページ、スタイル、支払いインターフェイスはそれぞれ独自の場所に配置されるため、後で特定の部分を変更する必要があるときに、大きなファイルを探し回る必要はありません。</blockquote>
+<h3>ラウンド 1: クイズ プロセスのみ</h3>
+<p><strong>[このセクションの核心] まず、ユーザーがホームページから結果ページまでの質問に回答できることを確認します。 </strong></p>
+<p>コーデックス宛:</p>
+<pre><code>まずメインのテストプロセスを完了し、支払いを受け入れないでください。
 
-API：
-- POST /api/payments/checkout
-- GET /api/payments/sessions/:id
-- POST /api/payments/mock-paid
+要件:
+・ホームページに「スタートクイズ」あり
+- 回答ページには一度に 1 つの質問が表示されます
+- ユーザーは回答を選択した後、次の質問に進むことができます
+- 回答後にreportIdを生成します
+- 結果ページに移動
+- 結果ページには無料の紹介文と「レポート全体のロックを解除」ボタンが表示されます
 
-支払い状態はバックエンドが保持し、フロントエンドだけで paid にできないようにしてください。</code></pre>
-<h3>第 3 パス：安全確認</h3>
-<p><code>.env.payment.local</code> が Git に入らないこと、Paddle key がサーバーだけにあること、URL の <code>paid=true</code> で解放されないことを Codex に確認させます。</p>
-<h3>作業リズム</h3>
-<p>ファイル計画、実装、typecheck/build、ブラウザ確認、エラー共有。この小さなループを繰り返す方が、商用サイトでは安全です。</p></article>
-<article class="tutorial-chapter" id="chapter-03"><div class="chapter-kicker">Chapter 03</div><h1>03. GitHub にアップロードする</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-03-github.webp" alt="GitHub upload chapter art" loading="lazy" /></figure>
-<p><strong>目的：Zeabur がデプロイする元になるコードを GitHub に置きます。</strong></p>
-<h3>先に除外するもの</h3>
-<p><code>.gitignore</code> に次のような項目を入れます。</p>
-<pre><code>node_modules
-dist
-.env
+以下も提供してください。
+- npm スクリプト
+- ローカル操作モード
+- 最小限のテスト方法</code></pre>
+<p>受け入れ:```bash</p>
+<p>npm install</p>
+<p>npm run dev</p>
+<pre><code>
+ローカル Web サイトを開いて、自分で答えてください。ビジョンを変えることを急がず、まずその道が完成できるかどうかを確認してください。
+
+## ラウンド 2: バックエンドに支払いステータスを保存させる
+
+**【このセクションの核心】 支払いステータスをフロントエンドに独自に決定させるのではなく、バックエンドに任せて保存します。 **
+
+コーデックス宛:
+</code></pre>
+<p>ここで、Node バックエンドを追加し、最初に模擬支払いを行ってください。</p>
+<p>バックエンド API:</p>
+<ul>
+<li>POST /api/payments/checkout</li>
+</ul>
+<p>  reportId を受信し、支払いセッションを作成し、sessionId と checkoutUrl を返します。</p>
+<ul>
+<li>/api/payments/sessions/:id を取得します</li>
+</ul>
+<p>  返品保留中 / 支払い済み / 失敗</p>
+<ul>
+<li>POST /api/payments/mock-complete</li>
+</ul>
+<p>  ローカルテストの場合のみ、セッションを有料としてマークします</p>
+<p>データは最初に JSON ファイルに保存できます。</p>
+<p>フロントエンドがレポートのロックを解除するために URL パラメーターのみに依存できないことを確認してください。</p>
+<pre><code>
+受け入れ:
+
+- 支払いが行われていない場合、レポートの全文を閲覧することはできません。
+- モック完了後にロックを解除できます。
+- ページを更新した後も、バックエンドはレポートがロック解除されているかどうかを認識しています。
+
+## ラウンド 3: ペイウォール スイッチを追加する
+
+**【このセクションの核心】 パブリック設定を使用してペイウォール スイッチを制御し、開発と起動前テストを容易にします。 **
+
+コーデックス宛:
+</code></pre>
+<p>ペイウォールをオンまたはオフにできるようにするには、public/monetization.json を追加してください。</p>
+<p>デフォルト:</p>
+<p>{</p>
+<p>  &quot;有効&quot;: false、</p>
+<p>  &quot;チェックアウトモード&quot;: &quot;API&quot;,</p>
+<p>  &quot;apiBaseUrl&quot;: &quot;/api&quot;,</p>
+<p>  &quot;プロバイダー&quot;: &quot;モック&quot;</p>
+<p>}</p>
+<p>要件:</p>
+<ul>
+<li>Enabled=false の場合、開発とテストに便利で、完全なレポートを直接表示できます。</li>
+<li>Enabled=true の場合、ロックを解除する前に支払いを行う必要があります</li>
+<li>公開ファイルには API キーやシークレットを含めることはできません</li>
+</ul>
+<pre><code>
+本番稼働前に何度もテストすることになるため、このステップは重要です。スイッチがなければ、簡単に中途半端なペイウォールをユーザーに押し付けることができます。
+
+## ラウンド 4: まず GitHub にアップロードする準備をします
+
+**【このセクションの核心】アップロードする前に、Codex にウェアハウスのセキュリティと `.gitignore` をチェックさせます。 **
+
+ローカルのモック プロセスが完了したら、まずプロジェクトを GitHub へのアップロードに適した状態に整理します。
+
+コーデックス宛:
+</code></pre>
+<p>このプロジェクトが GitHub へのアップロードに適しているかどうかを確認してください。</p>
+<p>要件:</p>
+<ul>
+<li>.gitignore は、.env、.env.*、*.local、node_modules、dist、ログ、および一時ファイルを無視する必要があります</li>
+<li>プロジェクトをスキャンして、Paddle API キー、Webhook シークレット、または管理者トークンがないことを確認します。</li>
+<li>README によって他の人がプロジェクトの目的を理解できることを確認します</li>
+<li>初めて GitHub にアップロードするときに実行する git コマンドを教えてください</li>
+<li>シークレットが見つかった場合は、ファイル パスをリストし、対応するキーを取り消すか置き換えるよう通知してください。</li>
+</ul>
+<pre><code>
+承認中は、GitHub リポジトリ内のプロジェクト ファイルを表示できるはずですが、`.env`、`.env.payment.local`、または API キーは表示されません。
+
+## ラウンド 5: 再び Zeabur 導入の準備をする
+
+**【このセクションの核心】Codex がプロジェクトを Zeabur が構築して開始できる形式に整理します。 **
+
+GitHub リポジトリの準備ができたら、まだ急いで Paddle を手に入れないでください。 Paddle は後で Web サイトのドメイン名を入力して確認するよう求めます。また、デフォルトの支払いリンクで開くことができる HTTPS ドメイン名を使用することも要求します。
+
+したがって、正しい順序は次のとおりです。
+</code></pre>
+<p>ローカルモックを実行 -&gt; GitHub にアップロード -&gt; Zeabur にデプロイ -&gt; HTTPS ドメイン名を取得 -&gt; Paddle をセットアップ</p>
+<pre><code>
+コーデックス宛:
+</code></pre>
+<p>このプロジェクトを Zeabur に展開できる構造にまとめてください。</p>
+<p>要件:</p>
+<ul>
+<li>npm run build はフロントエンド dist を生成できます</li>
+<li>npm run start は同じ Node サービスを開始できます</li>
+<li>Node サービスは dist 静的ファイルと /api/* の両方を提供する必要があります</li>
+<li>サーバーは process.env.PORT をリッスンする必要があります</li>
+<li>ホストは 0.0.0.0 を使用します</li>
+<li>秘密を漏らすことなく /api/health を追加しました</li>
+<li>.env、.local、node_modules、dist、およびローカル データ ファイルを GitHub に送信しないでください</li>
+<li>ここでは検証可能な HTTPS ドメイン名を取得するだけなので、まだパドル キーは要求しないでください。</li>
+</ul>
+<p>次も教えてください:</p>
+<ol>
+<li>どのファイルを GitHub に送信する必要がありますか?</li>
+</ol>
+<p>2.Zeaburのビルドコマンドと起動コマンド</p>
+<ol>
+<li>Zeabur ではどの変数を最初に設定する必要がありますか?</li>
+<li>Web サイトと /api/health の両方にアクセスできることを確認する方法</li>
+</ol>
+<pre><code>
+この手順が完了すると、次のような公式 URL が作成されるはずです。
+</code></pre>
+<p>https://your-project.zeabur.app</p>
+<pre><code>
+この URL には、Paddle の Web サイト検証、価格設定ページ、デフォルトの支払いリンク、および Webhook URL が入力されます。
+
+## ラウンド 6: HTTPS ドメイン名を取得したら、mock を Paddle に置き換えます
+
+**[このセクションの核心] Zeabur ドメイン名を取得した後、Codex を実際の Paddle に接続させます。 **
+
+Zeabur Web サイトが開き、`/api/health` が正常になるまで待ってから、Codex を指定します。
+</code></pre>
+<p>新しい Paddle プロバイダーを追加しますが、モック プロバイダーはそのままにしておいてください。</p>
+<p>要件:</p>
+<ul>
+<li>Paddle トランザクション作成 API を使用して POST /api/payments/checkout</li>
+<li>ユーザーの地域またはボタンの選択に基づいて CNY 価格 / USD 価格を使用します</li>
+</ul>
+<p>-custom_dataにはreportIdとpayment_session_idが含まれている必要があります</p>
+<ul>
+<li>POST /api/webhooks/paddle を追加しました</li>
+<li>Webhook はパドル署名を検証する必要があります</li>
+<li>トランザクションのみを受け入れます。ロック解除が完了しました</li>
+<li>繰り返し送信する場合、Webhook は冪等である必要があります</li>
+<li>間違った署名、一貫性のない金額、一貫性のない価格 ID ではロックを解除できません</li>
+</ul>
+<pre><code></code></pre>
+<p>パドル_環境</p>
+<p>PADDLE_API_KEY</p>
+<p>PADDLE_CNY_PRICE_ID</p>
+<p>PADDLE_USD_PRICE_ID</p>
+<p>PADDLE_WEBHOOK_SECRET</p>
+<p>PUBLIC_BASE_URL</p>
+<pre><code>
+注: `PUBLIC_BASE_URL` には、Zeabur から指定された HTTPS ドメイン名を入力する必要があります。例:
+</code></pre>
+<p>https://your-project.zeabur.app</p>
+<pre><code></code></pre>
+<p>https://your-project.zeabur.app/api/webhooks/paddle</p>
+<pre><code>
+## ラウンド 7: 公開前に Codex にセキュリティ チェックを行わせる
+
+**【このセクションの核心】公開前に、Codex に支払い、キー、Webhook、展開リスクをチェックさせます。 **
+
+コーデックス宛:
+</code></pre>
+<p>このプロジェクトが起動に適しているかどうかを確認してください。</p>
+<p>チェックすべき重要なポイント:</p>
+<ol>
+<li>公開ファイルに API キー、Webhook シークレット、管理トークンはありますか?</li>
+<li>支払いのロック解除はバックエンドでのみ確認できるかどうか</li>
+<li>Webhook は検証されていますか?</li>
+<li>Webhook を繰り返すと、権限が繰り返し付与されますか?</li>
+<li>ゼアバーはポートを読むでしょうか?</li>
+<li>/api/healthを提供するかどうか</li>
+<li>ビルドおよび開始スクリプトは利用可能ですか?</li>
+</ol>
+<p>問題をリストアップし、直接修正してください。</p>
+<pre><code>
+## Codex にエラーをどのように報告すべきか
+
+**[このセクションの核心] エラーを報告するときは、アクション、現象、予想される結果、およびログを提供する必要があります。 **
+
+「壊れた」とだけ言わないでください。投稿する内容は次の 4 つです。
+</code></pre>
+<p>私がやったこと：</p>
+<p>どのようなエラーが表示されますか:</p>
+<p>私はこうあるべきだと予想しています:</p>
+<p>関連する画面の説明またはログ:</p>
+<pre><code>
+例：
+</code></pre>
+<p>Zeabur で Web サイトを開くと 502 が表示されます。</p>
+<p>Zeabur ログには、npm run start が開始されたことが示されていますが、Web ページを開けません。</p>
+<p>サーバーが process.env.PORT をリッスンしているかどうか、およびホストが 0.0.0.0 であるかどうかを確認してください。</p>
+<pre><code>
+&gt; 💡 **なぜこれを行うのですか#  **
+&gt; 「Broken」には位置情報がありません。ログ、画面のステータス、実行した内容は、問題の場所を特定するための Codex の手がかりとなります。
+
+## 初心者は検証をスキップしないでください
+
+**【このセクションの核心】 変更が行われるたびに、typecheck と build を実行します。 **
+
+各段階の後に、Codex を実行します。```bash
+npm run typecheck
+npm run build</code></pre>
+<p>これらのスクリプトが利用できない場合は、Codex に入力させます。</p>
+<pre><code>このプロジェクトにタイプチェックおよびビルド スクリプトを追加し、ローカルで実行できることを確認してください。</code></pre>
+<h3>この章の完了基準</h3>
+<p><strong>【このセクションの核心】この章を完了すると、ローカルで実行可能な模擬有料 Web サイトが作成されるはずです。 </strong></p>
+<p>この章を完了すると、次のことができるようになります。</p>
+<p>・ローカルで運営できるクイズサイト。</p>
+<ul>
+<li>ノードのバックエンド。</li>
+<li>模擬支払いロック解除プロセス。</li>
+<li>公開プロフィール。</li>
+<li>コーデックスのプロンプトワードの明確なセット。</li>
+</ul>
+<p>次の章では、まずプロジェクトを GitHub にアップロードします。 GitHub ウェアハウスの準備ができたら、それを Zeabur にデプロイして HTTPS ドメイン名を取得します。</p></article>
+<article class="tutorial-chapter" id="chapter-03"><div class="chapter-kicker">Chapter 03</div><h1>03. まず GitHub にアップロードし、Zeabur にデプロイする準備をします</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-03-github.webp" alt="GitHub アップロード チャプター アート" loading="lazy" /></figure>
+<p>この章はゼアブルの前に置かれます。</p>
+<p><strong>[この章の核心] Zeabur は通常、デプロイメントのために GitHub からコードをプルするため、最初にローカル プロジェクトを GitHub リポジトリにアップロードします。 </strong></p>
+<p>3 つの関係は次のように理解できます。</p>
+<pre><code>コンピューター: コードを書いたりテストしたりする場所
+GitHub: コードを保存するためのクラウド ウェアハウス
+Zeabur: GitHub からコードを取得して Web サイトに実行します</code></pre>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>Zeabur はコンピュータのデスクトップからファイルを直接読み取りません。通常、GitHub リポジトリに接続し、リポジトリを更新するたびに再デプロイされます。ここで GitHub は「プロジェクト転送ステーション」のようなもので、Zeabur は「転送ステーションでプロジェクトを開始して実行する人」のようなものです。</blockquote>
+<h4>ステップ 1: GitHub アカウントを既に持っていることを確認する</h4>
+<p><strong>【このステップの核心】プロジェクトコードを保存するにはGitHubアカウントが必要です。 </strong></p>
+<p>次に、具体的な実行手順を示します。</p>
+<ol>
+<li>GitHub 公式 Web サイトを開きます。</li>
+<li>すでにログインしている場合は、次のステップに進みます。</li>
+<li>まだアカウントをお持ちでない場合は、アカウントを登録します。</li>
+<li>GitHub ユーザー名を覚えておいてください。これは後でウェアハウスのアドレスに使用されます。</li>
+</ol>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>GitHub は、プログラマーが一般的に使用するコード リポジトリ プラットフォームです。ウェアハウスは、すべての重要な変更を保存する「プロジェクト専用のクラウド フォルダー」として理解できます。</blockquote>
+<h4>ステップ 2: GitHub に新しいリポジトリを作成する</h4>
+<p><strong>【このステップの核心】Web サイトのコードを保存するためのリポジトリを作成します。 </strong></p>
+<p>次に、具体的な実行手順を示します。</p>
+<ol>
+<li>GitHub を開きます。</li>
+<li>右上隅の「<code>+</code>」をクリックします。</li>
+<li><code>New repository</code> を選択します。</li>
+<li><code>Repository name</code> にプロジェクト名を入力します。例:</li>
+</ol>
+<pre><code>有料クイズサイト</code></pre>
+<ol>
+<li><code>Description</code> を最初に書き込むことができます。</li>
+</ol>
+<pre><code>Codexで構築された有料クイズサイト。</code></pre>
+<ol>
+<li>可視性は <code>Public</code> または <code>Private</code> を選択できます。</li>
+<li>ローカル プロジェクトがまだない場合は、<code>Add a README file</code> を確認できます。</li>
+<li>すでにローカル プロジェクトがある場合は、ローカル ファイルとの競合を避けるために、最初に README を確認しないことをお勧めします。</li>
+<li>「<code>Create repository</code>」をクリックします。</li>
+</ol>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>リポとはリポジトリの略で倉庫という意味です。 1 つのリポジトリは 1 つのプロジェクトに対応します。 Web サイトのコード、ドキュメント、展開構成はすべてこのウェアハウスに配置されます。</blockquote>
+<h4>ステップ 3: シークレットをアップロードしないことを最初に確認します</h4>
+<p><strong>[このステップの核心] 初めてアップロードする前に、キー、注文、およびバックグラウンド データが GitHub にプッシュされないことを確認してください。 </strong></p>
+<p>このコンテンツをアップロードしないでください:</p>
+<ul>
+<li><code>.env</code></li>
+</ul>
+<p>-<code>.env.payment.local</code></p>
+<p>-パドルAPIキー</p>
+<ul>
+<li>パドル Webhook シークレット</li>
+</ul>
+<p>-管理者トークン</p>
+<ul>
+<li>実際の注文情報</li>
+<li>決済プラットフォームのバックエンド画面</li>
+</ul>
+<p>-<code>node_modules</code></p>
+<p>-<code>dist</code></p>
+<ul>
+<li>ログファイル</li>
+</ul>
+<p>プロジェクトのルート ディレクトリには <code>.gitignore</code> が必要です。少なくとも以下を含めることをお勧めします。</p>
+<pre><code>.env
 .env.*
 *.local
+ノードモジュール
+距離
 .logs
-tmp-*</code></pre>
-<p>Paddle API key、webhook secret、注文データ、ユーザー情報は GitHub に入れません。</p>
-<h3>初回 push</h3>
-<pre><code>git init
+tmp-*
+*.log</code></pre>
+<pre><code>このプロジェクトが GitHub へのアップロードに適しているかどうかを確認してください。
+
+要件:
+1. .gitignore は、.env、.env.*、*.local、node_modules、dist、ログ、および一時ファイルを除外する必要があります。
+2. プロジェクトをスキャンして、Paddle API キー、Webhook シークレット、または管理者トークンがないことを確認します。
+3. シークレットを見つけた場合は、ファイル パスを教えて、対応するキーを取り消すか置き換えるよう提案してください。
+4. 私のビジネスコードを削除しないでください。</code></pre>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>GitHub はコードの保存には適していますが、キーの保存には適していません。 API キーはバックエンド キーのようなものです。パブリック リポジトリに入るか履歴をコミットすると、公開されたものとみなされ、後で再生成する必要があります。</blockquote>
+<h4>ステップ 4: Git がこのマシンにインストールされていることを確認する</h4>
+<p><strong>[このステップの核心] Git は、ローカル プロジェクトを GitHub に送信するためのツールです。 </strong></p>
+<p>ターミナルで実行します。```bash</p>
+<p>git --version</p>
+<pre><code>
+次のようなものが表示された場合:
+</code></pre>
+<p>git バージョン 2.x.x</p>
+<pre><code>
+説明文がインストールされました。
+
+`git` が見つからないというメッセージが表示された場合は、続行する前に Git をインストールしてください。
+
+&gt; 💡 **なぜこれを行うのですか#  **
+&gt; Git は「バージョン記録ツール」です。どのファイルを変更したかを記録し、ネイティブ コードを GitHub にプッシュすることもできます。 GitHub はクラウド プラットフォームであり、Git はローカルで GitHub と通信するために使用するツールです。
+
+### ステップ 5: プロジェクトのルート ディレクトリで Git を初期化する
+
+**【このステップの核心】プロジェクトがまだ Git ウェアハウスではない場合は、最初にプロジェクトを Git ウェアハウスにします。 **
+
+プロジェクトのルート ディレクトリで実行します。```bash
+git status</code></pre>
+<p>ファイルのステータスが表示された場合、それはすでに Git リポジトリであることを意味します。</p>
+<p>次のようなものが表示された場合:</p>
+<pre><code>致命的: git リポジトリではありません</code></pre>
+<p>実行するだけです:```bash</p>
+<p>git init</p>
+<pre><code>
+次に、以下を実行します。```bash
+git status</code></pre>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote><code>git init</code> はプロジェクトフォルダに「変更ログ」を置くようなものです。この瞬間から、Git はこのプロジェクトを追跡することを認識します。</blockquote>
+<h4>ステップ 6: ファイルを最初のコミットに追加する</h4>
+<p><strong>【このステップの核心】現在のプロジェクトのステータスをコミットとして保存します。 </strong></p>
+<p>埋め込む：```bash</p>
+<p>git add .</p>
+<p>git commit -m &quot;Initial paid quiz website&quot;</p>
+<pre><code>git config --global user.name &quot;你的名字&quot;
+git config --global user.email &quot;你的邮箱&quot;</code></pre>
+<p>次に、再度実行します。```bash</p>
+<p>git commit -m &quot;Initial paid quiz website&quot;</p>
+<pre><code>
+&gt; 💡 **なぜこれを行うのですか#  **
+&gt; コミットは「アーカイブ」として理解できます。ファイルを GitHub に大まかにダンプするのではなく、特定のバージョンをローカルに保存し、そのバージョンをプッシュします。
+
+### ステップ 7: GitHub リモート リポジトリに接続する
+
+**[このステップの核心] ローカル Git に指示します: このプロジェクトをどの GitHub リポジトリにプッシュするかを指定します。 **
+
+GitHub がウェアハウスを構築すると、通常は次のようなアドレスが提供されます。
+</code></pre>
+<p>https://github.com/あなたのユーザー名/あなたのウェアハウス名.git</p>
+<pre><code>
+ターミナルで実行します。```bash
+git branch -M main
+git remote add origin https://github.com/你的用户名/你的仓库名.git</code></pre>
+<p><code>origin already exists</code> というプロンプトが表示される場合は、リモート アドレスがすでに存在することを意味します。以下を表示できます。```bash</p>
+<p>git remote -v</p>
+<pre><code>
+アドレスが間違っている場合は、次のように変更できます。```bash
+git remote set-url origin https://github.com/你的用户名/你的仓库名.git</code></pre>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote><code>origin</code> は、リモート ウェアハウスのローカル Git のニックネームです。 Git に次のように伝えます。今後、オリジンへのプッシュというときは、この GitHub リポジトリへのプッシュを意味します。</blockquote>
+<h4>ステップ 8: GitHub にプッシュする</h4>
+<p><strong>【このステップの核心】ローカルコミットをGitHubにアップロードします。 </strong></p>
+<p>埋め込む：```bash</p>
+<p>git push -u origin main</p>
+<pre><code>
+初めてプッシュするとき、GitHub はログインまたは承認を求める場合があります。
+
+プッシュが成功した後:
+
+1. GitHub リポジトリ ページを開きます。
+2. Web ページを更新します。
+3. プロジェクト ファイルが表示されることを確認します。
+4. READMEが正常に表示されることを確認します。
+5. 倉庫に `.env` と `.env.payment.local` が表示されないことを確認します。
+
+&gt; 💡 **なぜこれを行うのですか#  **
+&gt; `git push` は「ローカルアーカイブをクラウドウェアハウスにアップロード」です。 Zeabur は、コンピューター上のフォルダーではなく、GitHub 上のコードを読み取ります。
+
+### ステップ 9: 変更を加えるたびに 3 つのステップを使用して更新します。
+
+**[このステップの核心] 今後 Web サイトを変更した後、追加、コミット、プッシュの 3 つのステップを使用して、Web サイトを GitHub に同期します。 **
+
+変更するたびに実行します。```bash
 git status
 git add .
-git commit -m &quot;Initial paid quiz site&quot;
-git branch -M main
-git remote add origin https://github.com/your-name/your-repo.git
-git push -u origin main</code></pre>
-<h3>push 前に Codex に確認させる</h3>
-<pre><code>これから commit するファイルを確認し、.env、API key、webhook secret、支払いデータ、ユーザーの個人情報が含まれていないか見てください。削除はせず、リスクと .gitignore の提案だけ出してください。</code></pre>
-<h3>確認ポイント</h3>
-<ul>
-<li>GitHub で README が読める。</li>
-<li>最新 commit が反映されている。</li>
-<li><code>src/</code>、<code>server/</code>、<code>public/</code> がある。</li>
-<li><code>.env.payment.local</code> がない。</li>
-</ul>
-<p>Zeabur が更新されない時は、まず GitHub に本当に最新 commit があるかを確認します。</p></article>
-<article class="tutorial-chapter" id="chapter-04"><div class="chapter-kicker">Chapter 04</div><h1>04. 先に Zeabur へデプロイする</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-04-zeabur.webp" alt="Zeabur deployment chapter art" loading="lazy" /></figure>
-<p><strong>目的：Paddle を設定する前に、公開 HTTPS ドメインを取得します。順番が重要です。</strong></p>
-<pre><code>ローカル mock -&gt; GitHub -&gt; Zeabur -&gt; HTTPS ドメイン -&gt; Paddle 審査 -&gt; Paddle checkout</code></pre>
-<figure class="chapter-figure"><img src="./assets/diagrams/07-domain-before-paddle.svg" alt="Domain before Paddle" loading="lazy" /></figure>
-<h3>なぜ先に Zeabur なのか</h3>
-<p>Paddle は pricing、terms、privacy、refund、default payment link、承認済みドメインを求めます。公開ドメインがないと、コードが正しくても checkout not enabled で止まることがあります。</p>
-<h3>事前確認</h3>
-<pre><code>npm install
-npm run build</code></pre>
-<p>ローカル build が失敗するなら、Zeabur でもほぼ失敗します。ログを Codex に渡して直します。</p>
-<h3>PORT と 0.0.0.0</h3>
-<p>Node サーバーは次のようにします。</p>
-<pre><code>const port = Number(process.env.PORT ?? 8080);
-const serverHost = process.env.PAYMENT_SERVER_HOST ?? &quot;0.0.0.0&quot;;
+git commit -m &quot;Describe what changed&quot;
+git push</code></pre>
+<p>送信メッセージは、次のようにより具体的にすることもできます。```bash</p>
+<p>git commit -m &quot;Add Paddle webhook unlock flow&quot;</p>
+<pre><code>
+または：```bash
+git commit -m &quot;Improve unpaid report preview&quot;</code></pre>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>Zeabur は通常、GitHub リポジトリの変更を監視します。新しいコミットをプッシュすると、Zeabur はオンライン サービスを再デプロイする必要があることを認識します。</blockquote>
+<h4>ステップ 10: アップロードして Zeabur を入力します</h4>
+<p><strong>【このステップの核心】GitHub ウェアハウスに既にコードがあることを確認し、Zeabur に移動してデプロイメント用にこのウェアハウスを選択します。 </strong></p>
+<p>次の章に進む前に、次のことを確認してください。</p>
+<ol>
+<li>GitHub ウェアハウスのページを開くことができます。</li>
+<li>READMEを表示できます。</li>
+<li>メインコードファイルがアップロードされました。</li>
+<li><code>.env</code>、<code>.local</code>、APIキーはアップロードされません。</li>
+<li>倉庫の住所がわかっているとします。例:</li>
+</ol>
+<pre><code>https://github.com/あなたのユーザー名/paid-quiz-site</code></pre>
+<p>この倉庫は次の章で Zeabur で選択されます。</p>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>Zeabur のデプロイメントエントリは通常「GitHub リポジトリを選択」です。リポジトリにコードがまだない場合、Zeabur にはデプロイ先がありません。</blockquote>
+<h4>この章の完了基準</h4>
+<p><strong>【この章の核心】GitHub 上でプロジェクト全体を表示し、キーが漏洩していないことを確認できる必要があります。 </strong></p>
+<p>完了後、項目ごとに確認してください。</p>
+<ol>
+<li>GitHub リポジトリが作成されました。</li>
+<li>ネイティブ プロジェクトはすでに <code>git commit</code> です。</li>
+<li>ネイティブ プロジェクトは <code>git push</code> です。</li>
+<li>プロジェクト ファイルは GitHub ページで確認できます。</li>
+<li><code>.env</code> はアップロードされていません。</li>
+<li><code>.env.payment.local</code> はアップロードされません。</li>
+<li>API キー、Webhook シークレット、および管理トークンがウェアハウスに表示されません。</li>
+<li>Zeabur に移動し、デプロイメント用にこのリポジトリを選択する準備が整いました。</li>
+</ol></article>
+<article class="tutorial-chapter" id="chapter-04"><div class="chapter-kicker">Chapter 04</div><h1>04. Zeabur にデプロイして検証可能なドメイン名を取得する</h1><p>!【ゼアブル展開章アート】(../../assets/chapters/chapter-04-zeabur.webp)</p>
+<p>この章は、前の章を完了し、プロジェクトを GitHub にアップロードしていることを前提としています。次に、GitHub リポジトリを Zeabur にデプロイします。</p>
+<p><strong>[この章の核心] まず、Web サイトにパブリックにアクセス可能な HTTPS ドメイン名を設定し、このドメイン名を Web サイトの検証、デフォルトの支払いリンク、Webhook に Paddle に使用します。 </strong></p>
+<p>推奨される順序は次のとおりです。</p>
+<pre><code>ローカルのモックプロセスがスムーズに実行される
+  -&gt; GitHub にアップロード
+  -&gt; ゼアバーに配備
+  -&gt; HTTPSドメイン名を取得
+  -&gt; 価格設定/規約/プライバシー/返金ページを準備する
+  -&gt; パドルに戻ってウェブサイトの検証とチェックアウト設定を行います</code></pre>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>Paddle は通常、実際の支払いページを作成する前に、Web サイトが存在するかどうか、開くことができるかどうか、利用規約とプライバシー ポリシーがあるかどうかを確認します。ドメイン名をまだ公開していない場合は、店舗の住所なしでレジに申し込むのと同じように、多くの設定が中途半端になってしまいます。</blockquote>
+<figure class="chapter-figure"><img src="./assets/diagrams/07-domain-before-paddle.svg" alt="支払いシーケンスへの展開" loading="lazy" /></figure>
+<h4>ステップ 1: まず、所有しているプロジェクトがこのマシン上で実行できることを確認します。</h4>
+<p><strong>【このステップの核心】まず、プロジェクトがコンピュータにインストールおよびビルドできることを確認し、Zeabur にデプロイします。 </strong></p>
+<p>次に、具体的な実行手順を示します。</p>
+<ol>
+<li>プロジェクトフォルダーを開きます。</li>
+<li>プロジェクトのルート ディレクトリでターミナルを開きます。</li>
+<li>以下を実行します。```bash</li>
+</ol>
+<p>npm install</p>
+<p>npm run build</p>
+<pre><code>
+4. `npm run build` が成功した場合は、次のステップに進みます。
+5. 失敗した場合は、完全なエラーを Codex に投稿します。
+</code></pre>
+<p>npm run build に失敗しました。これはエラー ログです。</p>
+<p>[完全なログを投稿]</p>
+<p>Zeabur にデプロイできるように修正してください。</p>
+<p>修復後、再度 npm run build を実行してください。</p>
+<pre><code>
+&gt; 💡 **なぜこれを行うのですか#  **
+&gt; Zeabur はデプロイ時にビルドも実行します。ローカルのビルドは失敗しますが、通常はクラウドも失敗します。最初に自分のコンピュータで修正すると、間違いを推測するのにかかる時間を短縮できます。
+
+### ステップ 2: バックエンドがハードコーディングされたポートではないことを確認する
+
+**[このステップの核心] Node バックエンドは、Zeabur によって与えられた `PORT` をリッスンし、`0.0.0.0` を使用して外部アクセスを許可する必要があります。 **
+
+Codex にバックエンドの起動コードをチェックさせてください。ターゲットは次のように書きます。```js
+const port = Number(process.env.PORT ##  8080);
+const serverHost = process.env.PAYMENT_SERVER_HOST ##  &quot;0.0.0.0&quot;;
+
 server.listen(port, serverHost, () =&gt; {
   console.log(`payment server: http://${serverHost}:${port}/api`);
 });</code></pre>
-<p>本番コンテナでは <code>0.0.0.0</code> が正しい設定です。外部からコンテナ内のサービスに届くようにします。</p>
-<h3>Zeabur 設定</h3>
-<figure class="chapter-figure"><img src="./assets/diagrams/01-zeabur-deploy.svg" alt="Zeabur deploy flow" loading="lazy" /></figure>
+<p>このプロンプトを Codex に直接コピーできます。</p>
+<pre><code>サーバーの起動コードを確認してください。
+
+要件:
+1. ポートは最初に process.env.PORT を読み取る必要があります。
+2. ホストはデフォルトで 0.0.0.0 を使用します。
+3. localhost をハードコーディングしないでください。
+4. ローカル開発に使用できるデフォルトのポート (8080 など) を維持します。
+5. 修正後、Zeabur をこのように設定する必要がある理由を説明してください。</code></pre>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>私のパソコンでは、<code>localhost</code>は「自分だけに開かれた扉」のようなものです。 Zeaburコンテナでは、自分だけにサービスを公開した場合、外部ユーザーは入ることができません。 <code>0.0.0.0</code> は、「このサービスはコンテナの外部からアクセスできる」ことを意味します。</blockquote>
+<h4>ステップ 3: プロジェクトに運用開始コマンドがあることを確認する</h4>
+<p><strong>【このステップの核心】Zeabur は構築方法と開始方法を知る必要があります。 </strong></p>
+<p><code>package.json</code> を開いて、少なくとも次のことを確認します。```json</p>
+<p>{</p>
+<p>  &quot;scripts&quot;: {</p>
+<p>    &quot;build&quot;: &quot;npm run build:runtime-careers &amp;&amp; tsc --noEmit &amp;&amp; node scripts/vite-build.mjs&quot;,</p>
+<p>    &quot;start&quot;: &quot;node server/payment-server.mjs&quot;</p>
+<p>  }</p>
+<p>}</p>
+<pre><code>
+プロジェクトごとに `build` の内容は異なる場合がありますが、原則は同じです。
+
+1. `npm run build` は、フロントエンド静的ファイルの生成を担当します。
+2. `npm run start` はオンライン サービスの立ち上げを担当します。
+3. オンライン サービスは、フロントエンド ページと `/api/*` の両方を提供する必要があります。
+
+コーデックスに関するヒント:
+</code></pre>
+<p>package.json が Zeabur のデプロイに適しているかどうかを確認してください。</p>
+<p>要件:</p>
+<ol>
+<li>npm run build は実稼働ファイルを生成できます。</li>
+<li>npm run start は、単一のノード サービスを開始できます。</li>
+<li>このノード サービスは、フロントエンド dist と /api/* の両方を提供する必要があります。</li>
+<li>スクリプトが不足している場合は、直接入力してください。</li>
+</ol>
+<pre><code>
+&gt; 💡 **なぜこれを行うのですか#  **
+&gt; Zeabur はコンピュータの「プレビュー ボタン」をクリックしません。コマンドでのみ実行されます。 Build は「Web サイトをパッケージ化する」ことを意味し、Start は「パッケージ化された Web サイトを他の人がアクセスできるようにエクスポートする」ことを意味します。
+
+### ステップ 4: GitHub リポジトリが最新バージョンであることを確認する
+
+**【このステップの核心】Zeabur に入る前に、デプロイしたい最新のコードがすでに GitHub で利用可能であることを確認してください。 **
+
+次に、具体的な実行手順を示します。
+
+1. GitHub リポジトリ ページを開きます。
+2. READMEが正常に表示されることを確認します。
+3. 最新のコミットがプッシュしたバージョンであることを確認します。
+4. ローカルターミナルで次のコマンドを実行します。```bash
+git status</code></pre>
+<ol>
+<li>未送信の変更がある場合は、前の章の <code>git add</code>、<code>git commit</code>、および <code>git push</code> のプロセスに戻ります。</li>
+<li>GitHub ファイルリストに <code>.env</code> と <code>.env.payment.local</code> が表示されないことを確認します。</li>
+</ol>
+<p>もう一度、次のファイルを送信しないことを確認します。</p>
+<p>-<code>.env</code></p>
+<p>-<code>.env.payment.local</code></p>
+<p>-<code>node_modules</code></p>
+<p>-<code>dist</code></p>
 <ul>
-<li>GitHub repository を選ぶ。</li>
-<li>Region は Singapore または Hong Kong を優先。</li>
-<li>Build Command: <code>npm run build</code>。</li>
-<li>Start Command: <code>npm run start</code>。</li>
+<li>ログファイル</li>
+<li>実際の注文情報</li>
 </ul>
-<h3>Variables と Volume</h3>
-<figure class="chapter-figure"><img src="./assets/diagrams/02-zeabur-variables.svg" alt="Zeabur variables" loading="lazy" /></figure>
-<pre><code>PAYMENT_SERVER_HOST=0.0.0.0
-PAYMENT_STORE_FILE=/data/payment-store.json
-PUBLIC_BASE_URL=https://your-zeabur-domain
-CORS_ORIGIN=https://your-zeabur-domain
+<p>-パドルAPIキー</p>
+<ul>
+<li>Webhook シークレット</li>
+</ul>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>Zeabur は GitHub からコードをプルします。コンピュータ上の変更がまだプッシュされていない場合、Zeabur は変更を確認できません。 Zeabur は、ほとんどの場合、GitHub ページに表示されているものをすべて取得します。</blockquote>
+<h4>ステップ 5: Zeabur で新しいサービスを作成する</h4>
+<p><strong>【このステップの核心】Zeabur を GitHub リポジトリに接続し、コードを Web サイトにデプロイします。 </strong></p>
+<p>次に、具体的な実行手順を示します。</p>
+<ol>
+<li>Zeabur を開きます。</li>
+<li>新しいプロジェクトを作成します。</li>
+<li>「GitHub からデプロイ」を選択します。</li>
+<li>Zeabur が GitHub の認証を必要とする場合は、ページのプロンプトに従って認証を行います。</li>
+<li>倉庫リストで、前の章でアップロードした倉庫を選択します。</li>
+<li>ブランチ (通常は <code>main</code>) を選択します。</li>
+<li>地域はシンガポールまたは香港に近い地域が優先されます。</li>
+<li>Zeabur に Node プロジェクトを自動的に検出させます。</li>
+<li>コマンドの入力を求められた場合は、次のように入力します。</li>
+</ol>
+<pre><code>ビルドコマンド: npm run build
+開始コマンド: npm run start</code></pre>
+<figure class="chapter-figure"><img src="./assets/diagrams/01-zeabur-deploy.svg" alt="Zeabur サービス導入手順" loading="lazy" /></figure>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>リージョンはサーバーが配置されているリージョンです。ユーザーが主にアジアにいる場合、シンガポールまたは香港に近い地域を選択すると、通常、アクセス パスが短くなります。ここでは本土サーバーは必要ないため、ICP 申請は最初のステップではありません。</blockquote>
+<h4>ステップ 6: 最初に最小限の環境変数を入力します</h4>
+<p><strong>[このステップの核心] 導入の最初のラウンドは、Web サイトを実行するだけであり、Paddle ライブ キーをすぐに入力する必要はありません。 </strong></p>
+<p>まず、Zeabur の変数を入力します。```bash</p>
+<p>PAYMENT_SERVER_HOST=0.0.0.0</p>
+<p>PAYMENT_STORE_FILE=/data/payment-store.json</p>
+<p>PUBLIC_BASE_URL=https://你的-zeabur-域名</p>
+<p>CORS_ORIGIN=https://你的-zeabur-域名</p>
+<p>PADDLE_ENVIRONMENT=sandbox</p>
+<p>PADDLE_ALLOW_UNSIGNED_WEBHOOKS=false</p>
+<pre><code>PUBLIC_BASE_URL=
+CORS_ORIGIN=</code></pre>
+<p>実際の URL に変更します。</p>
+<figure class="chapter-figure"><img src="./assets/diagrams/02-zeabur-variables.svg" alt="Zeabur環境変数表示" loading="lazy" /></figure>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>環境変数は「展開プラットフォームが保持する小さなメモ」のようなものです。コードはこれらの値を読み取ることができますが、フロントエンドのパブリック ファイルにはパッケージ化されません。今後は、Paddle API キーを Web ページのコードに書き込むのではなく、ここに配置する必要があります。</blockquote>
+<h4>ステップ 7: <code>/data</code> をマウントする</h4>
+<p><strong>【このステップの核心】再起動によって失われない保存場所をバックエンドに与えます。 </strong></p>
+<p>次に、具体的な実行手順を示します。</p>
+<ol>
+<li>Zeabur サービスでボリュームまたはストレージ設定を見つけます。</li>
+<li>新しいボリュームを追加します。</li>
+<li>マウント パスを入力します。</li>
+</ol>
+<pre><code>/データ</code></pre>
+<ol>
+<li>環境変数に次のものが含まれていることを確認します。```bash</li>
+</ol>
+<p>PAYMENT_STORE_FILE=/data/payment-store.json</p>
+<pre><code>
+![ゼアブルボリュームシグナル](../../assets/diagrams/03-zeabur-volume.svg)
+
+&gt; 💡 **なぜこれを行うのですか#  **
+&gt; オーダーおよびロック解除レコードがサービスの一時ディレクトリにのみ存在する場合、サービスの再起動後にそれらのレコードが消える可能性があります。 `/data` ボリュームは、継続的に保存できる小さなハードディスクをサービスに接続するようなものです。
+
+### ステップ 8: オンライン URL を開いて 3 つのページを確認します。
+
+**【このステップの核心】 Web サイト、API、パブリック設定に外部からアクセスできることを確認します。 **
+
+デプロイが成功すると、次のような結果が得られます。
+</code></pre>
+<p>https://your-project.zeabur.app</p>
+<pre><code>
+一つずつ開いてください:
+</code></pre>
+<p>https://あなたのドメイン/</p>
+<p>https://あなたのドメイン/api/health</p>
+<p>https://yourdomain/monetization.json</p>
+<pre><code>
+次のことを確認する必要があります。
+
+1. ホームページを開くことができます。
+2. `/api/health` はサービスのステータスを返します。
+3. `/api/health` はシークレットを表示しません。
+4. `/monetization.json` にアクセスできます。
+5. `/monetization.json` には、Paddle API キーまたは Webhook シークレットが含まれていません。
+6. 模擬支払いプロセスは引き続きテストできます。
+
+&gt; 💡 **なぜこれを行うのですか#  **
+&gt; Paddle は後で外部から Web サイトにアクセスします。自分でローカル Web ページを開くことができるだけでは十分ではありません。パブリック URL に実際にアクセスできることを確認する必要があります。
+
+### ステップ 9: Paddle に必要なパブリック ページを準備する
+
+**【このステップの核心】まず、Paddle に入った後に入力する URL がないことを避けるために、支払いプラットフォームが読み取る基本的な指示ページを準備します。 **
+
+パドルは次のことを要求する場合があります。
+</code></pre>
+<p>/価格設定</p>
+<p>/用語</p>
+<p>/プライバシー</p>
+<p>/返金</p>
+<pre><code>
+これらのページは最初は非常に単純ですが、少なくとも次のことを記載する必要があります。
+
+1. 何を売っていますか?
+2. 支払い後にユーザーが得られるもの。
+3. 価格はいくらですか?
+4. 1 回限りの購入かどうか。
+5. 返金ルールについて教えてください。
+6. 問題が発生した場合、ユーザーはどこに連絡すればよいですか?
+コーデックスに関するヒント:
+</code></pre>
+<p>Paddle レビューに必要な公開ページの追加にご協力ください。</p>
+<ol>
+<li>/価格設定</li>
+</ol>
+<p>2./用語</p>
+<p>3./プライバシー</p>
+<p>4./返金</p>
+<p>要件:</p>
+<ul>
+<li>明確かつ控えめに書き、効果を狙って誇張しないでください。</li>
+<li>雇用、収入、または治療結果を約束するものではありません。</li>
+<li>すべてのページには、Zeabur ドメイン名を介して直接アクセスできます。</li>
+<li>API キー、注文情報、個人の連絡先情報をページに含めないでください。</li>
+</ul>
+<pre><code>
+&gt; 💡 **なぜこれを行うのですか#  **
+&gt; 決済プラットフォームは、販売しているものが明確かどうか、ユーザーが何を購入したかを知っているかどうか、紛争が生じた場合のルールがあるかどうかを判断する必要があります。ページは簡潔にすることもできますが、空白または曖昧にすることはできません。
+
+### ステップ 10: このドメイン名を Paddle に任せます
+
+**[このステップの核心] 次の章のパドル設定の基礎として Zeabur ドメイン名を使用します。 **
+
+この章を完了したら、次の 3 つの値を記録します。
+</code></pre>
+<p>ウェブサイトのホームページ: https://ドメイン名/</p>
+<p>Webhook URL: https://yourdomain/api/webhooks/paddle</p>
+<p>ヘルスチェック: https://yourdomain/api/health</p>
+<pre><code>
+次の章では、Paddle でそれらを埋めていきます。
+
+&gt; 💡 **なぜこれを行うのですか#  **
+&gt; このステップは、店舗を開く前に家番号を取得するようなものです。番地が決定したら、レジ係、支払い通知、およびユーザー バウンス ページに移動する場所ができます。
+
+### この章の完了基準
+
+**[この章の核心] Web サイトがオンラインであることを証明できる必要があります。このマシンでのみ実行できるということではありません。 **
+
+完了後、項目ごとに確認してください。
+
+1. GitHub リポジトリには最新のコードが含まれています。
+2. Zeabur が正常に展開されました。
+3. ホームページを開くことができます。
+4. `/api/health` を開くことができます。
+5. `/monetization.json` にはシークレットが含まれていません。
+6. `/data`ボリュームが搭載されています。
+7. HTTPS ドメイン名を取得しました。
+8. Webhook URL は次のようにする必要があることはすでにわかっています。
+</code></pre>
+<p>https://yourdomain/api/webhooks/paddle</p></article>
+<article class="tutorial-chapter" id="chapter-05"><div class="chapter-kicker">Chapter 05</div><h1>05. ドメイン名を取得したら、Paddle 支払いを受け入れ、自動的にロックを解除します。</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-05-paddle.webp" alt="パドル決済アンロックチャプターアート" loading="lazy" /></figure>
+<p>この章は、前の章を完了し、HTTPS ドメイン名を取得していることを前提としています。次に例を示します。</p>
+<pre><code>https://your-project.zeabur.app</code></pre>
+<p><strong>【この章の核心】Zeabur ドメイン名を使用して Paddle 設定を完了し、バックエンドが Paddle Webhook を通じてレポートのロックを自動的に解除できるようにします。 </strong></p>
+<p>この章はコードから始まるのではなく、Paddle がバックグラウンドで必要とするものを最初に完成させます。</p>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>パドルはボタンを与えるだけではありません。アカウント、製品、ドメイン、支払いページ、通知アドレスがチェックされます。バックグラウンドデータが完成していない場合、正しくコードを記述しても<code>checkout not enabled</code>などのエラーが発生する場合があります。</blockquote>
+<h4>ステップ 1: まず、リンク全体で Paddle が何を行うかを理解します。</h4>
+<p><strong>【このステップの核心】Paddle は集金と支払い結果の通知を担当し、Web サイトは注文の作成とレポートのロック解除を担当します。 </strong></p>
+<p>完全なプロセスは次のとおりです。</p>
+<pre><code>ユーザーがクリックしてロックを解除する
+  -&gt; ウェブサイトのバックエンドが支払いセッションを作成します
+  -&gt; バックエンドが Paddle にチェックアウトの作成をリクエストします。
+  -&gt; ユーザーは Paddle ページで支払います
+  -&gt; Paddle は Webhook を使用してバックエンドに通知します
+  -&gt; バックエンドは支払いが有効であることを確認します
+  -&gt; バックエンドのロック解除に対応するレポート ID</code></pre>
+<ol>
+<li>チェックアウトを作成します。</li>
+<li>Webhook を受信して​​確認します。</li>
+<li>支払い確認後にアクセス権が発行されます。</li>
+</ol>
+<p>パドルは次の 3 つのことを行います。</p>
+<ol>
+<li>決済ページを表示します。</li>
+<li>クレジット カード、PayPal、または一部の地域で利用できる現地の支払い方法を処理します。</li>
+<li>支払い結果をバックエンドに送り返します。</li>
+</ol>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>ユーザーの支払いをフロントエンド Web ページの判断に任せることはできません。フロントエンドは店舗の陳列エリアに似ており、バックエンドはレジ システムに似ており、Paddle はサードパーティのチェックアウト カウンターに似ています。チェックアウト デスクがバックエンドに「お金が確認された」ことを通知した場合にのみ、バックエンドはドアを開けてレポートを配信する必要があります。</blockquote>
+<h4>ステップ 2: Paddle のオンボーディングを完了する</h4>
+<p><strong>【このステップの核心】まず、Paddle アカウントをチェックアウトを作成できるようにします。 </strong></p>
+<p>Paddle バックエンドに入り、必要に応じて次のページに入力します。</p>
+<ol>
+<li>アカウントまたは会社情報。</li>
+<li>販売する製品の種類。</li>
+<li>製品の説明。</li>
+<li>年収の範囲。</li>
+<li>支払い方法。</li>
+<li>Web サイトのドメイン名。</li>
+<li>Paddle の許容使用ポリシーに準拠します。</li>
+</ol>
+<p>製品説明は、次のように控えめかつ明確に書くことができます。</p>
+<pre><code>当社では、1 回限りのデジタルキャリア評価レポートを販売しています。
+ユーザーはクイズに回答すると、パーソナライズされたオンライン レポートを受け取ります。
+この製品はデジタル コンテンツへのアクセスであり、雇用斡旋、経済的アドバイス、医療上のアドバイス、またはキャリアの成果の保証ではありません。</code></pre>
+<p>パドルが表示される場合:</p>
+<pre><code>このアカウントではチェックアウトがまだ有効になっていません</code></pre>
+<p>優先順位のチェック:</p>
+<ol>
+<li>オンボーディングが完了しているかどうか。</li>
+<li>ウェブサイトの承認は完了していますか?</li>
+<li>デフォルトの支払いリンクが設定されているかどうか。</li>
+<li>製品と価格が存在するかどうか。</li>
+<li>アカウントはまだ Paddle のレビューを待っていますか?</li>
+</ol>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>このステップは、レジを開くための販売者のレビューに似ています。 Paddle は、あなたが何を販売しているか、ユーザーが何を購入しているか、そしてそれがプラットフォームのポリシーに準拠しているかどうかを知る必要があります。それは単なる技術的な API ではありません。</blockquote>
+<h4>ステップ 3: Web サイト認証を送信する</h4>
+<p><strong>[このステップの核心] 前の章で取得した Zeabur ドメイン名を Paddle に入力し、これがあなたの販売 Web サイトであることを Paddle に確認させます。 </strong></p>
+<p>Paddle の Web サイト承認またはドメイン検証ページに次の情報を入力します。</p>
+<pre><code>https://your-zeabur-ドメイン名</code></pre>
+<pre><code>https://ドメイン/価格設定</code></pre>
+<pre><code>https://あなたのドメイン/用語
+https://あなたのドメイン/プライバシー
+https://あなたのドメイン/払い戻し</code></pre>
+<p>これらの URL は直接開くことができる必要があり、Web サイトのトップページに入力するだけではいけないことに注意してください。</p>
+<figure class="chapter-figure"><img src="./assets/diagrams/04-paddle-domain.svg" alt="Paddle ウェブサイトの確認手順" loading="lazy" /></figure>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>Paddle はユーザーの視点から Web サイトを確認する必要があります。価格はどこにあるのか、ルールはどこにあるのか、プライバシーに関する指示はどこにあるのか、返金の指示はどこにあるのかなどです。完全なパスを含む URL は、単なるホームページよりも簡単に渡すことができます。</blockquote>
+<h4>ステップ 4: デフォルトの支払いリンクを設定する</h4>
+<p><strong>[このステップの核心] Tell Paddle: 今後チェックアウトを作成するときに、支払いページにどの検証済みドメイン名を使用する必要があるか。 </strong></p>
+<p>デフォルトの支払いリンク 以下を入力することをお勧めします。</p>
+<pre><code>https://your-zeabur-domain/</code></pre>
+<p>ここでよくある誤解:</p>
+<ol>
+<li>ユーザーに投稿したい商品リンクではありません。</li>
+<li>これは Webhook URL ではありません。</li>
+<li>特定のレポート ID の結果ページではありません。</li>
+<li>これは、チェックアウトを作成するときに Paddle によって使用されるアカウントレベルの支払いドメイン名です。</li>
+</ol>
+<p>デフォルトの支払いリンクが設定されていない場合、API キーが正しくてもバックエンドでトランザクション チェックアウトを作成できない可能性があります。</p>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>デフォルトの支払いリンクは、「支払いシステムがデフォルトで使用するストアアドレス」と考えることができます。このアドレスがないと、Paddle はどの承認済み Web サイトで支払いページをホストすべきかわかりません。</blockquote>
+<h4>ステップ 5: 1 回限りの製品を作成する</h4>
+<p><strong>【このステップの核心】Paddle で販売したいデジタル レポート製品を作成します。 </strong></p>
+<p>以下を入力することをお勧めします。</p>
+<table><tbody>
+<tr><td>フィールド</td><td>推奨される書き込み</td></tr>
+<tr><td>製品名</td><td>AI キャリア アクション レポート、またはレポート名</td></tr>
+<tr><td>説明</td><td>パーソナライズされたデジタルキャリア評価レポートに 1 回限りアクセスできます。</td></tr>
+<tr><td>製品タイプ</td><td>デジタル製品</td></tr>
+<tr><td>税金のカテゴリー</td><td>デジタル グッズ、電子書籍、または現在 Paddle アカウントに許可されている最も近いカテゴリ</td></tr>
+</tbody></table>
+<p>製品が実際に月額料金を請求する場合を除き、サブスクリプションや長期メンバーシップとして記述しないでください。</p>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>製品は「あなたが販売するもの」です。 1 回限りのレポートの場合、製品はクラス、キャリア サービス、または人間によるコンサルティングへのコミットメントではなく、デジタル コンテンツへの 1 回限りのアクセスである必要があります。</blockquote>
+<h4>ステップ 6: 2 つのワンタイム価格を作成する</h4>
+<p><strong>【このステップの核心】同一商品に対して国内と海外の2つのワンタイム価格を設定します。 </strong></p>
+<p>最初にビルドすることをお勧めします。</p>
+<table><tbody>
+<tr><td>目的</td><td>通貨と価格</td><td>説明</td></tr>
+<tr><td>国内価格</td><td>9.90元</td><td>中国地域または中国人ユーザー向け</td></tr>
+<tr><td>海外価格</td><td>1.99ドル</td><td>海外のクレジットカード/PayPalユーザー向け</td></tr>
+</tbody></table>
+<p>価格タイプの選択:</p>
+<pre><code>一度</code></pre>
+<p>サブスクリプションは選択しないでください。</p>
+<p>作成後、2 つの価格 ID をコピーします。```bash</p>
+<p>PADDLE_CNY_PRICE_ID=pri_xxx</p>
+<p>PADDLE_USD_PRICE_ID=pri_xxx</p>
+<pre><code>
+!【パドル商品と価格説明】(../../assets/diagrams/05-paddle-product-price.svg)
+
+&gt; 💡 **なぜこれを行うのですか#  **
+&gt; Product は製品そのものであり、Price はこの製品の特定の販売価格です。製品には、人民元価格や米ドル価格など、複数の価格を設定できます。バックエンドがチェックアウトを作成するとき、価格 ID を使用して、今回いくら請求するかを Paddle に伝えます。
+
+### ステップ 7: API キーを作成し、Zeabur 変数に入れます。
+
+**【このステップの核心】 API キーはバックエンドでのみ使用され、フロントエンドのパブリック ファイルに含めてはなりません。 **
+
+Paddle Developer ツールで API キーを作成します。
+
+次に、Zeabur の変数を入力し、次のように入力します。```bash
 PADDLE_ENVIRONMENT=sandbox
-PADDLE_ALLOW_UNSIGNED_WEBHOOKS=false</code></pre>
-<figure class="chapter-figure"><img src="./assets/diagrams/03-zeabur-volume.svg" alt="Zeabur volume" loading="lazy" /></figure>
-<p><code>/data</code> に volume を mount し、payment session と access token が再起動で消えないようにします。</p></article>
-<article class="tutorial-chapter" id="chapter-05"><div class="chapter-kicker">Chapter 05</div><h1>05. Paddle 決済と自動解放</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-05-paddle.webp" alt="Paddle payment unlock chapter art" loading="lazy" /></figure>
-<p><strong>目的：Paddle が支払いを処理し、自分のバックエンドが webhook を検証してレポートを解放します。</strong></p>
-<h3>流れ</h3>
-<pre><code>解放ボタン -&gt; payment session -&gt; Paddle transaction checkout -&gt; 支払い -&gt; webhook -&gt; 検証 -&gt; access token -&gt; 完全版表示</code></pre>
-<p>フロントエンドだけで支払い成功を判断してはいけません。信用するのは webhook です。</p>
-<h3>商品説明</h3>
-<pre><code>We sell a one-time digital career assessment report. Users complete a quiz and receive a personalized online report. The product is digital content access, not employment placement, financial advice, medical advice, or guaranteed career outcome.</code></pre>
-<p><code>Checkout has not yet been enabled</code> が出た場合は、onboarding、website approval、default payment link、product、price、審査状態を確認します。</p>
-<h3>Website approval</h3>
-<figure class="chapter-figure"><img src="./assets/diagrams/04-paddle-domain.svg" alt="Paddle domain" loading="lazy" /></figure>
-<pre><code>Pricing: https://your-domain/pricing
-Terms: https://your-domain/terms
-Privacy: https://your-domain/privacy
-Refund: https://your-domain/refund</code></pre>
-<h3>Product と Price</h3>
-<figure class="chapter-figure"><img src="./assets/diagrams/05-paddle-product-price.svg" alt="Paddle product price" loading="lazy" /></figure>
-<p>一回払いのデジタル商品を作り、CNY 9.90 と USD 1.99 の one-time price を作ります。subscription は選びません。</p>
-<h3>Webhook</h3>
-<figure class="chapter-figure"><img src="./assets/diagrams/06-paddle-webhook.svg" alt="Paddle webhook" loading="lazy" /></figure>
-<p>URL：</p>
-<pre><code>https://your-domain/api/webhooks/paddle</code></pre>
-<p><code>transaction.completed</code> だけで解放します。<code>custom_data.payment_session_id</code> と <code>report_id</code> が自分の記録と一致することも確認してください。</p>
-<h3>Zeabur Variables</h3>
-<pre><code>PADDLE_ENVIRONMENT=sandbox
-PADDLE_API_KEY=your_sandbox_api_key
+PADDLE_API_KEY=你的_sandbox_api_key
 PADDLE_CNY_PRICE_ID=pri_xxx
-PADDLE_USD_PRICE_ID=pri_xxx
-PADDLE_WEBHOOK_SECRET=your_webhook_secret
-PADDLE_ALLOW_UNSIGNED_WEBHOOKS=false</code></pre></article>
-<article class="tutorial-chapter" id="chapter-06"><div class="chapter-kicker">Chapter 06</div><h1>06. Codex プロンプト集</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-06-prompts.webp" alt="Prompt templates chapter art" loading="lazy" /></figure>
-<h3>最小版を作る</h3>
-<pre><code>React + Vite と Node で、支払い後にレポートを解放する診断サイトの最小版を作ってください。まず mock 決済で、ログインなし、支払い状態はバックエンドだけが決める形にしてください。ファイル計画、実装、typecheck、build までお願いします。</code></pre>
-<h3>Paddle を追加する</h3>
-<pre><code>mock provider の横に Paddle provider を追加してください。checkout 作成、Paddle-Signature 検証、transaction.completed のみで解放、重複 webhook の冪等処理、reportId 不一致時の拒否を実装してください。</code></pre>
-<h3>Zeabur エラーを直す</h3>
-<pre><code>Zeabur の deploy が失敗しました。以下がログです。原因が build、start、PORT、環境変数、ファイル不足、メモリのどれかを判断し、修正してください。</code></pre>
-<h3>secret を確認する</h3>
-<pre><code>このプロジェクトに Paddle API key、webhook secret、.env.payment.local、注文データが GitHub に入るリスクがないか確認してください。</code></pre></article>
-<article class="tutorial-chapter" id="chapter-07"><div class="chapter-kicker">Chapter 07</div><h1>07. 公開前チェックリスト</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-07-launch.webp" alt="Launch checklist chapter art" loading="lazy" /></figure>
-<h3>プロダクト</h3>
+PADDLE_USD_PRICE_ID=pri_xxx</code></pre>
+<p>注意してください:</p>
+<ol>
+<li>サンドボックス キーはサンドボックスの価格と一致します。</li>
+<li>ライブキーはライブ価格とペアになります。</li>
+<li>混ぜないでください。</li>
+<li><code>public/monetization.json</code> には API キーを書き込まないでください。</li>
+<li>API キーをフロントエンド <code>.tsx</code>、<code>.js</code>、および <code>.html</code> に書き込まないでください。</li>
+</ol>
+<p>正しい概念は次のとおりです。</p>
+<pre><code>ブラウザのフロントエンド: 「支払いたい」ことのみを認識
+バックエンド: API キーを Paddle に渡してチェックアウトを作成します
+パドル: 支払いページの URL に戻る</code></pre>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>API キーはチェックアウト バックエンド キーのようなものです。ユーザーのブラウザは公共の場所であり、フロントエンドに置かれたものはすべて表示される可能性があります。キーは、バックエンドまたはデプロイメント プラットフォームの環境変数にのみ配置できます。</blockquote>
+<h4>ステップ 8: Webhook を設定する</h4>
+<p><strong>【このステップの核心】支払い完了後にウェブサイトに通知するアドレスを Paddle に知らせます。 </strong></p>
+<p>パドル通知の宛先を入力します:</p>
+<pre><code>https://your-zeabur-domain/api/webhooks/paddle</code></pre>
+<p>少なくとも次のイベントを選択してください:</p>
+<pre><code>取引完了しました
+トランザクション.支払い_失敗
+取引がキャンセルされました
+トランザクション.past_due</code></pre>
+<p>次に、Webhook シークレットをコピーし、Zeabur 変数に入力します。```bash</p>
+<p>PADDLE_WEBHOOK_SECRET=你的_webhook_secret</p>
+<p>PADDLE_ALLOW_UNSIGNED_WEBHOOKS=false</p>
+<pre><code>
+![パドル Webhook 信号](../../assets/diagrams/06-paddle-webhook.svg)
+
+&gt; 💡 **なぜこれを行うのですか#  **
+&gt; Webhook は、Paddle がバックエンドに「このトランザクションは完了しました」という呼び出しを積極的に行うようなものです。 Webhook シークレットは、双方が合意したパスワードのようなものです。秘密コードがなければ、誰かが電話をかけ、支払いをしたと偽ることもできます。
+
+### ステップ 9: バックエンドにパドルチェックアウトを作成させます
+
+**[このステップの核心] ユーザーが支払いボタンをクリックすると、フロントエンドはバックエンドのみを要求し、Paddle API キーに直接接続しません。 **
+
+フロントエンドリクエスト:```http
+POST /api/payments/checkout
+Content-Type: application/json
+
+{
+  &quot;reportId&quot;: &quot;rep_xxx&quot;,
+  &quot;region&quot;: &quot;domestic&quot;
+}</code></pre>
+<p>バックエンドは次のことを行う必要があります。</p>
+<ol>
+<li>ローカル支払いセッションを作成します。</li>
+<li>地域に応じて、<code>PADDLE_CNY_PRICE_ID</code> または <code>PADDLE_USD_PRICE_ID</code> を選択します。</li>
+<li>Paddle 作成トランザクション API を呼び出します。</li>
+<li><code>reportId</code> を <code>custom_data</code> に入れます。</li>
+<li><code>payment_session_id</code> を <code>custom_data</code> に入れます。</li>
+<li>Paddle トランザクション ID を保存します。</li>
+<li>Paddle チェックアウト URL をフロントエンドに返します。</li>
+</ol>
+<p>コーデックスに関するヒント:</p>
+<pre><code>すでに Zeabur HTTPS ドメイン名を持っているので、Paddle に接続したいと考えています。
+
+新しい Paddle プロバイダーを追加してください。
+
+要件:
+1. テストを容易にするために、モックプロバイダーを保持します。
+2. POST /api/payments/checkout は、Paddle 作成トランザクションを呼び出します。
+3. 国内では PADDLE_CNY_PRICE_ID を使用し、海外では PADDLE_USD_PRICE_ID を使用します。
+4. トランザクションのカスタムデータには、reportId とpayment_session_id が含まれている必要があります。
+5. すべてのシークレットは process.env からのみ読み取ることができます。
+6. public/monetization.json にはシークレットを含めることはできません。</code></pre>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote><code>custom_data</code> は、Paddle の注文に記入した「付箋」です。 Webhook が戻ってくると、バックエンドはこのメモに基づいて、この支払いがどのレポートと支払いセッションに対応しているかを認識します。</blockquote>
+<h4>ステップ 10: Webhook のみでレポートのロックを解除できるようにする</h4>
+<p><strong>【このステップの核心】 ユーザーがページに戻った、URL にさらに多くのパラメーターがある、またはフロントエンド表示が成功したからといって、直接ロックを解除しないでください。 </strong></p>
+<p>Paddle はバックエンドに次のように通知します。</p>
+<pre><code>POST /api/webhooks/paddle</code></pre>
+<p>バックエンドは次のチェックを行う必要があります。</p>
+<ol>
+<li><code>Paddle-Signature</code> を生のボディで検証します。</li>
+<li><code>transaction.completed</code> のみ受け付けます。</li>
+<li><code>custom_data.payment_session_id</code> を確認します。</li>
+<li><code>custom_data.report_id</code> を確認します。</li>
+<li>価格 ID を確認します。</li>
+<li>金額を確認します。</li>
+<li>通貨を確認します。</li>
+<li>繰り返される Webhook は冪等である必要があります。</li>
+<li>すべてのチェックに合格した後にのみ、<code>accessToken</code> を書き込みます。</li>
+</ol>
+<p>コーデックスに関するヒント:</p>
+<pre><code>POST /api/webhooks/paddle を実装してください。
+
+要件:
+1. パドル署名を検証するには生の本文を使用する必要があります。
+2.transaction.completed ロック解除のみが受け入れられます。
+3.transaction.payment_failed/transaction.canceled/transaction.past_due はロックが解除されていません。
+4.custom_data の reportId とpayment_session_id はローカル セッションと一致する必要があります。
+5. 価格ID、金額、通貨が一致しない場合、ロックを解除できません。
+6. 繰り返し Webhook 権限を繰り返し発行することはできません。
+7. トラブルシューティングを容易にするために、エラーはすべてpayment_events に書き込まれる必要があります。</code></pre>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>ユーザーの支払いページが Web サイトに戻ります。これはブラウザが戻ったことを意味するだけで、入金が確認されたことを意味するものではありません。本当に信頼できる信号は、Paddle サーバーから送信される署名検証済みの Webhook です。</blockquote>
+<h4>ステップ 11: 決まった順序でサンドボックスをテストする</h4>
+<p><strong>[このステップの核心] まずサンドボックスを使用して、リンク全体が通過できることを証明してから、ライブに切り替えます。 </strong></p>
+<p>次に、次の順序でテストします。</p>
+<ol>
+<li>Zeabur 環境変数のサンドボックス API キーを入力します。</li>
+<li>Zeabur 環境変数にサンドボックスの価格 ID を入力します。</li>
+<li>Zeabur 環境変数にサンドボックス Webhook シークレットを入力します。</li>
+<li>再展開します。</li>
+<li>オンライン ドメイン名を開きます。</li>
+<li>クイズに答えます。</li>
+<li>「支払う」をクリックします。</li>
+<li>Paddle サンドボックスのチェックアウトにジャンプします。</li>
+<li>Paddle が提供するテスト カードで支払います。</li>
+<li>パドル通知ログを開きます。</li>
+<li>Zeabur ログを開きます。</li>
+<li>Webhook が正常に返されることを確認します。</li>
+<li>レポートページに戻り、自動ロック解除を確認します。</li>
+</ol>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>サンドボックスとは、決済プラットフォームが提供するテスト環境です。実際にお金を徴収することなく、API、Webhook、ロック解除ロジックが正しいかどうかを確認できます。</blockquote>
+<h4>ステップ 12: 一般的なエラーのトラブルシューティング</h4>
+<p><strong>【このステップの核心】エラーが表示された場合は、まずそれがアカウント設定、環境変数、コード、または Webhook に問題があるかどうかを判断します。 </strong></p>
+<h5>チェックアウトはまだ有効になっていません</h5>
+<p>優先順位のチェック:</p>
+<ol>
+<li>Paddle のオンボーディングが完了しているかどうか。</li>
+<li>Web サイトの検証に合格したかどうか。</li>
+<li>デフォルトの支払いリンクが設定されているかどうか。</li>
+<li>製品と価格が確立されているかどうか。</li>
+<li>アカウントがまだ Paddle によって審査中かどうか。</li>
+</ol>
+<h5>認証ヘッダーの形式が正しくありません</h5>
+<p>環境変数にはキー自体のみが含まれます。```bash</p>
+<p>PADDLE_API_KEY=pdl_sdbx_xxx</p>
+<pre><code>
+リクエストヘッダーは次のとおりです。
+</code></pre>
+<p>権限: ベアラー pdl_sdbx_xxx</p>
+<pre><code>
+環境変数には書き込まないでください。```bash
+PADDLE_API_KEY=Bearer pdl_sdbx_xxx</code></pre>
+<h5>支払い後にロックが解除されない</h5>
+<p>順番に確認してください:</p>
+<ol>
+<li>Paddle 通知ログは Webhook を送信しますか?</li>
+<li>Zeabur ログはリクエストを受け取りましたか?</li>
+<li>Webhook URL が <code>/api/webhooks/paddle</code> かどうか。</li>
+<li>Webhook シークレットに一貫性があるかどうか。</li>
+<li>イベントは<code>transaction.completed</code>ですか?</li>
+<li><code>custom_data</code> には <code>payment_session_id</code> と <code>report_id</code> はありますか。</li>
+<li><code>/data/payment-store.json</code> が正常に書き込まれたかどうか。</li>
+</ol>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>支払いの失敗も同じ理由によるものではない可能性があります。質問を「Paddle は通知を送信しましたか、Zeabur はそれを受信しましたか、バックエンドは検証に合格しましたか、データは書き込まれましたか」に分割することで、どのセクションがスタックしているかをすぐに特定できます。</blockquote>
+<h4>ステップ 13: ライブに切り替える前に最終確認を行う</h4>
+<p><strong>【このステップの核心】サンドボックスの実行後、Paddle のライブデータを置き換えます。 </strong></p>
+<p>ライブに切り替える前に確認してください:</p>
+<ol>
+<li>パドルライブオンボーディングに合格しました。</li>
+<li>ライブ Web サイトの承認が通過しました。</li>
+<li>ライブデフォルトの支払いリンクが設定されています。</li>
+<li>ライブプロダクトが作成されました。</li>
+<li>ライブ一回限りの価格が設定されました。</li>
+<li>Zeabur 変数はライブ API キーに置き換えられました。</li>
+<li>Zeabur 変数はライブ価格 ID に置き換えられました。</li>
+<li>Zeabur 変数はライブ Webhook シークレットに置き換えられました。</li>
+</ol>
+<p>9.<code>PADDLE_ENVIRONMENT=live</code>。</p>
+<ol>
+<li>テスト入口、0元ロック解除、模擬ボタンはすべて閉じられています。</li>
+</ol>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>サンドボックスとライブは別の世界です。サンドボックス キーは実際のお金を受け入れることができないため、ランダム テストにはライブ キーを使用しないでください。切り替えるときは、キー、価格 ID、Webhook シークレットが混在しないように、セットで置き換えてください。</blockquote>
+<h4>この章の完了基準</h4>
+<p><strong>[この章の核心] ユーザーが実際に支払ったことを証明できなければなりません。レポートはバックエンドによって自動的にロック解除されます。 </strong></p>
+<p>完了後、項目ごとに確認してください。</p>
+<ol>
+<li>ユーザーが支払いボタンをクリックして、Paddle チェックアウトを開きます。</li>
+<li>Paddle サンドボックスの支払い後、Webhook は Zeabur バックエンドに戻ります。</li>
+<li>バックエンドは、<code>transaction.completed</code> の後にのみロックが解除されます。</li>
+<li>間違った署名ではロックが解除されません。</li>
+<li>金額を間違えてもロックは解除されません。</li>
+<li>間違った価格 ID ではロックが解除されません。</li>
+<li>重複した Webhook は繰り返し発行されません。</li>
+<li>ユーザーは、レポート ページを更新した後も、ロック解除されたコンテンツを表示できます。</li>
+<li>ブラウザを変更した場合、またはアクセス トークンがない場合、他の人の完全なレポートを表示することはできません。</li>
+</ol>
+<p>これらがすべて確立されると、パドル アクセスは真に成功します。</p></article>
+<article class="tutorial-chapter" id="chapter-06"><div class="chapter-kicker">Chapter 06</div><h1>06. コピー可能なプロンプト Word テンプレート</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-06-prompts.webp" alt="プロンプト テンプレートの章アート" loading="lazy" /></figure>
+<p><strong>[この章の核心] 以下は、Web サイトの構築、GitHub へのアップロード、Zeabur のデプロイ、Paddle への接続、およびエラーのトラブルシューティングのために Codex に直接投稿できるプロンプト ワードのコレクションです。 </strong></p>
+<p>この章はツールボックスです。以下のプロンプトの単語を Codex に直接貼り付け、括弧内の内容を独自のプロジェクトに置き換えることができます。</p>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>初心者にとって最も難しいのは、多くの場合、「何をすればよいかわからない」ことではなく、「Codex にそれを依頼する方法がわからない」ことです。テンプレートを使用すると、式のコストを削減し、要件をより安定させることができます。</blockquote>
+<h3>0. 最初に Codex にプロジェクトを読み取らせます</h3>
+<p><strong>[このセクションの核心] 変更を加える前に、Codex にプロジェクトの構造を理解させてください。 </strong></p>
+<pre><code>まずこのプロジェクトを読んで、急いで変更しないでください。
+
+教えてください:
+1. 正面玄関はどこですか?
+2. バックエンドの入り口はどこですか?
+3. 支払い設定はどこにありますか?
+4. ローカルで実行する方法
+5. GitHub に送信できないファイル
+
+次に、変更に向けて提案する次のステップをリストします。</code></pre>
+<h3>1. 空のディレクトリから最小バージョンを作成します。</h3>
+<p><strong>[このセクションの核心] 空のプロジェクトから開始する場合は、まず Codex に実行可能な最小バージョンを作成するように依頼します。 </strong></p>
+<pre><code>有料クイズ サイトの使用可能な最小バージョンを現在のディレクトリに作成してください。
+
+技術的要件:
+- React + Vite フロントエンド
+- Node.js バックエンド
+- 最初にモックで支払います
+- 実際のパドルに接続されていません
+- ログインは必要ありません
+
+製品プロセス:
+ホーム -&gt; 回答ページ -&gt; 無料導入レポート -&gt; 支払いボタン -&gt; 模擬ロック解除 -&gt; 完全なレポート
+
+以下を提供してください:
+- package.json スクリプト
+- フロントエンドページ
+- バックエンド API
+- public/monetization.json
+- .env.payment.example
+- ローカル操作指示</code></pre>
+<h3>2. タイトルと結果ページを追加する</h3>
+<p><strong>[このセクションの核心] プロセスが完了すると、質問数と結果ページが拡張されます。 </strong></p>
+<pre><code>テスト問題を [質問数] 個の質問に拡張するのにご協力ください。
+
+要件:
+- 各質問には 3 ～ 5 つの選択肢があります
+- ユーザーは一度に 1 つの質問のみを参照できます
+- 進行状況を示すプロンプトがあります
+- 回答後にreportIdを生成します
+- 結果ページでは、回答に基づいて安定した結果が生成されます
+- 更新後に現在のレポートが失われないようにする
+
+最初にローカル データを使用し、データベースには接続しません。</code></pre>
+<h3>3. 無料の紹介レポートを最適化する</h3>
+<p><strong>【このセクションの核心】無料のページは信頼を築く必要があり、誇張した広告として書かれるべきではありません。 </strong></p>
+<pre><code>未払いの結果ページを最適化してください。
+
+スタイル:
+- プロフェッショナル、客観的、信頼できる
+- マーケティングを誇張しないでください
+- 「最初に少し明らかにする」とか「問題点を正確に攻撃する」などのことは言わないでください。
+
+コンテンツ構造:
+1. 核となる心理的原動力
+2. 行動傾向と潜在的な行き詰まり点
+3. 自己認識と内部および外部のパフォーマンスの調和
+4. 完全なレポートは分析の方向性を継続します
+
+制限事項:
+- キャリアに関する完全な回答は表示されません
+- 行動の完全なルートを示していない
+- レポート全体の保存入り口を表示しない</code></pre>
+<h3>4. モックペイウォールを追加する</h3>
+<p><strong>【このセクションの核心】最初に模擬支払いを使用してロック解除ロジックをテストし、実際の支払いを急いで受け取らないでください。 </strong></p>
+<pre><code>模擬ペイウォールを追加してください。
+
+要件:
+- public/monetization.json でスイッチが有効になりました
+- Enabled=false の場合、開発に便利で、完全なレポートを直接表示できます。
+- Enabled=true の場合、料金を支払わずに無料の紹介のみを視聴できます。
+- 支払いボタンをクリックして支払いセッションを作成します
+- 支払いが成功すると、モックは自動的にロック解除されます
+- フロントエンドは、URL パラメーターによって疑似ロック解除できません。</code></pre>
+<h3>5. まず GitHub にアップロードします</h3>
+<p><strong>【このセクションの核心】 デプロイの前に、Codex で GitHub アップロードのセキュリティを確認してください。 </strong></p>
+<pre><code>このプロジェクトが GitHub へのアップロードに適しているかどうかを確認してください。
+
+要件:
+- .gitignore は .env、.env.*、*.local、node_modules、dist、ログ、一時ファイルを無視します
+- プロジェクトをスキャンして、Paddle API キー、Webhook シークレット、または管理者トークンがないことを確認します。
+- README でプロジェクトの目的とローカルでの実行方法が説明されていることを確認します。
+-初めてGitHubにアップロードするときに実行するコマンドを教えてください
+- リモートオリジンが存在しない場合、GitHub リポジトリに接続する方法を教えてください
+- シークレットが見つかった場合は、ファイル パスをリストし、対応するキーを取り消すか置き換えるよう通知してください。
+
+ローカルキー、実際の注文データ、またはバックグラウンド画面データを Git に送信しないでください。</code></pre>
+<h3>6. 次に Zeabur にデプロイします</h3>
+<p><strong>[このセクションの核心] GitHub リポジトリの準備ができたら、Codex で Zeabur のデプロイ条件を確認します。 </strong></p>
+<pre><code>Zeabur にデプロイできるようにプロジェクトを確認して調整してください。
+
+要件:
+- npm run build はフロントエンド ファイルを生成できます
+- npm run start は単一ノードのサービスを開始できます
+- サービスリスニングプロセス.env.PORT
+- 利用可能なホスト 0.0.0.0
+- 同じサービスがフロントエンド dist と /api を提供します
+- /api/health を追加しました
+- .gitignore は .env、*.local、node_modules、dist、ログ、一時ファイルを無視します
+- API キーを送信しないでください
+- パドルプロバイダーが有効になっていない場合、パドルキーの欠落によってサービスがクラッシュすることはありません。
+
+Zeabur 変数に何を入力すればよいか教えてください。</code></pre>
+<h3>7. ドメイン名を取得したら Paddle に接続します</h3>
+<p><strong>[このセクションの核心] Zeabur HTTPS ドメイン名の準備ができたら、Paddle に接続します。 </strong></p>
+<pre><code>すでに Zeabur HTTPS ドメイン名を持っているので、Paddle に接続したいと考えています。
+
+新しい Paddle プロバイダーを追加してください。
+
+環境変数:
+-PADDLE_ENVIRONMENT
+-PADDLE_API_KEY
+- PADDLE_CNY_PRICE_ID
+-PADDLE_USD_PRICE_ID
+- PADDLE_WEBHOOK_SECRET
+- PUBLIC_BASE_URL
+
+バックエンドの要件:
+- POST /api/payments/checkout 呼び出し Paddle トランザクション作成
+-custom_data は、reportId とpayment_session_id を書き込みます
+- POST /api/webhooks/paddle 検証 パドル署名
+- トランザクションのみを受け入れます。ロック解除が完了しました
+- 失敗、キャンセル、期限切れではロックが解除されません
+- Webhook の繰り返し送信は冪等である必要があります
+- 価格ID、金額、通貨が一致しないため、ロックを解除できません</code></pre>
+<h3>8. Zeabur 502 を使用する理由を確認してください</h3>
+<p><strong>【このセクションの核心】 502 に遭遇した場合は、測位のために Zeabur のログを Codex に投稿します。 </strong></p>
+<pre><code>Zeabur の展開後、Web サイトを開くと 502 が表示されます。
+
+これは Zeabur のログです。
+【投稿ログ】
+
+ご確認ください:
+1. package.json 起動スクリプト
+2. サーバーが process.env.PORT をリッスンするかどうか
+3. ホストが 0.0.0.0 かどうか
+4. ビルド後の静的ファイルのパスは正しいですか?
+5. 環境変数の不足によりプロセスが終了するかどうか
+
+直接修正してください。</code></pre>
+<h3>9. 支払い後にパドルのロックが解除されない理由を確認してください</h3>
+<p><strong>【このセクションの核心】 支払い後にロックが解除されない場合は、Paddle Webhook と Zeabur のログを同時に確認してください。 </strong></p>
+<pre><code>支払い後もパドルページのロックが解除されません。
+
+こんな情報があります:
+- パドルトランザクション ID: [記入]
+- 支払いセッションID: [記入]
+- レポートID: [記入]
+- ゼアブルログ：[投稿ログ]
+- パドル Webhook ログ: [ポストログ]
+
+ご確認ください:
+1.Webhookを受信したかどうか
+2. Webhook の署名は検証されていますか?
+3.event_typeがtransaction.completedかどうか
+4.custom_data にpayment_session_id と reportId が含まれるかどうか
+5. ストアファイルが正常に書き込まれたかどうか
+6. フロントエンドは支払いを受けるかどうかをポーリングします</code></pre>
+<h3>10. オンラインにする前のセキュリティ監査</h3>
+<p><strong>[このセクションの核心] オンラインにする前にシークレット、署名検証、権限を一元的にチェックし、リスクを回避します。 </strong></p>
+<pre><code>オンラインにする前にセキュリティ監査を行ってください。
+
+重要なポイント:
+- 公開ファイルから機密が漏洩していないか
+- .env が git によって追跡されるかどうか
+- API キーがバックエンド process.env にのみ存在するかどうか
+- Webhook が署名を検証するかどうか
+- 間違った署名ではロックを解除できません
+- 重複した Webhook が繰り返し発行されない
+- 料金を支払わないと完全なレポートにアクセスできません
+- 同じアクセス トークンで他の人のレポート ID のロックを解除することはできません
+
+問題をリストアップして修正してください。</code></pre>
+<h3>11. レポートをより製品らしくする</h3>
+<p><strong>【このセクションの核心】基本的なリンクが実行されたら、Codex にレポート エクスペリエンスを最適化させます。 </strong></p>
+<pre><code>完全なレポート ページを最適化して、有料製品のように見えるようにしてください。
+
+要件:
+- 最初の画面で核となる結論とレーダーを確認します
+- 心理プロファイリングが主なセールスポイントです
+- 長い記事ではなく、多方向の短いモジュール
+- 給与と雇用市場の説明を削除
+- 性格特性、適切なキャリアタイプ、成長ルート、リスク境界に焦点を当てる
+- 代替職業はワンクリックで切り替えることができますが、再ロックすることはできません。
+- レポートを保存するときにレイアウトが切り取られません。</code></pre>
+<h3>12. コーデックスをやりすぎないでください</h3>
+<p><strong>【このセクションの核心】小さな変更だけをしたい場合は、Codex の変更範囲を明確に制限する必要があります。 </strong></p>
+<p>コーデックスがあまりにも変更されていると感じる場合は、次の段落を使用してください。</p>
+<pre><code>新しい機能の追加はやめてください。
+今回は私が指摘した問題のみを修正します。
+無関係なファイルをリファクタリングしないでください。
+ビジュアルスタイルを変更しないでください。
+既存の機能を削除しないでください。
+続行する前に、どのファイルを変更するのか説明してください。</code></pre>
+<h3>13. 毎回の終了時に検証を要求する</h3>
+<p><strong>【このセクションの核心】Codex は、修正を行うたびにチェックを実行し、結果を説明する必要があります。 </strong></p>
+<p>各タスクの最後に次を追加します。</p>
+<pre><code>完了したら、次を実行してください。
+- npm タイプチェックを実行する
+- npm ビルドを実行する
+
+プロジェクトにこれらのコマンドがない場合は、代替の検証方法を説明してください。
+最後に、何が変更されたのか、どのように手動でテストする必要があるのか​​をまとめてください。</code></pre>
+<h3>使用上の提案</h3>
+<p><strong>【このセクションの核心】 テンプレートは一度に 1 つだけ貼り付けて、承認が通過するまで待ってから次のステップに進みます。 </strong></p>
+<p>初心者にとって最も安定した方法は次のとおりです。</p>
+<ol>
+<li>プロンプトワードは一度に 1 つだけ投稿します。</li>
+<li>コーデックスが変更されるまで待ちます。</li>
+<li>走ります。</li>
+<li>画面のステータスまたは投稿エラーを説明します。</li>
+<li>次のステップに進みます。</li>
+</ol>
+<p>「ウェブサイトの完成 + 支払いの受け入れ + 導入 + 多言語 + アートのアップグレード」を一度に要求しないでください。このように失敗すると、どのステップが壊れているのかを知るのは困難です。</p></article>
+<article class="tutorial-chapter" id="chapter-07"><div class="chapter-kicker">Chapter 07</div><h1>07. 本番稼働チェックリスト</h1><figure class="chapter-figure"><img src="./assets/chapters/chapter-07-launch.webp" alt="チェックリストのチャプターアートの起動" loading="lazy" /></figure>
+<p><strong>【この章の核心】 オンラインにする前に、製品プロセス、GitHub、Zeabur、Paddle、環境変数、支払いのセキュリティを 1 つずつ確認してください。 </strong></p>
+<p>オンラインにアクセスする前に、「ページが美しいかどうか」だけを見てはいけません。有料 Web サイトで最も重要なことは、ユーザーが支払いを完了し、支払い後に商品を入手できること、そして支払いをしていない人がそれを回避できないことです。</p>
+<p>このリストを 1 つずつ確認してください。</p>
+<blockquote>💡 <strong>なぜこれを行うのですか#  </strong></blockquote>
+<blockquote>有料ウェブサイトのリスクはページの見た目だけではありません。注文、Webhook、キー、ロック解除のいずれかの権限に誤りがあると、ユーザーは「支払ったのに見れない」または「支払っていないのに閲覧できない」という問題に遭遇する可能性があります。</blockquote>
+<h3>1. 基本機能</h3>
+<p><strong>[このセクションの核心] まず、ユーザーがホームページからレポート ページに移動できることを確認します。 </strong></p>
 <ul>
-<li>[ ] 診断を開始できる。</li>
-<li>[ ] 最後まで回答できる。</li>
-<li>[ ] 無料導入レポートに実用的な内容がある。</li>
-<li>[ ] 未払いでは完全版が見えない。</li>
-<li>[ ] 支払い後に自動で解放される。</li>
+<li>[ ] ホームページを開くことができます。</li>
+<li>[ ] ユーザーはクイズを開始できます。</li>
+<li>[ ] ユーザーはすべての質問に回答できます。</li>
+<li>[ ] 回答後、<code>reportId</code> を生成します。</li>
+<li>[ ] 無料の入門版レポートを表示できます。</li>
+<li>[ ] 支払いがない場合は完全なレポートがロックされます。</li>
+<li>[ ] 支払いボタンは支払いセッションを作成できます。</li>
+<li>[ ] 支払いが完了すると自動的にロックが解除されます。</li>
+<li>[ ] ページを更新した後でも、ロックが解除されたレポートを開くことができます。</li>
+<li>[ ] ブラウザを変更した場合、またはトークンなしでは、他の人の完全なレポートを見ることができません。</li>
 </ul>
-<h3>Paddle</h3>
+<h3>2.コーデックス納品検査</h3>
+<p><strong>【このセクションの核心】Codex に基本的なチェックを実行させ、エラーなしでオンラインにします。 </strong></p>
+<p>Codex を実行します。```bash</p>
+<p>npm run typecheck</p>
+<p>npm run build</p>
+<pre><code>
+失敗しても、無理せずオンラインに接続してください。エラーをコーデックスにポストバックしてください。
+</code></pre>
+<p>これは npm run build のバグです。修正を手伝ってください。</p>
+<p>【投稿ミス】</p>
+<pre><code>
+## 3. 公開ファイルの検査
+
+**【このセクションの核心】 ユーザーが閲覧できるファイルにシークレットが存在しないことを確認します。 **
+
+ユーザーはこれらのファイルを閲覧できます。
+</code></pre>
+<p>パブリック/*</p>
+<p>dist/*</p>
+<p>フロントエンドのパッケージ化されたjs/css</p>
+<pre><code>
+次のものが含まれていないことを確認してください。
+
+- パドル API キー。
+- Webhook の秘密。
+- 管理者トークン。
+- `.env.payment.local` コンテンツ。
+- あなたのプライベートテスト注文情報。
+
+Codex に以下のチェックを依頼できます。
+</code></pre>
+<p>public、dist、およびフロントエンドのソース コードをスキャンして、API キー、Webhook シークレット、および管理トークンが漏洩していないことを確認してください。</p>
+<pre><code>
+## 4. GitHub のチェック
+
+**【このセクションの核心】Zeabur が GitHub で最新のセキュリティ バージョンを取得することを確認します。 **
+
+Zeabur は GitHub からコードを取得するため、デプロイする前にリポジトリのステータスを確認します。
+
+- [ ] GitHub リポジトリが作成されました。
+- [ ] このマシンの最新の修正がコミットされました。
+- [ ] このマシンの最新の修正がプッシュされました。
+- [ ] 最新の README とコードは GitHub ページでご覧いただけます。
+- [ ] .env がアップロードされていません。
+- [ ] .env.payment.local はアップロードされません。
+- [ ] Paddle API キー、Webhook シークレット、および管理トークンがウェアハウスに表示されません。
+- [ ] GitHub ウェアハウスのアドレスを Zeabur にコピーして使用できます。
+
+##5.ゼアバーの検査
+
+**【このセクションの核心】オンラインサービスが開始でき、アクセスでき、支払い情報が保存できることを確認します。 **
+
+最初にこれを実行して、公的にアクセス可能な HTTPS ドメイン名を取得します。 Paddle の Web サイト検証、デフォルトの支払いリンク、Webhook にはすべてこのドメイン名が必要です。
+
+- [ ] GitHub リポジトリは最新のコードです。
+- [ ] Zeabur は正しいリポジトリとブランチを接続します。
+- [ ] ビルド コマンドは `npm run build` です。
+- [ ] 開始コマンドは `npm run start` です。
+- [ ] サービスリスニング `process.env.PORT`。
+- [ ] ホストは `0.0.0.0` を使用します。
+- [ ] `/api/health` にアクセスできます。
+- [ ] `/monetization.json` にアクセスできます。
+- [ ] `/data` ボリュームセット。
+- [ ] `PAYMENT_STORE_FILE=/data/payment-store.json`。
+- [ ] Zeabur HTTPS ドメイン名 (`https://你的项目.zeabur.app` など) を取得しました。
+
+##6. パドルの検査
+
+**【このセクションの核心】Paddle アカウント、ドメイン名、製品、価格、Webhook がすべて準備されていることを確認します。 **
+
+Zeabur の Web サイトを開くことができたら、Paddle を実行します。ドメイン名を持っていない場合は、支払いを強制しないでください。
+
+- [ ] パドルのオンボーディングが完了しました。
+- [ ] Web サイトのドメイン名が確認されました。
+- [ ] 価格ページは、Zeabur ドメイン名の下にある公開ページに入力します。
+- [ ] 利用規約 / プライバシー ポリシー / 返金ポリシーはすべてパス付きの URL を使用します。
+- [ ] デフォルトの支払いリンクは検証済みのドメイン名に設定されています。
+- [ ] 製品が作成されました。
+- [ ] 1 回限りの価格が設定されています。
+- [ ] CNY 価格 ID が Zeabur 環境変数に入力されます。
+- [ ] USD 価格 ID が Zeabur 環境変数に入力されます。
+- [ ] API キーは正しい環境です: サンドボックスまたはライブ。
+- [ ] Webhook 宛先は `https://你的域名/api/webhooks/paddle` を指します。
+- [ ] Webhook シークレットは Zeabur 変数に入力されます。
+- [ ] `transaction.completed` イベントが選択されました。
+- [ ] サンドボックス支払いで Webhook をトリガーできる。
+
+## 7. 環境変数のチェック
+
+**【このセクションの核心】展開プラットフォーム上の変数が完全であり、環境が一貫していることを確認します。 **
+
+少なくともZeabur変数。初めてドメイン名を取得したい場合は、Paddle 関連の変数を空白のままにするか、プレースホルダー値を使用できます。 Paddle が製品、価格、Webhook を構築するまで待ってから、それらを入力します。```bash
+PAYMENT_SERVER_HOST=0.0.0.0
+PAYMENT_STORE_FILE=/data/payment-store.json
+PUBLIC_BASE_URL=https://你的域名
+CORS_ORIGIN=https://你的域名
+PADDLE_ENVIRONMENT=sandbox
+PADDLE_API_KEY=...
+PADDLE_CNY_PRICE_ID=pri_...
+PADDLE_USD_PRICE_ID=pri_...
+PADDLE_WEBHOOK_SECRET=...
+PADDLE_ALLOW_UNSIGNED_WEBHOOKS=false</code></pre>
+<p>ライブに移行する場合は、すべてのサンドボックスをライブに置き換えます。混ぜないでください。</p>
+<h3>8. 有料保安検査</h3>
+<p><strong>【このセクションの核心】実際の支払いが成功した場合にのみロックが解除されることを確認します。 </strong></p>
+<p>少なくとも次のシナリオをテストしてください。</p>
 <ul>
-<li>[ ] Website approval が完了。</li>
-<li>[ ] Default payment link が設定済み。</li>
-<li>[ ] Product は one-time digital product。</li>
-<li>[ ] Price は subscription ではない。</li>
-<li>[ ] Webhook URL が正しい。</li>
-<li>[ ] failed / canceled / duplicate webhook で誤解放しない。</li>
+<li>[ ] URL と <code># paid=true</code> ではロックが解除されません。</li>
+<li>[ ] セッション ID をランダムに変更してもロックは解除されません。</li>
+<li>[ ] エラー Webhook シークレットのロックは解除されません。</li>
+<li>[ ] 重複した Webhook は複数回発行されません。</li>
+<li>[ ] <code>transaction.payment_failed</code> はロックを解除できません。</li>
+<li>[ ] <code>transaction.completed</code> のロックが解除されます。</li>
+<li>[ ] 同じ注文に対して別のレポート ID のロックを解除することはできません。</li>
 </ul>
-<h3>Zeabur</h3>
+<h3>9. 実際のユーザーエクスペリエンスのチェック</h3>
+<p><strong>【このセクションの核心】 携帯電話とコンピュータを使用して、完全なプロセスを 1 回実行してください。 </strong></p>
+<p>携帯電話で 1 回、コンピュータで 1 回実行します。</p>
 <ul>
-<li>[ ] <code>PAYMENT_SERVER_HOST=0.0.0.0</code>。</li>
-<li>[ ] <code>/data</code> volume がある。</li>
-<li>[ ] <code>PUBLIC_BASE_URL</code> と <code>CORS_ORIGIN</code> が本番ドメイン。</li>
-<li>[ ] <code>/api/health</code> が secret を表示しない。</li>
+<li>[ ] ホームページのコピーは理解できます。</li>
+<li>[ ] スタートボタンは一目瞭然です。</li>
+<li>[ ] 解答ページをスライドし続ける必要はありません。</li>
+<li>[ ] プロフェッショナルな雰囲気の無料レポート。</li>
+<li>[ ] 支払いボタンがクリアされます。</li>
+<li>[ ] 支払い後に待機中のプロンプトが表示されます。</li>
+<li>[ ] ロックを解除した後、完全なレポートのレイアウトが安定しました。</li>
+<li>[ ] レポートの保存が失敗したり、クリップされたりすることはありません。</li>
 </ul>
-<h3>最後に</h3>
-<p>sandbox で通ってから live に切り替えます。live API key、live price id、live webhook secret、Paddle environment をまとめて確認してください。</p></article></section></main></body></html>
+<h3>10. オンラインになる前にテストの入り口を閉じてください</h3>
+<p><strong>【このセクションの核心】正式リリース前にテスト用のショートカットをすべて閉じてください。 </strong></p>
+<p>これらのテスト機能がある場合は、公開する前に必ずオフにしてください。</p>
+<ul>
+<li>[ ] ボタンをクリックすると、結果ページに直接ジャンプします。</li>
+<li>[ ] 0元のテストロック解除ボタン。</li>
+<li>[ ] 模擬支払いボタン。</li>
+<li>[ ] 管理コンフィギュレータ エントリ。</li>
+<li>[ ] 任意のデバッグ パネル。</li>
+</ul>
+<p>意図的に保管したい場合は、少なくとも通常のユーザーの目につかない場所に保管してください。</p>
+<h3>11. オンライン接続後の初日に見るべきもの</h3>
+<p><strong>【このセクションの核心】 リリース初日は、支払いリンクとロック解除の失敗に焦点を当てます。 </strong></p>
+<p>オンラインになった後の訪問数だけを見てはいけません。ハイライト:</p>
+<ul>
+<li>何人がクイズを始めましたか。</li>
+<li>何人がクイズを完了しましたか。</li>
+<li>クリックして支払いをした人の数。</li>
+<li>パドルチェックアウトはオンになっていますか?</li>
+<li>Webhook の成功率。</li>
+<li>支払いが成功した後にロック解除に失敗することはありますか?</li>
+<li>ユーザーから「支払ったのに見られない」という報告はありましたか?</li>
+</ul>
+<p>低価格商品で最も恐れられるのは支払いリンクのエラーです。初日のログをもっと読んでください。</p>
+<h3>一文で承認</h3>
+<p><strong>【このセクションの核心】 未知のユーザーは、テストを完了し、支払いを行い、完全なレポートが自動的に表示される場合にのみ、オンラインで成功したとみなされます。 </strong></p>
+<p>安定して実行できる場合:</p>
+<pre><code>未知のユーザーが Web サイトを開く -&gt; クイズに回答する -&gt; 支払いを行う -&gt; 完全なレポートが自動的に表示される</code></pre>
+<p>それが本当のオンラインのときです。</p></article></section></main></body></html>

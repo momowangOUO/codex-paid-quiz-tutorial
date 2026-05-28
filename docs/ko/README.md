@@ -1,13 +1,13 @@
-# 튜토리얼 목차
-[简体中文](../../README.md) · [繁體中文](../../README.zh-TW.md) · [English](../../README.en.md) · [日本語](../../README.ja.md) · **한국어**
-![Tutorial cover](../../assets/brand/tutorial-hero.webp)
+# 튜토리얼 디렉토리
+**중국어 간체** · [중국어 번체](../../README.zh-TW.md) · [영어](../../README.en.md) · [일본어](../../README.ja.md) · [한국어](../../README.ko.md)
+![튜토리얼 커버](../../assets/brand/tutorial-hero.webp)
 
-1. [제품 흐름 나누기](01-product-flow.md)
-2. [Codex 로 사이트 만들기](02-codex-build-workflow.md)
-3. [GitHub 에 업로드하기](03-upload-to-github.md)
-4. [먼저 Zeabur 에 배포하기](04-zeabur-deployment.md)
-5. [Paddle 결제와 자동 잠금 해제](05-payment-unlock.md)
-6. [Codex 프롬프트 모음](06-prompt-templates.md)
+1. [상품흐름 해체방법](01-product-flow.md)
+2. [Codex가 0에서 웹사이트 구축을 도와주는 방법](02-codex-build-workflow.md)
+3. [GitHub에 업로드](03-upload-to-github.md)
+4. [Zeabur에 배포하고 검증 가능한 도메인 이름을 얻습니다](04-zeabur-deployment.md)
+5. [도메인 이름을 확보한 후 패들 결제를 수락하고 자동 잠금 해제] (05-결제-unlock.md)
+6. [직접 복사 가능한 코덱스 프롬프트 단어](06-prompt-templates.md)
 7. [출시 전 체크리스트](07-launch-checklist.md)
 
-[홈으로 돌아가기](../../README.ko.md)
+[홈페이지로 돌아가기](../../README.md)

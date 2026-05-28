@@ -1,47 +1,275 @@
-# 03. GitHub 에 업로드하기
+# 03. 먼저 GitHub에 업로드하고 Zeabur에 배포 준비
 
-![GitHub upload chapter art](../../assets/chapters/chapter-03-github.webp)
-**목표: Zeabur 가 배포할 코드를 GitHub 에 둡니다. 로컬에만 있으면 Zeabur 는 볼 수 없습니다.**
+![GitHub 업로드 챕터 아트](../../assets/chapters/chapter-03-github.webp)
+이 장은 Zeabur 앞에 위치한다.
 
-## 커밋하면 안 되는 것
+**[이 장의 핵심] Zeabur는 일반적으로 배포를 위해 GitHub에서 코드를 가져오므로 먼저 로컬 프로젝트를 GitHub 저장소에 업로드합니다. **
 
-`.gitignore` 에 다음을 넣습니다.
+세 가지의 관계를 다음과 같이 이해할 수 있습니다.
 
-```gitignore
-node_modules
-dist
-.env
-.env.*
-*.local
-.logs
-tmp-*
+```text
+컴퓨터: 코드를 작성하고 테스트하는 곳
+GitHub: 코드 저장을 위한 클라우드 웨어하우스
+Zeabur: GitHub에서 코드를 가져와 웹사이트에서 실행
 ```
 
-Paddle API key, webhook secret, 주문 데이터, 사용자 정보는 GitHub 에 올리지 않습니다.
+> 💡 **왜 이러는 걸까요#  **
+> Zeabur는 컴퓨터 데스크탑에서 직접 파일을 읽지 않습니다. 일반적으로 GitHub 리포지토리에 연결한 다음 리포지토리를 업데이트할 때마다 다시 배포합니다. 여기서 GitHub는 "프로젝트 전송 스테이션"과 같고 Zeabur는 "전송 스테이션에서 프로젝트를 시작하고 실행하는 사람"과 같습니다.
 
-## 첫 push
+### 1단계: 이미 GitHub 계정이 있는지 확인하세요.
 
-```bash
-git init
+**【이 단계의 핵심】 프로젝트 코드를 저장하려면 GitHub 계정이 필요합니다. **
+
+다음은 구체적인 실행 단계입니다.
+
+1. GitHub 공식 웹사이트를 엽니다.
+2. 이미 로그인되어 있는 경우 다음 단계를 진행하세요.
+3. 아직 계정이 없다면 등록하세요.
+4. GitHub 사용자 이름을 기억하세요. 나중에 창고 주소로 사용됩니다.
+
+> 💡 **왜 이러는 걸까요#  **
+> GitHub는 프로그래머가 일반적으로 사용하는 코드 저장소 플랫폼입니다. 웨어하우스는 모든 중요한 수정 사항을 저장하는 "프로젝트 전용 클라우드 폴더"로 이해될 수 있습니다.
+
+### 2단계: GitHub에 새 저장소 만들기
+
+**【이 단계의 핵심】웹사이트 코드를 저장하기 위한 저장소를 특별히 생성합니다. **
+
+다음은 구체적인 실행 단계입니다.
+
+1. GitHub를 엽니다.
+2. 오른쪽 상단의 `+`를 클릭하세요.
+3. `New repository`를 선택하세요.
+4. `Repository name`에 프로젝트 이름을 입력합니다. 예:
+
+```text
+유료 퀴즈 사이트
+```
+
+5. `Description`를 먼저 작성할 수 있습니다.
+
+```text
+Codex로 구축된 유료 퀴즈 웹사이트입니다.
+```
+
+6. 가시성은 `Public` 또는 `Private`를 선택할 수 있습니다.
+7. 아직 로컬 프로젝트가 없다면 `Add a README file`를 확인해보세요.
+8. 이미 로컬 프로젝트가 있는 경우 로컬 파일과의 충돌을 피하기 위해 먼저 README를 확인하지 않는 것이 좋습니다.
+9. `Create repository`를 클릭하세요.
+
+> 💡 **왜 이러는 걸까요#  **
+> 레포(Repo)는 저장소(Repository)의 약자로 창고를 의미합니다. 하나의 저장소는 하나의 프로젝트에 해당합니다. 귀하의 웹 사이트 코드, 문서 및 배포 구성은 모두 이 창고에 배치됩니다.
+
+### 3단계: 비밀글을 업로드하지 않도록 먼저 확인하세요.
+
+**[이 단계의 핵심] 처음 업로드하기 전에 키, 주문, 배경 데이터가 GitHub에 푸시되지 않는지 확인하세요. **
+
+다음 콘텐츠를 업로드하지 마세요.
+
+- `.env`
+-`.env.payment.local`
+-패들 API 키
+- 패들 웹훅 비밀
+-관리자 토큰
+- 실제 주문정보
+- 결제 플랫폼 백엔드 화면
+-`node_modules`
+-`dist`
+- 로그 파일
+
+프로젝트 루트 디렉터리에는 `.gitignore`가 있어야 합니다. 최소한 다음을 포함하는 것이 좋습니다.
+
+```text
+.env
+.env.*
+*.로컬
+node_modules
+거리
+.logs
+tmp-*
+*.로그
+```Codex에게 확인을 요청할 수 있습니다.
+
+```text
+이 프로젝트가 GitHub에 업로드하기에 적합한지 확인해주세요.
+
+요구사항:
+1. .gitignore는 .env, .env.*, *.local, node_modules, dist, 로그 및 임시 파일을 제외해야 합니다.
+2. 프로젝트를 스캔하여 Paddle API 키, 웹훅 비밀 또는 관리자 토큰이 없는지 확인합니다.
+3. 비밀을 찾으면 파일 경로를 알려주고 해당 키를 취소하거나 교체하도록 제안하십시오.
+4. 내 비즈니스 코드를 삭제하지 마세요.
+```
+
+> 💡 **왜 이러는 걸까요#  **
+> GitHub는 코드 저장에 적합하며 키 저장에는 적합하지 않습니다. API 키는 백엔드 키와 같습니다. 공개 저장소나 커밋 기록에 들어가면 노출된 것으로 간주되어 나중에 다시 생성해야 합니다.
+
+### 4단계: 이 머신에 Git이 설치되어 있는지 확인
+
+**[이 단계의 핵심] Git은 GitHub에 로컬 프로젝트를 제출하기 위한 도구입니다. **
+
+터미널에서 실행:```bash
+git --version
+```
+
+다음과 같은 내용이 표시되면:
+
+```text
+자식 버전 2.x.x
+```
+
+설명이 설치되었습니다.
+
+시스템에서 `git`를 찾을 수 없다는 메시지가 표시되면 계속하기 전에 Git을 설치하세요.
+
+> 💡 **왜 이러는 걸까요#  **
+> Git은 "버전 기록 도구"입니다. 변경한 파일을 기록하고 네이티브 코드를 GitHub에 푸시할 수도 있습니다. GitHub는 클라우드 플랫폼이고 Git은 GitHub와 로컬로 통신하는 데 사용하는 도구입니다.
+
+### 5단계: 프로젝트 루트 디렉터리에서 Git 초기화
+
+**【이 단계의 핵심】 프로젝트가 아직 Git 웨어하우스가 아닌 경우 먼저 Git 웨어하우스로 만드세요. **
+
+프로젝트 루트 디렉터리에서 실행합니다.```bash
 git status
+```
+
+파일 상태가 표시되면 해당 파일이 이미 Git 저장소라는 의미입니다.
+
+다음과 같은 내용이 표시되면:
+
+```text
+치명적: git 저장소가 아님
+```
+
+그냥 실행하세요:```bash
+git init
+```
+
+그런 다음 다음을 실행합니다.```bash
+git status
+```
+
+> 💡 **왜 이러는 걸까요#  **
+> `git init`는 프로젝트 폴더에 "변경 로그"를 넣는 것과 같습니다. 이 순간부터 Git은 이 프로젝트를 추적하는 방법을 알고 있습니다.
+
+### 6단계: 첫 번째 커밋에 파일 추가
+
+**【이 단계의 핵심】현재 프로젝트 상태를 커밋으로 저장합니다. **
+
+구현하다:```bash
 git add .
-git commit -m "Initial paid quiz site"
+git commit -m "Initial paid quiz website"
+```Git이 이름과 이메일 주소를 설정하라는 메시지를 표시하면 다음과 같은 메시지를 따르세요.```bash
+git config --global user.name "你的名字"
+git config --global user.email "你的邮箱"
+```
+
+그런 다음 다시 실행하십시오.```bash
+git commit -m "Initial paid quiz website"
+```
+
+> 💡 **왜 이러는 걸까요#  **
+> 커밋은 "아카이브"로 이해될 수 있습니다. GitHub에 파일을 느슨하게 덤프하는 대신 특정 버전을 로컬에 저장한 다음 해당 버전을 푸시합니다.
+
+### 7단계: GitHub 원격 저장소에 연결
+
+**[이 단계의 핵심] 로컬 Git에 이 프로젝트를 푸시해야 하는 GitHub 저장소를 알려줍니다. **
+
+GitHub가 창고를 구축한 후 일반적으로 다음과 같은 주소를 제공합니다.
+
+```text
+https://github.com/yourusername/yourwarehousename.git
+```
+
+터미널에서 실행:```bash
 git branch -M main
-git remote add origin https://github.com/your-name/your-repo.git
+git remote add origin https://github.com/你的用户名/你的仓库名.git
+```
+
+`origin already exists` 메시지가 나타나면 이미 원격 주소가 있다는 의미입니다. 다음을 볼 수 있습니다.```bash
+git remote -v
+```
+
+주소가 잘못된 경우 다음으로 변경할 수 있습니다.```bash
+git remote set-url origin https://github.com/你的用户名/你的仓库名.git
+```
+
+> 💡 **왜 이러는 걸까요#  **
+> `origin`는 원격웨어 하우스의 로컬 Git 별명입니다. Git에게 다음과 같이 말합니다. 이제부터 원본으로 푸시한다는 것은 이 GitHub 저장소로 푸시한다는 뜻입니다.
+
+### 8단계: GitHub로 푸시
+
+**【이 단계의 핵심】GitHub에 로컬 커밋을 업로드합니다. **
+
+구현하다:```bash
 git push -u origin main
 ```
 
-## push 전 Codex 점검
+처음 푸시하면 GitHub에서 로그인 또는 승인을 요청할 수 있습니다.
 
-```text
-커밋할 파일을 확인해서 .env, API key, webhook secret, 결제 데이터, 사용자 개인정보가 포함되어 있지 않은지 봐 주세요. 파일을 삭제하지 말고 위험과 .gitignore 제안만 알려 주세요.
+푸시 성공 후:
+
+1. GitHub 리포지토리 페이지를 엽니다.
+2. 웹페이지를 새로고침하세요.
+3. 프로젝트 파일이 보이는지 확인하세요.
+4. README가 정상적으로 표시되는지 확인합니다.
+5. `.env`, `.env.payment.local`가 창고에 나타나지 않는지 확인합니다.
+
+> 💡 **왜 이러는 걸까요#  **
+> `git push`는 "로컬 아카이브를 클라우드 창고에 업로드"입니다. 그러면 Zeabur는 컴퓨터의 폴더 대신 GitHub의 코드를 읽습니다.
+
+### 9단계: 변경할 때마다 업데이트하려면 3단계를 사용하세요.
+
+**[이 단계의 핵심] 향후 웹 사이트를 수정한 후 추가, 커밋, 푸시의 세 단계를 사용하여 GitHub에 동기화합니다. **
+
+각 변경 후 실행:```bash
+git status
+git add .
+git commit -m "Describe what changed"
+git push
 ```
 
-## 확인
+제출 메시지는 더 구체적일 수 있습니다. 예를 들면 다음과 같습니다.```bash
+git commit -m "Add Paddle webhook unlock flow"
+```
 
-- GitHub 에서 README 가 읽힌다.
-- 최신 commit 이 반영되어 있다.
-- `src/`, `server/`, `public/` 이 있다.
-- `.env.payment.local` 이 없다.
+또는:```bash
+git commit -m "Improve unpaid report preview"
+```
 
-Zeabur 가 갱신되지 않으면 먼저 GitHub 에 정말 최신 commit 이 있는지 확인합니다.
+> 💡 **왜 이러는 걸까요#  **
+> Zeabur는 일반적으로 GitHub 저장소에서 변경 사항을 모니터링합니다. 새 커밋을 푸시한 후 Zeabur는 온라인 서비스를 다시 배포해야 한다는 것을 알게 됩니다.
+
+### 10단계: 업로드 후 Zeabur 입력
+
+**【이 단계의 핵심】GitHub 창고에 이미 코드가 있는지 확인한 다음 Zeabur로 이동하여 배포할 이 창고를 선택합니다. **
+
+다음 장으로 진행하기 전에 다음 사항을 확인하십시오.
+
+1. GitHub 창고 페이지를 열 수 있습니다.
+2. README를 표시할 수 있습니다.
+3. 주요 코드 파일이 업로드되었습니다.
+4. `.env`, `.local` 및 API 키는 업로드되지 않습니다.
+5. 창고 주소를 알고 있습니다. 예:
+
+```text
+https://github.com/yourusername/paid-quiz-site
+```
+
+이 창고는 다음 장에서 Zeabur에서 선택됩니다.
+
+> 💡 **왜 이러는 걸까요#  **
+> Zeabur의 배포 항목은 일반적으로 "GitHub repo 선택"입니다. 저장소에 아직 코드가 없으면 Zeabur에는 배포할 항목이 없습니다.
+
+### 이 장의 완료 기준
+
+**【이 장의 핵심】GitHub에서 전체 프로젝트를 볼 수 있어야 하며 키가 유출되지 않았는지 확인할 수 있어야 합니다. **
+
+완료 후 항목별로 확인해주세요.
+
+1. GitHub 저장소가 생성되었습니다.
+2. 기본 프로젝트는 이미 `git commit`입니다.
+3. 기본 프로젝트는 `git push`였습니다.
+4. 프로젝트 파일은 GitHub 페이지에서 보실 수 있습니다.
+5. `.env`가 업로드되지 않습니다.
+6. `.env.payment.local`가 업로드되지 않습니다.
+7. API 키, 웹훅 비밀번호, 관리자 토큰은 웨어하우스에 표시되지 않습니다.
+8. Zeabur로 이동하여 배포할 저장소를 선택할 준비가 되었습니다.
