@@ -320,4 +320,4 @@ npm run build
 - 一个公开配置文件。
 - 一套清楚的 Codex 提示词。
 
-下一章先部署到 Zeabur 拿 HTTPS 域名；有域名后再接 Paddle。
+下一章先把项目上传到 GitHub；GitHub 仓库准备好后，再部署到 Zeabur 拿 HTTPS 域名。

@@ -14,7 +14,7 @@ Live example: <https://callingdeconstructor.zeabur.app/>
 
 이 튜토리얼은 테스트, 리포트, 컨설팅, 교육 콘텐츠를 유료 웹사이트로 만들고 싶은 크리에이터를 위한 실전 가이드입니다. 특정 제품의 채점 알고리즘이나 리포트 설계 방식은 공개하지 않고, 재사용 가능한 기술 구조만 정리합니다.
 
-순서가 중요합니다. 먼저 로컬 mock 흐름을 완성하고, Zeabur에 배포해서 공개 HTTPS 도메인을 얻은 뒤, 그 도메인으로 Paddle website approval, default payment link, webhook을 설정합니다.
+순서가 중요합니다. 먼저 로컬 mock 흐름을 완성하고, GitHub에 업로드한 뒤, 그 GitHub repo를 Zeabur에 배포해서 공개 HTTPS 도메인을 얻고, 그 도메인으로 Paddle website approval, default payment link, webhook을 설정합니다.
 
 ![Paid quiz architecture](assets/brand/tutorial-hero.webp)
 
@@ -60,6 +60,7 @@ Live example: <https://callingdeconstructor.zeabur.app/>
 ```text
 테스트 답변
   -> 무료 미리보기
+  -> GitHub에 업로드
   -> Zeabur에 배포하고 HTTPS 도메인 확보
   -> 백엔드가 payment session 생성
   -> Hosted checkout
@@ -74,11 +75,12 @@ Live example: <https://callingdeconstructor.zeabur.app/>
 
 1. [Product Flow](01-product-flow.md)
 2. [Build Workflow with Codex](02-codex-build-workflow.md)
-3. [Deploy to Zeabur and Get a Verifiable Domain](03-zeabur-deployment.md)
-4. [Connect Paddle Payment and Auto-Unlock](04-payment-unlock.md)
-5. [Prompt Templates](05-prompt-templates.md)
-6. [Launch Checklist](06-launch-checklist.md)
-7. [Visual Walkthrough](07-visual-walkthrough.md)
+3. [Upload to GitHub Before Zeabur](03-upload-to-github.md)
+4. [Deploy to Zeabur and Get a Verifiable Domain](04-zeabur-deployment.md)
+5. [Connect Paddle Payment and Auto-Unlock](05-payment-unlock.md)
+6. [Prompt Templates](06-prompt-templates.md)
+7. [Launch Checklist](07-launch-checklist.md)
+8. [Visual Walkthrough](08-visual-walkthrough.md)
 
 ## Contribute
 

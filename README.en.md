@@ -14,7 +14,7 @@ Live example: <https://callingdeconstructor.zeabur.app/>
 
 This is a practical guide for creators who want to turn a quiz, assessment, report, consulting product, or educational product into a paid website. It focuses on the reusable engineering path, not on any specific product's private scoring model, report framework, or design method.
 
-Important order: build the local mock flow first, deploy it to Zeabur, get a public HTTPS domain, then use that domain for Paddle website approval, default payment link, and webhook setup.
+Important order: build the local mock flow first, upload the project to GitHub, deploy that GitHub repo to Zeabur, get a public HTTPS domain, then use that domain for Paddle website approval, default payment link, and webhook setup.
 
 ![Paid quiz architecture](assets/brand/tutorial-hero.webp)
 
@@ -60,6 +60,7 @@ Small note: this is a personal project, and the server budget is not an infinite
 ```text
 Quiz answers
   -> Free preview
+  -> Upload the project to GitHub
   -> Deploy to Zeabur and get an HTTPS domain
   -> Backend creates payment session
   -> Hosted checkout
@@ -74,11 +75,12 @@ If your system trusts a frontend URL like `paid=true`, it can be bypassed. Payme
 
 1. [Product Flow](01-product-flow.md)
 2. [Build Workflow with Codex](02-codex-build-workflow.md)
-3. [Deploy to Zeabur and Get a Verifiable Domain](03-zeabur-deployment.md)
-4. [Connect Paddle Payment and Auto-Unlock](04-payment-unlock.md)
-5. [Prompt Templates](05-prompt-templates.md)
-6. [Launch Checklist](06-launch-checklist.md)
-7. [Visual Walkthrough](07-visual-walkthrough.md)
+3. [Upload to GitHub Before Zeabur](03-upload-to-github.md)
+4. [Deploy to Zeabur and Get a Verifiable Domain](04-zeabur-deployment.md)
+5. [Connect Paddle Payment and Auto-Unlock](05-payment-unlock.md)
+6. [Prompt Templates](06-prompt-templates.md)
+7. [Launch Checklist](07-launch-checklist.md)
+8. [Visual Walkthrough](08-visual-walkthrough.md)
 
 ## Contribute
 

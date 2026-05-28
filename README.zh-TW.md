@@ -16,7 +16,7 @@
 
 本教程刻意不展開任何具體產品的測驗演算法、報告文案結構或視覺設計方法。你可以把它當成一套通用工程路線：換成你的題目、結果頁、定價和品牌，就能做出自己的收費測驗網站。
 
-順序很重要：先把本機 mock 流程跑通，部署到 Zeabur 取得公開 HTTPS 網域，再用這個網域去做 Paddle 網站驗證、default payment link 與 webhook 設定。
+順序很重要：先把本機 mock 流程跑通，上傳到 GitHub，再把 GitHub repo 部署到 Zeabur 取得公開 HTTPS 網域，最後用這個網域去做 Paddle 網站驗證、default payment link 與 webhook 設定。
 
 ![收費測驗網站總覽](assets/brand/tutorial-hero.webp)
 
@@ -63,6 +63,7 @@
 ```text
 測驗答案
   -> 免費導言版結果
+  -> 上傳到 GitHub
   -> 部署到 Zeabur 並取得 HTTPS 網域
   -> 後端建立 payment session
   -> 付款平台 hosted checkout
@@ -77,11 +78,12 @@
 
 1. [產品流程設計](01-product-flow.md)
 2. [讓 Codex 幫你從 0 建站](02-codex-build-workflow.md)
-3. [先部署到 Zeabur，取得可驗證網域](03-zeabur-deployment.md)
-4. [有網域後，再串 Paddle 付款與自動解鎖](04-payment-unlock.md)
-5. [提示詞模板庫](05-prompt-templates.md)
-6. [上線檢查清單](06-launch-checklist.md)
-7. [內建介面截圖圖冊](07-visual-walkthrough.md)
+3. [先上傳到 GitHub，準備給 Zeabur 部署](03-upload-to-github.md)
+4. [部署到 Zeabur，取得可驗證網域](04-zeabur-deployment.md)
+5. [有網域後，再串 Paddle 付款與自動解鎖](05-payment-unlock.md)
+6. [提示詞模板庫](06-prompt-templates.md)
+7. [上線檢查清單](07-launch-checklist.md)
+8. [內建介面截圖圖冊](08-visual-walkthrough.md)
 
 ## 一起協作
 

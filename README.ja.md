@@ -14,7 +14,7 @@ Live example: <https://callingdeconstructor.zeabur.app/>
 
 このガイドは、診断、レポート、コンサルティング、教育コンテンツを有料サイトにしたいクリエイター向けの実践メモです。特定プロダクトの採点ロジックやレポート設計は公開せず、再利用できる技術ルートだけを整理しています。
 
-順番が大切です。まずローカルの mock フローを通し、Zeabur にデプロイして公開 HTTPS ドメインを取得し、そのドメインを使って Paddle の website approval、default payment link、webhook を設定します。
+順番が大切です。まずローカルの mock フローを通し、GitHub にアップロードし、その GitHub repo を Zeabur にデプロイして公開 HTTPS ドメインを取得し、そのドメインを使って Paddle の website approval、default payment link、webhook を設定します。
 
 ![Paid quiz architecture](assets/brand/tutorial-hero.webp)
 
@@ -60,6 +60,7 @@ Live example: <https://callingdeconstructor.zeabur.app/>
 ```text
 診断回答
   -> 無料プレビュー
+  -> GitHub にアップロード
   -> Zeabur にデプロイして HTTPS ドメインを取得
   -> バックエンドが payment session を作成
   -> Hosted checkout
@@ -74,11 +75,12 @@ Live example: <https://callingdeconstructor.zeabur.app/>
 
 1. [Product Flow](01-product-flow.md)
 2. [Build Workflow with Codex](02-codex-build-workflow.md)
-3. [Deploy to Zeabur and Get a Verifiable Domain](03-zeabur-deployment.md)
-4. [Connect Paddle Payment and Auto-Unlock](04-payment-unlock.md)
-5. [Prompt Templates](05-prompt-templates.md)
-6. [Launch Checklist](06-launch-checklist.md)
-7. [Visual Walkthrough](07-visual-walkthrough.md)
+3. [Upload to GitHub Before Zeabur](03-upload-to-github.md)
+4. [Deploy to Zeabur and Get a Verifiable Domain](04-zeabur-deployment.md)
+5. [Connect Paddle Payment and Auto-Unlock](05-payment-unlock.md)
+6. [Prompt Templates](06-prompt-templates.md)
+7. [Launch Checklist](07-launch-checklist.md)
+8. [Visual Walkthrough](08-visual-walkthrough.md)
 
 ## Contribute
 
